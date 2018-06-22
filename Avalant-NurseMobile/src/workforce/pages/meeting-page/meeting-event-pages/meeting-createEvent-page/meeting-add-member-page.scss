@@ -1,0 +1,110 @@
+$content-background-color: white;
+meeting-add-member-page {
+    .meeting-scroll-content {
+        div.scroll-content {
+            padding-bottom: 0 !important;
+        }
+    }
+    $avatar-size: 2.5em;
+    ion-row>ion-col>ion-spinner * {
+        color: white;
+        fill: white;
+    }
+    .ion-scroll-ion-list {
+        * {
+            color: black;
+        }
+    }
+    ion-scroll.ion-scroll-ion-list {
+        width: 100%;
+        height: 80%;
+    }
+    .scroll-content,
+    button.item.item-block,
+    ion-list.employee-list {
+        background-color: $content-background-color;
+    }
+    ion-list.employee-list {
+        width: 100%;
+        padding: 0 14px;
+        padding-top: 14px;
+        // * {
+        //     background-color: inherit;
+        // }
+        ion-avatar>img.emp-avatar {
+            width: $avatar-size;
+            height: $avatar-size;
+        }
+        ion-label {
+            * {
+                font-size: .8em;
+            }
+            h2 {
+                // font-size: .9em;
+                font-weight: bold;
+            }
+            p {
+                font-weight: 100;
+            }
+        }
+        div.emp-select-status {
+            position: absolute;
+            border: 1px solid #999;
+            font-size: 1em;
+            width: $avatar-size;
+            height: $avatar-size;
+            border-radius: 50%;
+            top: .85em;
+            right: 1em;
+            text-align: center;
+            div.checked-emp,
+            div.unchecked-emp {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+            div.checked-emp ion-icon.add-icon {
+                background-color: transparent;
+                color: #999;
+                font-size: 1.5em;
+                font-weight: 100;
+                padding: 0.5em;
+            }
+            div.unchecked-emp {
+                background-color: #6C7EA2;
+                ion-icon.checkmark-icon {
+                    background-color: transparent;
+                    color: white;
+                    font-size: 1.5em;
+                    font-weight: 100;
+                    padding: 0.5em;
+                }
+            }
+        }
+    }
+    ion-item.search-input {
+        background: #051432;
+        padding: 0 14px;
+        ion-icon {
+            margin-left: 0.7em;
+            font-size: 1.5em;
+        }
+        $placeholder-color: white;
+        .text-input::-moz-placeholder,
+        .text-input:-ms-input-placeholder,
+        .text-input::-webkit-input-placeholder {
+            text-indent: 0;
+            color: $placeholder-color;
+        }
+        input {
+            font-family: "RobotoRegular";
+            color: white;
+        }
+    }
+    .activated {
+        background-color: #999;
+        ion-label * {
+            color: #999 !important;
+        }
+    }
+}

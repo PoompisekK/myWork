@@ -1,0 +1,30 @@
+<div class="org-header" #orgHeader>
+  <section [style.background-image]="'url(assets/img/bg-road-blurred.jpg)'">
+
+    <!-- <ion-slides  #slides *ngIf="organizationData?.organizationImage; else orgImagePlaceholder" autoplay="3000" loop="true" [options]="slideOptions" (ionSlideDidChange)="slideChanged()" style="min-height:9.5em">
+        <ion-slide *ngFor="let img of organizationData?.organizationImage | imgSlide">
+          <div class="header-cover" [style.background-image]="'url(' + (img.imageKey | imagekey) + ')'"></div>
+        </ion-slide>
+      </ion-slides> -->
+
+    <!-- <div class="logo-brand-cover">
+      <img class="logo-brand" src="{{organizationData?.iconPath}}" />
+    </div> -->
+    <div class="brand-container" *ngIf="!isLoading; else organizationLoading">
+      <h1 class="brand-name" [innerHTML]="organizationData?.name"></h1>
+      <p class="brand-desc" color="sub-title" [innerHTML]="organizationData?.description"></p>
+      <ion-searchbar class="better-searchbar" placeholder="Find everything about motor parts" (click)="onSearchBarClick($event)"></ion-searchbar>
+    </div>
+    <ng-template #organizationLoading>
+      <div padding text-center class="sub-header-cover">
+        <div class="animated-background" style="height: 48px;">
+          <div class="background-masker gray" style="top: 0;left: 0;bottom: 0;width: 63px;"></div>
+          <div class="background-masker gray" style="top: 0;right: 0;bottom: 0;width: 63px;"></div>
+          <div class="background-masker gray" style="top: 20px;width: 100%;height: 7px;"></div>
+          <div class="background-masker gray" style="top: 0;left: 59px;width: 50px;height: 20px;"></div>
+          <div class="background-masker gray" style="top: 0;right: 59px;width: 50px;height: 20px;"></div>
+        </div>
+      </div>
+    </ng-template>
+  </section>
+</div>

@@ -1,0 +1,26 @@
+slide-menu-item {
+    $buttonSize: 9vh;
+    .grid {
+        padding: 0;
+    }
+    .name {
+        font-size: 1.3rem;
+    }
+    .button-outline {
+        border-color: color($colors-border, primary);
+        margin: .1rem;
+        padding: 0.8rem!important;
+        width: $buttonSize;
+        height: $buttonSize;
+        &.activated {
+            background-color: color($colors, light);
+        }
+        &.selected {
+            background-color: #d1e8ff;
+            border-color: #1976d2;
+        }
+    }
+    &.selected .name {
+        color: #1976d2;
+    }
+}

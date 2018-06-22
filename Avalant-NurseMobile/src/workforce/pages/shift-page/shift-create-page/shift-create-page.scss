@@ -1,0 +1,110 @@
+shift-create-page {
+    .scroll-content {
+        padding-bottom: 1em !important;
+    }
+    [required] {
+        &::after {
+            content: " *";
+            color: red;
+        }
+    }
+    .bg {
+        background: linear-gradient(#283E6D, #82A1E2);        
+    }    
+    ion-scroll {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+    }
+    ion-item {
+        ion-label {
+            font-size: 20px !important;
+        }
+    }
+    ion-icon {
+        color: #bbb;
+    }
+    .typeShift {
+        margin-top: -1em; 
+        .textShiftWork {
+            background-color: #ebeef5;
+            color: #999;            
+        }
+        ion-row.shiftTime {
+            margin-top: -4.5em;
+            color: #999;
+            font-size: 16px;
+            ion-row {
+                margin-left: 1.5em;
+                margin-top: -.5em;
+            }
+            ion-col[col-11] {
+                margin-top: -.2em;
+            }
+            ion-item {
+                margin-top: -1em;
+                span {
+                    margin-left: .5em;
+                    font-size: 16px;
+                    color: #999;
+                }
+            }
+            
+        }
+    }    
+
+    .typeShiftSwap {
+        margin-top: -1em; 
+        
+        ion-list.currentDate {
+            ion-item.addDate {
+                ion-icon {
+                    margin-top: 1.5em;
+                }
+            }
+        }
+        ion-list.currentShift {
+            margin-top: -5em;
+            ion-input {
+                background-color: #ebeef5;
+                // color: #999;
+            }
+        }
+        ion-list.swapWhith {
+            margin-top: -2em;
+        }
+        ion-row.checkradio1,
+        ion-row.checkradio2 {
+            span {
+                color: #999;
+                font-size: 16px;
+            }            
+            ion-radio {
+                margin-top: .3em;
+            }
+        }
+        ion-row.checkradio1 {            
+            ion-col {
+                margin-top: -4.5em;
+            }
+        }
+        ion-row.checkradio2 {
+            margin-top: .5em;
+        }
+        .dateShift {
+            margin-top: -.3em;
+            p {
+                font-size: 16px;
+                color: #999;
+            }
+            span {
+                margin-left: .7em;
+                color: #999;
+                font-size: 16px;                
+            }   
+        }
+        ion-row.textNote {
+            margin-top: -1.5em;
+        }
+    }
+}

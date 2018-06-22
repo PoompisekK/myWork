@@ -1,0 +1,66 @@
+<ion-header>
+    <app-nav-header [pageName]="'Assignment'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <div class="card-checkin">
+        <ion-card class="card-bt-red">
+            <ion-item no-padding style="margin: 5px;">
+                <!-- <ion-icon name="football" item-start large></ion-icon> -->
+                <ion-row>
+                    <ion-col no-padding col-3 text-center>
+                        <b>AS003</b>
+                    </ion-col>
+                    <ion-col no-padding col-7 class="margin-auto">
+                        <h2 class="w-break w-space">{{assign?.topic}}</h2>
+                        <p>{{assign?.deadLine | amLocale:'en' | amDateFormat:'MMM D, YYYY hh:mm a'}}</p>
+                    </ion-col>
+                    <ion-col no-padding col-2 class="margin-auto">
+                        <img class="img-avatar" [src]="assign?.picAssignee | loadImg" />
+                    </ion-col>
+                </ion-row>
+                <hr style="height:1px;">
+                <ion-row>
+                    <ion-col padding>
+                        <span class="w-break w-space">{{assign?.detail||'Not specify detail'}}</span>
+                    </ion-col>
+                </ion-row>
+                <hr style="height:1px;">
+                <ion-row>
+                    <ion-col padding>
+                        <b class="w-break w-space">Location</b>
+                        <p>{{assign?.place.name}}</p>
+                    </ion-col>
+                </ion-row>
+
+                <!-- <div style="height:20vh" id="map"></div> -->
+                <!-- <img src="assets/img/map2.jpg" /> -->
+                <ion-row>
+                    <ion-col col-12 padding>
+                        <b class="w-break w-space">Delegate</b>
+                    </ion-col>
+                    <ion-col col>
+                        <img class="img-avatar" src="assets/img/user.jpg" />
+                    </ion-col>
+                    <ion-col col>
+                        <img class="img-avatar" src="assets/img/user2.jpg" />
+                    </ion-col>
+                    <ion-col col>
+                        <img class="img-avatar" src="assets/img/user3.jpg" />
+                    </ion-col>
+                    <ion-col col>
+                        <img class="img-avatar" src="assets/img/avatar.png" />
+                    </ion-col>
+                    <ion-col col>
+                        <img class="img-avatar" src="assets/img/avatar2.png" />
+                    </ion-col>
+                </ion-row>
+            </ion-item>
+        </ion-card>
+    </div>
+
+    <!-- <div (click)="goToAss3()" class="bg-home-demo">
+
+  </div> -->
+
+
+</ion-content>

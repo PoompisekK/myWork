@@ -1,0 +1,38 @@
+<!--*
+ @author Bundit.Ng
+ @since  Fri May 19 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<ion-navbar [hideBackButton]="isCustomBackButton" #navbar>
+  <ion-buttons start>
+    <button *ngIf="isCustomBackButton" class="bar-button-md back-button-md" ion-button tappable (click)="backButtonClick()">
+      <ion-icon name="arrow-back" class="back-button-icon icon icon-md back-button-icon-md ion-md-arrow-back"></ion-icon>
+    </button>
+  </ion-buttons>
+  <button ion-button menuToggle start>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>
+    <img *ngIf="isShowLogo" class="avalogo" src="./assets/img/login/applogo.png">
+    <div *ngIf="!isShowLogo&&!marquee" class="title-text" translate>{{ title }}</div>
+    <div *ngIf="!isShowLogo&&marquee" class="title-text" translate>
+      <!-- <marquee behavior="alternate" scrolldelay="120" style="margin-top:10px;">{{ title }}</marquee> -->
+      <marquee scrolldelay="120" style="margin-top:10px;">{{ title }}</marquee>
+    </div>
+  </ion-title>
+  <ion-buttons end>
+    <button *ngIf="isShowNotiButton" class="iconBtn" tappable (click)="notiClick()" ion-button icon-only>
+      <ion-icon name="ios-notifications-outline"></ion-icon>
+    </button>
+    <button *ngIf="isShowSearchButton" class="iconBtn" tappable (click)="searchClick()" ion-button icon-only>
+      <ion-icon name="search"></ion-icon>
+    </button>
+    <button *ngIf="isShowMessageButton" class="iconBtn" tappable (click)="chatClick()" ion-button icon-only>
+      <ion-icon name="chatbubbles"><ion-badge color="danger">{{ messageUnreadCount > 99 ? '99+' : messageUnreadCount || '' }}</ion-badge></ion-icon>
+    </button>
+    <button *ngIf="isShowCartButton" class="iconBtn" tappable (click)="cartClick()" ion-button icon-only [@bounce]="appState.cartButtonBouncing"
+      (@bounce.done)="appState.cartButtonBouncing = ''">
+      <ion-icon name="cart"><ion-badge color="danger">{{ cartProductQuantityCount > 99 ? '99+' : cartProductQuantityCount || '' }}</ion-badge></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>

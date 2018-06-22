@@ -1,0 +1,25 @@
+$password=P@ssw0rd
+---------------------------------------------------------------------------------------------------------------------
+keytool -genkey -v -keystore D:\CFD\DMPMobile\KeyStore\ybat-release-key.keystore -alias ybat-app -keyalg RSA -keysize 2048 -validity 10000
+Enter keystore password: $password
+Re-enter new password: $password
+#What is your first and last name?
+  [Unknown]:  Avalant
+#What is the name of your organizational unit?
+  [Unknown]:  PS
+#What is the name of your organization?
+  [Unknown]:  Avalant
+#What is the name of your City or Locality?
+  [Unknown]:  Thailand
+#What is the name of your State or Province?
+  [Unknown]:  Bangkok
+#What is the two-letter country code for this unit?
+  [Unknown]:  TH
+#Is CN=Avalant, OU=PS, O=Avalant, L=Thailand, ST=Bangkok, C=TH correct?
+  [no]:  y
+
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 10,000 days
+        for: CN=Avalant, OU=PS, O=Avalant, L=Thailand, ST=Bangkok, C=TH
+Enter key password for <ybat-app> (RETURN if same as keystore password): $password
+Re-enter new password:$password
+[Storing D:\CFD\DMPMobile\KeyStore\ybat-release-key.keystore]

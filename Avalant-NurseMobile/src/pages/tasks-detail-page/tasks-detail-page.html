@@ -1,0 +1,159 @@
+<ion-header>
+    <app-nav-header [pageName]="''"></app-nav-header>
+</ion-header>
+
+<ion-content style="background-color: #ebeef5;">
+    <ion-grid style="background-color: white;">
+        <ion-row class="head-detail">
+            <ion-col col-9>
+                <p>{{ assignTaskObj?.topicDesc || assignTaskObj?.assignDesc }}</p>
+            </ion-col>
+            <ion-col col-3>
+                <ava-avatar-img class="assign-by" [srcPath]="assignTaskObj?.assignBy | loadImg"></ava-avatar-img>
+                <!-- <div class="start">
+                    <div class="end">
+                        <p>PK</p>
+                    </div>
+                </div> -->
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-1>
+                <img class="svg-image-leave" src="./assets/img/assignment_icon/calendarpic.svg">
+            </ion-col>
+            <ion-col col-11>
+                <p>{{ dateTime(assignTaskObj) }}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-1>
+                <ion-icon style="color: #dedede; font-size: 18px" name="ios-flash-outline"></ion-icon>
+            </ion-col>
+            <ion-col col-11>
+                <ion-badge class="status-badge task-status {{ getTaskClassStatus(assignTaskObj.assignStatus) }}">{{ assignTaskObj?.statusDesc || (getTaskClassStatus(assignTaskObj.assignStatus)) }}</ion-badge>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-1>
+                <ion-icon style="color: #dedede; font-size: 18px" name="ios-paper-outline"></ion-icon>
+            </ion-col>
+            <ion-col col-11>
+                <p>{{ assignTaskObj?.assignDesc }}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-1>
+                <img class="svg-image-leave" src="./assets/img/assignment_icon/locationpic.svg">
+            </ion-col>
+            <ion-col col-11>
+                <p>{{ assignTaskObj?.placeDesc }}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="isHasLatLngParams(assignTaskObj)">
+            <ion-col col-12>
+                <google-static-map [InLatLng]="getLatLngParams(assignTaskObj)"></google-static-map>
+            </ion-col>
+        </ion-row>
+        <ion-row class="people-detail">
+            <ion-col col-1>
+                <img style="margin-top: .2em" class="svg-image-leave" src="./assets/img/assignment_icon/people.svg">
+            </ion-col>
+            <ion-col col-11 class="listpeople">
+                <div class="div-col-attendees" *ngFor="let taskPeople of ((assignTaskObj?.listAssignResponsible||[]).slice(0,4));let idx = index">
+                    <ava-avatar-img class="assign-by" [srcPath]="taskPeople?.employeeCode | loadImg" [empStatus]="taskPeople?.responsibleStatus"></ava-avatar-img>
+                </div>
+                <div class="peoplemore" *ngIf="(assignTaskObj.listAssignResponsible).length > 4">
+                    <div class="attendees-avatar more">
+                        <p class="more-amt">{{ sumPeople((assignTaskObj.listAssignResponsible).length) }}+</p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="file-detail">
+            <ion-col col-1>
+                <img class="svg-image-leave" src="./assets/img/assignment_icon/attach.svg">
+            </ion-col>
+            <ion-col col-11>
+                <p>-</p>
+                <!-- <div>
+                    <p>file 1</p>
+                </div> -->
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="false">
+            <ion-col col-1>
+                <ion-icon style="color: #dedede; font-size: 18px" name="ios-text-outline"></ion-icon>
+            </ion-col>
+            <ion-col col-11>
+                <p>Comment</p>
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding class="btn" *ngIf="definingStatus(assignTaskObj, ASSIGN_ONPROCESS)">
+            <ion-col>
+                <button class="action-btn" ion-button small block (click)="assignmentUpdateStatus && assignmentUpdateStatus(assignTaskObj, ASSIGN_CANCEL)">Cancel</button>
+            </ion-col>
+            <ion-col border-left>
+                <button class="action-btn" ion-button small block (click)="assignmentUpdateStatus && assignmentUpdateStatus(assignTaskObj, ASSIGN_DONE)">Complete</button>
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding class="btn" *ngIf="definingStatus(assignTaskObj, ASSIGN_ACCEPTED)">
+            <ion-col>
+                <button class="action-btn" ion-button small block (click)="assignmentUpdateStatus && assignmentUpdateStatus(assignTaskObj, ASSIGN_CANCEL)">Cancel</button>
+            </ion-col>
+            <ion-col border-left>
+                <button class="action-btn" ion-button small block (click)="assignmentUpdateStatus && assignmentUpdateStatus(assignTaskObj, ASSIGN_COMPLETE)">Complete</button>
+            </ion-col>
+        </ion-row>
+
+        <ion-row no-padding class="btn" *ngIf="definingStatus(assignTaskObj, ASSIGN_OPEN)">
+            <div style="width: 100%; display: inherit;" *ngIf="isInbox()">
+                <ion-col>
+                    <button class="action-btn" ion-button small block (click)="assignmentUpdateStatus && assignmentUpdateStatus(assignTaskObj, ASSIGN_DENIED)">Reject</button>
+                </ion-col>
+                <ion-col border-left>
+                    <button class="action-btn" ion-button small block (click)="assignmentUpdateStatus && assignmentUpdateStatus(assignTaskObj, ASSIGN_ACCEPTED)">Accept</button>
+                </ion-col>
+            </div>
+            <div style="width: 100%; display: inherit;" *ngIf="!isInbox()">
+                <ion-col>
+                    <button class="action-btn" ion-button small block (click)="assignmentUpdateStatus && assignmentUpdateStatus(assignTaskObj, ASSIGN_CANCEL)">Cancel</button>
+                </ion-col>
+                <ion-col border-left>
+                    <button class="action-btn" ion-button small block (click)="assignmentUpdateStatus && assignmentUpdateStatus(assignTaskObj, ASSIGN_COMPLETE)">Complete</button>
+                </ion-col>
+            </div>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="commment" *ngIf="false">
+        <ion-row>
+            <ion-col col-1>
+                <div class="com-start">
+                    <div class="com-end">PN</div>
+                </div>
+            </ion-col>
+            <ion-col col-11>
+                <p>drying them into flexible sheets. It is a versatile material with many uses, including</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-1>
+                <div class="com-start">
+                    <div class="com-end">PN</div>
+                </div>
+            </ion-col>
+            <ion-col col-11>
+                <p>drying them into flexible sheets. It is a versatile material with many uses, including</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div class="divInput">
+                    <ion-icon name="ios-mic-outline"></ion-icon>
+                    <ion-item no-lines>
+                        <ion-input type="text" value=""></ion-input>
+                    </ion-item>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

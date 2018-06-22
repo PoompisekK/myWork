@@ -1,0 +1,252 @@
+approve-tabs-page {
+    .imgSelect {
+        img.svg-image-shift {
+            display: block;
+            margin: 0em auto .25em;
+            height: 2em;
+        }
+        span.button-label {
+            font-family: 'RobotoRegular','Prompt';
+            font-weight: lighter;
+            font-size: .8em;
+        }       
+    }
+    .selectType {
+        .selectShift {
+            background-color: #3f598e;
+            height: 2px;
+            width: 100%;
+            margin-top: .5em;
+        }
+        .selectShift.select {
+            background-color: rgb(245, 245, 245) !important;
+        }
+        p {
+            font-family: 'RobotoLight', 'Prompt';
+            font-size: 1.25em;
+            margin-top: .5em;
+        }
+    }
+   
+    ion-card.cardItem {
+        border-radius: 10px;
+        margin-top: -.2em;
+    }
+    $dot: .5em;
+        [dot] {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1em;
+            border-radius: 50%;
+            background-color: #73D57E;
+            height: $dot;
+            width: $dot;
+            &.dot-blue {
+                background-color: rgb(11, 23, 92);
+            }
+            &.dot-yellow {
+                background-color: #F4AE43;
+            }
+            &.dot-green {
+                background-color: #73D57E;
+            }
+        }
+    .cardList {
+        padding: 5px !important;
+        margin-top: -2em;
+        ion-row.approve-action {
+            margin-top: .5em;
+            background-color: #fff;
+            margin-bottom: -.75em;
+            border-top: 1px solid #dadada;
+            ion-col[border-left] button.action-btn {
+                border-left: 2px solid #eaeaea;
+            }
+            ion-col {
+                background-color: #fff;
+                padding: 0.25em !important;
+                button.action-btn {
+                    box-shadow: none !important;
+                    background: none;
+                    color: #626262;
+                    font-size: 16px;
+                    margin-top: -.2em;
+                }
+                button.action-btn.reject-btn {
+                    color: #ff5a54;
+                }
+                button.action-btn.approve-btn {
+                    color: #64b5f6;
+                }
+            }
+        }
+        .group-list-leave {         
+            ion-card {
+                padding: 2px !important;
+                ava-avatar-img {                
+                    text-align: center;
+                    margin-top: auto;
+                    img {
+                        height: 4em;
+                        width: 4em;
+                        text-align: center;
+                        display: block;
+                    }
+                }
+                ion-col.dataList {
+                    .type-date {
+                        margin-top: .5em;
+                        margin-left: -1em;
+                        p {
+                            font-size: 15px;
+                        }
+                        span {
+                            font-size: 12px;
+                            color: #999;
+                            margin-left: .2em;
+                            margin-right: .5em;
+                        }
+                    }
+                    .name-day {
+                        margin-left: -1em;
+                        margin-top: -1em;
+                        span {
+                            color: rgb(75, 75, 75);
+                            font-size: 14px;
+                        } 
+                        p {
+                            text-align: right;
+                            color: #999;
+                            font-size: 12px;
+                            margin-right: .5em;
+                        }
+                        span.shift {
+                            text-align: right;
+                            color: #999;
+                            font-size: 12px;
+                            margin-right: .5em;
+                        }
+                    }
+                }
+            }
+        }
+        .group-list-shiftSwapAcceptant {
+            ion-card {
+                padding: 0px !important;
+                ava-avatar-img {                
+                    text-align: center;
+                    img {
+                        height: 3.5em;
+                        width: 3.5em;
+                        text-align: center;
+                        display: block;
+                        margin: .2em;
+                    }
+                }
+                ion-col[col-9] {
+                    margin-left: -1em;
+                }
+                .showDetail {                   
+                    ion-col[col-5] {
+                        padding: 0;
+                        margin-bottom: .5em;
+                    }
+                    margin-top: -.5em;
+                    ion-icon,span,p {
+                        color: #999;
+                        font-size: 11px;
+                    }
+                    ion-icon.noOff {
+                        margin-top: .2em;
+                        font-size: 30px;
+                    }
+                    ion-icon.off {
+                        margin-top: .5em;
+                        font-size: 30px;
+                    }
+                }
+            }
+        }
+        .group-list-shiftSwap {
+            ion-card {
+                padding: 0px !important;
+                ava-avatar-img {                
+                    text-align: center;                    
+                    img {
+                        height: 3.5em;
+                        width: 3.5em;
+                        text-align: center;
+                        display: block;
+                        margin: .3em;
+                    }
+                }
+                ion-col[col-9] {
+                    margin-left: -1em;
+                }
+                .showDetail {
+                    margin-top: -.3em;
+                    ion-col[col-5] {
+                        padding: 0;
+                        margin-bottom: .5em;
+                    }
+                    ion-icon,span,p {
+                        color: #999;
+                        font-size: 11px;
+                    }
+                    ion-icon.noOff {
+                        margin-top: .2em;
+                        font-size: 30px;
+                    }
+                    ion-icon.off {
+                        margin-top: .5em;
+                        font-size: 30px;
+                    }
+                }
+                .textName {   
+                    margin-top: .5em;                 
+                    ion-col[col-5] {
+                        padding: 0;
+                        margin-bottom: .5em;
+                        p{
+                            color: rgb(0, 0, 0);
+                            font-size: 12px;
+                        }
+                    }                 
+                }
+            }
+        }
+        .group-list-shift {
+            ion-card {
+                padding: 0px !important;
+                ava-avatar-img {                
+                    text-align: center;                    
+                    img {
+                        height: 4em;
+                        width: 4em;
+                        text-align: center;
+                        display: block;
+                        margin: .2em;
+                    }
+                }
+                ion-col[col-9] {
+                    margin-top: .3em;
+                    span,ion-icon {
+                        color: #999;
+                        font-size: 14px;
+                    }
+                    ion-icon {
+                        font-size: 30px;
+                        margin-top: -.1em;
+                    }
+                    .fromToZone {
+                        margin-left: -.3em;
+                        margin-top: -1em;
+                    }
+                    .statusShift {
+                        margin-top: -.5em;
+                    }
+                }
+            }
+        }
+    }
+}

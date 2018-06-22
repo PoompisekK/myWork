@@ -1,0 +1,28 @@
+<ion-header>
+    <app-nav-header [buttonCfg]="buttonCfg" [pageName]="'M_SIDEMENU.MY_PROFILE'" translate></app-nav-header>
+</ion-header>
+
+<ion-content no-padding class="bg">
+    <ion-grid class="myprofile">
+        <ion-row>
+            <ion-col col-4>
+                <img no-box src="assets/img/transparents.png" [style.background-image]="'url(' + ((appState?.businessUser?.employeeCode||appState?.businessUser?.userCode) | loadImg) + ')'" />
+            </ion-col>
+            <ion-col col-8>
+                <h2>{{appState?.businessUser?.custFname}} {{appState?.businessUser?.custLname}}</h2>
+                <p> {{appState?.businessUser?.memberEmail}}</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="bgfrom">
+        <ion-row>
+            <button ion-item (click)="goRoot('MyProfilePage')" translate>M_MYPROFILE.PROFILE</button>
+            <button ion-item (click)="goRoot('PersonalConditionPage')" translate>M_MYPROFILE.PERSONALCONDITION</button>
+            <button ion-item (click)="goRoot('SkillPage')" translate>M_MYPROFILE.SKILL</button>
+            <button ion-item (click)="goRoot('LeaveSummaryPage')" translate>M_MYPROFILE.LEAVESUMMARY</button>
+            <button ion-item (click)="goRoot('WorkingHoursSummeryPage')" translate>M_MYPROFILE.WORKINGHOURSSUMMARY</button>
+            <button ion-item (click)="goRoot('TimeRecordingPage')" translate>M_MYPROFILE.TIMERECORDING</button>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

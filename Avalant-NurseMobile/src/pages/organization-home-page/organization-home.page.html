@@ -1,0 +1,4 @@
+<ion-content class="cards-bg" no-bounce>
+  <product-grid *ngFor="let shop of shopGroup" [title]="shop.groupName" [data]="shop.productsDisplay" (product-click)="productClick($event, shop.shopTypeId, shop.shopId)"
+    (category-click)="categoryClick($event, shop.shopTypeId)" [home-page]="true"></product-grid>
+</ion-content>

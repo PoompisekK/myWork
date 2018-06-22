@@ -1,0 +1,35 @@
+app-nav-header {
+    .app-nav {
+        * {
+            color: white !important;
+        }
+        .toolbar-background {
+            background-color: color($colors-theme, "app-theme");
+        }
+    }
+    .toolbar-content {
+        padding: 0;
+        order: 4;
+    }
+    .toolbar-title {
+        width: 100%;
+        padding: 0;
+        font-size: 1.25em;
+        font-weight: 500;
+    }
+    .app-title {
+        height: 4em;
+        left: .25em;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        pointer-events: none;
+    }
+}
+
+.platform-ios {
+    button.back-button {
+        left: .5em;
+    }
+}

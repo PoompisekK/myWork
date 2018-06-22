@@ -1,0 +1,13 @@
+add-car-page {
+    .img-scan {
+        width: 20vh;
+    }
+    .your-car {
+        img {
+            $yourCarHeight: 120px;
+            min-height: $yourCarHeight;
+            height: $yourCarHeight;
+            width: auto;
+        }
+    }
+}

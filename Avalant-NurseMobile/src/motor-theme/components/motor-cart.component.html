@@ -1,0 +1,115 @@
+<ion-item-group *ngFor="let cart of carts | orderBy: 'shopTypeId' ; trackBy: trackByCart">
+  <ion-card *ngFor="let cartItmDtl of cart.cartDetails; let i = index; trackBy: trackByCartDetail" class="cart-item">
+    <ion-item text-wrap>
+      <ion-thumbnail item-left style="width: 3em;height: 3em">
+        <img src="{{cartItmDtl?.SRC_ITEM_IMAGE | imagekey }}" style="width: 100%;height: auto" />
+      </ion-thumbnail>
+      <h2>{{ cartItmDtl?.productItemName }}</h2>
+      <!-- <p> -->
+
+      <!-- <span class="price">{{'COMMON.CHECKOUT.TOTAL' | translate}} {{ (cartItmDtl.itemQuantity*1)*(cartItmDtl.itemPrice*1) | baht }} {{'COMMON.UNIT.CURRENCY'
+          | translate}}</span> -->
+      <!-- </p> -->
+
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col *ngIf="SHOP_TYPES.STORE == cart.shopTypeId" col-auto style="margin-right: 6px">
+            <number-spinner [(ngModel)]="cartItmDtl.itemQuantity" [debounce]="500" [roundButton]="true" width="80px" (event-click)="handleUpdatedItem($event,cartItmDtl,i)"
+              class="sm"></number-spinner>
+          </ion-col>
+          <ion-col>
+            <!-- Price -->
+            <span class="discount" *ngIf="cartItmDtl?.discount">{{ cartItmDtl?.discount | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}
+              <br>
+            </span>
+            <span class="price">{{ cartItmDtl?.itemPrice | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}
+            </span>
+            <!-- End Price -->
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="SHOP_TYPES.STORE == cart.shopTypeId">
+          <ion-col>
+            <button tappable (click)="onServiceClick(cartItmDtl)" ion-button color="orange" translate>บริการติดตั้งอะไหล่</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <button ion-button icon-only clear class="remove-top" tappable (click)="confirmRemoveCartItem(cart.shopId ,cartItmDtl)">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card *ngFor="let giftItem of cart.itemPacks" class="cart-item">
+    <ion-item>
+      <ion-thumbnail item-left style="width: 3em;height: 3em">
+        <img src="{{ giftItem?.SRC_ITEM_IMAGE | imagekey }}" style="width: 100%;height: auto" />
+      </ion-thumbnail>
+      <h2>{{ giftItem?.productItemName }}</h2>
+      <!-- <p>
+          <span class="discount" *ngIf="cartItmDtl?.discount">{{'COMMON.UNIT.CURRENCY' | translate}} {{ cartItmDtl?.discount }}</span>
+          <span class="price">{{'COMMON.UNIT.CURRENCY' | translate}} {{ cartItmDtl?.itemPrice }}</span>
+        </p>
+        <p *ngIf="cartItmDtl?.shippingCost"><span class="label">Shipping Fee</span> <span class="text">{{'COMMON.UNIT.CURRENCY' | translate}} {{ cartItmDtl | sumproductfee:cart }}</span></p> -->
+
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col text-left col-20>
+            <h3 translate>จำนวนสินค้า</h3>
+          </ion-col>
+          <ion-col text-left>
+            {{giftItem?.productQuantity}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-card>
+
+  <!-- <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-label fixed translate>COMMON.CHECKOUT.DISCOUNTCOUPON</ion-label>
+        <ion-input [(ngModel)]="couponCode" (ionBlur)="onBlur(cart.shopId,couponCode)" type="text" text-right placeholder="{{ 'COMMON.CHECKOUT.COUPON_PLACEHOLDER' | translate }}"></ion-input>
+        <ion-icon *ngIf="showCloseBtn" style="color:red" name="close" item-right></ion-icon>
+        <ion-icon *ngIf="showCorrectBtn" style="color:green" name="checkmark" item-right></ion-icon>
+      </ion-item>
+      <ion-item>
+        {{ 'COMMON.CHECKOUT.SUB_TOTAL' | translate}}
+        <div item-end>{{ cart.totalAmt | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}</div>
+      </ion-item>
+      <ion-item *ngIf="!!cart.PROMO_DISCOUNT">
+        {{ 'COMMON.CHECKOUT.DISCOUNT' | translate }}
+        <div item-end style="color:red;">
+          - {{ cart.PROMO_DISCOUNT | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}
+        </div>
+      </ion-item>
+      <ion-item *ngIf="!!cart.PRI_DISCOUNT" [hidden]="!appState.businessUser">
+        {{ 'COMMON.CHECKOUT.DISCOUNTMEMBER' | translate }}
+        <div item-end style="color:red;">
+          - {{ cart.PRI_DISCOUNT | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}
+        </div>
+      </ion-item>
+      <ion-item *ngIf="!!cart.COUPON_DISCOUNT">
+        {{ 'COMMON.CHECKOUT.DISCOUNTCOUPON' | translate }}
+        <div item-end style="color:red;">
+          - {{ cart.COUPON_DISCOUNT | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}
+        </div>
+      </ion-item>
+
+      <ion-item>
+        {{ 'COMMON.CHECKOUT.SHIPPING' | translate }}
+        <div item-end>{{ cart.shipping | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}</div>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-card-content no-padding>
+      <ion-item no-padding style="font-size: 1.5em">
+        {{ 'COMMON.CHECKOUT.TOTAL' | translate }}
+        <div item-end>{{ cart.netAmt | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}</div>
+      </ion-item>
+    </ion-card-content>
+  </ion-card> -->
+
+</ion-item-group>

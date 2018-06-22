@@ -1,0 +1,52 @@
+<ion-header>
+    <app-nav-header [pageName]="'Events Calendar'"></app-nav-header>
+</ion-header>
+<ion-content class="bg-workforce" no-padding>
+    <!-- isLoading -->
+    <ion-refresher (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-row class="bg-workforce" [@peekAnimation] *ngIf="isLoading">
+        <ion-col text-center>
+            <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
+        </ion-col>
+    </ion-row>
+    <ion-row class="bg-workforce">
+        <button class="hist-button" ion-col col-6 ion-button color="bluecyan" [ngClass]="{'hist-button-act': isActive(0) }" style="box-shadow: none;" (click)="slideActive(0)">{{ eventsCalendarLang?.personal || 'Personal' }}</button>
+        <button class="hist-button" ion-col col-6 ion-button color="bluecyan" [ngClass]="{'hist-button-act': isActive(1) }" style="box-shadow: none;" (click)="slideActive(1)">{{ eventsCalendarLang?.team || 'Team' }}</button>
+    </ion-row>
+    <ion-row class="bg-workforce">
+        <ion-slides class="bg-workforce" no-padding style="height: 100%" (ionSlideWillChange)="slideWillChange()" (ionSlideDidChange)="slideHasChanged()">
+            <ion-slide class="bg-workforce" no-padding *ngFor="let blankSlide of ([{},{}]);let _calendarIdx = index;">
+                <div id="calendarDiv{{_calendarIdx}}" class="calendarDiv bg-workforce" padding style="width:100%;color:black"></div>
+            </ion-slide>
+        </ion-slides>
+        <ion-list [@peekAnimation] *ngIf="!isLoading && (evenstList || []).length > 0" style="padding: 0 .5em 0; width: 100%;">
+            <ion-card *ngFor="let evnItm of (evenstList || []);let evnIdx = index">
+                <ion-card-header>
+                    {{ evnItm.title }}
+                </ion-card-header>
+                <ion-card-content no-padding>
+                    <ion-list no-padding>
+                        <ion-item>
+                            <ion-label floating>{{ eventsCalendarLang?.employee || 'Employee' }}</ion-label>
+                            <ion-input type="text" [value]="evnItm.empName"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label floating>{{ eventsCalendarLang?.leaveType || 'Leave type' }}</ion-label>
+                            <ion-input type="text" [value]="evnItm.leaveType"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label floating>{{ eventsCalendarLang?.reason || 'Reason' }}</ion-label>
+                            <ion-input type="text" [value]="' '"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <span>{{ evnItm?.requestReason }}</span>
+                        </ion-item>
+                    </ion-list>
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+    </ion-row>
+</ion-content>

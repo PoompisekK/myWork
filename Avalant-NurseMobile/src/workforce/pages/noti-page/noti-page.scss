@@ -1,0 +1,35 @@
+noti-page {
+    .bg-home-demo {
+        background: url('../assets/img/notification.png')no-repeat;
+        width: 100%;
+        height: 90%;
+        background-size: 100% 100%; //background-size: cover;
+        //background-size: cover;
+        margin: auto;
+        z-index: 2;
+
+    }
+    .bg-home-demo2 {
+        background: url('../assets/img/home2.png')no-repeat;
+        width: 100%;
+        height: 80%;
+        background-size: 100% 100%; //background-size: cover;
+        //background-size: cover;
+        margin: auto;
+        z-index: 2;
+    }
+    .toolbar-background .toolbar-background {
+        background-color: blue;
+    }
+    .no-padding {
+        padding: 0;
+    }
+    .no-margin {
+        margin: 0;
+    }
+    .calendar_date {
+        border: 0.55px solid;
+        border-color: #dadada;
+        border-radius: 5px;
+    }
+}

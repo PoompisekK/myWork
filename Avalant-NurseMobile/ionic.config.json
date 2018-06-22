@@ -1,0 +1,9 @@
+{
+    "name": "Affinite HR Workforce",
+    "proxies": [],
+    "type": "ionic-angular",
+    "integrations": {
+        "cordova": {}
+    },
+    "app_id": ""
+}

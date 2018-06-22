@@ -1,0 +1,49 @@
+<ion-header>
+    <app-nav-header [pageName]="'Benefit'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-grid no-padding style="height: 100%">
+        <ion-row no-padding>
+            <ion-col no-padding col-12 (click)="seeDetail('1')">
+                <!-- Traveling Allowance -->
+                <img src="./assets/img/benefits/traveling.jpg" style="width: 100%;height: 100%;">
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding style="height: 30%;">
+            <ion-col col-4 no-padding>
+                <ion-grid no-padding style="height: 100%">
+                    <ion-row no-padding style="height: 50%; ">
+                        <ion-col no-padding col-12 (click)="seeDetail('2')">
+                            <!-- Telephone -->
+                            <img src="./assets/img/benefits/telephone.jpg" style="width: 100%;height: 100%;">
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding style="height: 50%; ">
+                        <ion-col no-padding col-12 (click)="seeDetail('3')">
+                            <!-- Annual Health Checkup -->
+                            <img src="./assets/img/benefits/annualhealth.jpg" style="width: 100%;height: 100%;">
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+            <ion-col col-4 no-padding (click)="seeDetail('4')">
+                <!-- Overtime -->
+                <img src="./assets/img/benefits/overtime.jpg" style="width: 100%;height: 100%;">
+            </ion-col>
+            <ion-col col-4 no-padding (click)="seeDetail('5')">
+                <!-- Group Insurance -->
+                <img src="./assets/img/benefits/groupinsurance.jpg" style="width: 100%;height: 100%;">
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding (click)="seeDetail('6')">
+            <ion-col no-padding col-12>
+                <!-- Provident Fund -->
+                <img src="./assets/img/benefits/providentfund.jpg" style="width: 100%;height: 100%;">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

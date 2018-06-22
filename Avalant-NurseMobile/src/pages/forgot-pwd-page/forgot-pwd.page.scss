@@ -1,0 +1,123 @@
+/**
+ * @author Bundit.Ng
+ * @since  Fri Sep 15 2017
+ * Copyright (c) 2017 Avalant Co.,Ltd.
+ */
+
+//Declaration
+$bgColor: #03A9F5;
+$fontColor: white;
+$paddingSize: 1.5em;
+$plcHldOpacity: .75;
+//Style------------------------
+forgot-pwd-page {
+    ion-header,
+    ion-header .toolbar-background {
+        background-color: $bgColor !important;
+        button {
+            color: $fontColor !important;
+        }
+    }
+    ion-input[type=text] {
+         ::-webkit-input-placeholder {
+            color: $fontColor;
+            opacity: $plcHldOpacity;
+        }
+         ::-moz-placeholder {
+            color: $fontColor;
+            opacity: $plcHldOpacity
+        }
+         :-ms-input-placeholder {
+            color: $fontColor;
+            opacity: $plcHldOpacity;
+        }
+         :-moz-placeholder {
+            color: $fontColor;
+            opacity: $plcHldOpacity;
+        }
+    }
+    div.item-div {
+        width: 100%;
+        height: 3em;
+        display: inline-flex;
+        border-bottom: 1px solid $fontColor;
+    }
+    ion-item.item,
+    ion-item.item.input-has-focus {
+        div.item-inner {
+            border: none !important;
+            box-shadow: none !important;
+        }
+    }
+    ion-content.content {
+        background-color: $bgColor;
+    }
+    div.Header {
+        color: $fontColor;
+        margin-top: -1.5em;
+        font-size: 2em;
+        font-weight: normal;
+        left: 1em;
+    }
+    .radio-activate-type {
+        color: $fontColor;
+    }
+    ion-grid.forgotContent {
+        padding: 0 $paddingSize;
+        left: 0;
+        .inputIcon {
+            width: 2em;
+            height: 2em;
+        }
+        ion-input {
+            color: $fontColor;
+        }
+        span.textCaption {
+            color: $fontColor;
+            font-weight: lighter;
+        }
+        button.forgotNextBtn.activated {
+            background-color: transparent !important;
+            opacity: .5;
+        }
+        button.forgotNextBtn:hover {
+            background-color: transparent !important;
+        }
+        button.forgotNextBtn {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid white;
+            box-shadow: none;
+            color: $fontColor;
+            text-transform: capitalize;
+            font-weight: normal
+        }
+    }
+    div.forgot-image {
+        height: 50vw;
+        width: 100%;
+        text-align: center;
+        div {
+            text-align: center;
+            margin: 0px 30vw;
+            img {
+                text-align: center;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+    }
+    .closeDvBtn {
+        z-index: 100;
+        img.closeImgBtn {
+            width: 2em !important;
+            height: 2em !important;
+            fill: white;
+            color: white;
+        }
+    }
+    .closeDvBtn:active,
+    .closeImgBtn:active {
+        opacity: .1;
+    }
+}

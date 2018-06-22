@@ -1,0 +1,51 @@
+<ion-content no-bounce>
+    <ion-refresher margin-vertical (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="crescent" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-row *ngIf="myApproveTaskList == null" margin-vertical>
+        <ion-col text-center>
+            <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
+        </ion-col>
+    </ion-row>
+    <ion-card [@peekAnimation] class="empty-card-detail" *ngIf="myApproveTaskList != null && (myApproveTaskList||[]).length == 0" text-center padding-vertical style="height: 4em;">
+        <span>{{approveLang?.emptyTask || 'Empty task'}}</span>
+    </ion-card>
+    <ion-grid [@peekAnimation] *ngIf="myApproveTaskList != null && (myApproveTaskList||[]).length > 0" padding>
+        <div *ngFor="let taskItm of (myApproveTaskList||[]);let idx = index" (click)="displayDetail(taskItm)">
+            <ion-row style="border: none;border-bottom: 1px solid #eaebed;">
+                <ion-col col-9 padding-vertical>
+                    <p style="margin:0;font-size: 1em;">{{(taskItm?.empName||'Mr.Dummy00'+(idx+1))}}</p>
+                    <span style="margin:0;font-size: .95em;font-weight: bold;">
+                      {{ taskItm?.expenseTypeName + " : " }}{{(taskItm?.amount||0) | number:'1.2-2':'th'}}฿
+                    </span>
+                </ion-col>
+                <ion-col col-3 style="padding:0;padding-top:1em;" text-right>
+                    <span style="font-size: .9em;">{{ taskItm?.invoiceDate | amLocale:'en' | amDateFormat:'MMM D, YYYY' }}</span>
+                </ion-col>
+            </ion-row>
+            <ion-row [@peekAnimation] *ngIf="taskItm.show" no-padding>
+                <ion-card no-padding style="width: 100%;margin:4px 0">
+                    <ion-card-header>
+                        <h2 style="font-weight: bold">{{taskItm?.expenseTypeName}}</h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-list no-padding>
+                            <ion-item no-padding>
+                                <h2>{{taskItm?.expenseTypeCode}}</h2>
+                                <h3>{{taskItm?.invoiceDate | amLocale:'en' | amDateFormat:'MMM D, YYYY'}}</h3>
+                            </ion-item>
+                        </ion-list>
+                        <ion-item>
+                            <p>{{(taskItm?.empName||'Mr.Dummy00'+(idx+1))}}</p>
+                        </ion-item>
+                        <ion-item>
+                            <button ion-button outline style="width: 6em;" (click)="rejectThisTask(taskItm)" [color]="danger">{{approveLang?.reject || 'Reject'}}</button>
+                            <button ion-button outline style="width: 6em;" (click)="approveThisTask(taskItm)">{{approveLang?.approve || 'Approve'}}</button>
+                        </ion-item>
+                    </ion-card-content>
+                </ion-card>
+            </ion-row>
+        </div>
+    </ion-grid>
+</ion-content>

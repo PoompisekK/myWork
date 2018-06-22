@@ -1,0 +1,58 @@
+{
+    "window.zoomLevel": 0,
+    "window.title": "${dirty}${dirty} [${rootName}] - ${activeEditorLong} ${dirty}${dirty}",
+    "files.autoSave": "off",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/lib": true,
+        "**/platforms": true,
+        "**/plugins": true,
+        "**/resources": true,
+        "**/node_modules": true,
+        "**/custom_node_modules": true,
+        "**/*bak": true,
+        "**/www": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/custom_node_modules": true,
+        "**/bower_components": true
+    },
+    "html.format.wrapLineLength": 550,
+    "editor.formatOnSave": false,
+    "editor.renderWhitespace": "none",
+    "editor.wordWrapColumn": 550,
+    "editor.wordWrap": "off",
+    "editor.minimap.enabled": false,
+    "editor.tabSize": 4,
+    "workbench.sideBar.location": "left",
+    "workbench.colorTheme": "Monokai",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorCustomizations": {
+        "editor.background": "#191919",
+        "editorLineNumber.foreground": "#AAAAAA",
+        "editor.lineHighlightBackground": "#333333",
+        "editor.selectionBackground": "#484C52", //"#373B41",//defualt
+        "editor.selectionHighlightBackground": "#5A2B0D",
+        "editor.wordHighlightBackground": "#5A2B0D",
+        "editorBracketMatch.background": "#0000FF",
+        "editorBracketMatch.border": "#0000FF"
+    },
+    "git.enabled": false, // Is git enabled
+    "git.autofetch": false, // Whether auto fetching is enabled.
+    "[scss]": {},
+    "files.associations": {
+        "*.env*": "properties",
+        "*.html.bak*": "html",
+        "*.scss.bak*": "scss",
+        "*.ts.bak*": "ts",
+        "*.ftl*": "html"
+    },
+    "tsimporter.preferRelative": true,
+    "editor.detectIndentation": false,
+    "typescript.tsdk": "node_modules\\typescript\\lib"
+}

@@ -1,0 +1,65 @@
+garage-selection-page {
+    ion-content>.fixed-content,
+    ion-content>.scroll-content {
+        background-color: #112653;
+    }
+    ion-slides {
+        height: auto;
+    }
+    .garage-card {
+        border-radius: 10px;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 32px;
+        &.selected {
+            box-shadow: 0px 0px 0px 4px #71cc16, 0 1px 4px 0px rgba(0, 0, 0, 0.2);
+        }
+        button[disabled] {
+            background-color: #71cc16;
+            color: #000;
+        }
+        .garage-bg {
+            background-image: url('../assets/img/cars/placeholder-car2.png');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .card-content {
+            padding-top: 24px;
+            position: relative;
+        }
+        .card-title {
+            position: relative;
+        }
+        .garage-profile-pic {
+            position: absolute;
+            width: 6rem;
+            top: -32px;
+            overflow: hidden;
+            border-radius: 100%;
+            border: solid 2px #fff;
+            z-index: 10;
+        }
+        .list .item-block {
+            border: none;
+            .icon {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            .label {
+                margin: 0;
+            }
+        }
+    }
+    .garage-image {
+        min-height: 150px;
+    }
+
+    .buttons-filter .button.icon {
+        opacity: .3;
+        &.selected {
+            opacity: 1;
+        }
+    }
+}

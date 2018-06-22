@@ -1,0 +1,105 @@
+payroll-page {
+    
+    ion-grid.page-payroll {
+        .card-md {
+            border-radius: .5em;            
+        }
+        ion-grid.payroll-type {
+            font-family: 'RobotoRegular','Prompt';
+            color: #101010;
+            font-size: 16px;
+            ion-row {
+                ion-col {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    font-weight: lighter;
+                    font-size: .9em;
+                }
+                ion-col[col-6]:first-child {
+                    text-align: left;
+                }
+                ion-col[col-6]:last-child {
+                    text-align: right;
+                }
+                &.row-total ion-col,
+                ion-col[col-auto] {
+                    font-size: 1em;
+                    font-weight: lighter;
+                }
+            }
+        }
+        ion-row {
+            &.payroll-card-title {
+                margin: .5em 0;
+                ion-col {
+                    h4 {
+                        color: #101010;
+                        font-size: 2em;
+                        font-family: Arial;
+                    }
+                    ion-icon {
+                        margin: auto 0;
+                        line-height: 1.25em;
+                        margin: .5em 0;
+                    }
+                }
+                ion-col[col-1] * {
+                    color: black;
+                }
+            }
+            &.task-header {
+                * {
+                    font-family: 'RobotoRegular','Prompt';
+                    color: #101010;
+                }
+                ion-col.col-date {
+                    p.p-date {
+                        color: #101010;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+    .item-divider-md {
+        border: none;
+        border-bottom: 1px solid #d5d5d5;
+        font-size: .5em;
+    }
+    ion-item-divider.no-padding-divider {
+        min-height: 0;
+        height: .5em;
+        margin: .75em 0;
+        padding: 0;
+    }
+    .swiper-pagination {
+        bottom: -.25em !important;
+    }
+    div.address {
+        font-size: 0.95em;
+        padding: .25em 0 .5em 0;
+        h2 {
+            font-family: 'RobotoRegular','Prompt';
+            font-size: 1em;
+            font-weight: bold;
+            color: #101010;
+            margin: .5em 0;
+        }
+        p.address {
+            font-family: "RobotoMedium";
+            font-size: .75em;
+            color: #a0a0a0;
+            line-height: 1.15em;
+        }
+    }
+    ion-card {
+        box-shadow: none !important;
+    }
+    .sumpayrool{
+        font-family: "RobotoMedium";
+        margin: 2%; 
+        width: 98%; 
+        color:#101010;
+        font-weight: lighter;
+    }
+}

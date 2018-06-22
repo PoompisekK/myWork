@@ -1,0 +1,84 @@
+    $cover-size: 7.5em;
+    $cover-color: white;
+    $brand-img-size: 6em;
+    $brand-size: 7em;
+    $radius: .75em;
+    $logo-border: 1px solid rgba(255, 255, 255, 0.5); // 1px solid #787878;
+    $logo-bg: white;
+    organization-header {
+        .header-cover {
+            position: relative;
+            height: $cover-size;
+            padding: 1em;
+            background-size: cover;
+            background-position: center;
+            color: $cover-color;
+        }
+        // .logo-brand-cover {
+        //     left: 50%;
+        //     top: 90px;
+        //     z-index: 100;
+        //     position: relative;
+        // }
+        // .logo-brand-wrapper {
+        //     position: relative;
+        //     left: -50%;
+        //     border-radius: $radius;
+        //     // border: dotted red 1px;
+        //     .logo-brand {
+        //         width: $brand-img-size;
+        //         height: $brand-img-size;
+        //         padding: 0; //.5em;
+        //         border: $logo-border;
+        //         // background: $logo-bg;
+        //         border-radius: $radius;
+        //         background-repeat: no-repeat;
+        //         box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.5);
+        //         img {
+        //             border-radius: $radius;
+        //             width: 100%;
+        //             margin: auto;
+        //         }
+        //         &.img-loaded {
+        //             background: #fff;
+        //             background-color: white;
+        //         }
+        //     }
+        // }
+        .logo-brand-cover{
+            position: relative;
+            width: 100%;
+            margin-top:-3.2em;
+            z-index: 1;
+            margin-bottom: 0.5em;
+        }
+        .logo-brand {
+            width: 6.5em;
+            height: 6.5em;
+            margin: auto;
+            display: block;
+            background: transparent;
+        }
+        .sub-header-cover {
+            padding-top: 70px !important;
+            position: relative;
+            border-bottom: 1px solid #E6E6E6;
+        }
+        .brand-desc {
+            font-size: 1em;
+            color: color($colors, sub-title);
+        }
+        .brand-name {
+            // word-spacing: 10000px;
+        }
+        .follow-btn:active {
+            opacity: .5;
+        }
+        .follow-btn {
+            border-color: color($colors-border, default);
+        }
+        .follow-btn.followed {
+            background-color: rgb(239, 255, 242);
+            border-color: rgb(0, 191, 57);
+        }
+    }

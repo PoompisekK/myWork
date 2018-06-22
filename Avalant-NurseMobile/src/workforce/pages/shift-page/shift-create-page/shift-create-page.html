@@ -1,0 +1,157 @@
+<ion-header>
+    <app-nav-header [pageName]="titelHead"></app-nav-header>
+</ion-header>
+
+<ion-content class="bg" padding>
+    <ion-scroll scrollY="true">
+        <ion-row [@peekAnimation] *ngIf="isLoading">
+            <ion-col text-center>
+                <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
+            </ion-col>
+        </ion-row>
+        <!-- Session 1 -->
+        <ion-grid *ngIf="shiftType == 'shift' && !isLoading" class="typeShift">
+            <ion-row>
+                <ion-col>
+                    <ion-list no-padding>
+                        <ion-item no-box no-padding no-lines>
+                            <ion-label floating floated required translate>M_SHIFTCREATE.SHIFTWORKIN</ion-label>
+                            <ion-input disabled style="margin-top: -.5em" type="text" class="textShiftWork" [(ngModel)]="myTeamGroup"></ion-input>
+                        </ion-item>
+                        <ion-item no-box no-padding>
+                            <ion-label floating floated required translate>M_SHIFTCREATE.REQUESTTOWORKIN</ion-label>
+                            <ion-select [(ngModel)]="createModel.requestTowork" interface="popover">
+                                <ion-option *ngFor="let select of (selectTeamGroup||[])" [value]="select.teamGroupType">{{ select?.teamGroupName }}</ion-option>
+                            </ion-select>
+                            <ion-icon item-end name="ios-search-outline" style="margin-top: 1.5em;"></ion-icon>
+                        </ion-item>
+                        <ion-item no-box no-padding>
+                            <ion-label floating floated required translate>M_SHIFTCREATE.EFFECTIVEDATE</ion-label>
+                            <ion-input disabled *ngIf="isDevice" (click)="showDateTimePicker('date')" [value]="dateTimeShift | amDateFormat:'MMM D, YYYY'" type="text"></ion-input>
+                            <ion-datetime *ngIf="isDevice == false" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="dateTimeShift" (ngModelChange)="selectShift()"></ion-datetime>
+                            <ion-icon item-end name="ios-calendar-outline" style="margin-top: 1.5em;"></ion-icon>
+                        </ion-item>
+                        <ion-item no-box no-padding></ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row class="shiftTime">
+                <ion-col>
+                    <p required translate>M_SHIFTCREATE.SHIFT</p>
+                    <ion-row no-padding no-boxs *ngIf="(myShift || []).length != 0">
+                        <ion-col no-padding no-boxs radio-group [(ngModel)]="createModel.shiftId" (ionChange)="loadShift && loadShift(createModel.shiftId)">
+                            <ion-item no-lines *ngFor="let shift of (myShift || []); let idx=index">
+                                <ion-label translate>
+                                    <span> {{shift?.shiftNameName}} </span>
+                                </ion-label>
+                                <ion-radio item-left no-margin [value]="shift?.shiftNameCode"></ion-radio>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <ion-row style="margin-top: -.5em;">
+                <ion-col>
+                    <ion-list no-padding>
+                        <ion-item no-box no-padding>
+                            <ion-label floating floated translate>M_SHIFTCREATE.NOTE</ion-label>
+                            <ion-textarea type="text" [(ngModel)]="createModel.note"></ion-textarea>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <!-- Session 2 -->
+        <ion-grid *ngIf="shiftType == 'shiftSwap' && !isLoading" class="typeShiftSwap">
+            <ion-row>
+                <ion-col>
+                    <ion-list class="currentDate">
+                        <ion-item no-box no-padding class="addDate">
+                            <ion-label floating floated required translate>M_SHIFTCREATE.MY_CURRENT_DARE</ion-label>
+                            <ion-input *ngIf="isDevice" (click)="showDateTimePicker && showDateTimePicker('date')" disabled [value]="dateShiftSwap | amDateFormat:'MMM D, YYYY'" type="text"></ion-input>
+                            <ion-datetime *ngIf="isDevice == false" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="dateShiftSwap"></ion-datetime>
+                            <ion-icon item-end name="ios-calendar-outline"></ion-icon>
+                        </ion-item>
+                        <ion-item class="lines"></ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-list class="currentShift">
+                        <ion-item no-box no-padding>
+                            <ion-label floating floated required translate>M_SHIFTCREATE.MY_CURRENT_SHIFT</ion-label>
+                            <ion-input type="text" disabled="true" value=" D(07:00 - 15:00)"></ion-input>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-list class="swapWhith">
+                        <ion-item no-box no-padding>
+                            <ion-label floating floated required translate>M_SHIFTCREATE.SWAP_WITH</ion-label>
+                            <ion-input type="text"></ion-input>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row class="checkradio1">
+                <ion-item no-box no-padding class="lines"></ion-item>
+                <ion-col col-1>
+                    <ion-radio checked="false"></ion-radio>
+                </ion-col>
+                <ion-col col-11>
+                    <span required translate>
+                        M_SHIFTCREATE.I_WANT_TO_SWAP_MY_SHIFT
+                    </span>
+                </ion-col>
+            </ion-row>
+            <ion-row class="checkradio2">
+                <ion-col col-1>
+                    <ion-radio checked="false"></ion-radio>
+                </ion-col>
+                <ion-col>
+                    <span required translate>
+                        M_SHIFTCREATE.I_WANT_TO_WORK_ON_DAY
+                    </span>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-6 class="dateShift">
+                    <p translate>M_SHIFTCREATE.DATE</p>
+                    <ion-row>
+                        <ion-col col-1 style="margin-top: -.3em;">
+                            <ion-radio checked="false"></ion-radio>
+                        </ion-col>
+                        <ion-col style="margin-top: -.5em;">
+                            <span>
+                                20/05/2018
+                            </span>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+                <ion-col col-6 class="dateType">
+                    <ion-list>
+                        <ion-item no-box no-padding>
+                            <ion-label floating floated translate>M_SHIFTCREATE.DATE_TYPE</ion-label>
+                            <ion-input type="text" disabled="true" value="Day off"></ion-input>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row class="textNote">
+                <ion-col>
+                    <ion-list no-padding>
+                        <ion-item no-box no-padding>
+                            <ion-label floating floated translate>M_SHIFTCREATE.NOTE</ion-label>
+                            <ion-textarea type="text"></ion-textarea>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <!-- <button ion-button full class="bg-workforce" *ngIf="!isLoading" (click)="rejectThisTask && rejectThisTask(leaveItm,'create')" translate>M_SHIFTCREATE.CONFIRM_YOUR_REQUEST</button> -->
+        <button ion-button full class="bg-workforce" *ngIf="!isLoading" (click)="testcreate && testcreate()" translate>M_SHIFTCREATE.CONFIRM_YOUR_REQUEST</button>
+    </ion-scroll>
+</ion-content>

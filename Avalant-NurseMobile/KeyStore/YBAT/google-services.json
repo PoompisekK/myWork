@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "33001997716",
+    "firebase_url": "https://avalant-uearn-app.firebaseio.com",
+    "project_id": "avalant-uearn-app",
+    "storage_bucket": "avalant-uearn-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33001997716:android:a90fee36e4694d02",
+        "android_client_info": {
+          "package_name": "com.avalant.uearnapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33001997716-gdaa9ugra4l1rmpo71fnldc5ilfm5k2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGFTSbkXa1cug5HbDd-0tny33EFVoFFSE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

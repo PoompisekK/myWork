@@ -1,0 +1,89 @@
+<ion-header>
+    <app-nav-header [pageName]="'Meeting'"></app-nav-header>
+</ion-header>
+
+<ion-content>
+
+    <ion-list padding>
+
+        <ion-item class="no-padding mb-1-5">
+            <ion-label style="color:#999">Topic</ion-label>
+            <ion-input [(ngModel)]="meeting.topicDesc" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item class="no-padding mb-1-5">
+            <ion-label style="color:#999">Detail</ion-label>
+            <ion-input [(ngModel)]="meeting.assignDesc" type="text"></ion-input>
+        </ion-item>
+        <!-- 
+    <ion-item class="no-padding mb-1-5">
+      <ion-label style="color:#999">Attach File</ion-label>
+      <ion-input  type="text"></ion-input>
+      <ion-icon color="color-gray" name="ios-attach-outline" item-right></ion-icon>
+    </ion-item> -->
+
+        <!-- <ion-item class="no-padding mb-1-5">
+      <ion-label style="color:#999">Deadline</ion-label>
+      <ion-datetime displayFormat="MMM D, YYYY hh:mm a" [(ngModel)]="meeting.targetDateTime"></ion-datetime>
+      <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+    </ion-item> -->
+
+        <ion-item (click)="goToGoogleMap()" class="no-padding mb-1-5">
+            <ion-label style="color:#999">Place</ion-label>
+            <ion-input (ionFocus)="goToGoogleMap()" [(ngModel)]="meeting.placeDesc" type="text"></ion-input>
+            <ion-icon color="color-gray" name="ios-pin-outline" item-right></ion-icon>
+        </ion-item>
+        <ion-item class="no-padding mb-1-5">
+            <ion-label style="color:#999">From Date</ion-label>
+            <ion-datetime max="2100" min="{{currentDate| amLocale:'en' | amDateFormat:'YYYY-MM-DD'}}" displayFormat="MMM D, YYYY hh:mm a" [(ngModel)]="meeting.startDateTime" (ionChange)="seletedDateTime(meeting.startDateTime)"></ion-datetime>
+            <!-- <ion-label style="font-size:1.8em;"><ion-icon color="light" name="lock"></ion-icon></ion-label> -->
+            <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+        </ion-item>
+
+        <ion-item class="no-padding mb-1-5">
+            <ion-label style="color:#999">To Date</ion-label>
+            <ion-datetime max="2100" min="{{currentDate| amLocale:'en' | amDateFormat:'YYYY-MM-DD'}}" displayFormat="MMM D, YYYY hh:mm a" [(ngModel)]="meeting.targetDateTime"></ion-datetime>
+            <!-- <ion-label style="font-size:1.8em;"><ion-icon color="light" name="lock"></ion-icon></ion-label> -->
+            <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+        </ion-item>
+
+        <ion-item class="no-padding mb-1-5">
+            <ion-label style="color:#999">Invite</ion-label>
+            <ion-input (keyup)='inputSearch.next($event.target.value)' [(ngModel)]="meeting.invite" type="text"></ion-input>
+            <ion-icon color="color-gray" name="ios-search-outline" item-right></ion-icon>
+            <!-- <ion-icon color="color-gray" name="ios-person-outline" item-right> -->
+            <!-- <ion-searchbar
+          [(ngModel)]="myInput"
+          [showCancelButton]="shouldShowCancel"
+          (ionInput)="onInput($event)"
+          (ionCancel)="onCancel($event)">
+        </ion-searchbar> -->
+            <!-- <ion-select (ionChange)="selectEmployee(assign.assignTo)" [(ngModel)]="assign.assignTo">
+              <ion-option *ngFor="let employee of listEmployee" [value]="employee">{{employee.name}} {{employee.surname}}</ion-option>
+            </ion-select> -->
+            <!-- </ion-icon> -->
+        </ion-item>
+        <ion-list style="padding-right:10px;padding-left:10px">
+            <ion-item *ngFor="let employee of listEmployee">
+                <ion-label>{{employee.name}} {{employee.surname}}</ion-label>
+                <ion-icon (click)="selectEmployee(employee)" color="color-gray" name="md-arrow-dropright" item-right></ion-icon>
+            </ion-item>
+        </ion-list>
+
+        <ion-row>
+            <ion-col style="padding:0 5px 0 5px" col-2 *ngFor="let code of trackEmployee;let index = index">
+                <div class="wrapper-employee-icon" (click)="removeTrack(index,code)">
+                    <ion-icon name="close"></ion-icon>
+                </div>
+                <!-- <div class="employee-list"> -->
+                <img class="img-avatar margin-auto wrapper-employee employee-list" [src]="code|loadImg" />
+                <!-- </div> -->
+            </ion-col>
+        </ion-row>
+
+        <button (click)="editAssignment()" color="light-blue" class="btn-send" ion-button block>Send</button>
+
+    </ion-list>
+
+
+</ion-content>

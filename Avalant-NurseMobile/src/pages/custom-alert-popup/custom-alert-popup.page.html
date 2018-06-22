@@ -1,0 +1,47 @@
+<ion-content style="padding: 1.5em; ">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 text-center>
+                <div class="ionic-super-popup showSuperAlert visible" style="width: 100%;height: 100%">
+                    <div *ngIf="alertData.status == 'success' " class="sa-icon sa-success animate" style="display: block;">
+                        <span class="sa-line sa-tip animateSuccessTip"></span>
+                        <span class="sa-line sa-long animateSuccessLong"></span>
+                        <div class="sa-placeholder"></div>
+                        <div class="sa-fix"></div>
+                    </div>
+                    <div *ngIf="alertData.status == 'warning' " class="sa-icon sa-warning pulseWarning" style="display: block;">
+                        <span class="sa-body pulseWarningIns"></span>
+                        <span class="sa-dot pulseWarningIns"></span>
+                    </div>
+                    <div *ngIf="alertData.status == 'error' " class="sa-icon sa-error animateErrorIcon" style="display: block;">
+                        <span class="sa-x-mark animateXMark">
+                              <span class="sa-line sa-left"></span>
+                        <span class="sa-line sa-right"></span>
+                        </span>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+            <ion-col col-12 text-center no-padding>
+                <h3 style="text-transform:capitalize;">{{alertData?.status}}!</h3>
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+            <ion-col col-12 text-center no-padding>
+                <h5>{{alertData?.description}}</h5>
+            </ion-col>
+        </ion-row>
+        <ion-row class="alert-footer answer-btn">
+            <ion-col text-right>
+                <div *ngIf="(alertData.buttons || []).length == 0" style="width: 100%">
+                    <button *ngIf="alertData.status != FLAG_SUCCESS " (click)="cancelClick()" color="danger" ion-button small outline>{{ alertDataLang?.cancel || 'Cancel' }}</button>
+                    <button *ngIf="alertData.status == FLAG_SUCCESS " (click)="okClick()" ion-button small outline>{{ alertDataLang?.done || 'Done' }}</button>
+                </div>
+                <div *ngIf="(alertData.buttons || []).length > 0" style="width: 100%">
+                    <button *ngFor="let _btn of (alertData.buttons || []);let _btnIdx = index;" (click)="appButtonClick(_btn)" ion-button small outline>{{_btn?.name}}</button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

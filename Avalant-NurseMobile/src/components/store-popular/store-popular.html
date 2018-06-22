@@ -1,0 +1,39 @@
+<!-- Generated template for the StorePopular component -->
+<div class="headerGrap">
+    <span class="CpText">Popular</span>
+    <span class="readMore">more+</span>
+</div>
+<div style="height: auto;">
+    <ion-slides pager="true" #popularSlide data-swiper-autoplay="true">
+        <ion-slide style="height: 90%;" *ngFor="let item of productList">
+            <!--<div class="cardDv">
+                    <div class="cardImg">
+                        <div class="cardImgPrev" [style.background-image]="'url('+item.imagePath+')'"></div>
+                    </div>
+                    <div class="cardContent" style="text-align: left;" >
+                        <p class="name">{{item.name}}</p>
+                        <span class="desc">{{item.desc}}</span>
+                    </div>
+                </div>-->
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-12 col-sm-6>
+                        <ion-card class="cardClick" tappable (click)="go2ProductDtl()">
+                            <ion-card-content style="padding: 0;">
+                                <div class="cardDv">
+                                    <div class="cardImg">
+                                        <div class="cardImgPrev" [style.background-image]="'url('+item.imagePath+')'"></div>
+                                    </div>
+                                    <div class="cardContent" style="text-align: left;">
+                                        <p class="name">{{item.name}}</p>
+                                        <span class="desc">{{item.desc}}</span>
+                                    </div>
+                                </div>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-slide>
+    </ion-slides>
+</div>

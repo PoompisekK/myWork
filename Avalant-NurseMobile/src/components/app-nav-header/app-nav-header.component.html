@@ -1,0 +1,17 @@
+<!-- <ion-navbar header-bar class="app-nav" color="bluecyan" hideBackButton> -->
+<ion-navbar header-bar class="app-nav" color="app-theme">
+    <button icon-only ion-button menuToggle start>
+            <ion-icon name="ios-menu"></ion-icon>
+        </button>
+    <ion-title class="app-title" text-center>
+        {{ pageName | translate }}
+    </ion-title>
+    <ion-buttons right style="position: absolute;z-index: 100;right: .5em;">
+        <button *ngIf="!isNotiPage" ion-button icon-only (click)="goNotiPage()">
+            <ion-icon name="ios-notifications-outline"></ion-icon>
+        </button>
+        <button ion-button icon-only *ngFor="let buttonItm of buttons" (click)="buttonItm.click()">
+            <ion-icon name="{{ buttonItm.icon }}"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-navbar>

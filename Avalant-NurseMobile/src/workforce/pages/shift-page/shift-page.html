@@ -1,0 +1,148 @@
+<ion-header>
+    <app-nav-header [pageName]="'M_SHIFT.SHIFTREQUEST'"></app-nav-header>
+</ion-header>
+<ion-content class="bg-workforce">
+    <ion-grid padding>
+        <ion-row class="img-shift">
+            <ion-col col-2></ion-col>
+            <ion-col text-center col-4 no-padding (click)="selectType && selectType('shiftSwap')">
+                <div class="btShift {{Shift_Swap}}">
+                    <img class="svg-image-shift" src="./assets/img/svg/shift/shift_swap.png">
+                </div>
+                <span class="button-label" translate>M_SHIFT.SHIFTSWAP</span>
+                <div class="selectShift {{Shift_Swap}}"></div>
+                <p text-center>0</p>
+            </ion-col>
+            <ion-col text-center col-4 no-padding (click)="selectType && selectType('shift')">
+                <div class="btShift {{Shift}}">
+                    <img class="svg-image-shift" src="./assets/img/svg/shift/shift.png">
+                </div>
+                <span class="button-label" translate>M_SHIFT.SHIFT</span>
+                <div class="selectShift {{Shift}}"></div>
+                <p text-center>0</p>
+            </ion-col>
+            <ion-col col-2></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col text-center class="btCreate">
+                <button ion-button icon-only no-lines transparent (click)="openCreate && openCreate()">
+                    <ion-icon name="ios-add-circle-outline"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-refresher (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-row class="bg-workforce" [@peekAnimation] *ngIf="isLoading">
+        <ion-col text-center>
+            <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
+        </ion-col>
+    </ion-row>
+    <ion-card [@peekAnimation] ava-empty-card style="background: none;" *ngIf="!isLoading && (listShift||[]).length == 0" text-center
+        margin-horizontal padding-vertical>
+        <img src="./assets/img/svg/emptydata_blue.svg">
+        <p class="ava-empty-label" translate>M_NODATA.NODATA</p>
+    </ion-card>
+    <ion-grid no-padding class="listDetail" *ngIf="shiftType == 'shift' && !isLoading">
+        <ion-row no-padding *ngFor="let groupList of (groupListShift || [])">
+            <ion-col col-12 no-padding style="margin-top: -2.3em">
+                <ion-row padding class="month">
+                    <ion-col>
+                        <p>{{ groupList?.date }}</p>
+                    </ion-col>
+                </ion-row>
+                <ion-row no-padding>
+                    <ion-col no-padding style="margin-top: -3em;">
+                        <ion-row>
+                            <ion-col>
+                                <ion-card class="cardList1" (click)="showDetail && showDetail(taskList)" *ngFor="let taskList of groupList.task" style="margin-top: .5em;">
+                                    <ion-row class="date">
+                                        <ion-col>
+                                            <div style="float: right">
+                                                <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
+                                                    <span style="margin-left: .5em" *ngIf="currLang == 'TH'">{{ taskList?.requestShiftDate | amLocale:'th' | amDateFormat:'ddd D' }}</span>
+                                                    <span style="margin-left: .5em" *ngIf="currLang == 'EN'">{{ taskList?.requestShiftDate | amLocale:'en' | amDateFormat:'ddd. D' }}</span>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="detail">
+                                        <ion-col col-5 class="status" no-padding>
+                                            <button ion-button class="{{taskList?.status}}">{{ taskList?.status }}</button>
+                                            <p>{{ taskList?.fullName }}</p>
+                                        </ion-col>
+                                        <ion-col col-7 class="detailZone" no-padding>
+                                            <ion-row>
+                                                <ion-col col-4 class="formZone">
+                                                    <p text-right>{{ taskList?.fromGroupName }}</p>
+                                                </ion-col>
+                                                <ion-col col-1 text-center class="iconZone">
+                                                    <ion-icon style="color: #999; margin-top: .8em;" name="ios-arrow-round-forward"></ion-icon>
+                                                </ion-col>
+                                                <ion-col col-7 class="toZone">
+                                                    <p>{{ taskList?.toGroupName }}</p>
+                                                    <p>D(07:00) - (15:00)</p>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid no-padding class="listDetail" *ngIf="shiftType == 'shiftSwap' && !isLoading">
+        <ion-row no-padding *ngFor="let groupList of (groupListShift || [])">
+            <ion-col col-12 no-padding style="margin-top: -2.3em">
+                <ion-row padding class="month">
+                    <ion-col>
+                        <p>{{ groupList?.date }}</p>
+                    </ion-col>
+                </ion-row>
+                <ion-row no-padding>
+                    <ion-col no-padding style="margin-top: -3em;">
+                        <ion-row>
+                            <ion-col>
+                                <ion-card class="cardList2" (click)="showDetail && showDetail(taskList)" *ngFor="let taskList of groupList.task" style="margin-top: .5em;">
+                                    <ion-row class="detail">
+                                        <ion-col col-5 class="status" no-padding>
+                                            <button ion-button class="{{taskList.status}}">{{ taskList?.status }}</button>
+                                            <p>{{ taskList?.swapEmployeeName }}</p>
+                                        </ion-col>
+                                        <ion-col col-7 class="detailZone" no-padding>
+                                            <ion-row>
+                                                <ion-col class="formZone">
+                                                    <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
+                                                    <span style="margin-left: .5em" *ngIf="currLang == 'EN'">{{ taskList?.mySchedule | amLocale:'en' | amDateFormat:'ddd. D' }}</span>
+                                                    <span style="margin-left: .5em" *ngIf="currLang == 'TH'">{{ taskList?.mySchedule | amLocale:'th' | amDateFormat:'ddd D' }}</span>
+                                                    <p style="margin-top: .5em">{{ taskList?.myScheduleDate }}</p>
+                                                    <!-- <p text-right *ngIf="taskList.off" style="margin-top: .5em">{{taskList?.off}}</p> -->
+                                                </ion-col>
+                                                <ion-col col-1 class="iconZone">
+                                                    <ion-icon *ngIf="taskList.off" style="color: #999; margin-top: 1.5em;" name="ios-swap-outline"></ion-icon>
+                                                    <ion-icon *ngIf="!taskList.off" style="color: #999; margin-top: .8em;" name="ios-swap-outline"></ion-icon>
+                                                </ion-col>
+                                                <ion-col class="toZone">
+                                                    <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
+                                                    <span style="margin-left: .5em" *ngIf="currLang == 'EN'">{{ taskList?.swapSchedule | amLocale:'en' | amDateFormat:'ddd. D' }}</span>
+                                                    <span style="margin-left: .5em" *ngIf="currLang == 'TH'">{{ taskList?.swapSchedule | amLocale:'th' | amDateFormat:'ddd D' }}</span>
+                                                    <!-- <p text-right *ngIf="taskList.off" style="margin-top: .5em">{{taskList?.off}}</p> -->
+                                                    <p style="margin-top: .5em">{{ taskList?.swapScheduleDate }}</p>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,116 @@
+<!--*
+ @author Bundit.Ng
+ @since  Mon May 22 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<ion-header no-border>
+  <ion-navbar>
+    <button ion-button menuToggle>
+						<ion-icon name="menu"></ion-icon>
+				</button>
+    <ion-title translate>COMMON.USERPROFILE.CONTACTINFO</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content style="padding: .5em;">
+  <form #userForm="ngForm" (ngSubmit)="nextToGeneralInfo(userForm)">
+    <div style="padding-right: 1em;">
+      <ion-item style="margin-top: .5em">
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.LINE_ID</ion-label>
+        <ion-input [(ngModel)]="ybatUserInfoM.lineId" text-right validate-input [formInput]="userForm" [input-type]="'text'" name="line_id"
+          class="input-text" type="text" maxlength="18"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.ADDRESS_NO<span class="required"></span></ion-label>
+        <ion-input [(ngModel)]="addressHome.addressNo" text-right validate-input [formInput]="userForm" required [input-type]="'text'"
+          name="address_no" class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.ADDRESSNAME</ion-label>
+        <ion-input [(ngModel)]="addressHome.addressName" text-right validate-input [formInput]="userForm" [input-type]="'text'" name="addressname"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.MOO</ion-label>
+        <ion-input [(ngModel)]="addressHome.moo" text-right validate-input [formInput]="userForm" [input-type]="'text'" name="moo"
+          class="input-text" type="text" maxlength="10"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.ROOM</ion-label>
+        <ion-input [(ngModel)]="addressHome.room" text-right validate-input [formInput]="userForm" [input-type]="'text'" name="room"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.SOI</ion-label>
+        <ion-input [(ngModel)]="addressHome.soi" text-right validate-input [formInput]="userForm" [input-type]="'text'" name="soi"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.STREET</ion-label>
+        <ion-input [(ngModel)]="addressHome.street" text-right validate-input [formInput]="userForm" [input-type]="'text'" name="street"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.PROVINCE<span class="required"></span></ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="province" required interface="popover" [(ngModel)]="addressHome.province"
+          (ionChange)="getDistrict($event, addressHome.province)" [disabled]="provinceList == null || provinceList.length == 0">
+          <ion-option *ngFor="let provM of provinceList" [value]="provM?.provinceCode">{{provM?.provinceName}}</ion-option>
+          <ion-option [value]="" disabled *ngIf="provinceList == null || provinceList.length == 0">No Data</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.DISTRICT<span class="required"></span></ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="district" required interface="popover" [(ngModel)]="addressHome.district"
+          (ionChange)="getSubDistrict($event, addressHome.province, addressHome.district)" [disabled]="districtList == null || districtList.length == 0">
+          <ion-option *ngFor="let distM of districtList" [value]="distM?.districtCode">{{distM?.districtName}}</ion-option>
+          <ion-option [value]="" disabled *ngIf="districtList == null || districtList.length == 0">No Data</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.SUBDISTRICT<span class="required"></span></ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="subdistrict" required interface="popover" [(ngModel)]="addressHome.subDistrict"
+          (ionChange)="getPostCode($event, addressHome.subDistrict)" [disabled]="subDistrictList == null || subDistrictList.length == 0">
+          <ion-option *ngFor="let subDistM of subDistrictList" [value]="subDistM?.subDistrictCode">{{subDistM?.subDistrictName}}</ion-option>
+          <ion-option [value]="" disabled *ngIf="subDistrictList == null || subDistrictList.length == 0">No Data</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.POSTCODE<span class="required"></span></ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="postcode" required interface="popover" [(ngModel)]="addressHome.postcode"
+          [disabled]="postCodeList == null || postCodeList.length == 0">
+          <ion-option *ngFor="let postCodeM of postCodeList" [value]="postCodeM?.postcode">{{postCodeM?.postcode}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.EMAIL<span class="required"></span></ion-label>
+        <ion-input [(ngModel)]="addressHome.email" text-right validate-input [formInput]="userForm" required [disabled]="businessUserM.email != null && addressHome.email != null && addressHome.email != '' " [input-type]="'email'"
+          name="email" maxlength="60" class="input-text" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.MOBILE<span class="required"></span></ion-label>
+        <ion-input [(ngModel)]="businessUserM.mobile" text-right validate-input [formInput]="userForm" required [input-type]="'mobile'"
+          name="mobile" maxlength="10" minlength="10" class="input-text" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.PHONE_HOME</ion-label>
+        <ion-input [(ngModel)]="businessUserM.telephone" text-right validate-input [formInput]="userForm" [input-type]="'phone'"
+          name="phone_home" maxlength="9" minlength="9" class="input-text" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.EXT_PHONE</ion-label>
+        <ion-input [(ngModel)]="businessUserM.extTelephone" text-right validate-input [formInput]="userForm" name="phone_ext" [input-type]="'extphone'"
+          class="input-text" type="text" maxlength="5"></ion-input>
+      </ion-item>
+      <!-- <div style="margin: 1em 0 1em 1em">
+                <button ion-button color="primary" block tappable type="submit" translate> COMMON.BUTTON.NEXT </button>
+            </div> -->
+      <div style="margin: 1em 0 1em 1em;" ion-row>
+        <ion-col width-50>
+          <button ion-button color="danger" type="button" (click)="backBtn()" block tappable translate>COMMON.BUTTON.BACK</button>
+        </ion-col>
+        <ion-col width-50>
+          <button ion-button color="primary" type="submit" block tappable translate>COMMON.BUTTON.NEXT</button>
+        </ion-col>
+      </div>
+    </div>
+  </form>
+</ion-content>

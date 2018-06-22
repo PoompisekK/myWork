@@ -1,0 +1,11 @@
+<ion-header>
+    <app-nav-header [pageName]="'Search Place'"></app-nav-header>
+</ion-header>
+<ion-content padding>
+
+    <input id="pac-input" class="google-searchbox" type="text" placeholder="Search...">
+    <div #map id="map"></div>
+    <div text-center>
+        <button (click)="submit()" ion-button small class="btn-checkin">Submit</button>
+    </div>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header header-bar [title]="'Add your car' | translate" [logo]="false"></ion-header>
+<ion-content>
+  <!--content-top-->
+  <ion-list>
+    <ion-item>
+      <div style="text-align: center;">
+        <p class="default-font"><strong>กดสแกนเล่มทะเบียนรถ</strong></p>
+        <p><img class="img-scan" src="assets/img/barcode.png" /></p>
+      </div>
+    </ion-item>
+    <ion-item>
+      <div style="text-align: center;">
+        <div text-center class="your-car">
+          <p class="default-fontsize"><strong>รถของคุณ</strong></p>
+          <p><img src="{{ vehiclePreviewImg || VEHICLE_PLACEHOLDER_IMG_PATH }}" (error)="vehiclePreviewImg = VEHICLE_PLACEHOLDER_IMG_PATH"></p>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <div>
+        <slide-menu selectMode="true" centeredSlides="true" [items]="brands" [(ngModel)]="userSelectedVehicle.brandId" (ngModelChange)="selectBrand($event)"></slide-menu>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label class="default-fontsize">
+        <ion-multi-picker #carModel text-center [placeholder]="!isModelLoading ? 'เลือกรุ่นรถ' : 'Loading...'" item-content [(ngModel)]="userSelectedVehicle.modelId" (ngModelChange)="selectModel($event)"
+          [multiPickerColumns]="models || []" [disabled]="!userSelectedVehicle.brandId || isModelLoading"></ion-multi-picker>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="default-fontsize">
+        <ion-multi-picker #carSubmodel text-center item-content [placeholder]="!isSubModelLoading ? 'เลือกรุ่นย่อย' : 'Loading...'" [(ngModel)]="userSelectedVehicle.subModelId" (ngModelChange)="selectSubmodel($event)"
+          [multiPickerColumns]="subModels || []" [disabled]="!userSelectedVehicle.modelId"></ion-multi-picker>
+      </ion-label>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label class="default-fontsize">
+        <ion-datetime text-center displayFormat="YYYY" placeholder="เลือกปี" [(ngModel)]="selectedYear" (ngModelChange)="selectYear($event)"
+          [disabled]="!selectedSubModel" style="padding: 0;"></ion-datetime>
+      </ion-label>
+    </ion-item> -->
+
+  </ion-list>
+
+  <button (click)="confirmSelectedVehicle()" ion-button full [disabled]="!isSelectionValid()">Add</button>
+
+</ion-content>

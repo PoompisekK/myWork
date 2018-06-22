@@ -1,0 +1,67 @@
+<!--*
+ @author Bundit.Ng
+ @since  Mon May 22 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<ion-header no-border>
+  <ion-navbar>
+    <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title translate>COMMON.USERPROFILE.IDENTITYDOC</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content style="padding: 5px;">
+  <div style="padding: .5em;">
+    <ion-item no-lines style="margin-top: .5em">
+      <ion-label class="userprofile-input-label head-text" translate>COMMON.USERPROFILE.IDENTITYDOC</ion-label>
+    </ion-item>
+    <ion-row>
+      <ion-col col-8>
+        <ion-item text-wrap no-lines>
+          <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.PROFILEPICTURE <span translate>COMMON.USERPROFILE.PICTURECONDITION</span></ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4>
+        <input style="display: none;" type="file" accept="image/jpg,image/jpeg" capture="camera" id="attachmentsInputId" multiple
+          (change)="getSelectedAttachments()" />
+        <!-- <ion-fab style="right:0" tappable (click)="addAttachment()"> -->
+        <ion-fab style="right:0" tappable (click)="imagePickerAttachment()">
+          <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+        </ion-fab>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="attachmentFilesList == null || attachmentFilesList.length == 0 ">
+      <ion-col col-12 translate style="text-align: center">
+        {{ 'COMMON.ALERT.NOTFOUND' | translate }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 class="col4-image-effect" *ngFor="let fileItm of attachmentFilesList;let idx = index" tappable (click)="imagePreview(fileItm)"
+        [style.background-image]="'url('+getImagePath(fileItm)+')'">
+        <ion-fab style="right:0" tappable (click)="removeAttachment(idx)">
+          <button ion-fab mini style="margin: 4px; width: 1.5em; height: 1.5em; line-height: 1.5em;"><ion-icon name="close" style="font-size: 1.5rem"></ion-icon></button>
+        </ion-fab>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item text-wrap no-lines style="min-height: 0;">
+        <p style="font-weight: bold" translate>COMMON.USERPROFILE.ACCEPTCONDITION</p>
+        <span style="font-size: .75em" translate>COMMON.USERPROFILE.CONDITIONONE</span><br>
+        <span style="font-size: .75em" translate>COMMON.USERPROFILE.CONDITIONTWO</span>
+      </ion-item>
+      <ion-item no-lines style="height: 2em;min-height: 0;margin-top: 0.25em">
+        <ion-checkbox tappable [(ngModel)]="agreeCheck" class="item-left-margin" item-left></ion-checkbox>
+        <ion-label translate>COMMON.CHECKBOX.ACCEPT</ion-label>
+      </ion-item>
+    </ion-row>
+  </div>
+  <div style="margin: 1em 0 1em 1em;" ion-row>
+    <ion-col width-50>
+      <button ion-button color="danger" type="button" (click)="backBtn()" block tappable translate>COMMON.BUTTON.BACK</button>
+    </ion-col>
+    <ion-col width-50>
+      <button ion-button color="primary" (click)="saveUserProfile($event)" [disabled]="agreeCheck != true" block tappable translate>COMMON.BUTTON.SAVE</button>
+    </ion-col>
+  </div>
+</ion-content>

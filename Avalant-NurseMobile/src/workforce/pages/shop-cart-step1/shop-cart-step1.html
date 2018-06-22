@@ -1,0 +1,115 @@
+<ion-header>
+    <app-nav-header [pageName]="'Cart'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <div padding text-center>
+        <img src="assets/img/payment-step1.png" />
+    </div>
+    <ion-card style="border-radius:5px;">
+        <ion-item no-padding style="margin: 5px;">
+            <ion-card-header no-padding>
+                <ion-icon style="float:right;" name="close"></ion-icon>
+            </ion-card-header>
+            <ion-row>
+                <ion-col style="padding:5px;" col-4 text-center>
+                    <img style="width:100%;height:100%;" src="assets/img/promotion3.jpg" />
+                </ion-col>
+                <ion-col col-8>
+                    <h2 style="word-break: break-all;white-space: normal;">ประกันภัยอาคเนย์ Home Guard</h2>
+                    <ion-row>
+                        <ion-col no-padding text-left col-6 class="margin-auto">
+                            <div no-padding text-left class="div-add-del">
+                                <ion-icon class="add-btn" name="ios-remove-circle-outline" (click)="decrement()"> </ion-icon>
+                                <span class="text-number">{{currentNumber}}</span>
+                                <ion-icon class="del-btn" name="ios-add-circle-outline" (click)="increment()"> </ion-icon>
+                            </div>
+                        </ion-col>
+                        <ion-col text-right col-6 class="margin-auto">
+                            <p style="color:#FF7F27;">฿ <strong class="price">4,887</strong>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-card>
+
+    <ion-card style="border-radius:5px;">
+        <ion-item no-padding style="margin: 5px;">
+            <ion-card-header no-padding>
+                <ion-icon style="float:right;" name="close"></ion-icon>
+            </ion-card-header>
+            <ion-row>
+                <ion-col style="padding:5px;" col-4 text-center>
+                    <img style="width:100%;height:100%;" src="assets/img/promotion4.jpg" />
+                </ion-col>
+                <ion-col col-8>
+                    <h2 style="word-break: break-all;white-space: normal;">Starbuck discount coupons</h2>
+                    <ion-row>
+                        <ion-col no-padding text-left col-6 class="margin-auto">
+                            <div no-padding text-left class="div-add-del">
+                                <ion-icon class="add-btn" name="ios-remove-circle-outline" (click)="decrement()"> </ion-icon>
+                                <span class="text-number">{{currentNumber}}</span>
+                                <ion-icon class="del-btn" name="ios-add-circle-outline" (click)="increment()"> </ion-icon>
+                            </div>
+                        </ion-col>
+                        <ion-col text-right col-6 class="margin-auto">
+                            <p style="color:#FF7F27;">฿ <strong class="price">150</strong>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-card>
+
+
+    <!-- PROMO CODE -->
+    <ion-card style="border-radius:5px;">
+        <ion-row style="padding: 6px 0px 6px 16px;">
+            <ion-col no-padding col-6 col-md-5 class="margin-auto">
+                <strong style="font-size:0.9em;">Enter Promotion Code : </strong>
+            </ion-col>
+            <ion-col>
+                <ion-item no-padding>
+                    <ion-input style="border:1px solid gray;border-right-width:0;border-radius:5px;border-top-right-radius: 0;border-bottom-right-radius: 0;height:65%;" type="text" placeholder=""></ion-input>
+                    <button ion-button item-right style="height:65%;margin:0;border-radius:0;width:30%;border-radius:5px;border-top-left-radius: 0;border-bottom-left-radius: 0;">Apply</button>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+
+    <!-- VAT -->
+    <ion-card style="border-radius:5px;">
+        <ion-row style="padding: 6px 16px;">
+            <ion-col col-6 col-sm-6 class="margin-auto">
+                <strong>Vat 7%</strong>
+            </ion-col>
+            <ion-col text-right>
+                <p style="color:#FF7F27;">฿ <strong class="price">352</strong>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <!-- TOTAL -->
+    <ion-card style="border-radius:5px;background:#FF7F27;">
+        <ion-row padding>
+            <ion-col col-6 col-sm-6 class="margin-auto">
+                <span style="font-size:1.3em;color:white;">รวมราคาทั้งหมด</span>
+            </ion-col>
+            <ion-col text-right>
+                <p style="color:white;">฿ <strong class="total-price">4,090</strong>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <div style="padding:0px 11px 6px;">
+        <button (click)="goToCart2()" color="light-blue" style="border-radius:5px;" ion-button block>ถัดไป</button>
+    </div>
+
+
+    <!-- <div (click)="goToCart2()" class="bg-home-demo">
+
+  </div> -->
+
+
+</ion-content>

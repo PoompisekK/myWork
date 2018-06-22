@@ -1,0 +1,148 @@
+<!-- <ion-header>
+    <app-nav-header [pageName]="' '"></app-nav-header>
+</ion-header> -->
+<ion-content>
+    <div class="modal-nav">
+        <button ion-button icon-only transparent no-box no-lines close-modal-view>
+            <ion-icon name="ios-close-outline" style="color: black;"></ion-icon>
+        </button>
+    </div>
+    <ion-grid no-padding>
+        <ion-row class="header-label" no-padding>
+            <ion-col col-12 no-padding text-center>
+                <h3>{{ assignmentLang?.task || 'Task' }}</h3>
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+            <ion-col col-12 no-padding>
+                <ion-grid class="input-form">
+                    <ion-row no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding id="topic">
+                                <ion-label floating floated required>{{ assignLang?.topic || 'Topic' }}</ion-label>
+                                <ion-input type="text" [(ngModel)]="assign.topicDesc"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding id="description">
+                                <ion-label floating floated required>{{ assignLang?.description || 'Description' }}</ion-label>
+                                <!-- <ion-input type="text" [(ngModel)]="assign.assignDesc"></ion-input> -->
+                                <ion-textarea fz-elastic [(ngModel)]="assign.assignDesc" style="color:black;padding:0;"></ion-textarea>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding (click)="showDateTimePicker('datetime','targetDateTime')" id="endDate">
+                                <ion-label floating floated required> {{ assignLang?.endDate || 'End Date' }} </ion-label>
+                                <ion-input disabled [value]="assign.targetDateTime | amDateFormat:'MMM D, YYYY hh:mm a'" type="text"></ion-input>
+                                <ion-icon item-end name="ios-calendar-outline"></ion-icon>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <!-- 
+                    <ion-row no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding (click)="showDateTimePicker('datetime','startDateTime')">
+                                <ion-label floating floated> {{ assignLang?.startDate || 'Start Date' }} </ion-label>
+                                <ion-input disabled [value]="assign.startDateTime | amDateFormat:'MMM D, YYYY hh:mm a'" type="text"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding (click)="showDateTimePicker('datetime','targetDateTime')">
+                                <ion-label floating floated> {{ assignLang?.endDate || 'End Date' }} </ion-label>
+                                <ion-input disabled [value]="assign.targetDateTime | amDateFormat:'MMM D, YYYY hh:mm a'" type="text"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                     -->
+                    <ion-row no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding>
+                                <ion-label floating floated>{{ assignLang?.priority || 'Priority' }} </ion-label>
+                                <!-- <ion-input [(ngModel)]="assign.priority" style="color:black;padding:0;" type="text"></ion-input> -->
+                                <ion-select [(ngModel)]="assign.priority" interface="popover">
+                                    <ion-option *ngFor="let priorItm of [{ val:'N',name:'Normal' },{ val: 'Y',name:'Urgent' }]" [selected]="priorItm.val == 'N'" [value]="priorItm.val">{{ priorItm?.name }}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="attach-file-label" no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding (click)="attachFile()">
+                                <ion-label floating floated>{{ assignLang?.attachFile || 'Attach file' }} </ion-label>
+                                <ion-icon item-end name="ios-add-circle-outline"></ion-icon>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <input style="display: none;" type="file" accept="*" capture="camera" id="attachmentsInputId" #attachmentsInputId multiple (change)="getAttachments()">
+                    <ion-row class="attach-file" [@peekAnimation] no-padding *ngIf="assign.files && (assign.files||[]).length > 0">
+                        <ion-col no-padding col-12>
+                            <ion-item no-lines no-box *ngFor="let fileItm of (assign.files||[]);let idx = index" [@peekAnimation]>
+                                <ion-label>
+                                    <img *ngIf="isFileType(fileItm, 1)" attach-icon src="./assets/img/svg/doc.svg">
+                                    <img *ngIf="isFileType(fileItm, 2)" attach-icon src="./assets/img/svg/pdf.svg">
+                                    <img *ngIf="isFileType(fileItm, 3)" attach-icon src="./assets/img/svg/pic.svg">
+                                    <img *ngIf="!(isFileType(fileItm, 1)||isFileType(fileItm, 2)||isFileType(fileItm, 3))" attach-icon src="./assets/img/svg/otherfile.svg"> {{ fileItm?.name || fileItm?.fileName }}
+                                </ion-label>
+                                <ion-icon item-end (click)="removeItem(fileItm, idx)" name="ios-close-outline"></ion-icon>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding (click)="goToGoogleMap()">
+                                <ion-label floating floated>{{ assignLang?.placeName || 'Place Name' }}</ion-label>
+                                <ion-input disabled [(ngModel)]="assign.placeName" type="text"></ion-input>
+                                <ion-icon item-end name="ios-pin-outline"></ion-icon>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding>
+                                <ion-label floating floated>{{ assignLang?.placeDescription || 'Place Description' }}</ion-label>
+                                <ion-input [(ngModel)]="assign.placeDesc" type="text"></ion-input>
+                                <ion-icon item-end name="ios-information-circle-outline" style="margin-right: .15em"></ion-icon>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="member-label" no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-box no-padding (click)="addEmployeeMember()" id="member">
+                                <ion-label floating floated required>{{ assignLang?.member || 'Member' }}</ion-label>
+                                <ion-icon item-end name="ios-person-add-outline"></ion-icon>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row style="margin-bottom: 1.5em;padding: .5em 1em;" *ngIf="(calbackDataMember||[]).length > 0">
+                        <ion-col col-2 *ngFor="let empCode of ((calbackDataMember||[]).slice(0,5));let idx = index" style="padding:0 5px 0 5px" (click)="addEmployeeMember(empCode)">
+                            <div class="employee-list">
+                                <!-- <img class="img-avatar margin-auto wrapper-employee" [src]="empCode | loadImg " /> -->
+                                <ava-avatar-img class="assign-by" [srcPath]="empCode | loadImg"></ava-avatar-img>
+                            </div>
+                        </ion-col>
+                        <ion-col col-2 style="padding:0 5px 0" *ngIf="(calbackDataMember||[]).length > 4" (click)="addEmployeeMember()">
+                            <div class="img-avatar margin-auto wrapper-employee add-employee-btn">
+                                <ion-icon class="more-five" *ngIf="(calbackDataMember||[]).length > 4" name="add">{{ (calbackDataMember||[]).length }}</ion-icon>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row class="button-row" no-padding>
+                        <ion-col col-12>
+                            <button class="bg-workforce no-box no-shadow" ion-button block full (click)="checkCreate()">
+                                    {{ assignLang?.createAssignment || ' Create Task' }}
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

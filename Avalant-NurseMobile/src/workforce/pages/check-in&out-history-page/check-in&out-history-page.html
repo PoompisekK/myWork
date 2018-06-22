@@ -1,0 +1,55 @@
+<ion-header>
+    <app-nav-header [pageName]="''"></app-nav-header>
+</ion-header>
+<ion-content class="bg-workforce">
+    <!-- Session 1 -->
+    <div padding style="padding-top:1em" class="bg-workforce">
+        <ion-row>
+            <ion-col class="pt-0">
+                <p no-padding class="no-margin text-white f-1-5">{{currentMonth | amLocal:'en' | amDateFormat:'MMMM'}}</p>
+            </ion-col>
+        </ion-row>
+        <!-- <ion-searchbar class="better-searchbar better-searchbar-wf" (ionInput)="inputSearch.next($event.target.value)" full placeholder="History Search"></ion-searchbar> -->
+    </div>
+    <!-- /.Session 1 -->
+
+    <!-- Session 2 -->
+    <div style="margin-top: -1.5em;">
+        <ion-list *ngFor="let history of historys" style="margin-top: 2em;">
+            <div style="margin-left: .1em;">
+                <p class="pl-16 no-margin date-month">{{history?.recorderDate | amLocal:'en' | amDateFormat:'D MMMM' }}</p>
+            </div>
+            <div style="margin-left: .3em; margin-right: .3em; margin-top: 1.5em;">
+                <ion-card class="checkin-card">
+                    <ion-item no-padding>
+                        <ion-row>
+                            <ion-col no-padding text-center class="margin-auto">
+                                <img class="img-clock margin-auto" src="assets/img/9.png" />
+                            </ion-col>
+                            <ion-col no-padding class="margin-auto">
+                                <p class="frontrobotreg">{{checkInOutLang?.clockIn || 'Clock in'}}</p>
+                                <h3 *ngIf="history?.recorderIn" class="frontrobotblob">
+                                    {{history?.recorderIn}}
+                                    <!-- {{history?.recorderIn | amLocal:'en' | amDateFormat:'hh:mm a'}} -->
+                                </h3>
+                                <h3 *ngIf="!history?.recorderIn" style="font-weight:bold;">-</h3>
+                            </ion-col>
+                            <ion-col no-padding text-center class="margin-auto">
+                                <img class="img-clock margin-auto" src="assets/img/18.png" />
+                            </ion-col>
+                            <ion-col no-padding class="margin-auto">
+                                <p class="frontrobotreg">{{checkInOutLang?.clockOut || 'Clock out'}}</p>
+                                <h3 *ngIf="history?.recorderOut" class="frontrobotblob">
+                                    {{history?.recorderOut}}
+                                    <!-- {{history?.recorderOut | amLocal:'en' | amDateFormat:'hh:mm a'}} -->
+                                </h3>
+                                <h3 *ngIf="!history?.recorderOut" style="font-weight:bold;">-</h3>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+                </ion-card>
+            </div>
+        </ion-list>
+    </div>
+
+</ion-content>

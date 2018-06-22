@@ -1,0 +1,129 @@
+<ion-header class="bg-workforce">
+    <app-nav-header [pageName]="''"></app-nav-header>
+</ion-header>
+<ion-content>
+    <div class="bg-workforce" ava-padding>
+        <ion-grid no-padding ava-padding>
+            <ion-row no-padding>
+                <ion-col no-padding col-12>
+                    <h4 class="reimbursable">{{expenseLang?.reimburableAmount || 'Reimburable Amount'}}</h4>
+                </ion-col>
+            </ion-row>
+            <ion-row no-padding>
+                <ion-col no-padding col-12>
+                    <h2 baht-front>{{ (expenseM?.reimburableAmount || expenseM?.totalAmount || 0) | number:'1.2-2':'th' }}</h2>
+                </ion-col>
+            </ion-row>
+            <ion-row row-last no-padding>
+                <!-- <ion-col class="duaration-time-label" no-padding col-8>
+                    <p>{{expenseLang?.duration || 'Duration'}}</p>
+                    <p class="date-time"> {{ expenseM?.expenseDate | amLocal:'en' | amDateFormat:'D MMMM YYYY' }}</p>
+                </ion-col> -->
+                <ion-col class="duaration-time-label" no-padding col-8>
+                    <p class="expense-request-topic"> {{ expenseM?.expenseRequestTopic }}</p>
+                </ion-col>
+                <ion-col no-padding col-4>
+                    <button *ngIf="canUpdateExpense" icon-only ion-button (click)="addExpenseToDay()">
+                        <ion-icon class="add-btn" name="ios-add"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div ava-padding class="detail-type">
+        <ion-grid class="detail-type" no-padding ava-padding>
+            <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (expenseM.listExpenseDetail||[]).length == 0" text-center margin-horizontal padding-vertical>
+                <img src="./assets/img/svg/emptydata_blue.svg">
+                <p class="ava-empty-label">{{calendarLang?.youDontHaveAnythingRightNow || "You don't have anything right now"}}</p>
+            </ion-card>
+            <ion-row no-padding *ngFor="let expTypeItm of (expenseM.listExpenseDetail || []);let itemIdx = index;" (click)="viewExpenseItemDetail && viewExpenseItemDetail(expenseM) ">
+                <ion-col no-padding text-center col-auto>
+                    {{ (itemIdx+1) +'. '}}
+                </ion-col>
+                <ion-col class="icon-expense" no-padding col-2>
+                    <ion-avatar item-center>
+                        <img class="image-item-type" style="margin: 0 auto;" src="./assets/img/transparents.png" [style.background-image]="'url(' + getImageType(expTypeItm.expenseTypeCode) + ')'">
+                    </ion-avatar>
+                </ion-col>
+                <ion-col no-padding col-9>
+                    <ion-grid no-padding style="padding-left: .5em;">
+                        <ion-row no-padding>
+                            <ion-col no-padding col-7>
+                                <p>{{ getExpenseTypeName(expTypeItm?.expenseTypeCode) }}</p>
+                            </ion-col>
+                            <ion-col no-padding col-5>
+                                <h2 baht-front no-space>{{ (expTypeItm?.amount || 0) | number:'1.0':'th' }}</h2>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="icon-action" no-padding>
+                            <ion-col class="attach" no-padding col-7>
+                                <span>{{ expTypeItm?.invoiceDate | amDateFormat:'MMM D YYYY' }}</span>
+                                <div *ngIf="expTypeItm.files && expTypeItm.files.length > 0">
+                                    <ion-icon class="attach" name="ios-attach"></ion-icon>
+                                    <span class="attach-amt">({{ expTypeItm?.files?.length }})</span>
+                                </div>
+                            </ion-col>
+                            <ion-col class="more" no-padding col-5>
+                                <button *ngIf="canUpdateExpense" ion-button icon-only transparent no-box style="float: right;width:100%" (click)="removeExpenseItm && removeExpenseItm(attIdx)">
+                                    <ion-icon class="more" name="ios-trash-outline"></ion-icon>
+                                </button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="summary-grid">
+            <ion-row>
+                <ion-col col-8>
+                    <p>{{expenseLang?.total || 'Total'}}</p>
+                </ion-col>
+                <ion-col col-4>
+                    <h2 baht-front no-space>{{ (expenseM?.totalAmount || 0) | number:'1.2-2':'th' }}</h2>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-8>
+                    <p>{{expenseLang?.nonReimburable || 'Non Reimburable'}} </p>
+                </ion-col>
+                <ion-col col-4>
+                    <h2 baht-front no-space>{{ (expenseM?.nonReimburable || 0) | number:'1.2-2':'th' }}</h2>
+                </ion-col>
+            </ion-row>
+            <ion-row class="summary-total">
+                <ion-col col-8>
+                    <p>{{expenseLang?.reimburableTotal || 'Reimburable Total'}}</p>
+                </ion-col>
+                <ion-col col-4>
+                    <!-- <h2 baht-front no-space>{{ (expenseM?.reimburableTotal || 0) | number:'1.2-2':'th' }}</h2> -->
+                    <h2 baht-front no-space>{{ ((expenseM?.totalAmount || 0) - (expenseM?.nonReimburable || 0)) | number:'1.2-2':'th' }}</h2>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div *ngIf="canUpdateExpense" ava-padding class="expense-action">
+        <ion-grid no-padding>
+            <ion-row no-padding>
+                <ion-col col-2> </ion-col>
+                <ion-col col-8 style="padding:0 .25em">
+                    <button class="bg-workforce btn-workforce btn-flat" ion-button block full (click)="submitExpense && submitExpense()">{{ expenseLang?.submit || 'Submit' }}</button>
+                </ion-col>
+                <ion-col col-2> </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div *ngIf="isApprover" ava-padding class="expense-action">
+        <ion-grid no-padding>
+            <ion-row no-padding>
+                <ion-col col-1> </ion-col>
+                <ion-col col-5 style="padding:0 .25em">
+                    <button class="bg-workforce btn-workforce btn-flat" ion-button block full (click)="rejectThisTask && rejectThisTask(expenseM)">{{ expenseLang?.reject || 'Reject' }}</button>
+                </ion-col>
+                <ion-col col-5 style="padding:0 .25em">
+                    <button class="bg-workforce btn-workforce btn-flat" ion-button block full (click)="approveThisTask && approveThisTask(expenseM)">{{ expenseLang?.approve || 'Approve' }}</button>
+                </ion-col>
+                <ion-col col-1> </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

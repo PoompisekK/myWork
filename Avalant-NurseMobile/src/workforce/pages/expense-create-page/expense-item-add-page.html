@@ -1,0 +1,69 @@
+<ion-content>
+    <ion-grid class="input-form">
+        <ion-row class="header-label" no-padding>
+            <ion-col no-padding>
+                <h3>Expense Item</h3>
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+            <ion-col no-padding>
+                <ion-row no-padding>
+                    <ion-col no-padding col-12>
+                        <ion-item no-box no-padding>
+                            <ion-label floating floated>Expense type</ion-label>
+                            <ion-select [(ngModel)]="expItm.expenseType" interface="popover" style="max-width: 100%;width: 100%;padding-left:8px;">
+                                <ion-option *ngFor="let expType of (expenseTypeLists||[])" [value]="expType.expenseCode" style="text-transform: capitalize;">{{expType?.expenseName}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row no-padding>
+                    <ion-col no-padding col-12>
+                        <ion-item no-box no-padding (click)="showDateTimePicker && showDateTimePicker('invoiceDate','date')">
+                            <ion-label floating floated>When</ion-label>
+                            <ion-input readonly [value]="expItm?.invoiceDate | amDateFormat:'MMM D YYYY'" type="text"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row no-padding>
+                    <ion-col no-padding col-12>
+                        <ion-item no-box no-padding>
+                            <ion-label floating floated>Amont</ion-label>
+                            <ion-input type="number" number-format="3.2" [(ngModel)]="expItm.amount"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="attach-file-label" no-padding>
+                    <ion-col no-padding col-12>
+                        <ion-item no-box no-padding (click)="attachFile && attachFile()" style="height: 4.5em;">
+                            <ion-label floating floated>Attach file</ion-label>
+                            <ion-icon item-end name="ios-attach-outline"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <input style="display: none;" type="file" accept="*" capture="camera" id="attachmentsInputId" #attachmentsInputId multiple (change)="getAttachments(expItm)">
+                <ion-row class="attach-file" [@peekAnimation] no-padding *ngIf="expItm.files && (expItm.files||[]).length > 0">
+                    <ion-col no-padding col-12>
+                        <ion-item no-lines no-box *ngFor="let fileItm of (expItm.files||[]);let idx = index" [@peekAnimation]>
+                            <ion-label>
+                                <img *ngIf="isFileType(fileItm, 1)" attach-icon src="./assets/img/svg/doc.svg">
+                                <img *ngIf="isFileType(fileItm, 2)" attach-icon src="./assets/img/svg/pdf.svg">
+                                <img *ngIf="isFileType(fileItm, 3)" attach-icon src="./assets/img/svg/pic.svg">
+                                <img *ngIf="!(isFileType(fileItm, 1)||isFileType(fileItm, 2)||isFileType(fileItm, 3))" attach-icon src="./assets/img/svg/otherfile.svg"> {{ fileItm?.name || fileItm?.fileName }}
+                            </ion-label>
+                            <ion-icon item-end (click)="removeItem(fileItm, idx)" name="ios-close-outline"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="button-row">
+                    <ion-col col-6>
+                        <button class="bg-workforce action-btn" ion-button small full block (click)="cancelAddExpenseType && cancelAddExpenseType();">{{ expenseCreatePage?.cancel || 'Cancel' }}</button>
+                    </ion-col>
+                    <ion-col col-6>
+                        <button class="bg-workforce action-btn" ion-button small full block (click)="addExpenseType && addExpenseType(expItm);">{{ expenseCreatePage?.save || 'Save' }}</button>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

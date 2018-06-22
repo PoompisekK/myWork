@@ -1,0 +1,51 @@
+user-profile-person-info-page {
+    .item-input .item-inner {
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .checkbox-md {
+        margin: 10px !important;
+    }
+    .picker-date-icon {
+        background-color: red;
+        // position: static;
+        z-index: 100;
+        // top:1em;;
+    }
+}
+
+.userprofile-input-label {
+    color: #434343 !important;
+}
+
+.userprofile-input-label .label {
+    font-size: .75em;
+}
+
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+    border-bottom-color: $input-item-border-color;
+    box-shadow: none;
+}
+
+.head-text {
+    font-weight: 700;
+}
+
+.list-popover {
+    ion-backdrop {
+        opacity: .02;
+    }
+    .popover-content {
+        border-radius: .25em;
+    }
+}
+
+span.required:after {
+    color: color($colors, danger);
+    padding-left: .25em;
+    content: "*";
+}
+
+.alertMessageUserProfile .alert-wrapper {
+    width: 90%;
+    max-width: 350px;
+}

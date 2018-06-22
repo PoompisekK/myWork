@@ -1,0 +1,15 @@
+notification-page {
+    .notifications {
+        .notification-item {
+            transition: background .5s linear;
+            background: #fff;
+            &.new {
+                background: #e2f6ff;
+            }
+            .datetime {
+                text-align: right;
+                color: color($colors, gray);
+            }
+        }
+    }
+}

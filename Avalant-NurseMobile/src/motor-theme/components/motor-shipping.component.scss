@@ -1,0 +1,46 @@
+shipping {
+    .button.add-address {
+        width: 2.5em;
+        height: 2.5em;
+    }
+    .address-card {
+        margin: 10px;
+        border-radius: 2px;
+        width: calc(100% - 20px);
+        font-size: 1.4rem;
+        background: #fff;
+        box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2);
+        padding: 9px;
+        .item-inner {
+            border-bottom: none !important;
+        } // .item {
+        //     .item-inner {
+        //         flex-direction: column;
+        //         align-items: start;
+        //     }
+        //     $addressCardPadding: 9px;
+        //     padding-top: $addressCardPadding;
+        //     padding-right: $addressCardPadding;
+        //     padding-bottom: $addressCardPadding;
+        // }
+        p {
+            color: #000;
+        }
+    }
+    .list {
+        .item .button-action {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        ion-item-options {
+            border-bottom: none !important;
+            .button {
+                border-radius: 2px;
+                min-height: initial;
+                max-height: 50px;
+                margin: auto 0;
+            }
+        }
+    }
+}

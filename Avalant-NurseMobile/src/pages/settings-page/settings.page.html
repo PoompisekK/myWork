@@ -1,0 +1,30 @@
+<ion-header (swipe)="swipeEvent($event)">
+    <ion-navbar color="bluecyan">
+        <p style="font-size: 1.5em; margin-right: 2em;" text-center translate>M_MENU.CHANGELANGUAGE</p>
+        <ion-buttons right style="position: absolute;z-index: 100;right: .5em;">
+            <button ion-button icon-only click-goto-notipage>
+                <ion-icon name="ios-notifications-outline"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+    <ion-row padding class="btsetting">
+        <ion-col col-12>
+            <ion-row (click)="toggleLanguage && toggleLanguage()">
+                <ion-col col-9>
+                    <button ion-button clear no-box no-padding style="font-size: 1.5em; color: black">
+                        <img style="height: 1.2em;" src="./assets/img/svg/Setting/language.svg" />
+                        <p style="margin-left: 1em;" translate>M_MENU.CHANGELANGUAGE</p>
+                    </button>
+                </ion-col>
+                <ion-col col-3 [@peekAnimation] style="margin-top: 1em;" text-right>
+                    <!-- <ion-toggle [checked]="currLang == 'th'"></ion-toggle> -->
+                    <ion-badge item-end *ngIf="currLang == 'th'" class="lang-badge" translate>M_LANGUAGE.THAI</ion-badge>
+                    <ion-badge item-end *ngIf="currLang != 'th'" class="lang-badge" translate>M_LANGUAGE.ENGLISH</ion-badge>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+</ion-content>

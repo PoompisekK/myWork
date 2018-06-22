@@ -1,0 +1,115 @@
+<ion-header>
+    <app-nav-header [pageName]="' '"></app-nav-header>
+</ion-header>
+
+<ion-content>
+    <ion-refresher class="assign-refresher" (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content style="color:#fff;" pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="crescent" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-slides #slidesMeetingView no-padding (ionSlideNextEnd)="loadNext()" (ionSlidePrevEnd)="loadPrev()" [initialSlide]="1">
+        <ion-slide no-padding *ngFor="let daySldItm of (daySlides||[]);let sldIdx = index;">
+            <div class="meeting-date" no-padding>
+                <ion-grid no-padding no-margin>
+                    <ion-row no-padding>
+                        <ion-col no-padding text-center col-2 (click)="loadPrev && loadPrev()">
+                            <button ion-button icon-only no-lines transparent>
+                                <ion-icon name="ios-arrow-back"></ion-icon>
+                            </button>
+                        </ion-col>
+                        <ion-col no-padding text-center col-8>
+                            <h1>{{ daySldItm.viewingMonth | amLocal:'en' | amDateFormat:'D' }}</h1>
+                            <p>{{ daySldItm.viewingMonth | amDateFormat:'MMM [/] ddd' }}</p>
+                        </ion-col>
+                        <ion-col no-padding text-center col-2 (click)="loadNext && loadNext()">
+                            <button ion-button icon-only no-lines transparent>
+                                <ion-icon name="ios-arrow-forward"></ion-icon>
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+            <div class="meeting-blue-bar">
+                <ion-grid no-padding no-margin>
+                    <ion-row no-padding>
+                        <ion-col no-padding text-center col-12>
+                            <button ion-button icon-only no-lines transparent (click)="goToCreateEventMeeting()">
+                                <ion-icon name="ios-add"></ion-icon>
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+
+            <ion-row [@peekAnimation] ava-loading *ngIf="isLoading">
+                <ion-col text-center>
+                    <ion-spinner ava-loading-spinner></ion-spinner>
+                </ion-col>
+            </ion-row>
+            <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (allMeetingTask||[]).length == 0" text-center margin-horizontal padding-vertical>
+                <img src="./assets/img/svg/emptydata.svg">
+                <p class="ava-empty-label">{{meetingLang?.youDontHaveAnythingRightNow || "You don't have anything right now"}}</p>
+            </ion-card>
+
+            <div class="meeting-task-list">
+                <ion-list ava-lines no-padding *ngFor="let taskItm of (allMeetingTask||[])">
+                    <ion-item ava-lines *ngFor="let meeting of (taskItm.listAssign||[])" style="padding-top: .5em" (click)="goMeetingDetailPage(meeting)">
+                        <!-- (click)="isShow = (isShow == meeting ? null : meeting)"  -->
+                        <ion-grid no-padding>
+                            <ion-row no-padding>
+                                <ion-col no-padding col-2 text-center>
+                                    <div dot class="meeting-status {{ meeting?.assignStatus }} {{ getMeetingClassStatus(meeting?.assignStatus) }}"></div>
+                                </ion-col>
+                                <ion-col no-padding col-7>
+                                    <ion-grid all-no-padding>
+                                        <ion-row>
+                                            <ion-col col-12 class="meeting-topic-desc">
+                                                <p ellipsis>{{ meeting?.topicDesc }}</p>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col col-12 class="meeting-assign-desc">
+                                                <p ellipsis>{{ meeting?.assignDesc }}</p>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row *ngIf="meeting.placeDesc">
+                                            <ion-col col-12 class="meeting-place-desc">
+                                                <ion-icon name="ios-pin-outline"></ion-icon>
+                                                <span ellipsis>{{ meeting?.placeDesc }}</span>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col col-12 class="meeting-people">
+                                                <div *ngFor="let attendeesPerson of meeting.listAssignResponsible;let idx = index" class="div-col-attendees">
+                                                    <ava-avatar-img *ngIf="idx < 4" class="attendees-avatar {{ attendeesPerson.responsibleStatus }} img-avatar margin-auto wrapper-employee" [srcPath]="attendeesPerson?.employeeCode  | loadImg"></ava-avatar-img>
+                                                    <div *ngIf="idx == 4" class="attendees-avatar more">
+                                                        <span class="more-amt">{{ '+'+(meeting?.listAssignResponsible||[]).length }}</span>
+                                                    </div>
+                                                </div>
+                                            </ion-col>
+                                        </ion-row>
+                                        <!-- <ion-row class="meeting-action" [@peekAnimation] *ngIf="isShow && isShow == meeting">
+                                            <ion-col col-4 text-center>
+                                                <button class="wf-button" text-center ion-button full (click)="rejectAssign(meeting)">Deny</button>
+                                            </ion-col>
+                                            <ion-col col-4 text-center>
+                                                <button class="wf-button" text-center ion-button full (click)="acceptAssign(meeting)">Accept</button>
+                                            </ion-col>
+                                            <ion-col col-4 text-center>
+                                                <button class="wf-button" text-center ion-button full (click)="editMeeting(meeting)">Edit</button>
+                                            </ion-col>
+                                        </ion-row> -->
+                                    </ion-grid>
+                                </ion-col>
+                                <ion-col no-padding col-3 text-right>
+                                    <span class="meeting-time">{{ meeting?.targetDateTime | amLocal:'en' | amDateFormat:'LT' }}</span>
+                                    <!-- <span class="meeting-time">{{ meeting?.targetDateTime }}</span> -->
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

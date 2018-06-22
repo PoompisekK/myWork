@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "395170494575",
+    "firebase_url": "https://workforce-1117.firebaseio.com",
+    "project_id": "workforce-1117",
+    "storage_bucket": "workforce-1117.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395170494575:android:bb8977a7bcfb7be9",
+        "android_client_info": {
+          "package_name": "com.avalant.workforce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395170494575-c33k3rh9qh8kmaosd3a0un0i7gfi85ao.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avalant.workforce",
+            "certificate_hash": "a15f651d66203c0d240d8714b8bd3527bb29924b"
+          }
+        },
+        {
+          "client_id": "395170494575-56c3bk2s03oci12oqrpr832tv1oane37.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM1gJi1-ZHejxpMonL8nTK0-acZyLVHSI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395170494575-56c3bk2s03oci12oqrpr832tv1oane37.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

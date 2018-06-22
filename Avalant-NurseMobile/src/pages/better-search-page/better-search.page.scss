@@ -1,0 +1,44 @@
+.searchbar.better-searchbar {
+    // Custom Searchbar
+    background: none;
+    padding: 0; // border: none;
+    .searchbar-input-container {
+        border-radius: 5px;
+        overflow: hidden;
+        border: solid 1px #fff;
+        background: #fff;
+    }
+    .searchbar-search-icon {
+        left: initial;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 100%;
+        @include ios-searchbar-icon($searchbar-ios-input-search-icon-svg, 'white');
+        background-position: center;
+        background-color: #1976d3;
+        &:active {
+            background-color: #42A1FF;
+        }
+    }
+    &.searchbar-has-value.searchbar-has-focus .searchbar-clear-icon {
+        width: 30px;
+        left: initial;
+        right: 62px;
+    }
+    &.searchbar.searchbar-left-aligned .searchbar-input {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        padding-left: 1rem;
+        padding-right: 88px;
+        height: 24px;
+        border-radius: 0;
+    }
+}
+
+better-search-page {
+    .searchbar.better-searchbar {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 8px 6px;
+    }
+}

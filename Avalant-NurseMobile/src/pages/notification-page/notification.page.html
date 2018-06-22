@@ -1,0 +1,52 @@
+<ion-header header-bar [search]="false" [noti-enabled]="false" [cart]="false" [logo]="false" title="{{'COMMON.ALERT.NOTIFICATION' | translate}}">
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content pullMax="500"></ion-refresher-content>
+  </ion-refresher>
+  <!-- 
+  <ion-list>
+    <ion-item *ngFor="let noti of notificationList">
+      {{noti.text}}<br> {{noti.message}}
+      <br>
+      <span>{{noti.time}}</span>
+    </ion-item>
+  </ion-list> -->
+
+  <!-- <ion-grid class="notifications">
+    <ion-row *ngFor="let item of notificationList; trackBy: trackNotification">
+      <ion-col no-padding>
+        <ion-card class="notification-item" [class.new]="item.status === 'N'">
+          <ion-card-content tappable (click)="readNoti(item)">
+            {{item.text}}<br>{{item.message}}<br>
+            <div class="datetime" text-right color="gray">{{item.time | amTimeAgo}}</div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <ion-list class="notifications">
+    <ng-container *ngFor="let item of notificationList; trackBy: trackNotification">
+      <ion-item-sliding [@peekAnimation]>
+        <ion-item class="notification-item" [class.new]="item.status === 'N'" tappable (click)="readNoti(item)">
+          <ion-icon item-start name="ios-notifications-outline"></ion-icon>
+          <h2>{{item.text}}</h2>
+          <p>{{item.message}}</p>
+          <p class="datetime" text-right color="gray">{{item.time | amTimeAgo}}</p>
+          <!-- <ion-note item-end>{{item.time | amTimeAgo}}</ion-note> -->
+        </ion-item>
+        <ion-item-options side="right" (ionSwipe)="deleteNoti(item)">
+          <button ion-button color="danger" expandable (click)="deleteNoti(item)">
+            <ion-icon name="close-circle"></ion-icon> Dismiss
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ng-container>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="getNotificationList($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

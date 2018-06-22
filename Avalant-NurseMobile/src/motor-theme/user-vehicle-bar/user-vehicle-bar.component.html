@@ -1,0 +1,18 @@
+<ion-grid no-padding>
+  <ion-row>
+    <ion-col col-auto class="vehicle-buttons">
+      <!-- <img src="{{ value?.imageUrl }}" /> -->
+      <button ion-button icon-only small outline class="margin border-circle" (click)="onCarButtonClick($event, value)">
+        <ion-icon name="car"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col>
+      <p text-center>{{ value?.toString() }}</p>
+    </ion-col>
+    <ion-col col-auto class="vehicle-buttons">
+      <button ion-button icon-only small outline class="margin border-circle" (click)="onAddButtonClick($event, value)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

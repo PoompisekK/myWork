@@ -1,0 +1,8 @@
+<ion-content>
+  <ion-searchbar (ionInput)="runSearch($event)" [(ngModel)]="searchValue"></ion-searchbar>
+  <ion-list>
+    <ion-item tappable *ngFor="let item of showDataList" (click)="selectItem(item)">
+      {{item.name}}
+    </ion-item>
+  </ion-list>
+</ion-content>

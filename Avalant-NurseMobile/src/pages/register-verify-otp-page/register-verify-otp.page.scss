@@ -1,0 +1,93 @@
+/**
+ * @author Bundit.Ng
+ * @since  Tue Sep 05 2017
+ * Copyright (c) 2017 Avalant Co.,Ltd.
+ */
+
+//Declaration
+$bgColor: #03A9F5;
+$fontColor: white;
+$paddingSize: 1.5em;
+$plcHldOpacity: .75;
+//Style------------------------
+register-verify-otp-page {
+    ion-header,
+    ion-header .toolbar-background {
+        background-color: $bgColor !important;
+        button {
+            color: $fontColor !important;
+        }
+    }
+    ion-content {
+        background-color: $bgColor !important;
+    }
+    .backDvBtn {
+        z-index: 100;
+        position: absolute;
+        top: 1em;
+        left: 1em;
+        img.backImgBtn:active {
+            opacity: .1;
+        }
+        img.backImgBtn {
+            width: 2em !important;
+            height: 2em !important;
+            fill: white;
+            color: white;
+        }
+    }
+    .closeDvBtn {
+        z-index: 100;
+        img.closeImgBtn {
+            width: 2em !important;
+            height: 2em !important;
+            fill: white;
+            color: white;
+        }
+    }
+    .closeDvBtn:active,
+    .closeImgBtn:active {
+        opacity: .1;
+    }
+    .digitBox {
+        text-align: center;
+        border: 1px solid #03A9F5;
+        background-color: #EEEEEE;
+        height: 2em;
+        width: 2em;
+        border-radius: 5px;
+        color: #03A9F5;
+    }
+    div.inputOTP {
+        height: 40vh;
+        .messageTop .message,
+        .messageMid .message,
+        .messageRefer .message {
+            padding: 0 .75em;
+            font-size: 1em;
+        }
+        .messageTop .message .messageMobile {
+            font-weight: bold;
+        }
+        .messageMid {}
+        .messageOTPCode {
+            margin: 5px 0;
+            div.digitPad {}
+        }
+        .messageBtn {
+            padding: 0;
+            .resent_otp {
+                width: 8em;
+            }
+            .submit_otp {
+                width: 6em;
+            }
+            .resent_otp,
+            .submit_otp {
+                color: #e6e6e6;
+                border-color: #e6e6e6;
+                font-size: 1em;
+            }
+        }
+    }
+}

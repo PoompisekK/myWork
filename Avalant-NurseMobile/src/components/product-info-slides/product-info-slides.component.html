@@ -1,0 +1,11 @@
+<div>
+    <div style="height: 15em">
+        <ion-slides pager autoplay="3000" loop>
+            <ion-slide style="background-color: green" *ngFor="let item of slidesFiles">
+                <div class="imgSlidesCover" [style.background-image]="'url('+item.srcPath+')'">
+
+                </div>
+            </ion-slide>
+        </ion-slides>
+    </div>
+</div>

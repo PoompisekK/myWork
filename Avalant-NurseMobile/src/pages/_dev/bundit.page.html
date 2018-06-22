@@ -1,0 +1,117 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle start>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Bundit</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content style="padding: 1.5em">
+    <div style="margin:5px">
+        <ion-grid>
+            <ion-row no-padding>
+                <ion-col no-padding>
+                    <ion-item no-padding>
+                        <ion-label floating>User Email</ion-label>
+                        <ion-input type="text" [(ngModel)]="userEmail"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row no-padding>
+                <ion-col no-padding>
+                    <ion-item no-padding>
+                        <ion-label floating>Password</ion-label>
+                        <ion-input type="text" [(ngModel)]="userPassword"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <button ion-button block tappable (click)="getActiveEmail(userEmail, userPassword)" style="margin: 5%; width: 90%;" [color]="getColorBtn(4)">Actived User Email </button><br>
+    </div>
+
+    <button ion-button block *ngFor="let btnItm of buttonList;let idx = index" tappable (click)="doAction(btnItm)" style="margin: 5%; width: 90%;" [color]="getColorBtn(idx)">{{btnItm.name||btnItm.action}}</button><br>
+
+    <div *ngIf="false">
+        <ion-navbar>
+            <ion-segment color="dark" [(ngModel)]="tabs">
+                <ion-segment-button tappable (click)="selectTab(tabItm.id)" [value]="tabItm.id" *ngFor="let tabItm of slidesTab">
+                    {{tabItm.name}}
+                </ion-segment-button>
+                <div id="slide" class="slide"> </div>
+            </ion-segment>
+        </ion-navbar>
+
+        <ion-slides #pageSlider style="padding:4px;background-color:pink" (ionSlideWillChange)="changeWillSlide($event)">
+            <ion-slide *ngFor="let tabItm of slidesTab">
+                <h1>ContentTab {{tabItm.name}}</h1>
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div style="border-radius: 5px;border: 1px solid grey;margin:5px">
+        <div ion-row>
+            <ion-col col-8>
+                AttachmentFilesList
+            </ion-col>
+            <ion-col col-4>
+                <input style="display: none;" type="file" accept="image/jpg,image/jpeg" capture="camera" id="attachmentsInputId" multiple (change)="getSelectedAttachments()" />
+                <ion-fab style="right:0" tappable (click)="addAttachment()">
+                    <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+                </ion-fab>
+            </ion-col>
+        </div>
+        <div ion-row style="margin: 2.5em 0 0 0">
+            <ion-col col-4 class="col4-image-effect" *ngFor="let fileItm of attachmentFilesList;let idx = index" tappable (click)="imagePreview(fileItm)" [style.background-image]="'url('+fileItm.type+')'">
+                <ion-fab style="right:0;z-index: 100" tappable (click)="removeAttachment(idx)">
+                    <button ion-fab mini style="margin: 4px; width: 1.5em; height: 1.5em; line-height: 1.5em;"><ion-icon name="close" style="font-size: 1.5rem"></ion-icon></button>
+                </ion-fab>
+            </ion-col>
+        </div>
+        <div ion-row>
+            <button ion-button block tappable (click)="UploadImage(btnItm)" style="margin: 5%; width: 90%;" [color]="getColorBtn(3)">UploadImage</button><br>
+        </div>
+    </div>
+    <div style="margin:5px" *ngIf="false">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <ion-item no-padding>
+                        <ion-label floating>UserName</ion-label>
+                        <ion-input type="text" [(ngModel)]="username"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-item no-padding>
+                        <ion-label floating>Password</ion-label>
+                        <ion-input type="text" [(ngModel)]="password"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-12>
+                    <ion-input type="text" [(ngModel)]="generatedMD5" text-center [readonly]="true"></ion-input>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <button ion-button block tappable (click)="generateUserPassword()" style="margin: 5%; width: 90%;" [color]="getColorBtn(10)">GetPassword MD5</button><br>
+    </div>
+
+
+    <form *ngIf="false" #dataForm="ngForm" (ngSubmit)="validateForm(dataForm)">
+        <ion-list>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>Gender</ion-label>
+                <ion-select [ngModelOptions]="ngModelOpt" [(ngModel)]="businessUser.gender" interface="popover">
+                    <ion-option [value]="genderM?.code" *ngFor="let genderM of [{code:'F',name:'Female'},{code:'M',name:'Male'}]">{{genderM?.name}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>Name<span class="required" *ngIf="businessUser.gender == 'M' "></span></ion-label>
+                <ion-input [(ngModel)]="businessUser.custFname" validate-input [formInput]="dataForm" [input-type]="'text'" name="name" [required]="businessUser.gender == 'M'" class="input-text" type="text" maxlength="50" text-right></ion-input>
+            </ion-item>
+            <ion-buttons center>
+                <button ion-button color="primary" type="submit" block tappable translate>Next</button>
+            </ion-buttons>
+        </ion-list>
+    </form>
+
+</ion-content>

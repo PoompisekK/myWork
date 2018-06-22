@@ -1,0 +1,152 @@
+<ion-header>
+    <app-nav-header [pageName]="'M_HOME.LEAVEREQUEST'" translate></app-nav-header>
+</ion-header>
+
+<ion-content class="bg-workforce">
+    <div class="leave-type-tabs" no-padding>
+        <ion-grid class="leave-type-grid" no-padding no-margin>
+            <ion-row class="image-leave" no-padding>
+                <ion-col no-padding text-center col-3 (click)="selectType && selectType('sick')">
+                    <img class="svg-image-leave" src="./assets/img/sick-icon.png">
+                    <span class="button-label" translate>M_LEAVEPAGE.SICK</span>
+                    <div class="selectShift {{Sick}}"></div>
+                    <p text-center> {{ leaveSummaryYear?.sick }} </p>
+                </ion-col>
+                <ion-col no-padding text-center col-3 (click)="selectType && selectType('annual')">
+                    <img class="svg-image-leave" src="./assets/img/annual.png">
+                    <span class="button-label" translate>M_LEAVEPAGE.ANNUAL</span>
+                    <div class="selectShift {{Annual}}"></div>
+                    <p text-center>{{ leaveSummaryYear?.annual }}</p>
+                </ion-col>
+                <ion-col no-padding text-center col-3 (click)="selectType && selectType('personal')">
+                    <img class="svg-image-leave" src="./assets/img/leave.png">
+                    <span class="button-label" translate>M_LEAVEPAGE.PERSONAL</span>
+                    <div class="selectShift {{Personal}}"></div>
+                    <p text-center>{{ leaveSummaryYear?.personal }}</p>
+                </ion-col>
+                <ion-col no-padding text-center col-3 (click)="selectType && selectType('other')">
+                    <img class="svg-image-leave" src="./assets/img/other-leave.png">
+                    <span class="button-label" translate>M_LEAVEPAGE.OTHER</span>
+                    <div class="selectShift {{Other}}"></div>
+                    <p text-center>0</p>
+                </ion-col>
+            </ion-row>
+            <!-- <ion-row class="remain-amt" no-padding>
+                <ion-col no-padding text-center col-3>
+                    <span class="remain-amt-label">{{ leaveSummaryYear?.sick }}</span>
+                </ion-col>
+                <ion-col no-padding text-center col-3>
+                    <span class="remain-amt-label">{{ leaveSummaryYear?.annual }}</span>
+                </ion-col>
+                <ion-col no-padding text-center col-3>
+                    <span class="remain-amt-label">{{ leaveSummaryYear?.personal }}</span>
+                </ion-col>
+                <ion-col no-padding text-center col-3>
+                    <span class="remain-amt-label">0</span>
+                </ion-col>
+            </ion-row> -->
+        </ion-grid>
+    </div>
+    <div class="leave-blue-bar">
+        <ion-grid no-padding no-margin>
+            <ion-row no-padding>
+                <ion-col no-padding text-center col-3>
+                    <!-- <button ion-button icon-only no-lines transparent (click)="false">
+                        <ion-icon name="ios-apps-outline"></ion-icon>
+                    </button> -->
+                </ion-col>
+                <ion-col no-padding text-center col-6>
+                    <button ion-button icon-only no-lines transparent (click)="gotoCreateLeave && gotoCreateLeave()">
+                        <ion-icon name="ios-add-circle-outline"></ion-icon>
+                    </button>
+                    <!-- <button ion-button icon-only no-lines transparent (click)="false">
+                        <ion-icon name="ios-paper-plane-outline"></ion-icon>
+                    </button> -->
+                </ion-col>
+                <ion-col no-padding text-center col-3>
+                    <!-- <button ion-button icon-only no-lines transparent (click)="gotoCreateLeave()">
+                        <ion-icon name="ios-add"></ion-icon>
+                    </button> -->
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <ion-refresher (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-row class="bg-workforce" [@peekAnimation] *ngIf="isLoading">
+        <ion-col text-center>
+            <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
+        </ion-col>
+    </ion-row>
+    <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (leavesCollapsedGroup||[]).length == 0" text-center margin-horizontal padding-vertical>
+        <img src="./assets/img/svg/emptydata_blue.svg">
+        <p class="ava-empty-label" translate>M_LEAVEPAGE.NODATA</p>
+    </ion-card>
+
+    <div class="leave" *ngIf="!isLoading">
+        <ion-slides class="bg-workforce" no-padding style="height: 100%">
+            <ion-slide class="bg-workforce" no-padding *ngFor="let blankSlide of ([{}])" (ionSlideDidChange)="slideHasChanged()">
+                <ion-list class="group-list-itm" *ngFor="let groupItm of (leavesCollapsedGroup||[])">
+                    <ion-row class="leave-date-label" no-padding>
+                        <ion-col col-12 no-padding>
+                            <span class="leave-date-label">{{ groupItm?.dateString || groupItm?.date}}</span>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col col-12 no-padding>
+                            <ion-card class="card-leave" *ngFor="let leaveItm of (groupItm.task||[])">
+                                <ion-item class="m-5">
+                                    <ion-row no-padding (click)="viewEvent(leaveItm)">
+                                        <ion-col col-7 no-padding class="margin-auto">
+                                            <button ion-button round dot class='dot-red' *ngIf="getStatus(leaveItm, 3) == true">
+                                                {{leaveItm?.status}}
+                                            </button>
+                                            <button ion-button round dot class='dot-yellow' *ngIf="getStatus(leaveItm, 2) == true">
+                                                {{leaveItm?.status}}
+                                            </button>
+                                            <button ion-button round dot class='dot-green' *ngIf="getStatus(leaveItm, 1) == true">
+                                                {{leaveItm?.status}}
+                                            </button>
+                                            <h2 style="font-size: .8em;">{{leaveItm?.leaveType}}</h2>
+                                            <p mutil-lines lines-3 style="font-size: 0.9em">{{leaveItm?.requestReason}}</p>
+                                            <!-- <p style="font-size: 0.9em">{{leaveItm?.fromDate | amLocale:'en' | amDateFormat:'MMM D, YYYY'}} - {{leaveItm?.toDate | amLocale:'en' | amDateFormat:'MMM D, YYYY'}}</p> -->
+                                        </ion-col>
+                                        <ion-col col-5 no-padding style="text-align: right;">
+                                            <p style="font-size: 0.7em">
+                                                <ion-icon name="ios-sunny-outline"></ion-icon>
+                                                {{leaveItm?.toDate | amLocale:'en' | amDateFormat:'ddd. D'}},
+                                                <ion-icon name="ios-sunny-outline"></ion-icon>
+                                                {{leaveItm?.fromDate | amLocale:'en' | amDateFormat:'ddd. D'}}
+
+                                            </p>
+                                            <p style="font-size: 0.7em" *ngIf="leaveItm?.shiftName != null">
+                                                D({{ getShiftDateTime(leaveItm?.fromDate+'T'+leaveItm?.shiftTimeIn) }}) - ({{ getShiftDateTime(leaveItm?.fromDate+'T'+leaveItm?.shiftTimeOut) }})
+                                            </p>
+                                            <p style="font-size: 0.7em" *ngIf="leaveItm?.hour != ''">
+                                                <ion-icon name="ios-timer-outline"></ion-icon>
+                                                {{leaveItm?.leaveHours}} Hours
+                                            </p>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-item>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-list>
+            </ion-slide>
+        </ion-slides>
+    </div>
+
+    <!-- <div class="leave" *ngIf="shiftType == 'other'">
+        <ion-slides class="bg-workforce" no-padding style="height: 100%">
+            <ion-slide class="bg-workforce" no-padding *ngFor="let blankSlide of ([{}])" (ionSlideDidChange)="slideHasChanged()">
+                <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (resourceGroup||[]).length == 0" text-center margin-horizontal padding-vertical>
+                    <img src="./assets/img/svg/emptydata_blue.svg">
+                    <p class="ava-empty-label" translate>M_LEAVEPAGE.NODATA</p>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+    </div>  -->
+</ion-content>

@@ -1,0 +1,66 @@
+claim-motor-step1 {
+    .bg-home-demo {
+        background: url('../assets/img/cart-step2.jpg')no-repeat;
+        width: 100%;
+        height: 90%;
+        background-size: 100% 100%; //background-size: cover;
+        //background-size: cover;
+        margin: auto;
+        z-index: 2;
+    }
+    .toolbar-background .toolbar-background {
+        background-color: blue;
+    }
+    .no-padding {
+        padding: 0;
+    }
+    .no-margin {
+        margin: 0;
+    }
+    .mb-0 {
+        margin-bottom: 0;
+    }
+    .mb-10 {
+        margin-bottom: 10px;
+    }
+    .calendar_date {
+        border: 0.55px solid;
+        border-color: #dadada;
+        border-radius: 5px;
+    }
+    .pl-16 {
+        padding-left: 16px;
+    }
+    .pr-16 {
+        padding-right: 16px;
+    }
+    .pb-0 {
+        padding-bottom: 0;
+    }
+    .pt-0 {
+        padding-top: 0;
+    }
+    .margin-auto {
+        margin: auto;
+    }
+    @media (max-width: 567px) {
+        //Small likes iphone5 < 567px3
+        .pt-space {
+            padding-top: 9em;
+        }
+        .text-header {
+            // font-weight: bold;
+            font-size: 1.75em;
+        }
+    }
+    @media (min-width: 567px) {
+        //Large < 567px
+        .pt-space {
+            padding-top: 9em;
+        }
+        .text-header {
+            // font-weight: bold;
+            font-size: 1.75em;
+        }
+    }
+}

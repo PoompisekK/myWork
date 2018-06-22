@@ -1,0 +1,133 @@
+ion-app._gmaps_cdv_ .nav-decor {
+    background-color: transparent !important;
+}
+
+google-map {
+    #map {
+        width: 100%;
+        height: 90%;
+        .scroll {
+            height: 100%
+        }
+    }
+    .google-searchbox {
+        font-family: 'RobotoRegular','Prompt' !important;
+        margin: 2% 2% 2% 2%;
+        width: 96%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 6px 10px 6px 20px;
+        // -webkit-transition: width 0.4s ease-in-out;
+        // transition: width 0.4s ease-in-out;
+    }
+    .bg-chekin-demo {
+        background: url('../assets/img/checkin.png')no-repeat;
+        width: 100%;
+        height: 80%;
+        background-size: 100% 100%; //background-size: cover;
+        //background-size: cover;
+        margin: auto;
+        z-index: 2;
+    }
+    .no-padding {
+        padding: 0;
+    }
+    .no-margin {
+        margin: 0;
+    }
+    .margin-auto {
+        margin: auto;
+    }
+    .calendar_date {
+        border: 0.55px solid;
+        border-color: #dadada;
+        border-radius: 5px;
+    }
+    .w-break {
+        word-break: break-word;
+    }
+    .w-space {
+        white-space: normal;
+    }
+    .card-bt-red {
+        border-top: 6px solid red;
+        border-radius: 5px;
+    }
+    .card-bt-yellow {
+        border-top: 6px solid #ffa726;
+        border-radius: 5px;
+    }
+    .card-bt-green {
+        border-top: 6px solid #00c853;
+        border-radius: 5px;
+    }
+    .card-bt-blue {
+        border-top: 6px solid #41abef;
+        border-radius: 5px;
+    }
+    .t-bold {
+        font-weight: bold;
+    }
+    @media (max-width: 567px) {
+        //Small likes iphone5 < 567px3
+        .text-header {
+            // font-weight: bold;
+            font-size: 1.75em;
+        }
+        .icn-clock {
+            font-size: 1.6em;
+        }
+        .text-checkin {
+            font-size: 0.8em;
+            margin-top: -1.5em;
+            padding-left: 7px;
+        }
+        .text-date {
+            font-size: 0.8em;
+            margin-top: -1.5em;
+        }
+        .text-time {
+            padding-left: 7px;
+            font-size: 2.2em;
+        }
+        .btn-checkin {
+            width: 80%;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+    }
+    @media (min-width: 567px) {
+        //Large < 567px
+        .text-header {
+            // font-weight: bold;
+            font-size: 1.75em;
+        }
+        .icn-clock {
+            font-size: 1.6em;
+        }
+        .text-checkin {
+            font-size: 0.8em;
+            margin-top: -1.5em;
+            padding-left: 7px;
+        }
+        .text-date {
+            font-size: 0.8em;
+            margin-top: -1.5em;
+        }
+        .text-time {
+            padding-left: 7px;
+            font-size: 2.2em;
+        }
+        .btn-checkin {
+            width: 80%;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+    }
+}

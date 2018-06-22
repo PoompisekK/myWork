@@ -1,0 +1,58 @@
+<ion-header>
+    <app-nav-header [pageName]="event.type"></app-nav-header>
+</ion-header>
+<ion-content padding>
+
+    <ion-item class="no-padding mb-1-5">
+        <!-- <ion-label>Topic</ion-label>
+        <ion-input readonly [(ngModel)]="event.topicDesc" type="text"></ion-input> -->
+        <ion-label><span style="color:#999">Topic : </span><span>{{event?.topicDesc}}</span> </ion-label>
+        <ion-icon color="color-gray" name="ios-flag-outline" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item class="no-padding mb-1-5">
+        <!-- <ion-label style="color:#999">Place</ion-label>
+        <ion-input readonly readonly [(ngModel)]="event.placeDesc"></ion-input> -->
+        <ion-label><span style="color:#999">Place : </span><span>{{event?.placeDesc}}</span> </ion-label>
+        <ion-icon color="color-gray" name="ios-pin-outline" item-right></ion-icon>
+    </ion-item>
+
+    <!-- <ion-item *ngIf="event.type=='meeting'" class="no-padding mb-1-5">
+        <ion-label>Room</ion-label>
+        <ion-input readonly [(ngModel)]="event.room"></ion-input>
+        <ion-icon color="color-gray" name="ios-flag-outline" item-right></ion-icon>
+    </ion-item> -->
+
+    <ion-item *ngIf="event.assignType=='MEETING'" class="no-padding mb-1-5">
+        <!-- <ion-label>Start Meeting</ion-label>
+        <ion-input readonly [(ngModel)]="startDate"></ion-input> -->
+        <ion-label><span style="color:#999">Start Meeting : </span><span>{{startDate | amLocal:'en' | amDateFormat:'MMM D, YYYY'}}</span> </ion-label>
+        <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item no-lines *ngIf="event.assignType=='MEETING'" class="no-padding mb-1-5">
+        <!-- <ion-label>End Meeting</ion-label>
+        <ion-input readonly [(ngModel)]="endDate"></ion-input> -->
+        <ion-label><span style="color:#999">End Meeting : </span><span>{{endDate | amLocal:'en' | amDateFormat:'MMM D, YYYY'}}</span> </ion-label>
+        <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+    </ion-item>
+    <ion-item no-lines *ngIf="event.assignType=='ASSIGN'" class="no-padding mb-1-5">
+        <!-- <ion-label>DeadLine</ion-label>
+        <ion-input readonly [(ngModel)]="deadLine"></ion-input> -->
+        <ion-label><span style="color:#999">DeadLine : </span><span>{{deadLine | amLocal:'en' | amDateFormat:'MMM D, YYYY'}}</span> </ion-label>
+        <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+    </ion-item>
+
+    <!-- <ion-item class="no-padding mb-1-5">
+            <ion-label>Color alert</ion-label>
+            <ion-input readonly type="password"></ion-input>
+            <ion-icon color="color-gray" name="ios-color-filter-outline" item-right></ion-icon>
+          </ion-item> -->
+
+    <!-- <ion-item class="no-padding">
+            <ion-label>Invite</ion-label>
+            <ion-input [(ngModel)]="event.invite" readonly type="text"></ion-input>
+            <ion-icon color="color-gray" name="ios-person-add-outline" item-right></ion-icon>
+          </ion-item> -->
+    <!-- <button (click)="createEvent()" color="light-blue" class="btn-create" ion-button block>Done</button> -->
+</ion-content>

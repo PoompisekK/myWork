@@ -1,0 +1,95 @@
+<ion-header>
+    <app-nav-header [pageName]="'Leave'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center *ngFor="let type of leaveTypeActive;">
+                <img *ngIf="type.isActive" [src]="type.active" />
+                <img *ngIf="!type.isActive" [src]="type.inactive" />
+                <span>{{type.leaveTypeName}}</span>
+            </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+            <ion-slides style="padding:0 16px">
+                <ion-slide style="align-items:flex-start">
+                    <!--
+                    <ion-item class="no-padding mb-1-5">
+                        <ion-label style="color:#999">Delegate List
+                            <span style="color:#000;float: right">{{ leave?.employeeCodeRequest }}</span>
+                        </ion-label>
+                    </ion-item> 
+                    -->
+
+                    <!-- <ion-item class="no-padding mb-1-5">
+                        <ion-label style="color:#999">Recommend Officer User</ion-label>
+                    </ion-item>
+                    <ion-row>
+                        <ion-col style="padding:0 5px 0 5px" col-2 *ngFor="let employeeItm of selectedRecommendOfficerList;let recIdx = index">
+                            <div class="employee-list" style="height: 3.6em; width: 3.5em;">
+                                <img class="img-avatar margin-auto wrapper-employee" [src]="employeeItm.userPic | loadImg : [employeeItm.name+' '+employeeItm.surname]" />
+                            </div>
+                        </ion-col>
+                    </ion-row> -->
+
+                    <!-- <ion-item class="no-padding mb-1-5">
+                        <ion-label style="color:#999">Notify User</ion-label>
+                    </ion-item>
+                    <ion-row>
+                        <ion-col style="padding:0 5px 0 5px" col-2 *ngFor="let acknowledgeItm of selectedAcknowledgeList;let ackIdx = index">
+                            <div class="employee-list" style="height: 3.6em; width: 3.5em;">
+                                <img class="img-avatar margin-auto wrapper-employee" [src]="acknowledgeItm.userPic | loadImg : [acknowledgeItm.name+' '+acknowledgeItm.surname]" />
+                            </div>
+                        </ion-col>
+                    </ion-row> -->
+
+                    <ion-item class="no-padding mb-1-5" *ngIf="isOtherLeaveType">
+                        <ion-label style="color:#999">{{ leaveLang?.otherLeaveType || 'Other Leave Type' }}
+                            <span style="color:#000;float: right">{{ leave?.leaveType }}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item class="no-padding mb-1-5">
+                        <ion-label style="color:#999">
+                            {{ leaveLang?.fromDate || 'From Date' }}
+                            <span style="color:#000;float: right;"> {{ leave?.fromDate | amDateFormat:'MMM D, YYYY' }}</span>
+                        </ion-label>
+                        <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+                    </ion-item>
+                    <ion-item class="no-padding mb-1-5">
+                        <ion-label style="color:#999">
+                            {{ leaveLang?.toDate || 'To Date' }}
+                            <span style="color:#000;float: right;"> {{ leave?.toDate | amDateFormat:'MMM D, YYYY' }}</span>
+                        </ion-label>
+                        <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+                    </ion-item>
+                    <ion-item class="no-padding mb-1-5">
+                        <ion-label style="color:#999">{{ leaveLang?.attachFile || 'Attach File' }}
+                            <p *ngIf="leave.attachFile && leave.attachFile.name" style="color:#000;margin-top: 1em;">{{ leave?.attachFile?.name }} </p>
+                        </ion-label>
+                        <ion-icon color="color-gray" name="ios-attach-outline" item-right></ion-icon>
+                    </ion-item>
+                    <ion-item class="no-padding">
+                        <ion-label style="color:#999">{{ leaveLang?.notice || 'Notice' }}
+                            <p style="color:#000;margin-top: 1em;">{{leave?.requestReason}} </p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item class="no-padding">
+                        <ion-label style="color:#999">{{ leaveLang?.Status || 'Status' }}
+                            <span style="color:#000;float: right; ">{{ leave?.status }} </span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item class="no-padding" *ngIf="leave.status == 'Waiting For Approval' ">
+                        <ion-label style="color:#999">{{ leaveLang?.approverName || 'Approver Name' }}
+                            <p style="color:#000; margin-top: 1em;">{{ leave?.waitingApproveName }} </p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item class="no-padding" *ngIf="leave.status == 'Rejected' ">
+                        <ion-label style="color:#999">{{ leaveLang?.rejectReason || 'Reject Reason' }}
+                            <p style="color:#000;margin-top: 1em;">{{leave?.rejectReason}} </p>
+                        </ion-label>
+                    </ion-item>
+                </ion-slide>
+            </ion-slides>
+        </ion-row>
+    </ion-grid>
+</ion-content>

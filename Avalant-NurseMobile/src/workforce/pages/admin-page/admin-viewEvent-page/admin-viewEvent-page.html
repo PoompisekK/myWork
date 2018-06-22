@@ -1,0 +1,36 @@
+<ion-header>
+    <app-nav-header [pageName]="'Verify User'"></app-nav-header>
+</ion-header>
+<ion-content padding>
+
+    <ion-list>
+        <ion-item>
+            <ion-label style="color:#999">{{adminUsreLang?.firstName || 'First name'}} :</ion-label>
+            <ion-input readonly [(ngModel)]="userProfile.custFname" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label style="color:#999">{{adminUsreLang?.lastName || 'Last name'}} :</ion-label>
+            <ion-input readonly [(ngModel)]="userProfile.custLname" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label style="color:#999">{{adminUsreLang?.email || 'E-mail'}} :</ion-label>
+            <ion-input readonly [(ngModel)]="userProfile.memberEmail" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label style="color:#999">{{adminUsreLang?.employeeCode || 'Employee Code'}} :</ion-label>
+            <ion-input [(ngModel)]="userProfile.employeeCode" type="text"></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-row>
+        <ion-col col-4>
+        </ion-col>
+        <ion-col col-4>
+            <button ion-button (click)="verify()">{{adminUsreLang?.verify || 'Verify'}}</button>
+        </ion-col>
+        <ion-col col-4>
+        </ion-col>
+    </ion-row>
+
+
+</ion-content>

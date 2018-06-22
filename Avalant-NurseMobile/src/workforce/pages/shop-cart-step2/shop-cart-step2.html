@@ -1,0 +1,62 @@
+<ion-header>
+    <app-nav-header [pageName]="'Address'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <div padding text-center>
+        <img src="assets/img/payment-step2.png" />
+    </div>
+
+    <div padding>
+        <strong style="font-size:1.3em;">Select Your Address</strong>
+    </div>
+
+    <ion-card style="border-radius: 5px;">
+        <ion-card-content style="padding:0;">
+            <ion-grid class="margin-t-d1">
+                <ion-row>
+                    <ion-col col-12 text-left>
+                        <ion-row>
+                            <ion-col col-2 style="margin:auto; font-size: 1.7em;">
+                                <div style="border-radius: 50%;background: #2098f7;width: 55%;height: 25px;margin-left:0.5em;border: 1px solid darkgray;">
+                                </div>
+                            </ion-col>
+                            <ion-col col-10 style="margin:auto;">
+                                <span style="font-size:1em;word-break: break-all;">22/88 Aspire Condo, Chan Road, Tungwatdon Satorn, Bangkok 10120</span>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card style="border-radius: 5px;">
+        <ion-card-content style="padding:0;">
+            <ion-grid class="margin-t-d1">
+                <ion-row>
+                    <ion-col col-12 text-left>
+                        <ion-row>
+                            <ion-col col-2 style="margin:auto; font-size: 1.7em;">
+                                <div style="border-radius: 50%;background: white;width: 55%;height: 25px;margin-left:0.5em;border: 1px solid darkgray;">
+                                </div>
+                            </ion-col>
+                            <ion-col col-10 style="margin:auto;">
+                                <span style="font-size:1em;word-break: break-all;">60/23 The Room Condo, Sapansam, Tungwatdon Satorn, Bangkok 10120</span>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <div style="padding:16px 11px 16px 11px;">
+        <button (click)="goToCart3()" color="light-blue" style="border-radius:5px;" ion-button block>ถัดไป</button>
+    </div>
+
+    <!-- <div (click)="goToCart3()" class="bg-home-demo">
+
+  </div> -->
+
+
+</ion-content>

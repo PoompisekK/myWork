@@ -1,0 +1,135 @@
+<ion-header>
+    <app-nav-header [pageName]="' '"></app-nav-header>
+</ion-header>
+<ion-content no-padding>
+    <div class="head-div">
+        <ion-grid no-padding>
+            <ion-row no-padding>
+                <ion-col no-padding col-3 text-center no-box>
+                    <!-- <img class="img-avatar" margin [src]=" assign.assignBy | loadImg " alt=""> -->
+                    <ava-avatar-img [srcPath]="assign.assignBy  | loadImg"></ava-avatar-img>
+                </ion-col>
+                <ion-col no-padding col-9>
+                    <ion-row no-padding>
+                        <ion-col col-10 class="assign-topic-desc">
+                            <p>{{ assign?.topicDesc }}</p>
+                        </ion-col>
+                        <ion-col col-2 text-right>
+                            <!-- <span class="assign-time">{{ assign?.targetTime | amLocal:'en' | amDateFormat:'h:mm a' }}</span> -->
+                            <p class="assign-time">{{ assign?.targetTime }}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col col-10 class="assign-assign-desc">
+                            <span>{{ assign?.assignDesc }}</span>
+                        </ion-col>
+                        <ion-col col-2 text-center>
+
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div class="assign-blue-bar">
+        <ion-grid no-padding no-margin>
+            <ion-row no-padding>
+                <ion-col no-padding text-center col-3>
+                    <button ion-button no-lines transparent full (click)="false && goToCreateEventMeeting()">
+                        <!-- <ion-icon name="ios-create-outline"></ion-icon> -->
+                        <img src="./assets/img/svg/deathline.svg" alt="">
+                        <span class="label-bottom">{{ assign?.startDate | amLocal:'en' | amDateFormat : 'D MMM YYYY' }}</span>
+                    </button>
+                </ion-col>
+                <ion-col no-padding text-center col-6>
+                    <button ion-button no-lines transparent full (click)="false && goToCreateEventMeeting()">
+                        <!-- <ion-icon name="ios-easel-outline"></ion-icon> -->
+                        <img src="./assets/img/svg/process.svg" alt="">
+                        <span class="label-bottom" >Processing</span>
+                    </button>
+                </ion-col>
+                <ion-col no-padding text-center col-3>
+                    <button ion-button no-lines transparent full (click)="false && goToCreateEventAsssignment()">
+                        <!-- <ion-icon name="ios-podium-outline"></ion-icon> -->
+                        <img src="./assets/img/svg/priority.svg" alt="">
+                        <span class="label-bottom" >High Priority</span>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div class="assign-detail">
+        <ion-grid no-padding>
+
+            <ion-row class="attachments" no-padding *ngIf="(assign.listAttachmentFile||[]).length > 0" (click)="showAttaches = !showAttaches">
+                <ion-col col-3 text-center>
+                    <ion-icon name="ios-attach"></ion-icon>
+                </ion-col>
+                <ion-col col-9 class="assign-attachments">
+                    <span> ({{ (assign?.listAttachmentFile||[]).length }})</span>
+                </ion-col>
+            </ion-row>
+
+            <ion-list class="attachments-item" *ngIf="showAttaches && leaveAttachFile.length > 0" [@peekAnimation] no-lines no-border no-padding>
+                <ion-item style="height: 1em; padding: 0; font-size: 0.9em; " *ngFor="let fileItm of (assign.listAttachmentFile||[]);let idx = index" [@peekAnimation]>
+                    <ion-icon color="color-gray" name="ios-attach-outline" style="margin-right: .5em " item-left></ion-icon>
+                    {{ fileItm?.name }}
+                </ion-item>
+            </ion-list>
+
+            <ion-row class="home-name" no-padding>
+                <ion-col col-3 text-center>
+                    <ion-icon name="ios-home-outline"></ion-icon>
+                </ion-col>
+                <ion-col col-9 class="assign-home-name">
+                    <span ellipsis>{{ assign?.actualPlaceName || 'Actual place name' }}</span>
+                </ion-col>
+            </ion-row>
+            <ion-row class="start-date" no-padding>
+                <ion-col col-3 text-center>
+                    <ion-icon name="ios-calendar-outline"></ion-icon>
+                </ion-col>
+                <ion-col col-9 class="assign-start-date">
+                    <span ellipsis>
+                        {{ assign?.startDateTime | amLocal :'en' | amDateFormat:'D MMMM YYYY, h:mm a' }}
+                        <!-- {{ assign?.startTime | amLocal :'en' | amDateFormat:'h:mm a' }} -->
+                    </span>
+                </ion-col>
+            </ion-row>
+            <ion-row class="place-desc" *ngIf="assign.placeDesc" no-padding>
+                <ion-col col-3 text-center>
+                    <ion-icon name="ios-pin-outline"></ion-icon>
+                </ion-col>
+                <ion-col col-9 class="assign-place-desc">
+                    <span ellipsis>{{ assign?.placeDesc }}</span>
+                </ion-col>
+            </ion-row>
+            <ion-row class="people" no-padding>
+                <ion-col col-3 text-center>
+                    <ion-icon name="ios-person-outline"></ion-icon>
+                </ion-col>
+                <ion-col col-9 class="assign-people">
+                    <div *ngFor="let attendeesPerson of (assign.listAssignResponsible||[]);let idx = index" class="div-col-attendees">
+                        <ava-avatar-img *ngIf="idx < 4" class="attendees-avatar {{ attendeesPerson.responsibleStatus }} img-avatar margin-auto wrapper-employee" [srcPath]="attendeesPerson?.employeeCode | loadImg "></ava-avatar-img>
+                        <div *ngIf="idx == 4" class="attendees-avatar more">
+                            <span class="more-amt">{{ '+'+(assign?.listAssignResponsible||[]).length }}</span>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="isHasLatLngParams(assign)" ava-padding style="margin-top: 0.25em;">
+                <google-static-map [InLatLng]="getLatLngParams(assign)"></google-static-map>
+            </ion-row>
+        </ion-grid>
+
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-row class="assign-action">
+        <ion-col col-12 text-center>
+            <button class="wf-button" text-center ion-button split3 (click)="assignmentUpdateStatus(ASSIGN_COMPLETE)">{{ assign?.turnIn || 'Turn-In' }}</button>
+            <button class="wf-button" text-center ion-button split3 (click)="assignmentUpdateStatus(ASSIGN_DENIED)">{{ assign?.reject || 'Reject' }}</button>
+            <button class="wf-button" text-center ion-button split3 (click)="assignmentUpdateStatus(ASSIGN_ACCEPTED)">{{ assign?.join || 'Join' }}</button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

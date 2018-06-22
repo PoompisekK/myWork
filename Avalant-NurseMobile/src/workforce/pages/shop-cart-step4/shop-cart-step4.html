@@ -1,0 +1,22 @@
+<ion-header>
+    <app-nav-header [pageName]="'Complete'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <div class="content-width">
+        <div text-center padding class="text-header" style="margin-bottom:10px;">
+            Payment Complete !
+        </div>
+
+        <div text-center>
+            <img style="width:45%;" src="assets/img/mail.png" />
+        </div>
+
+        <div style="padding-left: 5em;padding-right: 5em;">
+            <p text-center style="margin-top:3em;">We've sent you an email and notification with all the detail of your order</p>
+        </div>
+
+        <div style="padding-right: 16px;padding-left: 16px;">
+            <button (click)="goToShopHome()" color="light-blue" style="margin-top:3.2em;border-radius:8px;" ion-button block>Login</button>
+        </div>
+    </div>
+</ion-content>

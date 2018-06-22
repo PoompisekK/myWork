@@ -1,0 +1,65 @@
+<ion-header>
+    <app-nav-header [pageName]="'Calendar'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <div>
+        <ion-grid>
+            <ion-row>
+                <ion-col text-center *ngFor="let option of optionEvents;let index = index" (click)="seletedOption(index)">
+                    <img style="width:50%" [src]="option.path" />
+                    <p class="no-margin">{{option.name}}</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div padding>
+        <ion-slides (ionSlideDidChange)="slideChanged()" #slides>
+            <ion-slide *ngFor="let event of events;let index = index" style="align-items:flex-start">
+                <ion-item class="no-padding mb-1-5">
+                    <ion-label>Topic</ion-label>
+                    <ion-input [(ngModel)]="event.topic" type="text"></ion-input>
+                </ion-item>
+
+                <ion-item class="no-padding mb-1-5">
+                    <ion-label style="color:#999">Place</ion-label>
+
+                    <ion-input (ionFocus)="goToGoogleMap()" readonly [(ngModel)]="event.place.name"></ion-input>
+                    <ion-icon color="color-gray" name="ios-pin-outline" item-right></ion-icon>
+                </ion-item>
+
+                <ion-item *ngIf="event.type=='meeting'" class="no-padding mb-1-5">
+                    <ion-label>Room</ion-label>
+                    <ion-input [(ngModel)]="event.room"></ion-input>
+                    <ion-icon color="color-gray" name="ios-flag-outline" item-right></ion-icon>
+                </ion-item>
+
+                <ion-item class="no-padding mb-1-5">
+                    <ion-label>Start Date and time</ion-label>
+                    <ion-datetime displayFormat="MMM D, YYYY hh:mm a" [(ngModel)]="event.startDateTime"></ion-datetime>
+                    <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+                </ion-item>
+
+                <ion-item class="no-padding mb-1-5">
+                    <ion-label>End Date and time</ion-label>
+                    <ion-datetime displayFormat="MMM D, YYYY hh:mm a" [(ngModel)]="event.endDateTime"></ion-datetime>
+                    <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+                </ion-item>
+
+                <!-- <ion-item class="no-padding mb-1-5">
+          <ion-label>Color alert</ion-label>
+          <ion-input type="password"></ion-input>
+          <ion-icon color="color-gray" name="ios-color-filter-outline" item-right></ion-icon>
+        </ion-item> -->
+
+                <!-- <ion-item class="no-padding">
+          <ion-label>Invite</ion-label>
+          <ion-input type="text"></ion-input>
+          <ion-icon color="color-gray" name="ios-person-add-outline" item-right></ion-icon>
+        </ion-item> -->
+            </ion-slide>
+        </ion-slides>
+        <button (click)="createEvent()" color="light-blue" class="btn-create" ion-button block>Create</button>
+    </div>
+
+</ion-content>

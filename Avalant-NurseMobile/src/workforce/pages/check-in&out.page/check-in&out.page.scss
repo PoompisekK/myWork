@@ -1,0 +1,196 @@
+check-in-out-page {    
+    .line {
+        border-top: 2px solid #3f598e;
+        margin-left: 4em;
+        margin-right: 4em;
+    }
+    ion-row.fontdate {
+        font-family: 'RobotoLight', 'Prompt';
+        .time {
+            font-size: 4em;
+            font-weight: bold;
+        }
+        .time-am-pm {
+            padding-left: .25em;
+            position: absolute;
+            text-transform: uppercase;
+            top: 1em;
+        }
+    }
+    .textdate {
+        font-family: 'RobotoRegular', 'Prompt';
+        margin-top: 1em;
+    }
+    .text-header {
+        font-size: 1.75em;
+        color: black;
+    }
+    div.map-loadding {
+        position: absolute;
+        width: 95%;
+        z-index: 1000;
+        $spinSize: 6.5em;
+        ion-spinner.map-loadding {
+            * {
+                stroke: color($colors, "bg-workforce");
+            }
+            height: $spinSize;
+            width: $spinSize;
+            display: block;
+            margin: 0 auto;
+            margin-top: $spinSize;
+        }
+    }
+    #map {
+        width: 100%;
+        height: 100%;
+        .scroll {
+            height: 100%
+        }
+    }
+    .bg-chekin-demo {
+        background: url('../assets/img/checkin.png')no-repeat;
+        width: 100%;
+        height: 80%;
+        background-size: 100% 100%; //background-size: cover;
+        //background-size: cover;
+        margin: auto;
+        z-index: 2;
+    }
+    .no-padding {
+        padding: 0;
+    }
+    .no-margin {
+        margin: 0;
+    }
+    .margin-auto {
+        margin: auto;
+    }
+    .calendar_date {
+        border: 0.55px solid;
+        border-color: #dadada;
+        border-radius: 5px;
+    }
+    .w-break {
+        word-break: break-word;
+    }
+    .w-space {
+        white-space: normal;
+    }
+    .card-bt-red {
+        border-top: 4px solid #B3E4F3;
+        border-radius: 10px;
+        margin-top: 0;        
+    }
+    .bt-checkinout {
+        margin-top: -.5em;
+        margin-bottom: .5em;
+        .bt_checkinout {
+            margin-left: .3em;
+            margin-right: .3em;
+            margin-top: .5em;
+            button {
+                font-family: 'RobotoMedium', 'Prompt';
+                color: white;
+                height: 3em;;
+                background-color: rgb(255, 68, 68);
+                border-radius: 8px;
+            }
+        }
+    }
+    .card-bt-yellow {
+        border-top: 6px solid #ffa726;
+        border-radius: 5px;
+    }
+    .card-bt-green {
+        border-top: 6px solid #00c853;
+        border-radius: 5px;
+    }
+    .card-bt-blue {
+        border-top: 6px solid #41abef;
+        border-radius: 5px;
+    }
+    .t-bold {
+        // font-weight: bold;
+    }
+    .text-checkin {
+        color: grey;
+    }
+    .btn-checkin {
+        height: 2.5em;
+        font-size: 1em;
+    }
+    @media (max-width: 567px) {
+        //Small likes iphone5 < 567px3
+        .icn-clock {
+            font-size: 1.6em;
+        }
+        .text-checkin {
+            font-size: 0.8em;
+            margin-top: -1.5em;
+            padding-left: 7px;
+        }
+        .text-date {
+            font-size: 0.8em;
+            margin-top: -1.5em;
+        }
+        .text-time {
+            padding-left: 7px;
+            font-size: 1.75em;
+        }
+        .btn-checkin {
+            width: 95%;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;
+        }
+    }
+    @media (min-width: 567px) {
+        //Large < 567px
+        .icn-clock {
+            font-size: 1.6em;
+        }
+        .text-checkin {
+            font-size: 0.8em;
+            margin-top: -1.5em;
+            padding-left: 7px;
+        }
+        .text-date {
+            font-size: 0.8em;
+            margin-top: -1.5em;
+        }
+        .text-time {
+            padding-left: 7px;
+            font-size: 1.75em;
+        }
+        .btn-checkin {
+            width: 95%;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;
+        }
+    }
+    ion-card.current-date-hist {
+        border-radius: 10px;
+        margin-top: 0;
+        .card-content {
+            padding: 5px 16px;
+        }
+        h2 {
+            font-family: 'RobotoRegular', 'Prompt';
+            color: #101010;
+            font-weight: bold;
+        }
+        p {
+            font-size: .85em;
+            color: #909090;
+            font-family: 'RobotoRegular', 'Prompt';
+        }
+        span {
+            font-family: 'RobotoMedium', 'Prompt';
+            color: #586069;
+        }
+        .current-date-out {}
+        .current-date-in {
+            margin-bottom: 2em;
+        }
+    }
+}

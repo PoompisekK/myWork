@@ -1,0 +1,48 @@
+<ion-header>
+    <app-nav-header [pageName]="'Motor Claim'"></app-nav-header>
+</ion-header>
+<ion-content>
+
+    <div padding>
+        <img src="assets/img/claim-step1.png" />
+    </div>
+
+    <div padding>
+        <span style="font-size:1.3em;">Select Your Address</span>
+    </div>
+
+    <div padding>
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <!-- <ion-label style="font-size:1.8em;"> <ion-icon color="light" name="person"></ion-icon></ion-label> -->
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Policy No."></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <!-- <ion-label style="font-size:1.8em;"><ion-icon color="light" name="lock"></ion-icon></ion-label> -->
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Name"></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <!-- <ion-label style="font-size:1.8em;"><ion-icon color="light" name="lock"></ion-icon></ion-label> -->
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Lastname"></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <!-- <ion-label style="font-size:1.8em;"><ion-icon color="light" name="lock"></ion-icon></ion-label> -->
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Date of birth"></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <!-- <ion-label style="font-size:1.8em;"><ion-icon color="light" name="lock"></ion-icon></ion-label> -->
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Telephone"></ion-input>
+        </ion-item>
+
+        <button (click)="goToClaimMotor2()" color="light-blue" style="margin-top:1em;border-radius:8px;" ion-button block>Next</button>
+    </div>
+
+    <!-- <div (click)="goToCart3()" class="bg-home-demo">
+
+  </div> -->
+
+
+</ion-content>

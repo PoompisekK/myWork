@@ -1,0 +1,22 @@
+events-calendar-comp {
+    div.fc-scroller.fc-day-grid-container {
+        height: 100% !important;
+    }
+    .hist-button {
+        padding: .75em;
+        // opacity: .5;
+    }
+    div.calendarDiv {
+        font-size: 14px;
+        div.fc-toolbar {
+            div.fc-left h2 {
+                font-size: 1.5em;
+                line-height: 1.7em;
+                color: #fff;
+            }
+        }
+        div.fc-view.fc-month-view>table {
+            background-color: #fff;
+        }
+    }
+}

@@ -1,0 +1,168 @@
+meeting-page {
+    ion-slides {
+        ion-slide>div {
+            height: 100%;
+        }
+    }
+    div.meeting-date {
+        height: 9em;
+        ion-row {
+            ion-col {
+                h1 {
+                    font-size: 4.5em;
+                    margin: .25em 0 -.25em 0;
+                    font-family: 'RobotoThin';
+                    color: #878a8f;
+                }
+                p {
+                    font-size: .75em;
+                    color: #878a8f;
+                    font-family: 'RobotoMedium','Prompt';
+                }
+                button[transparent] {
+                    height: 100%;
+                    vertical-align: middle;
+                    box-shadow: none;
+                    ion-icon {
+                        color: #878a8f;
+                    }
+                }
+            }
+        }
+    }
+    div.meeting-blue-bar {
+        * {
+            margin: 0;
+        }
+        background-color: #5495e5;
+        ion-col {
+            height: 4.75em;
+        }
+        button[transparent] {
+            height: 100%;
+            vertical-align: middle;
+            box-shadow: none;
+            ion-icon {
+                color: white;
+                font-size: 3em;
+            }
+        }
+    }
+    div.meeting-task-list {
+        ion-list {
+            margin: 0;
+        }
+        [ava-lines] {
+            padding: 0;
+            .item-inner {
+                border-bottom: 1px solid #e5e5e5 !important;
+                padding: 0;
+                ion-label {
+                    padding: 0;
+                    margin: .5em 0;
+                }
+            }
+        }
+        $dot: .5em;
+        [dot] {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1em;
+            border-radius: 50%;
+            background-color: #73D57E;
+            height: $dot;
+            width: $dot;
+        }
+        * {
+            color: black;
+        }
+        ion-col {
+            .meeting-topic-desc {
+                p {
+                    margin: 0 0 .25em 0;
+                    font-size: 1em;
+                    font-family: 'RobotoRegular','Prompt';
+                    font-weight: bold;
+                }
+            }
+            .meeting-assign-desc {
+                p {
+                    margin: 0 0 .5em 0;
+                    font-size: .8em;
+                    font-family: 'RobotoRegular','Prompt';
+                    color: #909090;
+                }
+            }
+            .meeting-place-desc {
+                font-family: 'RobotoMedium','Prompt';
+                font-size: .75em;
+                span {
+                    color: #bcbcbc;
+                    &[ellipsis] {
+                        padding-right: 0;
+                    }
+                }
+                [name=ios-pin-outline] {
+                    padding-right: .25em;
+                    color: #bababa;
+                    vertical-align: text-top;
+                }
+            }
+            .meeting-people {
+                padding: .5em;
+                $avaSize: 2.5em;
+                .div-col-attendees {
+                    display: inline-block;
+                    padding-right: .5em;
+                    height: $avaSize;
+                    margin: .25em 0 0 0;
+                    .attendees-avatar {
+                        text-align: center;
+                        border-radius: 50%;
+                        .avatar-image {
+                            height: $avaSize;
+                            width: $avaSize;
+                        }
+                        &.more {
+                            height: $avaSize;
+                            width: $avaSize;
+                            border: 1px solid #dedede;
+                            display: table-caption;
+                            font-size: 1em;
+                            padding: .5em 0;
+                            .more-amt {
+                                font-family: 'RobotoMedium','Prompt';
+                                color: #909090;
+                                font-size: .75em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        span.meeting-time {
+            font-size: .75em;
+            color: #586069;
+            font-family: 'RobotoMedium','Prompt';
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1em;
+            margin-right: 1em;
+        }
+        ion-row.meeting-action {
+            ion-col {
+                text-align: center;
+                button {
+                    background: transparent;
+                    border: 1px solid #eaeaea;
+                    box-shadow: none;
+                    margin-right: .25em;
+                    * {
+                        font-family: 'RobotoMedium','Prompt';
+                        color: #bcbcbc;
+                    }
+                }
+            }
+        }
+    }
+}

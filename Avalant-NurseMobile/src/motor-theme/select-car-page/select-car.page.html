@@ -1,0 +1,51 @@
+<ion-header header-bar [title]="'Select your car' | translate" [logo]="false"></ion-header>
+<ion-content class="" no-bounce>
+  <ion-grid padding>
+    <ion-row align-items-center>
+      <ion-col col-12 align-self-end text-right>
+        <img (click)="addVehicle()" class="hexa-plus" src="assets/img/icon/hexa-plus.png" />
+      </ion-col>
+      <!-- <ion-col col-3></ion-col> -->
+
+    </ion-row>
+  </ion-grid>
+  <ion-slides #vehicleSlide effect="slide" slidesPerView="auto" [pager]="userVehicleList && userVehicleList.length">
+    <ng-container *ngIf="userVehicleList && userVehicleList.length; else noVehicleList">
+      <ion-slide [centeredSlides]="true" *ngFor="let vehicle of userVehicleList">
+      <ion-card class="vehicle-card" [id]="vehicle.id" [class.selected]="selectedVehicle === vehicle">
+          <div class="car-bg">
+            <img class="car-image" src="assets/img/dummy.png" style="background-image: url('assets/img/cars/placeholder-car2.png')" />
+          </div>
+          <ion-card-content text-left>
+            <ion-card-title>
+              {{ vehicle.brandName }}
+            </ion-card-title>
+            <p class="margin-b-2">
+              {{ vehicle.modelName }} {{ vehicle.subModelName }}
+            </p>
+            <button (click)="selectCar(vehicle)" icon-start class="guideline btn-select" ion-button [color]="selectedVehicle !== vehicle ? 'positive' : 'selected'" block [disabled]="selectedVehicle === vehicle">{{ (selectedVehicle !== vehicle ? 'Select' : 'Selected') | translate }}</button>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ng-container>
+
+    <ng-template #noVehicleList>
+      <ion-slide [centeredSlides]="true">
+        <ion-card class="vehicle-card no-vehicle" id="noVehicle">
+          <div class="car-bg">
+            <img class="car-image" src="assets/img/dummy.png" style="background-image: url('assets/img/cars/placeholder-car2.png')" />
+          </div>
+          <ion-card-content text-left>
+            <ion-card-title>
+              No any vehicle here.
+            </ion-card-title>
+            <p class="margin-b-2">
+              You need to add your vehicle first.
+            </p>
+            <button (click)="addVehicle()" color="orange" icon-start class="guideline btn-select" ion-button block>Add now !</button>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ng-template>
+  </ion-slides>
+</ion-content>

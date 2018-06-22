@@ -1,0 +1,101 @@
+<!--*
+ @author Bundit.Ng
+ @since  Mon May 22 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<ion-header no-border>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title translate>COMMON.USERPROFILE.PERSONALINFO_HEADER_TITLE</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content style="padding: .5em">
+    <form #userForm="ngForm" (ngSubmit)="nextToContactInfo(userForm)">
+        <div style="padding-right: 1em;">
+            <ion-item style="margin-top: .5em">
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.TITLE<span class="required"></span></ion-label>
+                <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="title" required [(ngModel)]="businessUser.titleCode" interface="popover">
+                    <ion-option *ngFor="let titleItem of titleList" [value]="titleItem?.titleCode">{{titleItem?.titleName}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="businessUser.titleCode == 'O01'">
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.TITLE_NAME<span class="required"></span></ion-label>
+                <ion-input [(ngModel)]="businessUser.titleName" validate-input [formInput]="userForm" [input-type]="'text'" name="title_name" class="input-text" type="text" maxlength="50" text-right></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.FIRSTNAME<span class="required"></span></ion-label>
+                <ion-input [(ngModel)]="businessUser.custFname" validate-input [formInput]="userForm" [input-type]="'text'" name="firstname" required class="input-text" type="text" maxlength="50" text-right></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.LASTNAME<span class="required"></span></ion-label>
+                <ion-input [(ngModel)]="businessUser.custLname" validate-input [formInput]="userForm" [input-type]="'text'" name="lastname" required class="input-text" type="text" maxlength="50" text-right></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.NICKNAME<span class="required"></span></ion-label>
+                <ion-input [(ngModel)]="businessUser.nickName" validate-input [formInput]="userForm" [input-type]="'text'" name="nickname" required class="input-text" type="text" maxlength="50" text-right></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.GENDER<span class="required"></span></ion-label>
+                <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="gender" required [(ngModel)]="businessUser.gender" interface="popover">
+                    <ion-option [value]="genderM?.code" *ngFor="let genderM of genderList">{{genderM?.name}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.NATIONALITY<span class="required"></span></ion-label>
+                <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="nationality" required [(ngModel)]="ybatUserInfoM.nationality" (ionChange)="nationalityChange()" interface="popover" [disabled]="!nationalityList || nationalityList == null || nationalityList.length == 0">
+                    <ion-option [value]="nationM?.nationalityCode" *ngFor="let nationM of nationalityList">{{nationM?.nationalityName}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.CARDID<span class="required" *ngIf="ybatUserInfoM.nationality == 'TH'"></span></ion-label>
+                <ion-input [(ngModel)]="ybatUserInfoM.cardId" validate-input [formInput]="userForm" [input-type]="'cardid'" name="cardid" [disabled]=" ybatUserInfoM.nationality != 'TH' " [required]="ybatUserInfoM.nationality == 'TH' " class="input-text" type="text" maxlength="13"
+                    minlength="13" text-right></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.PASSPORTNO<span class="required" *ngIf="ybatUserInfoM.nationality != 'TH'"></span></ion-label>
+                <ion-input [(ngModel)]="ybatUserInfoM.passportNo" validate-input [formInput]="userForm" [input-type]="'passportno'" name="passportno" [disabled]=" ybatUserInfoM.nationality == 'TH' " [required]="ybatUserInfoM.nationality != 'TH'" class="input-text" type="text"
+                    maxlength="15" text-right></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.RACE</ion-label>
+                <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="race" [(ngModel)]="ybatUserInfoM.race" interface="popover" [disabled]="!raceList || raceList == null || raceList.length == 0">
+                    <ion-option [value]="raceM?.raceCode" *ngFor="let raceM of raceList">{{raceM?.raceName}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.RELIGION</ion-label>
+                <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="religion" [(ngModel)]="ybatUserInfoM.religion" interface="popover" [disabled]="!religionList || religionList == null || religionList.length == 0">
+                    <ion-option [value]="religionM?.religionCode" *ngFor="let religionM of religionList">{{religionM?.religionName}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.BIRTHDATE<span class="required"></span></ion-label>
+                <ion-datetime-be item-content validate-input [formInput]="userForm" [input-type]="'text'" name="birthdate" required [(ngModel)]="businessUser.birthDate" (ionChange)="calculateAge(businessUser.birthDate)" displayFormat="D MMMM YYYY" [monthValues]="_monthValues"
+                    [monthShortNames]="_monthShortNames" [monthNames]="_monthNames" pickerFormat="D MMMM YYYY"></ion-datetime-be>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.AGE</ion-label>
+                <ion-input [ngModelOptions]="ngModelOpt" [(ngModel)]="businessUser.age" [disabled]="true" class="input-text" type="text" text-right [readonly]="true"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.WEIGHT<span class="required"></span></ion-label>
+                <ion-input [(ngModel)]="ybatUserInfoM.weight" validate-input [formInput]="userForm" [input-type]="'numberdigit'" name="weight" maxlength="6" limit-value="1000" required class="input-text" type="text" text-right></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.HIGHT</ion-label>
+                <ion-input [(ngModel)]="ybatUserInfoM.hight" validate-input [formInput]="userForm" [input-type]="'numberdigit'" name="hight" maxlength="6" limit-value="1000" class="input-text" type="text" text-right></ion-input>
+            </ion-item>
+            <div style="margin: 1em 0 1em 1em;" ion-row>
+                <ion-col width-50>
+                    <button ion-button color="danger" type="button" (click)="cancelBtn()" block tappable translate>COMMON.BUTTON.CANCEL</button>
+                </ion-col>
+                <ion-col width-50>
+                    <button ion-button color="primary" type="submit" block tappable translate>COMMON.BUTTON.NEXT</button>
+                </ion-col>
+            </div>
+        </div>
+    </form>
+</ion-content>

@@ -1,0 +1,108 @@
+<ion-header>
+    <app-nav-header [pageName]="''"></app-nav-header>
+</ion-header>
+<ion-content class="bg-workforce">
+    <ion-refresher (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <!-- Session 1 -->
+    <div ava-padding class="bg-workforce" style="margin-top: 6.5em;padding-top: 0;">
+        <ion-row>
+            <ion-col>
+                <!-- <p no-padding class="no-margin" style="font-size:1.5em; color:white;">{{ currentDate | amLocal:'en' | amDateFormat:'MMMM YYYY' }}</p> -->
+                <p no-padding no-margin arial-f bold style="font-size:2.5em; color:white;">{{ expenseLang?.expense || 'Expense' }}</p>
+            </ion-col>
+            <ion-col text-right>
+                <button (click)="createExpense()" arial-f bold ion-button color="light" outline class="plus-sign-btn" icon-only>
+          <ion-icon name="add"></ion-icon>
+        </button>
+            </ion-col>
+        </ion-row>
+    </div>
+    <!-- //Session 1 -->
+
+    <!-- Session 2 -->
+    <ion-row [@peekAnimation] *ngIf="isLoading">
+        <ion-col text-center>
+            <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
+        </ion-col>
+    </ion-row>
+    <div [@peekAnimation] *ngIf="!isLoading && expenseGroup.length > 0" class="expense-card" style="margin-top: 1.5em;padding: 0 .25em;">
+        <ion-grid no-padding>
+            <ion-row no-padding *ngFor="let expenseYearItm of (expenseGroup||[])">
+                <ion-col col-12 no-padding>
+                    <ion-grid no-padding>
+                        <ion-row no-padding *ngFor="let expenseMonthItm of (expenseYearItm.months||[])">
+                            <ion-col col-12 no-padding>
+                                <ion-grid no-padding>
+                                    <ion-row no-padding>
+                                        <ion-col col-12 no-padding>
+                                            <p>{{expenseMonthItm?.month}} {{expenseYearItm?.year}}</p>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row no-padding>
+                                        <ion-col col-12 no-padding>
+                                            <ion-card no-padding *ngFor="let expenseItm of (expenseMonthItm.dateData||[])" (click)="viewExpense(expenseItm)">
+                                                <ion-item no-padding style="margin: 5px;">
+                                                    <ion-row>
+                                                        <ion-col col-6 no-padding>
+                                                            <ion-grid no-padding>
+                                                                <ion-row no-padding>
+                                                                    <ion-col col-12 no-padding>
+                                                                        <span roboto-black class="exp-amt" baht-back>{{ (expenseItm?.totalAmount||0) | number:'1.2-2':'th' }} </span>
+                                                                    </ion-col>
+                                                                </ion-row>
+                                                                <ion-row no-padding>
+                                                                    <ion-col col-12 no-padding>
+                                                                        <h2 ellipsis class="exp-title">{{ expenseItm?.expenseRequestTopic }}</h2>
+                                                                    </ion-col>
+                                                                </ion-row>
+                                                            </ion-grid>
+                                                        </ion-col>
+                                                        <ion-col col-6 no-padding>
+                                                            <ion-grid no-padding>
+                                                                <ion-row no-padding>
+                                                                    <ion-col col-12 no-padding text-right col-4 class="expense-type-simple">
+                                                                        <p arial-f class="exp-sub-title">{{ expenseItm?.createDate | amLocal :'en' | amDateFormat :'D MMMM' }}</p>
+                                                                    </ion-col>
+                                                                </ion-row>
+                                                                <ion-row no-padding>
+                                                                    <ion-col col-12 class="expense-type-simple" no-padding>
+                                                                        <img class="image-item-type" *ngFor="let expTypeItm Of (expenseItm?.listExpenseDetail || []);" src="./assets/img/transparents.png" [style.background-image]="'url(' + getImageType(expTypeItm.expenseTypeCode) + ')'">
+                                                                    </ion-col>
+                                                                </ion-row>
+                                                            </ion-grid>
+                                                        </ion-col>
+                                                    </ion-row>
+                                                    <ion-row>
+                                                        <ion-col col-12 no-padding style="padding-left: 1em;">
+                                                            <ion-badge class="status-badge" [ngClass]="{
+                                                                'draft': getStatus && getStatus(expenseItm, 0) == true,
+                                                                'submit': getStatus && getStatus(expenseItm, 1) == true,
+                                                                'approve': getStatus && getStatus(expenseItm, 2) == true,
+                                                                'reject': getStatus && getStatus(expenseItm, 3) == true,
+                                                                'pay': getStatus && getStatus(expenseItm, 4) == true
+                                                            }">{{ expenseItm?.statusDesc }}</ion-badge>
+                                                        </ion-col>
+                                                    </ion-row>
+                                                </ion-item>
+                                            </ion-card>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+    </div>
+    <ion-card [@peekAnimation] class="empty-card-detail" *ngIf="!isLoading && expenseList.length == 0" text-center padding-vertical style="height: 4em;">
+        <span>{{ expenseLang?.emptyExpense || 'Empty Expense' }}</span>
+    </ion-card>
+
+
+</ion-content>

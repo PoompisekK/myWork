@@ -1,0 +1,43 @@
+<ion-header>
+    <app-nav-header [pageName]="'Patients Acuity Evaluation'"></app-nav-header>
+</ion-header>
+<ion-content class="meeting-scroll-content">
+    <ion-item class="search-input" no-lines style="padding: 0 14px;">
+        <ion-label>
+            <ion-icon name="ios-search-outline"></ion-icon>
+        </ion-label>
+        <ion-input type="text" (input)="inputSearch.next($event.target.value)" placeholder="{{ addMemberLang?.searchAttendee || 'Search' }}"></ion-input>
+    </ion-item>
+    <ion-row [@peekAnimation] *ngIf="isLoading">
+        <ion-col text-center>
+            <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
+        </ion-col>
+    </ion-row>
+    <div [@peekAnimation] *ngIf="!isLoading && (displayEmployeeList||[]).length == 0" style="height: 100%;margin-bottom: 10em;">
+        <ion-card class="empty-card-detail" text-center padding-vertical style="height: 4em;">
+            <span style="color:black">{{ addMemberLang?.notFoundPatients || 'Not found patients' }}</span>
+        </ion-card>
+    </div>
+    <ion-scroll [@peekAnimation] *ngIf="!isLoading && (displayEmployeeList||[]).length > 0" class="ion-scroll-ion-list" scrollY="true">
+        <ion-list class="employee-list" scroll="true">
+            <button ion-item no-lines detail-none *ngFor="let emp of displayEmployeeList;let idx = index;" (click)="selectEmployee(emp)">
+                <ion-avatar item-start>
+                    <ava-avatar-img [srcPath]="emp.employeeCode | loadImg"></ava-avatar-img>
+                </ion-avatar>
+                <h2>{{ emp?.name +' '+ emp?.surname}}</h2>
+                <p>{{ emp?.alternateName +' '+ emp?.alternateSurname}}</p>
+                <div class="emp-select-status">
+                    <!-- <div *ngIf="!emp.isCheck" class="checked-emp">
+                        <ion-icon name="add" class="add-icon"></ion-icon>
+                    </div> -->
+                    <!-- <div *ngIf="emp.isCheck" class="unchecked-emp">
+                        <ion-icon name="checkmark" class="checkmark-icon"></ion-icon>
+                    </div> -->
+                </div>
+            </button>
+        </ion-list>
+    </ion-scroll>
+    <!-- <ion-row *ngIf="!isLoading" style="padding: 0 14px;">
+        <button class="bg-workforce" no-box no-lines style="box-shadow: none;border-radius: .25em;" ion-button block (click)="selectMember()">{{ addMemberLang?.next || 'Next' }}</button>
+    </ion-row> -->
+</ion-content>

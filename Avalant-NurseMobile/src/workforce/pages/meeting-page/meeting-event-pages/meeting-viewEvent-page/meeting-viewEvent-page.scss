@@ -1,0 +1,78 @@
+assignment-viewEvent-page {
+    .bg-home-demo {
+        background: url('../assets/img/assignment2.png')no-repeat;
+        width: 100%;
+        height: 100%;
+        background-size: 100% 100%; //background-size: cover;
+        //background-size: cover;
+        margin: auto;
+        z-index: 2;
+    }
+    .bg-home-demo2 {
+        background: url('../assets/img/home2.png')no-repeat;
+        width: 100%;
+        height: 80%;
+        background-size: 100% 100%; //background-size: cover;
+        //background-size: cover;
+        margin: auto;
+        z-index: 2;
+    }
+    .toolbar-background .toolbar-background {
+        background-color: blue;
+    }
+    .no-padding {
+        padding: 0;
+    }
+    .no-margin {
+        margin: 0;
+    }
+    .calendar_date {
+        border: 0.55px solid;
+        border-color: #dadada;
+        border-radius: 5px;
+    }
+    .w-break {
+        word-break: break-word;
+    }
+    .w-space {
+        white-space: normal;
+    }
+    .card-bt-red {
+        border-top: 6px solid red;
+        border-radius: 5px;
+    }
+    .card-bt-yellow {
+        border-top: 6px solid #ffa726;
+        border-radius: 5px;
+    }
+    .card-bt-green {
+        border-top: 6px solid #00c853;
+        border-radius: 5px;
+    }
+    .card-bt-blue {
+        border-top: 6px solid #41abef;
+        border-radius: 5px;
+    }
+    @media (max-width: 567px) {
+        //Small likes iphone5 < 567px3
+        .img-avatar {
+            width: 100%;
+            border-radius: 50%;
+        }
+        .text-header {
+            // font-weight: bold;
+            font-size: 1.75em;
+        }
+    }
+    @media (min-width: 567px) {
+        //Large < 567px
+        .img-avatar {
+            width: 50%;
+            border-radius: 50%;
+        }
+        .text-header {
+            // font-weight: bold;
+            font-size: 1.75em;
+        }
+    }
+}

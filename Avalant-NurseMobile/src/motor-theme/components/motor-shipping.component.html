@@ -1,0 +1,100 @@
+<ion-grid>
+  <ion-row>
+    <ion-col col-8>
+      <h4 style="margin-top: .6rem; padding: 0;">Select Your Address</h4>
+    </ion-col>
+    <ion-col col-4>
+      <button ion-button small icon-only round tappable (click)="gotoAddNewAddress()" class="add-address">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <!-- <ion-item-sliding *ngFor="let userAddressShipping of shippingList;let i = index"> -->
+    <ng-container *ngFor="let userAddressShipping of shippingList;let i = index">
+      <ion-item tappable (click)="selectAddress(userAddressShipping)" class="address-card" [@peekAnimation]>
+        <ion-radio item-start mode="md" value="" (ionSelect)="selectAddress(userAddressShipping)" [checked]="userAddressShipping === selectedAddress"></ion-radio>
+        <!-- <h3 item-content>
+            {{userAddressShipping.receiveName}} {{userAddressShipping.receiveSurname}}
+          </h3> -->
+        <p item-content>{{userAddressShipping.addressNo}},
+          <span *ngIf="userAddressShipping.room">
+            &nbsp;{{userAddressShipping.room}}
+          </span>
+          <span *ngIf="userAddressShipping.moo">
+            &nbsp;{{userAddressShipping.moo}},
+          </span>
+          <span *ngIf="userAddressShipping.street">
+            &nbsp;{{userAddressShipping.street}},
+          </span>
+          <span *ngIf="userAddressShipping.soi">
+            &nbsp;{{userAddressShipping.soi}},
+          </span>
+          <span *ngIf="userAddressShipping.districtName">
+            &nbsp;{{userAddressShipping.districtName}},
+          </span>
+          <span *ngIf="userAddressShipping.subDistrictName">
+            &nbsp;{{userAddressShipping.subDistrictName}},
+          </span>
+          <span *ngIf="userAddressShipping.provinceName">
+            &nbsp;{{userAddressShipping.provinceName}},
+          </span>
+          <span *ngIf="userAddressShipping.postcode">
+            &nbsp;{{userAddressShipping.postcode}}
+          </span>
+          <span *ngIf="userAddressShipping.country">, &nbsp;{{userAddressShipping.country}}
+          </span>
+          <span *ngIf="userAddressShipping.phone">
+            <br> &nbsp;{{userAddressShipping.phone}}
+          </span>
+          <span *ngIf="userAddressShipping.email">
+            <br> &nbsp;{{userAddressShipping.email}}
+          </span>
+        </p>
+
+        <div item-end class="button-action">
+          <button ion-button icon-only clear tappable (click)="delete(i,userAddressShipping)">
+            <ion-icon name="close"></ion-icon>
+          </button>
+          <br />
+          <button ion-button icon-only clear tappable (click)="edit(userAddressShipping)">
+            <ion-icon name="ios-create-outline"></ion-icon>
+          </button>
+        </div>
+      </ion-item>
+
+      <!-- <ion-item-options side="right" padding>
+        <button ion-button color="secondary" (click)="edit(userAddressShipping)">
+          <ion-icon name="edit"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger" (click)="delete(i,userAddressShipping)">
+          <ion-icon name="delete"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options> -->
+
+      <!-- Edit / Delete -->
+      <!-- <ion-row padding *ngIf="canEditThisAddress(userAddressShipping)">
+          <ion-col text-center col-6 style="display:block;margin:0 auto;">
+            <button ion-button outline style="margin-right:16px;width:100%" tappable (click)="edit(userAddressShipping)" translate>COMMON.SHIPPING.EDIT_ADDRESS</button>
+          </ion-col>
+          <ion-col text-center col-6 style="display:block;margin:0 auto;">
+            <button color="danger" style="width:100%" ion-button outline tappable (click)="delete(i,userAddressShipping)" translate>COMMON.SHIPPING.DEL_ADDRESS</button>
+          </ion-col>
+        </ion-row> -->
+      <!-- Select address -->
+      <!-- <ion-row>
+          <button style="width: 100%" color="light" ion-button tappable (click)="gotoPayment(userAddressShipping)" translate>COMMON.SHIPPING.CONFIRM_ADDRESS</button>
+        </ion-row> -->
+
+
+      <!-- </ion-item-sliding> -->
+
+    </ng-container>
+  </ion-list>
+
+  <ion-card *ngIf="!shippingList || !shippingList.length">
+    <ion-card-content translate>COMMON.SHIPPING.SHIPPING_WARN</ion-card-content>
+  </ion-card>
+</ion-grid>

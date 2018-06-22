@@ -1,0 +1,101 @@
+check-in-out-success-page {
+    .h-100 {
+        height: 100%;
+    }
+    .content-width .item-block .item-inner {
+        padding: 0;
+    }
+    .no-padding {
+        padding: 0;
+    }
+    .no-margin {
+        margin: 0;
+    }
+    .mb-0 {
+        margin-bottom: 0;
+    }
+    .mb-10 {
+        margin-bottom: 10px;
+    }
+    .mb-20 {
+        margin-bottom: 20px;
+    }
+    .mt-3 {
+        margin-top: 3em;
+    }
+    .calendar_date {
+        border: 0.55px solid;
+        border-color: #dadada;
+        border-radius: 5px;
+    }
+    .pl-0 {
+        padding-left: 0;
+    }
+    .pr-0 {
+        padding-right: 0;
+    }
+    .pl-16 {
+        padding-left: 16px;
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+        margin-top: 2em;
+    }
+    .pr-16 {
+        padding-right: 16px;
+    }
+    .pb-0 {
+        padding-bottom: 0;
+    }
+    .pt-0 {
+        padding-top: 0;
+    }
+    .margin-auto {
+        margin: auto;
+    }
+    .msg-container {
+        padding-left: 2em;
+        padding-right: 2em;
+        margin-top: -.5em;
+        font-family: 'RobotoRegular','Prompt';
+        color: #101010;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .btn-home {
+        font-family: 'RobotoRegular','Prompt';
+        color: #101010;  
+        font-weight: bold;      
+        height: 3.5em;
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid #d8d8d8;
+
+    }
+    @media (max-width: 567px) {
+        //Small likes iphone5 < 567px
+        .text-header {
+            // font-weight: bold;
+            font-size: 2.2em;
+            font-family: 'RobotoRegular','Prompt';
+            color: #101010;
+        }
+        .pay-complete {
+            height: 100%;
+            margin: auto;
+        }
+    }
+    @media (min-width: 567px) {
+        //Large > 567px
+        .text-header {
+            // font-weight: bold;
+            font-size: 2.2em;
+            font-family: 'RobotoRegular','Prompt';
+            color: #101010;
+        }
+        .pay-complete {
+            width: 60%;
+            height: 100%;
+            margin: auto;
+        }
+    }
+}

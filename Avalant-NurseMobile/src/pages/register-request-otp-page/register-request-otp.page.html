@@ -1,0 +1,51 @@
+<!--*
+ @author Bundit.Ng
+ @since  Tue Sep 05 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<ion-header no-border>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button class="closeDvBtn" tappable (click)="gotoLoginPage()">
+                <img class="closeImgBtn" src="./assets/img/login/close.png" />
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<!-- TODO: Make a close page button !! -->
+<ion-content style="padding: 0 .5em .5em .5em">
+    <div class="headDv">
+        <span style="font-size: 1.5em; margin: 0;" translate>COMMON.SIGNUP.OTP_ENTER_MOBILE </span>
+        <div style="margin-top: 2.75em">
+            <img src="./assets/img/login/OTP.svg" alt="">
+        </div>
+    </div>
+    <div class="footDv">
+        <form #userForm="ngForm" (ngSubmit)="submitRequestOTP(userForm)">
+            <ion-grid class="regisRequest">
+                <ion-row>
+                    <ion-item>
+                        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.COUNTRY<span class="required"></span></ion-label>
+                        <ion-select [(ngModel)]="reqRegisUser.dialCode" interface="popover" validate-input [formInput]="userForm" required [input-type]="'country'" name="country">
+                            <ion-option [value]="countryM?.dialCode" *ngFor="let countryM of countryList">{{countryM?.countryName}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-row>
+                <ion-row>
+                    <ion-item>
+                        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.MOBILE<span class="required"></span></ion-label>
+                        <ion-input [(ngModel)]="reqRegisUser.mobile" validate-input [formInput]="userForm" required [input-type]="'mobile'" name="mobile" maxlength="10" minlength="10" class="input-text" type="text"></ion-input>
+                    </ion-item>
+                </ion-row>
+                <ion-row>
+                    <ion-col width-50>
+                        <button ion-button style="border-color: grey;color:grey;background-color: #FBFBFB" type="button" block outline tappable translate (click)="backBtn()">COMMON.BUTTON.BACK</button>
+                    </ion-col>
+                    <ion-col width-50>
+                        <button ion-button color="primary" type="submit" block outline tappable translate>COMMON.BUTTON.NEXT</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+</ion-content>

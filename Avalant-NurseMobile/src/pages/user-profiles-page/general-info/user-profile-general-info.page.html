@@ -1,0 +1,168 @@
+<!--*
+ @author Bundit.Ng
+ @since  Mon May 22 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<ion-header no-border>
+  <ion-navbar>
+    <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title translate>COMMON.USERPROFILE.GENERALINFO</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content style="padding: .5em;">
+  <form #userForm="ngForm" (ngSubmit)="nextToSpecifyInfo(userForm)">
+    <div style="padding-right: 1em;">
+      <ion-item no-lines style="margin-top: .5em">
+        <ion-label class="userprofile-input-label head-text" translate>COMMON.CHECKOUT.FAMILY_INFORMATION</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.PARENT_NAME<span class="required" *ngIf="isParentRequired"></span></ion-label>
+        <ion-input text-right [(ngModel)]="contactParentInfo.name" name="parent_name" validate-input [formInput]="userForm" [required]="isParentRequired"
+          [input-type]="'text'" class="input-text" type="text" maxlength="20"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.PARENT_SURNAME<span class="required" *ngIf="isParentRequired"></span></ion-label>
+        <ion-input text-right [(ngModel)]="contactParentInfo.surname" name="parent_surname" validate-input [formInput]="userForm"
+          [required]="isParentRequired" [input-type]="'text'" class="input-text" type="text" maxlength="20"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.PARENT_MOBILE<span class="required" *ngIf="isParentRequired"></span></ion-label>
+        <ion-input text-right [(ngModel)]="contactParentInfo.phone" name="parent_mobile" validate-input [formInput]="userForm" [required]="isParentRequired"
+          [input-type]="'mobile'" class="input-text" type="text" maxlength="10" minlength="10"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.PARENT_EMAIL</ion-label>
+        <ion-input text-right [(ngModel)]="contactParentInfo.email" name="parent_email" validate-input [formInput]="userForm" [input-type]="'email'"
+          class="input-text" type="text" maxlength="60"></ion-input>
+      </ion-item>
+      <ion-item no-lines></ion-item>
+      <ion-item no-lines>
+        <ion-label class="userprofile-input-label head-text" translate>COMMON.USERPROFILE.EDUCATION_INFORMATION_HEAD</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.OCCUPATION</ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="occupation" [(ngModel)]="ybatUserInfoM.occupation"
+          interface="popover">
+          <ion-option *ngFor="let occupation of occupationList" [value]="occupation?.occupationCode">{{occupation?.occupationName}}</ion-option>
+          <ion-option *ngIf="occupationList == null || occupationList.length == 0" [value]="" disabled>No Data</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.EDUCATION_LEVEL</ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="education_level" [(ngModel)]="ybatUserInfoM.educationLevel"
+          interface="popover">
+          <ion-option *ngFor="let educateM of educationList" [value]="educateM?.levelCode">{{educateM?.levelName}}</ion-option>
+          <ion-option *ngIf="educationList == null || educationList.length == 0" [value]="" disabled>No Data</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.POSITION</ion-label>
+        <ion-input text-right [(ngModel)]="ybatUserInfoM.position" name="position" validate-input [formInput]="userForm" [input-type]="'text'"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.WORKPLACE</ion-label>
+        <ion-input text-right [(ngModel)]="addressOfficeM.addressName" name="WORKPLACE" validate-input [formInput]="userForm" [input-type]="'text'"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.ADDRESS_NO</ion-label>
+        <ion-input text-right [(ngModel)]="addressOfficeM.addressNo" name="address_no" validate-input [formInput]="userForm" [input-type]="'text'"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.ROOM</ion-label>
+        <ion-input text-right [(ngModel)]="addressOfficeM.room" validate-input [formInput]="userForm" [input-type]="'text'" name="room"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.SOI</ion-label>
+        <ion-input text-right [(ngModel)]="addressOfficeM.soi" name="soi" validate-input [formInput]="userForm" [input-type]="'text'"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.STREET</ion-label>
+        <ion-input text-right [(ngModel)]="addressOfficeM.street" name="street" validate-input [formInput]="userForm" [input-type]="'text'"
+          class="input-text" type="text" maxlength="100"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.PROVINCE </ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="province" interface="popover" [(ngModel)]="addressOfficeM.province"
+          (ionChange)="getDistrict($event, addressOfficeM.province)" [disabled]="!provinceList || provinceList == null || provinceList.length == 0">
+          <ion-option *ngFor="let provM of provinceList" [value]="provM?.provinceCode">{{provM?.provinceName}}</ion-option>
+          <ion-option *ngIf="provinceList == null || provinceList.length == 0" [value]="" disabled>No Data</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.DISTRICT </ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="district" interface="popover" [(ngModel)]="addressOfficeM.district"
+          (ionChange)="getSubDistrict($event, addressOfficeM.province, addressOfficeM.district)" [disabled]="!districtList || districtList == null || districtList.length == 0">
+          <ion-option *ngFor="let distM of districtList" [value]="distM?.districtCode">{{distM?.districtName}}</ion-option>
+          <ion-option *ngIf="districtList == null || districtList.length == 0" [value]="" disabled>No Data</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.SUBDISTRICT </ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="subdistrict" interface="popover" [(ngModel)]="addressOfficeM.subDistrict"
+          (ionChange)="getPostCode($event, addressOfficeM.subDistrict)" [disabled]="!subDistrictList || subDistrictList == null || subDistrictList.length == 0">
+          <ion-option *ngFor="let subDistM of subDistrictList" [value]="subDistM?.subDistrictCode">{{subDistM?.subDistrictName}}</ion-option>
+          <ion-option *ngIf="subDistrictList == null || subDistrictList.length == 0" [value]="" disabled>No Data</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.POSTCODE </ion-label>
+        <ion-select validate-input [formInput]="userForm" [input-type]="'text'" name="postcode" interface="popover" [(ngModel)]="addressOfficeM.postcode"
+          [disabled]="postCodeList == null || postCodeList.length == 0">
+          <ion-option *ngFor="let postCodeM of postCodeList" [value]="postCodeM?.postcode">{{postCodeM?.postcode}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.OFFICE_PHONE </ion-label>
+        <ion-input text-right [(ngModel)]="addressOfficeM.phone" name="office_phone" validate-input [formInput]="userForm" [input-type]="'phone'"
+          class="input-text" type="text" maxlength="9" minlength="9"></ion-input>
+      </ion-item>
+      <ion-item no-lines></ion-item>
+      <ion-item no-lines>
+        <ion-label class="userprofile-input-label head-text" translate>COMMON.USERPROFILE.EMERGENCYCONTACT</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.EMERGENCY_FIRSTNAME<span class="required"></span></ion-label>
+        <ion-input text-right [(ngModel)]="contactEMGInfo.name" name="emergency_firstname" validate-input [formInput]="userForm"
+          required [input-type]="'text'" class="input-text" type="text" maxlength="20"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.EMERGENCY_LASTNAME<span class="required"></span></ion-label>
+        <ion-input text-right [(ngModel)]="contactEMGInfo.surname" name="emergency_lastname" validate-input [formInput]="userForm"
+          required [input-type]="'text'" class="input-text" type="text" maxlength="20"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.RELATION<span class="required"></span></ion-label>
+        <ion-input text-right [(ngModel)]="contactEMGInfo.relation" name="relation" validate-input [formInput]="userForm" required
+          [input-type]="'text'" class="input-text" type="text" maxlength="20"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.EMERGENCY_TELEPHONE<span class="required"></span></ion-label>
+        <ion-input text-right [(ngModel)]="contactEMGInfo.phone" name="emergency_telephone" validate-input [formInput]="userForm"
+          required [input-type]="'telephone'" class="input-text" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="userprofile-input-label" translate>COMMON.USERPROFILE.EMAIL</ion-label>
+        <ion-input text-right [(ngModel)]="contactEMGInfo.email" name="email" validate-input [formInput]="userForm" [input-type]="'email'"
+          class="input-text" type="text" maxlength="60"></ion-input>
+      </ion-item>
+      <!-- <div style="margin: 1em 0 1em 1em">
+                <button ion-button color="primary" block tappable type="submit" translate> COMMON.BUTTON.NEXT</button>
+            </div> -->
+      <div style="margin: 1em 0 1em 1em;" ion-row>
+        <ion-col width-50>
+          <button ion-button color="danger" type="button" (click)="backBtn()" block tappable translate>COMMON.BUTTON.BACK</button>
+        </ion-col>
+        <ion-col width-50>
+          <button ion-button color="primary" type="submit" block tappable translate>COMMON.BUTTON.NEXT</button>
+        </ion-col>
+      </div>
+    </div>
+  </form>
+</ion-content>

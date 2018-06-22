@@ -1,0 +1,118 @@
+<ion-header>
+    <app-nav-header></app-nav-header>
+</ion-header>
+<ion-content no-padding>
+    <ion-refresher class="assign-refresher" (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content style="color:#fff;" pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="crescent" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <div class="bg-workforce head-div">
+        <ion-grid class="assign-button-action" no-padding>
+            <ion-row no-padding>
+                <ion-col class="today-col" col-3 no-padding text-center>
+                    <ion-row no-padding>
+                        <ion-col col-12 no-padding text-center>
+                            <img src="./assets/img/svg/today.svg" class="today-btn">
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col col-12 no-padding text-center>
+                            <h3 class="amt">{{getTodayTask()}}</h3>
+                            <p>{{assignmentLang?.today || 'Today'}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+                <ion-col class="thisweek-col" col-6 no-padding text-center>
+                    <ion-row no-padding>
+                        <ion-col col-12 no-padding text-center>
+                            <img src="./assets/img/svg/thisweek.svg" class="thisweek-btn">
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col col-12 no-padding text-center>
+                            <h3 class="amt">{{ getThisWeekTask() }}</h3>
+                            <p>{{assignmentLang?.thisWeek || 'This week'}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+                <ion-col class="nextweek-col" col-3 no-padding text-center>
+                    <ion-row no-padding>
+                        <ion-col col-12 no-padding text-center>
+                            <img src="./assets/img/svg/nextweek.svg" class="nextweek-btn">
+                        </ion-col>
+                    </ion-row>
+                    <ion-row no-padding>
+                        <ion-col col-12 no-padding text-center>
+                            <h3 class="amt">{{getThisWeekTask(true)}}</h3>
+                            <p>{{assignmentLang?.nextWeek || 'Next week'}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div class="assign-blue-bar">
+        <ion-grid no-padding no-margin>
+            <ion-row no-padding>
+                <ion-col no-padding text-center col-3>
+                    <!-- <button ion-button icon-only no-lines transparent full (click)="false && goToCreateEventMeeting()">
+                        <ion-icon name="ios-apps-outline"></ion-icon>
+                    </button> -->
+                </ion-col>
+                <ion-col no-padding text-center col-6>
+                    <button ion-button icon-only no-lines transparent full (click)="goToCreateEventAsssignment && goToCreateEventAsssignment()">
+                        <ion-icon name="ios-add"></ion-icon>
+                    </button>
+                    <!-- <button ion-button icon-only no-lines transparent full (click)="false && goToCreateEventMeeting()">
+                        <ion-icon name="ios-paper-plane-outline"></ion-icon>
+                    </button> -->
+                </ion-col>
+                <ion-col no-padding text-center col-3>
+                    <!-- <button ion-button icon-only no-lines transparent full (click)="goToCreateEventAsssignment && goToCreateEventAsssignment()">
+                        <ion-icon name="ios-add"></ion-icon>
+                    </button> -->
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <ion-row [@peekAnimation] ava-loading *ngIf="isLoading">
+        <ion-col text-center>
+            <ion-spinner ava-loading-spinner></ion-spinner>
+        </ion-col>
+    </ion-row>
+    <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (allGroupAssignTask||[]).length == 0" text-center margin-horizontal padding-vertical>
+        <img src="./assets/img/svg/emptydata.svg">
+        <p class="ava-empty-label">{{assignmentLang?.youDontHaveAnythingRightNow || "You don't have anything right now"}}</p>
+    </ion-card>
+    <div class="assign-task-list">
+        <ion-list class="group-assign" no-padding *ngFor="let assignmentObj of (allGroupAssignTask||[]);">
+            <span class="label-task-date">{{  assignmentObj?.dateString|| assignmentObj?.date }}</span>
+            <ion-item *ngFor="let assignDtItm of assignmentObj.task;let taskItmIndex = index;" no-padding ava-lines (click)="goToViewEventAsssignment(assignDtItm)">
+                <ion-grid class="assign-grid">
+                    <ion-row no-padding>
+                        <ion-col col-3 no-padding text-center>
+                            <!-- <img class="img-avatar" [src]=" assignDtItm.assignBy | loadImg " alt=""> -->
+                            <ava-avatar-img [srcPath]="assignDtItm.assignBy  | loadImg"></ava-avatar-img>
+                        </ion-col>
+                        <ion-col class="assign-msg" col-7>
+                            <ion-row no-padding>
+                                <ion-col no-padding>
+                                    <h3 ellipsis>{{ assignDtItm?.topicDesc }}</h3>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row no-padding>
+                                <ion-col no-padding>
+                                    <p ellipsis> {{ assignDtItm?.assignDesc }}</p>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                        <ion-col col-2 no-padding text-right>
+                            <!-- <span class="assign-time">{{ assignDtItm?.targetDateTime | amLocal:'en' | amDateFormat:'LT' }}</span> -->
+                            <span class="assign-time">{{ assignDtItm?.targetDateTime }}</span>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

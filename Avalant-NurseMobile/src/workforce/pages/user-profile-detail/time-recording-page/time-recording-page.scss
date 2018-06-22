@@ -1,0 +1,42 @@
+time-recording-page {
+    font-family: 'RobotoRegular', 'Prompt';   
+    .bg {
+        background-color: #ebeef5;
+    }
+    ion-grid.date {
+        background-color: white;
+        ion-row {
+            margin-top: .5em;
+            margin-bottom: .5em;
+        }
+        ion-col[col-2] {
+            font-size: 26px;
+        }
+        ion-col[col-8] {
+            font-size: 18px;
+            font-weight: bold;
+            color: #273E6A;
+            margin-top: .1em;
+        }
+    }   
+    ion-grid.bgfrom {
+        margin-top: .5em;
+        background-color: white;
+        height: 80%;           
+        span.titel {
+            font-size: 15px;
+            margin-left: .5em;
+            font-weight: bold;
+        }          
+        span.text {
+            font-size: 15px;
+            margin-left: .5em;
+        }   
+        ion-col[col-3] {
+            text-align: center;
+        }
+        .titel.red {
+            color: red;
+        }
+    }  
+}

@@ -1,0 +1,54 @@
+leave-summary-page {
+    font-family: 'RobotoRegular', 'Prompt';
+    ion-grid.bgYear {
+        background-color: rgb(231, 231, 231);
+        >ion-row {
+            background-color: white;
+            margin-left: -.5em;
+            margin-right: -.5em;
+            margin-top: -.8em;
+            margin-bottom: -.3em;
+            >ion-col {
+                >h3 {
+                    color: color($colors-theme, "app-theme");
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 1.3em;
+                }
+            }
+        }
+    }
+    ion-grid.bgform {
+        background-color: rgb(231, 231, 231);
+        >ion-row {
+            background-color: white;
+            margin-bottom: .2em;
+            margin-left: -.5em;
+            margin-right: -.5em;
+            >button {
+                margin-left: auto;
+                margin-right: auto;
+                >div div ion-label ion-row {
+                    margin-left: -.5em;
+                    margin-right: -.5em;
+                    >ion-col {
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        >span {
+                            font-size: .8em;
+                        }
+                        >h3 {
+                            font-size: 1em;
+                            text-align: center;
+                        }
+                        >h4 {
+                            color: gray;
+                            font-size: .53em;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

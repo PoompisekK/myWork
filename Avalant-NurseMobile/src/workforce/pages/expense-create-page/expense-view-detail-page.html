@@ -1,0 +1,93 @@
+<ion-header>
+    <app-nav-header [pageName]="'Expense'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <ion-grid style="padding:0 12px">
+        <ion-row no-padding>
+            <ion-col text-center>
+                <img src="assets/img/transport.png" [style.opacity]="activeList[0].opacity" />
+                <span>Transport</span>
+            </ion-col>
+            <ion-col text-center>
+                <img src="assets/img/office.png" [style.opacity]="activeList[1].opacity" />
+                <span>Office</span>
+            </ion-col>
+            <ion-col text-center>
+                <img src="assets/img/overtime.png" [style.opacity]="activeList[2].opacity" />
+                <span>Over Time</span>
+            </ion-col>
+            <ion-col text-center>
+                <img src="assets/img/others.png" [style.opacity]="activeList[3].opacity" />
+                <span>Others</span>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-slides style="padding:0 12px">
+        <ion-slide style="height: fit-content;">
+            <ion-item style="margin:1em 0;padding:0;">
+                <ion-label style="padding-left: 8px;color:#999">
+                    Project
+                    <span style="color:#000;float: right;">{{ expenseTypeData?.projectCode }}</span>
+                </ion-label>
+            </ion-item>
+
+            <ion-item style="margin-bottom:1em;padding:0;">
+                <ion-label style="padding-left: 8px;color:#999">
+                    Expense Type
+                    <span style="color:#000;float: right;">{{ expenseTypeData?.expenseTypeName }}</span>
+                </ion-label>
+            </ion-item>
+
+            <ion-item style="margin-bottom:1em;padding:0;">
+                <ion-label style="padding-left: 8px;color:#999">
+                    Amount
+                    <span style="color:#000;float: right;">{{ expenseTypeData?.amount | number:'1.2-2':'th' }}</span>
+                </ion-label>
+                <ion-icon color="color-gray" name="ios-cash-outline" item-right></ion-icon>
+            </ion-item>
+
+            <ion-item style="margin-bottom:1em;padding:0;">
+                <ion-label style="padding-left: 8px;color:#999">
+                    Expense Date
+                    <span style="color:#000;float: right;"> {{ expenseTypeData?.invoiceDate | amDateFormat:'MMM D, YYYY' }}</span>
+                </ion-label>
+                <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon>
+            </ion-item>
+
+            <ion-item style="margin-bottom:1em;padding:0;">
+                <ion-label style="color:#999;padding-left: 8px;">
+                    Attach File
+                    <span style="color:black;float: right;">{{ expenseTypeData?.fileName }}</span>
+                </ion-label>
+                <ion-icon color="color-gray" name="ios-attach-outline" item-right></ion-icon>
+            </ion-item>
+
+            <!-- 
+            <ion-item style="margin-bottom:1em;padding:0;">
+                <ion-label style="padding-left: 8px;color:#999">
+                    Status
+                    <span style="color:#000;float: right;"> {{ expenseTypeData?.status }}</span>
+                </ion-label>
+            </ion-item>
+             -->
+
+
+            <ion-item style="margin-bottom:1em;padding:0;">
+                <ion-label style="padding-left: 8px;color:#999">
+                    Status Description
+                    <span style="color:#000;float: right;"> {{ expenseTypeData?.statusDesc }}</span>
+                </ion-label>
+                <ion-icon color="color-gray" name="ios-paper-outline" item-right></ion-icon>
+                <!-- <ion-icon color="color-gray" name="ios-calendar-outline" item-right></ion-icon> -->
+            </ion-item>
+
+            <ion-item style="margin-bottom:1em;padding:0;">
+                <ion-label style="padding-left: 8px;color:#999">
+                    Notice
+                    <p style="color:#000;margin-top: 1em;"> {{ expenseTypeData?.notice }}</p>
+                </ion-label>
+                <ion-icon color="color-gray" name="ios-paper-outline" item-right></ion-icon>
+            </ion-item>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

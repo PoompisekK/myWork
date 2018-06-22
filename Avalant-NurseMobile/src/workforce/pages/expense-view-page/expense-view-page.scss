@@ -1,0 +1,154 @@
+expense-view-page {
+    *:not(ion-icon) {
+        font-family: 'RobotoRegular','Prompt';
+    }
+    ion-row {
+        &[row-last] {
+            margin-bottom: 1.25em;
+        }
+    }
+    ion-col {
+        &.icon-expense {
+            margin-top: -.25em;
+        }
+        .reimbursable {
+            margin: 0;
+            margin-top: -.25em;
+            font-size: 1em;
+            font-family: 'RobotoMedium','Prompt';
+        }
+        h2[baht-front] {
+            font-family: 'RobotoMedium','Prompt';
+            margin: 0;
+            margin-top: .25em;
+            font-size: 2em;
+            font-family: Arial;
+            font-weight: bold;
+        }
+    }
+    ion-col.duaration-time-label {
+        font-family: 'RobotoMedium','Prompt';
+        p {
+            margin-top: 1.25em;
+            &.date-time {
+                margin: 0;
+                margin-top: 1em;
+                font-size: .85em;
+            }
+            &.expense-request-topic {
+                margin: 0;
+                margin-top: 1em;
+            }
+        }
+    }
+    ion-col {
+        >ion-icon.add-btn {
+            font-size: 2em;
+            font-weight: bold;
+            margin: auto 0;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    }
+    div.bg-workforce button[icon-only][ion-button] {
+        background-color: transparent;
+        border-radius: .25em;
+        border: none;
+        bottom: 0;
+        box-shadow: none;
+        position: absolute;
+        right: 0;
+        ion-icon.add-btn {
+            font-size: 2em;
+            font-weight: bold;
+        }
+    }
+    div.detail-type * {
+        color: black;
+    }
+    div.detail-type {
+        margin-top: 1em;
+        padding: .5em 0;
+        >ion-grid.detail-type {
+            border-bottom: 1px solid #eee;
+            >ion-row {
+                margin: 0;
+                margin-bottom: 1.25em;
+                >ion-col {
+                    &.icon-expense {
+                        img.image-item-type {
+                            border-radius: 50%;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                        }
+                    }
+                    .icon-action {
+                        margin-top: .25em;
+                        opacity: .5;
+                    }
+                    p {
+                        font-family: 'RobotoMedium','Prompt';
+                        font-size: 1.2em;
+                        margin: 0;
+                    }
+                    h2 {
+                        text-align: right;
+                        margin: 0;
+                        font-size: 1.2em;
+                    }
+                    ion-col {
+                        &.attach {
+                            .attach-amt {
+                                font-size: 1em;
+                                vertical-align: top;
+                                font-family: 'RobotoMedium','Prompt';
+                            }
+                            ion-icon.attach {
+                                font-size: 1.5em;
+                            }
+                        }
+                        &.more {
+                            ion-icon.more {
+                                font-size: 1.5em;
+                                position: absolute;
+                                right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ion-grid.summary-grid {
+        padding-top: 1.5em;
+        >ion-row {
+            margin-top: .25em;
+        }
+        * {
+            font-family: 'RobotoMedium','Prompt';
+            font-size: 1.1em;
+            color: #999;
+        }
+        [baht-front][no-space] {
+            font-weight: lighter;
+        }
+        ion-col {
+            text-align: right;
+            p {
+                font-size: 1.2em;
+                margin: 0;
+            }
+        }
+        h2 {
+            font-size: 1.25em;
+            margin: 0;
+        }
+        .summary-total * {
+            color: black;
+        }
+    }
+    [ava-empty-card] {
+        margin: 5% 0 !important;
+    }
+}

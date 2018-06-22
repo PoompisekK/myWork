@@ -1,0 +1,80 @@
+organization-page {
+    super-tabs-toolbar > ion-toolbar.toolbar {
+        padding: 0;
+    }
+}
+
+.android-customized-section {
+    text-align: center;
+}
+
+.android-customized-section-text {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 80px 16px 0 16px;
+}
+
+.android-customized-section-text p {
+    padding-top: 16px;
+}
+
+.android-customized-section-image {
+    background: url('/images/devices.jpg') center top no-repeat;
+    background-size: cover;
+    height: 400px;
+}
+
+.android-wear-band {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #37474f;
+}
+
+.android-wear-band-text {
+    max-width: 800px;
+    margin-left: 25%;
+    padding: 24px;
+    text-align: left;
+    color: white;
+}
+
+.android-wear-band-text p {
+    padding-top: 8px;
+}
+$cfdcomponent-footer-bg2: #4a4d52;
+$cfdcomponent-footer-color: #919191;
+$cfdcomponent-footer-color2: white;
+
+.cfdcomponent-main-footer {
+    color: $cfdcomponent-footer-color;
+    font-family: roboto;
+    h5 {
+        margin: 0;
+        padding: 40px 0 20px 0;
+        font-weight: 500;
+    }
+    .cfdcomponent-footer-info {
+        padding-bottom: 10px;
+    }
+    .cfdcomponent-footer-menu {
+        padding: 10px 0;
+    }
+    .cfdcomponent-group-icon {
+        padding-bottom: 20px;
+        .fa {
+            margin: 0 10px;
+        }
+    }
+}
+.cfdcomponent-footer-menu {
+    padding: 10px 0;
+    background-color: $cfdcomponent-footer-bg2;
+    color: $cfdcomponent-footer-color2;
+    .cfdcomponent-footer-link {
+        display: inline-block;
+        padding: 0 15px;
+    }
+}

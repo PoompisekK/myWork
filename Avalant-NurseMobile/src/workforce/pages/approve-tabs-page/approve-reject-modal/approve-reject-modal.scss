@@ -1,0 +1,73 @@
+.reject-modal {
+    div.modal-wrapper {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+approve-reject-modal {
+    $height: 100%;
+    $width: 80%;
+    margin: calc(#{$height} /2) calc((100% - #{$width})/2);
+    width: $width !important;
+    min-height: 50% !important;
+    height: auto !important;
+    font-family: 'RobotoRegular','Prompt';
+    .content {
+        border-radius: .5em;
+        background-color: #fff;
+        padding: .25em 0;
+    }
+    ion-label {
+        font-size: 1.25em;
+        font-family: 'RobotoRegular','Prompt';
+    }
+    ion-grid.reject-grid-popup {
+        padding: 1em;
+        p {
+            margin-top: -.1em;
+            font-size: 18px;
+        }
+        p.titel {
+            font-size: 20px;
+        }
+        p.text {
+            margin-top: .5em;
+            margin-bottom: 0em;
+            font-size: 14px;
+            color: #fff;
+        }
+        ion-item {
+            height: 0px;
+            background-color: #273E6A;
+            border: 1px solid white;
+            color: #fff;
+        }
+    }
+    textarea {
+        height: 1em;
+    }
+    
+    ion-row.approve-action {
+        border-radius: 0px 0px .5em .5em;
+        margin-top: .5em;
+        background-color: #fff;
+        margin-bottom: -.75em;
+        border-top: 1px solid #dadada;
+        ion-col[border-left] button.action-btn {
+            border-left: 3px solid #eaeaea;
+        }
+        ion-col {
+            border-radius: 0px 0px .5em .5em;
+            background-color: #fff;
+            padding: 0.25em !important;
+            button.action-btn {                
+                box-shadow: none !important;
+                background: none;
+                color: #000;
+                font-size: 16px;
+                margin-top: -.2em;
+                margin-bottom: -.0em;
+            }            
+        }
+    }
+}

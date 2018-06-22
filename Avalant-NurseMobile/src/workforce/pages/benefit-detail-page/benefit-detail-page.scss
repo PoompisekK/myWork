@@ -1,0 +1,40 @@
+benefit-detail-page {
+    
+    .btn-effect {
+        background-color: white;
+        color: #000;
+        .col-img {
+            margin-top: -2.5em;
+            img {
+                width: 38%;
+                margin: .5em;
+            }
+            img.img-over {
+                width: 32%;
+                margin: 1em;
+            }
+        }
+        .text-ben {            
+            font-size: 25px;
+            font-weight: bold;
+        }        
+    }
+    ion-row.recent {  
+        font-family: 'RobotoRegular','Prompt';      
+        margin-left: .5em;
+        margin-right: .5em;         
+        ion-col {
+            ion-list {        
+                ion-card {
+                    height: 4em;
+                    border-radius: 5px;
+                    color: #000;
+                    ion-col {
+                        margin-top: .5em;
+                    }
+                }
+            }
+        }
+    }
+    
+}

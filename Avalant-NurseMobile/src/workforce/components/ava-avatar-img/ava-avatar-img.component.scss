@@ -1,0 +1,49 @@
+ava-avatar-img {
+    $circle: 3em;
+    $signSize: 1em;
+    #sign-status {
+        position: absolute;
+        border-radius: 50%;
+        width: $signSize;
+        height: $signSize;
+        display: none;
+    }
+    #balloons-status{
+        position: absolute;
+        z-index: 100;
+        top: -1em;
+        border-radius: .5em;
+        padding: 0 .5em;
+        text-transform: capitalize;
+    }
+    img {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+        height: $circle;
+        width: $circle;
+    }
+    .avatar-image {
+        $borderSize: .25em;
+        &.open {
+            border: $borderSize solid #C5C5C5;
+        }
+        &.accepted {
+            border: $borderSize solid lightgreen;
+        }
+        &.onprocess {
+            border: $borderSize solid #ECC93F;
+        }
+        &.done {
+            border: $borderSize solid #1AD08E;
+        }
+        &.cancel,
+        &.denied {
+            border: $borderSize solid #FF5252;
+        }
+        &.complete {
+            border: $borderSize solid #72ADE6;
+        }
+    }
+}

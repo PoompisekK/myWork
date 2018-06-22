@@ -1,0 +1,29 @@
+<ion-header>
+    <app-nav-header [pageName]="'M_CHECK_INOUT.COMPLETED'"></app-nav-header>
+</ion-header>
+<ion-content>
+
+    <div class="row pay-complete">
+
+        <div class="col margin-auto">
+            <div text-center padding class="text-header mb-10" translate>
+                M_CHECK_INOUT.SUCCESS
+            </div>
+
+            <div text-center>
+                <img src="assets/img/checked.png" />
+            </div>
+
+            <div class="msg-container">
+                <!-- <p text-center class="mt-3">We've sent you an entrance time</p> -->
+                <p text-center class="mt-3">{{ clockType }} {{ checkedTime?.recorderTime }}</p>
+            </div>
+
+            <div class="pl-16 pr-16">
+                <button ion-button (click)="goToHome()" class="btn-home" outline translate>M_CHECK_INOUT.BACK_TO_HOME</button>
+            </div>
+        </div>
+       
+    </div>
+
+</ion-content>

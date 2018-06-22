@@ -1,0 +1,94 @@
+<ion-header *ngIf="haveHeader" header-bar [custom-back-button]="!canGoBack" (back-click)="goHome()">
+</ion-header>
+<ion-content class="has-footer">
+  <ion-grid style="min-height: 100%" *ngIf="isSuccessful">
+    <ion-row style="height: 100%;text-align: center;margin : auto;" *ngIf="!showSummary; else summarySection">
+      <div class="svg" style="margin : auto;padding-bottom: 5em;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="10em" height="10em" viewBox="-263.5 236.5 26 26">
+          <g class="svg-success">
+            <circle cx="-250.5" cy="249.5" r="12" />
+            <path d="M-256.46 249.65l3.9 3.74 8.02-7.8" />
+          </g>
+        </svg>
+        <!-- <p *ngIf="!haveHeader" style="font-size:2em;margin:0;" translate>COMMON.PAYMENT.Payment</p> -->
+        <p style="font-size:2em;margin:0;color:#1976d3" translate>COMMON.PAYMENT.SUCCESS</p>
+        <!-- <br> -->
+        <!-- <p>Your order ID is: {{paymentService.order.orderID}}</p> -->
+      </div>
+    </ion-row>
+
+    <ng-template #summarySection>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title translate>COMMON.CHECKOUT.PLAN</ion-card-title>
+          <p>{{ orderLineProduct?.LINEDESC }}</p>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid *ngIf="orderLinePerson">
+            <ion-row>
+              <ion-col col-12 col-md-6>
+                <h2 translate>COMMON.ORDER.LOCATION_NAME</h2>
+                <p>{{ orderLineProduct?.zybatCourseOrderlineDetail.BRANCH}}</p>
+              </ion-col>
+              <ion-col col-12 col-md-6>
+                <h2 translate>COMMON.ORDER.BUILDING_NAME</h2>
+                <p>{{ orderLineProduct?.zybatCourseOrderlineDetail.BUILDING}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title translate>COMMON.CHECKOUT.REGISTER_RESULT</ion-card-title>
+        </ion-card-header>
+        <ion-card-content *ngFor="let person of orderLinePerson;let i = index">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12 col-md-6>
+                <h2 translate>COMMON.USERPROFILE.FULLLNAME</h2>
+                <p>{{ person?.LINEDESC }}</p>
+              </ion-col>
+              <ion-col col-12 col-md-6>
+                <h2 translate>COMMON.USERPROFILE.CARDID</h2>
+                <p>{{ person?.zybatCourseOrderlineDetail.CARD_ID || 'x-xxxx-xxxxx-xx-x' }}</p>
+              </ion-col>
+              <ion-col col-12 col-md-6>
+                <h2 translate>COMMON.CHECKOUT.STATUS</h2>
+                <p>{{ person?.zybatCourseOrderlineDetail.EVENT_STATUS_DESC | translate }}</p>
+              </ion-col>
+              <!-- ต้องเป็น สถานะ รอคัดเลือกเท่านั้น ถึงจะแสดง col นี้ -->
+              <ion-col col-12 col-md-6 *ngIf="person.zybatCourseOrderlineDetail.EVENT_STATUS_DESC=='COMMON.COURSE.WAIT'">
+                <h2 translate>COMMON.CHECKOUT.INDEX</h2>
+                <p>{{ person?.zybatCourseOrderlineDetail.WAIT_SEQ }}</p>
+              </ion-col>
+              <ion-col col-12 col-md-6 *ngIf="person.zybatCourseOrderlineDetail.EVENT_STATUS_DESC=='COMMON.COURSE.WAIT_APPR' || person.zybatCourseOrderlineDetail.EVENT_STATUS_DESC=='COMMON.COURSE.RESERVED'">
+                <h2 translate>COMMON.CHECKOUT.INDEX</h2>
+                <p>-</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <hr *ngIf="i != orderLinePerson.length-1" style="height:2px;color:#D7D7D9;width:100%">
+        </ion-card-content>
+      </ion-card>
+
+      <ion-row>
+        <ion-col>
+          <h2></h2>
+        </ion-col>
+      </ion-row>
+    </ng-template>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid *ngIf="isSuccessful">
+      <!-- <ion-row>
+        <button ion-button style="width:100%" (click)="goMoreProduct()" translate>COMMON.PAYMENT.MOREPRODUCT</button>
+      </ion-row> -->
+      <ion-row>
+        <button ion-button style="width:100%" outline tappable (click)="goHome()" translate>COMMON.BUTTON.DONE</button>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

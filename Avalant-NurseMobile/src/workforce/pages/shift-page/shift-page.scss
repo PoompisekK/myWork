@@ -1,0 +1,165 @@
+shift-page {
+    .listDetail {
+        // margin-top: -2em;
+    }
+    .img-shift {
+        .btShift {
+            border-radius: 50%;
+            border: 1px solid #9b9a9a;
+            height: 3.7em;
+            width: 3.7em;
+            margin: 0em auto .25em;
+        }
+        .btShift.select {
+            border: 1px solid white;
+        }
+        img.svg-image-shift {
+            display: block;
+            margin: .7em auto .25em;
+            height: 2em;
+        }
+        span.button-label {
+            font-family: 'RobotoRegular','Prompt';
+            font-weight: lighter;
+            font-size: .9em;
+        }
+        .selectShift {
+            background-color: #b3b3b3;
+            height: 2px;
+            width: 100%;
+            margin-top: .5em;
+        }
+        .selectShift.select {
+            background-color: white !important;
+        }
+        p {
+            font-family: 'RobotoLight', 'Prompt';
+            font-size: 1.25em;
+            margin-top: .5em;
+        }
+    }
+    .btCreate {
+        margin-top: -1.5em;
+        button[transparent] {
+            height: 100%;
+            width: 100%;
+            vertical-align: middle;
+            box-shadow: none;
+            ion-icon {
+                padding: .15em 0;
+                color: white;
+                font-size: 2.5em;
+            }
+        }
+    }
+    ion-card.cardList1 {
+        border-radius: 10px;
+        margin-top: -2em;
+        font-family: 'RobotoRegular','Prompt';
+        .date {
+            text-align: right;
+            span {
+                color: #999;
+                margin-right: .5em;
+                font-size: 12px;
+            }
+            ion-icon {
+                color: #999;
+            }
+        }
+        .detail {
+            margin-top: -1em;
+            margin-bottom: .5em;
+            .status {
+                button {        
+                    height: 1.7em;        
+                    background-color: rgb(243, 146, 35);
+                    margin-left: .5em;
+                    border-radius: 8px;
+                    font-size: 11px;      
+                    box-shadow: none;                      
+                }  
+                button.Approved {
+                    background-color: rgb(27, 223, 86);
+                }
+                button.Rejected {
+                    background-color: rgb(252, 32, 32);
+                }
+                button.Waiting.For.Approval {
+                    background-color: rgb(243, 146, 35);
+                }
+                p {
+                    margin-left: .7em;
+                    margin-top: .5em;
+                    font-size: 13px;
+                }     
+            }
+            .detailZone {
+                p {
+                    color: #999;
+                    font-size: 12px;
+                }           
+            }
+        }
+    }
+
+    ion-card.cardList2 {        
+        border-radius: 10px;
+        margin-top: -2em;      
+        font-family: 'RobotoRegular','Prompt';
+        .detail {
+            margin-top: .5em;
+            margin-bottom: .5em;
+            .status {
+                margin-top: .3em;
+                button {        
+                    height: 1.7em;        
+                    background-color: rgb(243, 146, 35);
+                    margin-left: .5em;
+                    border-radius: 8px;
+                    font-size: 11px;      
+                    box-shadow: none;          
+                }   
+                button.Approved {
+                    background-color: rgb(27, 223, 86);
+                }
+                button.Rejected {
+                    background-color: rgb(252, 32, 32);
+                }
+                button.Waiting.For.Approval {
+                    background-color: rgb(243, 146, 35);
+                }
+                p {
+                    margin-left: .7em;
+                    margin-top: .5em;
+                    font-size: 13px;
+                }     
+            }
+            .detailZone {
+                margin-top: .5em;
+                p {
+                    color: #999;
+                    font-size: 10px;
+                    margin-right: 1em;
+                }
+                .iconZone {
+                    padding: 0;
+                }
+                .formZone,
+                .toZone {
+                    padding: 0;
+                    span {
+                        color: #999;
+                        margin-right: .5em;
+                        font-size: 10px;
+                    }
+                    ion-icon {
+                        color: #999;
+                        font-size: 12px;
+                    }
+                }           
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,827 @@
+{
+    "COMMON": {
+        "ACTIVATE_TYPE": {
+            "ACTIVATE": "Activate:",
+            "EMAIL": "E-mail",
+            "SMS": "SMS"
+        },
+        "ALERT": {
+            "ADD_TO_CART": "Added To Cart , Please check the alms bowl at the upper right hand corner",
+            "AGE_INVALID": "age invalid",
+            "BLACKLIST": "You'Re In Black List Until ",
+            "CARDIDINVALID": "CardId is invalid.",
+            "CARDIDISEXIST": "This cardId is exist",
+            "CHANGELANGUAGE": "Language Will Be Change When You'Re Sign In Next Time.",
+            "CONFIRMPAYMENT": "Confirm payment selected?",
+            "COURSE_CANCEL_CONFIRM": "Do you wish to cancel this event?",
+            "COURSE_DUPLICATE": "can't register course duplicate",
+            "EMAIL_DOESNT_EXIST": "User email doesn’t exist.",
+            "EMAILEXIST": "This email is exist.",
+            "EMAILFORMAT": "format incorrect.",
+            "EVENT_DUPLICATE": "can't register event duplicate",
+            "FILESIZEOVER": "The File size is over 2MB.",
+            "FILL_COURSE_INVALID": "Please fill mandatory prerequsite",
+            "FILL_COURSE_NOT_PASS": "can't register because you has enter in ",
+            "FILL_DATA_INVALID": "Fill mandatory not complet",
+            "INBLACKLIST": "You'Re In Black List.",
+            "INVALID": "Invalid Data",
+            "LOADING": "Loading...",
+            "MISSING": "Missing",
+            "NORMAL_ALERT": "Warning",
+            "NOTFOUND": "-- Not Found --",
+            "NOTIFICATION": "Notification",
+            "OTP_INVALID": "The OTP is invalid.",
+            "OUT_OF_DATE_DONATE": "out of date donate",
+            "OUT_OF_REGISTER_DATE": "out of date register",
+            "OUTOFSTOCK": "out of stock",
+            "PASSWORD_LENGTH": "Minimum 8 characters and maximum 16 characters",
+            "PERSON": "person",
+            "PLEASESIGNIN": "Please Sign In",
+            "PLS_ATTCH_DOC": "Please attach indentity document",
+            "PLZ_PAID_INFORM": "Please check email or my ordder for paid inform",
+            "PRIVILEGE_DUPLICATE": "can't register privelege duplicate",
+            "REGIS1FORTIME": "Can't register more then 1 event for one register",
+            "REGISTER_PERSON_LIMITED": "Register person can't more then",
+            "REGISTERFULL": "This Course Is Full.",
+            "SAVED": "Data Is Saved",
+            "TITLE": "Please select title",
+            "TITLETYPE": "Please type title in case you select other",
+            "UPLOADSUCCESS": "Upload Success ",
+            "USERNAMEEXIST": "Username Exist",
+            "VIP_CODE_USED": "vip code has used",
+            "VIP_UNUSEABLE": "Vip Code Is Usabled",
+            "VIPCANTUSE": "VIP CODE can't use",
+            "WRONGNEWPASSWORD": "Minimum 8 characters and maximum 16 characters"
+        },
+        "AMOUNT": {},
+        "AUTHEN": {
+            "SIGNIN.NAME": "Button",
+            "USERNAME": "Email"
+        },
+        "BUTTON": {
+            "ADD_ADDRESS": "Add Address",
+            "ADD_FAVORITE": "Add to favorite",
+            "APPLY": "apply",
+            "BACK": "Back",
+            "CANCEL": "Cancel",
+            "CHECKOUT": "Check Out",
+            "CLOSE": "Close",
+            "CONFIRM": "Confirm",
+            "CONFIRMJOIN": "Confirm Join",
+            "CROP": "Crop Image",
+            "DONATE": "Donate Course",
+            "DONE": "Done",
+            "EDIT": "Edit",
+            "NEXT": "Next",
+            "OK": "Ok",
+            "PAY": "Payment Summit",
+            "REMOVE": "Remove",
+            "REMOVE_FAVORITE": "Remove from favorite",
+            "REQUESTOTP": "Request OTP",
+            "SAVE": "Save",
+            "SHIP_HERE": "Ship Here",
+            "SIGN_UP": "Sign Up",
+            "SUBMIT": "Submit",
+            "SUBMIT_BOOK": "Submit"
+        },
+        "CART": {
+            "ADDTOCART": "Add To Cart",
+            "ALREADYADDTOCART": "Already Added To Cart",
+            "CONFIRM_REMOVING_CART_ITEM": "Remove cart item",
+            "COURSE_NAME": "Course name",
+            "EMPTY": "Cart is empty. Let's shopping !",
+            "PARTICIPANT_LIST": "Participant"
+        },
+        "CATALOG": {
+            "MORE +": "More +"
+        },
+        "CATEGORY": {
+            "CATEGORY": "Categories"
+        },
+        "CATEGORY_LIST": {
+            "ALLPRODUCT": "All Product"
+        },
+        "CHANGELANGUAGE": {
+            "EN": "English",
+            "TH": "Thai"
+        },
+        "CHECKBOX": {
+            "ACCEPT": "Accept"
+        },
+        "CHECKOUT": {
+            "ADTENDEE_COURSE": "Attendee Course",
+            "ADTENDEE_EVENT": "Adtendeeevent",
+            "AFFIRM_TITLE": "Affirm",
+            "AFTERNOON": "Afternoon",
+            "ALTERNATIVETELEPHONE": "Tel.",
+            "ATTACH_DOCUMENT": "Attach File",
+            "BOOK_INFORMATION": "Bookinformation",
+            "CHOICE_COURSE_RAISE": "choose again",
+            "CHOICE_DONATION_RAISE": "Choose More Project",
+            "CHOICE_EVENT_RAISE": "choose again",
+            "CHOICE_PRIVILEGE_RAISE": "donate again",
+            "CHOICE_PRODUCT_RAISE": "sale again",
+            "CHOOSE_COURSE": "choose course",
+            "CHOOSE_EVENT": "choose event",
+            "CHOOSE_SHIPPING_ADDRESS": "Choose Shipping Address",
+            "COUPON_DISCOUNT": "Coupon Discount",
+            "COUPON_PLACEHOLDER": "Coupon here",
+            "COURSE_EMPTY": "please choose course",
+            "CUSTOMER_TYPE": "customer type",
+            "DISCOUNT": "Discount",
+            "DISCOUNTCOUPON": "Discount Coupon",
+            "DISCOUNTMEMBER": "Discount Member",
+            "DONATE_EMPTY": "please choose donate",
+            "DONATION": "donate",
+            "DONATION_DETAIL": "donation detail",
+            "DONATION_LIST": "donation list",
+            "DONATION_PRICE": "donation price",
+            "DONATION_TYPE": "Donation Type",
+            "ENTER_SHIPPING_ADDRESS": "Enter Shipping Address",
+            "ENTER_TIME": "Enter Time",
+            "EVENT_EMPTY": "please choose event",
+            "EVENT_NAME": "event name",
+            "FAMILY_INFORMATION": "Parent Information",
+            "FILL_INFORMATION": "Edit Information",
+            "FREE": "free",
+            "FULL_DAY": "Full Day",
+            "GENERAL": "general",
+            "GENERAL_INFORMATION": "Common Infomation",
+            "INDEX": "Index",
+            "INTEMTOTAL": "Item Total",
+            "LOCATION": "Location",
+            "MEDICAL_INFORMATION": "Medical Information",
+            "MORNING": "Morning",
+            "NAME": "name",
+            "ORDER": "ORDER",
+            "PAYMENT": "Payment",
+            "PLAN": "Plan",
+            "PLZ_UPDATE_INFORMATION": "Please Update Your Information",
+            "PREREQUISITE_QUESTION": "Prerequisite Question",
+            "PREREQUISITE_QUESTION ": "Have You Ever Been Treated In These Courses Or Not?",
+            "PREREQUISITE_TITLE": "Information Course",
+            "PRICE": "PRICE",
+            "PRODUCT": "product",
+            "PROMO_DISCOUNT": "Promotion Discount",
+            "PROMOTION": "Promotion",
+            "QUANTITY": "quantity",
+            "REGISTER_DETAIL": "register detail",
+            "REGISTER_RESULT": "Register Result",
+            "REQUEST_DONATION": "Request Donation",
+            "REQUEST_PRIVILEGE": "Request privilege",
+            "SEARCHUSER": "Search User",
+            "SHIPPING": "Shipping",
+            "SHIPPING_INFORMATION": "Shipping Information",
+            "SHOPPINGCART": "Shoppingcart",
+            "SPECIAL_INFORMATION": "Specification Information",
+            "STATUS": "Status",
+            "STAY_NIGHT": "Stay Night",
+            "SUB_TOTAL": "Sub Total",
+            "SUMMARY": "Summary",
+            "TITLE_GENERAL_INFORMATION": "General Infomation",
+            "TOTAL": "Total",
+            "TOTALVOLUNTEER": "Totalvolunteer",
+            "VIP": "VIP",
+            "YEAR_ENTER": "Year",
+            "YOURORDERID": "Order ID:"
+        },
+        "COMPANY": {
+            "VIP_CODE": "Vip Code"
+        },
+        "CONFIRMATION": {
+            "SIGN_OUT": "Are you sure you want to Sign out ?"
+        },
+        "COURSE": {
+            "PRERE_CHECK_WARN": "Can't register because you not participated in ",
+            "RESERVED": "reserved",
+            "VIP_CODE": "VIP Code",
+            "WAIT": "wait",
+            "WAIT_APPR": "wait approve"
+        },
+        "DONATION": {
+            "INVALID_DONATION_AMOUNT": "Please make donation more than zero baht"
+        },
+        "FILEUPLOADER": {
+            "NOFILEINRECORD": "No File in Record",
+            "PROGRESS": "Progress:"
+        },
+        "FORGOT_PWD": {
+            "SEND_RESET_PWD": "System has send link for reset password to email for",
+            "SEND_RESET_PWD2": ""
+        },
+        "FORGOTPW": {
+            "BACKTOSIGNIN": "Sign In",
+            "CANCEL": "Cancel",
+            "EMAIL": "Email Address",
+            "FORGOT_PWD": "Forgot Password",
+            "FORGOT_SUCCESS_U_MUST_CHECK_INBOX": "Check inbox for email we just sent you.",
+            "FORGOT_SUCCESS_U_MUST_RESET_PWD": "You must reset your password.",
+            "PLZFILLEMAIL": "Please fill email.",
+            "SEND": "Send",
+            "SIGNUP": "Sign Up",
+            "USERNAME": "Username"
+        },
+        "GENDER": {
+            "FEMALE": "Female",
+            "MALE": "Male"
+        },
+        "GROUP_EVENT": {
+            "ONLY_ONE_GROUP_EVENT": "You can register to only one Group Event item per time",
+            "REGISTER": "Register to this event"
+        },
+        "HOME": {
+            "BRANDFOLLOWER": "Brand Follower",
+            "COURSE": "Course Event",
+            "DONATION": "Donation",
+            "GROUP": "Group Event",
+            "PRIVILEGE": "Privilege",
+            "PRODUCT": "Product"
+        },
+        "LABEL": {
+            "AMOUNT": "Amount"
+        },
+        "LANGUAGE": {
+            "ENGLISH": "English",
+            "THAI": "Thai"
+        },
+        "MENU": {
+            "CHANGE_PASSWORD": "Change Password",
+            "CHANGELANGUAGE": "Change Language",
+            "CONTACTUS": "Contact Us",
+            "HELP": "Help",
+            "INVOICE": "Invoice",
+            "MY_ORDER": "My Order",
+            "MY_PROFILE": "My Profile",
+            "MY_REWARD": "My Reward",
+            "PAYMENT_TRANSACTION": "Payment Transaction",
+            "SEARCH_INVOICE": "Search Invoice",
+            "SEARCH_ORDER": "Search Order",
+            "SEARCH_PAYMENT_TRANSACTION": "Search Payment Transaction",
+            "SETTINGS": "Settings",
+            "SIGN_OUT": "Sign Out",
+            "SIGNIN": "Sign In",
+            "SIGNUP": "Sign Up"
+        },
+        "MY_REWARD": {
+            "CARDNO": "Card No.",
+            "CARDSTATUS": "Card Status",
+            "COUPON": "Coupon",
+            "CREATEDATE": "Create Date",
+            "DATEMEMBER": "Date of member",
+            "EXPIREDATE": "Expire Date",
+            "NOTMEMBER": "You are not a member",
+            "NOTVOUCHER": "Not found voucher",
+            "PRIVILEGE": "Privilege",
+            "REMARK": "Remark",
+            "VIPCODE": "Vip Code",
+            "VOUCHER": "Voucher",
+            "YBAT": "Ybat"
+        },
+        "MYORDER": {
+            "ADDRESS": "Address",
+            "AMOUNT": "Amount",
+            "BUYDATE": "Order Date",
+            "DONATEDATE": "Donate Date",
+            "DONATION": "Donation",
+            "DONATIONTITLE": "Donation Title",
+            "EMAIL": "Email",
+            "INVOICENO": "Invoice No",
+            "ITEMORDERLIST": "Order List",
+            "ITEMS": "items",
+            "LIST": "Donate List",
+            "MOBILENO": "Moblie",
+            "ORDERCODE": "Order Code",
+            "PAYMENT": "Payment",
+            "PAYMENTTYPE": "Payment Type",
+            "PRICECOUPONDISCOUNT": "Coupon Discount Price",
+            "PRICEMEMBERDISCOUNT": "Member Discount Price",
+            "PRICEPERITEM": "Price per item",
+            "PRODUCT": "Product",
+            "QUANTITY": "Quantity",
+            "SHIPPINGFEE": "Shipping fee",
+            "STATUS": "Status",
+            "TAXINVOICENO": "Tax Invoice No",
+            "TOTALAMOUNT": "Total",
+            "TOTALPRICE": "Total Price"
+        },
+        "MYVOUCHER": {
+            "NOTFOUND": "Not Found Voucher",
+            "REMARK": "Remark: The voucher is your own. They will be expire after be generated 1 year."
+        },
+        "NOTIFICATION": {
+            "NONOTIFICATION": "Not found notification."
+        },
+        "ORDER": {
+            "ALL_STATUS": "All",
+            "BED_NO": "Bed No.",
+            "BED_TYPE": "Bed type",
+            "BUILDING_NAME": "Building name",
+            "DATE_FROM": "Date from",
+            "DATE_TO": "To",
+            "DONATE_FROM": "Donate Date",
+            "FLOOR": "Floor",
+            "GIFT": "Bonus free gift",
+            "LOADING": "Loading...",
+            "LOCATION_NAME": "Location name",
+            "ORDER_LINE_LIST": "Order list",
+            "PRICE": "Price",
+            "PRICE_PER_PRODUCT": "Price per piece",
+            "PRODUCT_AMT": "Product amount",
+            "SHIPPER_NAME": "Shipper",
+            "SHIPPING_ADDRESS": "Shipping address"
+        },
+        "OTP": {
+            "REF": "Ref:"
+        },
+        "PAYMENT": {
+            "ACCOUNT_NAME": "Account Name",
+            "ACCOUNT_NO": "Account No",
+            "BANK_NAME": "Bank Name",
+            "BANK_PAYMENT": "Bank Tranfer",
+            "BRANCE_NAME": "สาขา",
+            "CREDITCARD_PAYMENT": "Credit Card",
+            "FROMBANK": "From Bank",
+            "GO_HOME": "Go home",
+            "NO_DATA": "No payments have been made yet",
+            "ORDERCODE": "Ordercode",
+            "PAYMENT_CONFIRM": "Confirm notification payment",
+            "PAYMENT_HEADER": "Payment",
+            "PAYMENT_METHOD": "Payment Method",
+            "PAYMENTAMOUNT": "Payment Amount",
+            "PAYMENTDATE": "Paymentdate",
+            "PAYMENTSLIP": "Paymentslip",
+            "PAYMENTTIME": "Paymenttime",
+            "SELECT": "Select your payment method",
+            "SUCCESS": "Payment success",
+            "TOBANK": "To Bank"
+        },
+        "PRODUCT": {
+            "REGISTER_COURSE": "Register Course"
+        },
+        "PRODUCTITEM": {
+            "DETAIL": "Description",
+            "REVIEW": "Review"
+        },
+        "PROFILE": {
+            "CHANGE_PROFILE_IMAGE": "Change"
+        },
+        "REQUIRE": {
+            "FIELD_MOBILE": "Please Fill Mobile field."
+        },
+        "RESETTING_PW": {
+            "CONTENT": "Please input your email",
+            "TITLE": "Resetting password"
+        },
+        "SEARCH": {
+            "SEARCH": "Input Search Text"
+        },
+        "SERVERMESSAGE": {
+            "IGNORE_VERSION": "Do not remind this update"
+        },
+        "SETTINGS": {
+            "CHANGE_LANGUAGE": "Change language"
+        },
+        "SHIPPING": {
+            "CHOOSE_SHIPPING": "Choose shipping address",
+            "CONFIRM_ADDRESS": "Choose this address",
+            "DEL_ADDRESS": "Delete address",
+            "EDIT_ADDRESS": "Edit address",
+            "NEW_ADDRESS": "Add new address",
+            "NOTDONATEMORETHANTHREE": "Only 3 Donations Per Donation",
+            "PRIVILEGE_MORE_THAN_ONE": "Can only register one privilege",
+            "SHIPPING_INFO": "Shipping information",
+            "SHIPPING_WARN": "Please add new shipping address",
+            "TOTALNOZERO": "Please Fill in The Donation Amount Or Delete The Unwanted Donation Project"
+        },
+        "SHOP": {
+            "ADDTOCART": "Add to Cart",
+            "TAXINCLUDED": "Local taxes included"
+        },
+        "SIGNIN": {
+            "CORRECT_YOUR_EMAIL": "Please enter correct email address",
+            "EMAIL": "Email",
+            "FAILCHANGEPASSWORD": "Failed",
+            "FAILED": "Sign In failed",
+            "FORGOTPASSWORD": "Forgot Password",
+            "INVALID_CREDIENTIAL": "Email or password is invalid",
+            "NEED_EMAIL_ACTIVATED": "Please activate your account",
+            "NEWPASSWORD": "New Password",
+            "OR": "Or",
+            "PASSWORD": "Password",
+            "SIGN_IN_WORKING": "กำลังเข้าสู่ระบบ...",
+            "SIGN_OUT_WORKING": "Signing Out...",
+            "SIGNIN": "Sign In",
+            "SUCCESSCHANGEPASSWORD": "Success",
+            "VERIFY_OTP_NOW": "Verify with OTP",
+            "WITH": "Sign In with"
+        },
+        "SIGNUP": {
+            "ACTIVED_METHOD": "Actived Method",
+            "CHECKEMAIL": "Please check your email for activation",
+            "COMPLETED": "Sign Up complete",
+            "CONFIRM": "I Agree To Receive Marketing Material.",
+            "DO_YOUWANT_CANCEL": "Do you want to cancel",
+            "EMAIL": "Email",
+            "EMAIL_EXIST": "This email already registered.",
+            "FAILED": "Registration Failed",
+            "FIRSTNAME": "Firstname",
+            "LASTNAME": "Lastname",
+            "MISSMATCH_CONFIRM_PASSWORD": "Incorrect confirm password please verify your input",
+            "MOBILE": "Mobile",
+            "NICKNAME": "Nickname",
+            "OLD_PASSWORD": "Old Password",
+            "OLDPASSWORD": "oldPassword",
+            "OTP_ENTER_MOBILE": "Enter your mobile number",
+            "OTP_INPUT_BELOW": "Please input OTP below from SMS Inbox to verify your account",
+            "OTP_PWD_HAS_SEND1": "A one time password has been send to",
+            "OTP_PWD_HAS_SEND2": "",
+            "OTP_REFER_CODE": "Refer Code :",
+            "OTP_RESENT_CODE": "Resent OTP",
+            "PASSWORD": "Password",
+            "PASSWORD_LESSTHAN4": "Your input password has less than 4 character,please verify your input",
+            "PLEASE_ACTIVATE": "Please check mail inbox to actived your account",
+            "PLEASECHECKMAIL": "Please go to your mail box and check email for activation",
+            "REMARK": "Remark:",
+            "REMARK_LIST_1": "- The activation email that you can see in the mail box wil bel send from digital@avalant.co.th",
+            "REMARK_LIST_2": "- If you not found activation email. Please check at junk mail.",
+            "RESENDHERE": "Change",
+            "RETRYPASSWORD": "Retry Password",
+            "SENDAGAIN": "Resend",
+            "USERNAME": "Username",
+            "VERIFIED_DONE": "Your account has been verified.",
+            "VERIFIED_OTP_PWD": "Verifiy one time password (OTP)",
+            "VERIFY_INPUT": "Please verify your input",
+            "VERIFY_OTP_EXPIRED": "OTP Code has been expired, please try again",
+            "VERIFY_OTP_FAIL": "Verify otp fail, please try again",
+            "WARNING": "Your Nickname Will Be Publicly Visible On Your Web Site User Profile, And Associated With Your Activity.",
+            "WORKING": "Signing Up..."
+        },
+        "SUBHEADER": {
+            "HOME": "Home"
+        },
+        "TESTSCRIPT": {
+            "XXXXX": "xx"
+        },
+        "UNIT": {
+            "CURRENCY": "THB"
+        },
+        "USERPROFILE": {
+            "ACCEPTCONDITION": "Policy & Condition",
+            "ACCEPTITTRUE": "I Confirmed. They'Re All True.",
+            "ADDRESS": "Address",
+            "ADDRESS_NO": "Address No",
+            "ADDRESSNAME": "Address Name",
+            "AGE": "Age",
+            "BIRTHDATE": "Birthdate",
+            "CARDID": "Card Id",
+            "COMMON": "Common Intormation",
+            "CONTACT": "Contact Information",
+            "CONTACT_NAME": "Contact Name",
+            "CONTACT_SURNAME": "Contact'S Surname",
+            "CONTACTINFO": "Contact Information",
+            "COUNTRY": "Country",
+            "DISTRICT": "District",
+            "DONATION_TYPE": "Donation Type",
+            "EDUCATION_INFORMATION_HEAD": "Business Info/Education Info",
+            "EDUCATION_LEVEL": "Education Level",
+            "EMAIL": "E-Mail",
+            "EMERGENCY_DATA": "Emergency Contact",
+            "EMERGENCY_EMAIL": "Email",
+            "EMERGENCY_FIRSTNAME": "First name",
+            "EMERGENCY_LASTNAME": "Last name",
+            "EMERGENCY_TELEPHONE": "Tel.",
+            "EMERGENCYCONTACT": "Emergency Contact Information",
+            "ENTER_TIME": "Enter Time",
+            "EXT_PHONE": "Ext.",
+            "FIRSTNAME": "Firstname",
+            "FULLLNAME": "Name-Surname",
+            "GENDER": "Gender",
+            "GENDERS_FEMALE": "Female",
+            "GENDERS_MALE": "Male",
+            "GENERALINFO": "General Information",
+            "HIGHT": "Height ( Cm.)",
+            "HOUSENO": "House No",
+            "IDENTITYDOC": "Identity Document",
+            "INPUT_ONE_ATTACHMENT": "Please input only one attachment file.",
+            "LANGUAGE": "Language",
+            "LASTNAME": "Lastname",
+            "LINE_ID": "Line Id",
+            "MEDICAL_INFORMATION_HEAD": "Medical Information",
+            "MOBILE": "Mobile Phone",
+            "MONTHS_LONG": "January February March April May June July August September October November December",
+            "MONTHS_SHORT": "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+            "MOO": "Moo",
+            "NATIONALITY": "Nationality",
+            "NICKNAME": "Nickname",
+            "OCCUPATION": "Occupation",
+            "OFFICE_PHONE": "Office Phone",
+            "PARENT_EMAIL": "Email",
+            "PARENT_MOBILE": "Mobile",
+            "PARENT_NAME": "Parent'S Name",
+            "PARENT_SURNAME": "Parent'S Surname",
+            "PASSPORTNO": "Passport No.",
+            "PERSONAL": "Personal Information",
+            "PERSONALINFO_HEADER_TITLE": "Personal Information",
+            "PHONE": "Phone",
+            "PHONE_HOME": "Phone",
+            "PICTURECONDITION": "( Picture Must Not Be Over 2 Years )",
+            "POSITION": "Position",
+            "POSTCODE": "Postal Code",
+            "PROFILEPICTURE": "Profile Picture",
+            "PROVINCE": "Province",
+            "RACE": "Race",
+            "RELATION": "Relation",
+            "RELIGION": "Religion",
+            "ROOM": "Room",
+            "SOI": "Soi",
+            "STREET": "Street",
+            "SUBDISTRICT": "Sub District",
+            "TAXID": "Tax Id",
+            "TELEPHONE": "Tel.",
+            "TITLE": "Title",
+            "TITLE_C": "Title Corperlation",
+            "TITLE_NAME": "Title Fill",
+            "TITLE_NAME_C": "Title Cop. Fill",
+            "UPDATED_COMPLETE": "System have been updated your information.",
+            "UPDATING_PROFILE": "Updating your information.",
+            "WEIGHT": "Weight ( Kg.)",
+            "WORKPLACE": "Workplace",
+            "WORKPLACEINFO": "Work/College Information",
+            "YEARS": "Year"
+        },
+        "VALIDATE": {
+            "MINICHARANDMAXCHAR": "Minimum 8 characters and maximum 16 characters",
+            "PASSWORD_MISMATCH": "Password Mismatch",
+            "PASSWORD_REQUIRED": "Password Is Required"
+        },
+        "VERIFY_INPUT": {
+            "PLEASE_CORRECT_COMPLETELY_INPUT": " ",
+            "PLEASE_CORRECTLY_INPUT": "Please correctly input ",
+            "PLEASE_INPUT": "Please complete input ",
+            "PLEASE_INPUT_COMPLETELY": " "
+        },
+        "VIPCODE": {}
+    },
+    "COURSEEVENT": {},
+    "CUSTOM": {
+        "EMERGENCY": {
+            "TELEPHONE": "Tel."
+        },
+        "EVENTLIST": {
+            "RESERVE": "Reserved"
+        },
+        "USERPROFILE": {
+            "GENERALPROFILE1": "General Info 1",
+            "GENERALPROFILE2": "General Info 2",
+            "IDENTIFYDOC": "Identify Document",
+            "MEDICALINFO": "Medical Info",
+            "REGISTER": "Register"
+        }
+    },
+    "DONATE": {
+        "AMOUNT": {
+            "INVALID": "Please Fill Donate Amount",
+            "MUSTMOREZERO": "Cannot donate less than 0.00"
+        }
+    },
+    "GROUPEVENT": {
+        "BUTTON": {
+            "VOLUNTEER": "Volunteer"
+        },
+        "CHECKOUT": {
+            "CHOICE_EVENT_RAISE": "Choice Event Raise",
+            "TOTALVOLUNTEER": "Totalvolunteer"
+        }
+    },
+    "PRIVILEGE": {
+        "MYPRIVILEGE": {
+            "DONATION": "Donate",
+            "DONATORINFO": "Donator Info"
+        }
+    },
+    "STORE": {
+        "AUTHEN": {
+            "FOLLOW": "Follow",
+            "UNFOLLOW": "Unfollow"
+        }
+    },
+    "MSG": {
+        "SAVE": "Save",
+        "AGREE": "Agree",
+        "MONTHS": "January February March April May June July August September October November December",
+        "SHORT_MONTHS": "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+        "AGO": "ago",
+        "ANSWER": {
+            "DONE": "Done",
+            "OK": "OK",
+            "CANCEL": "Cancel",
+            "YES": "Yes",
+            "NO": "No",
+            "SURE": "Sure",
+            "NOT_SURE": "Not sure",
+            "NOT_NOW": "Not now",
+            "CONFIRM": "Confirm",
+            "NEXT": "Next"
+        },
+        "AUTH": {
+            "LOGIN_WITH": "Sign In with",
+            "OR": "Or",
+            "CLEAR": "Clear",
+            "USERNAME": "Username",
+            "PASSWORD": "Password",
+            "CONFIRM_PASSWORD": "Confirm Password",
+            "FORGOT_PASSWORD": "Forgot Your Password ?",
+            "FIRST_NAME": "First name",
+            "LAST_NAME": "Last name",
+            "NICK_NAME": "Nickname",
+            "EMAIL": "Email",
+            "NEED_EMAIL_ACTIVATED": "Need Email Activated",
+            "REGISTER_NOTICE": "Your nickname will be publicly visible on Website, User profile page and associated with your activities.",
+            "SUBSCRIBE_NEWS": "Keep me updated about the latest",
+            "LOGOUT_CONFIRMATION": "Are you sure you want to Sign out ?",
+            "INVALID_CREDIENTIAL": "Email or Password is incorrect."
+        },
+        "BRAND": {
+            "FAVORITE": "My Favorite Brand",
+            "POPULAR": "Popular Brand",
+            "VIEW_ALL": "View All"
+        },
+        "BROWSE": "Browse",
+        "CHANGE_LANGUAGE": "Change language",
+        "COMMENT": "Comment",
+        "COMMENTS": "Comments",
+        "COMPANY": "Company",
+        "CURRENCY": {
+            "THB": "Thai Baht"
+        },
+        "FACEBOOK": "Facebook",
+        "FEED": "Stream",
+        "FOLLOW": "Follow",
+        "ADD_FAVORITE": "Add to favorite",
+        "UN_FAVORITE": "Remove from favorite",
+        "FOLLOWED": "Followed",
+        "GOOGLE": "Google",
+        "LANG": {
+            "THAI": "Thai",
+            "ENGLISH": "English"
+        },
+        "LANGUAGE": "Language",
+        "LIKE": "Like",
+        "LIKES": "Likes",
+        "LINKEDIN": "LinkedIn",
+        "LOADING": "Loading",
+        "LOGGING_IN": "Signing in",
+        "LOGGING_OUT": "Signing out",
+        "LOGIN": "Sign In",
+        "LOGOUT": "Sign Out",
+        "MESSAGE": "Message",
+        "MESSENGER": "Messenger",
+        "MINE": "Mine",
+        "NOW": "Now",
+        "ORGANIZATION": {
+            "HOME_PAGE": "Home",
+            "STORE": "Store",
+            "DONATION": "Donation",
+            "COURSE_EVENT": "Course Event",
+            "GROUP_EVENTS": "Group Events",
+            "PRIVILEGES": "Privilege"
+        },
+        "PLACE": "Place",
+        "REGISTER": "Sign Up",
+        "SETTING": {
+            "USER_PROFILE": "User Profile",
+            "MY_ORDER": "My Orders",
+            "HISTORY": "My Histories",
+            "MY_REWARD": "My Reward"
+        },
+        "SETTINGS": "Settings",
+        "SIGN_UP": "Sign Up",
+        "USERPROFIEL_P1": {
+            "GENDERS": {
+                "MALE": "Male",
+                "FEMALE": "Female"
+            },
+            "TITLE": "Title Name",
+            "TITLE_NAME": "Specify Title Name",
+            "NAME": "Name",
+            "SURENAME": "Surename",
+            "NICKNAME": "Nickname",
+            "GENDER": "Gender",
+            "NATIONALITY": "Nationality",
+            "ID_NO": "ID No.",
+            "PASSPORT_NO": "Passport No.",
+            "RACE": "Race",
+            "RELIGION": "Religion",
+            "DATE_OF_BIRTH": "Date of birth",
+            "YEARS": "Years",
+            "AGE": "Age",
+            "WEIGHT": "Weight",
+            "HEIGHT": "Height"
+        },
+        "USERPROFIEL_P2": {
+            "LINE_ID": "Line ID",
+            "ADDRESS": "Address No",
+            "ADDRESSTOPIC": "Address",
+            "MOO": "Moo",
+            "ROAD": "Road",
+            "ADDRESSNAME": "Address Name",
+            "ROOM_NO": "Room No.",
+            "SOI": "Soi",
+            "STREET": "Road",
+            "PROVINCE": "Province",
+            "DISTRICT": "District",
+            "SUB_DISTRICT": "Sub District",
+            "POST_CODE": "Post Code",
+            "EMAIL": "E-mail",
+            "MOBILE_NO": "Mobile No.",
+            "PHONE": "Tel.",
+            "PHONE_EXT": "Ext."
+        },
+        "USERPROFIEL_P3": {
+            "PARENT_INFORMATION": {
+                "INFO_HEAD": "Parent Information",
+                "INFO_NAME": "First Name",
+                "INFO_SURENAME": "Last Name",
+                "INFO_EMAIL": "E-mail",
+                "INFO_MOBILE": "Mobile No."
+            },
+            "EDUCATION_INFORMATION": {
+                "INFO_HEAD": "Business Info/Education Info",
+                "OCCUPATION": "Occupation",
+                "EDUCATION": "Education",
+                "ADDRESS": "Address",
+                "SOIL": "Alley",
+                "ROAD": "Road",
+                "PROVINCE": "Province",
+                "DISTRICT": "District",
+                "SUB_DISTRICT": "Sub District",
+                "POST_CODE": "Post Code",
+                "OFFICE_PHONE": "Office Phone"
+            },
+            "EMERGENCY_INFORMATION": {
+                "INFO_HEAD": "Emergency Information",
+                "INFO_NAME": "First Name",
+                "INFO_SURENAME": "Last Name",
+                "INFO_RELATION": "Relation",
+                "INFO_EMAIL": "E-mail",
+                "INFO_MOBILE": "Mobile No."
+            }
+        },
+        "USERPROFIEL_P4": {
+            "MEDICAL_INFORMATION": "Medical Information"
+        },
+        "USERPROFIEL_P5": {
+            "INFO_HEAD": "Attach File",
+            "ATTACH_DOCUMENT_INFORMATION": "Attachment identification",
+            "ATTACHMENT": "Attachment Image (image does't over 2 years)"
+        },
+        "USER_PROFILE": {
+            "INFO_HEAD": "Update Profile",
+            "UPDATE_PROFILE": "Updating your information.",
+            "UPDATE_COMPLETE": "System have been updated your information."
+        },
+        "COURSES": {
+            "REGISTER": "Register this course",
+            "COURSE_NAME": "Course name",
+            "F_NAME": "First Name",
+            "L_NAME": "Last Name",
+            "CARD_NO": "Card NO.",
+            "FILL_INFORMATION": "Edit Information",
+            "PARTICIPANT_LIST": "Participant List",
+            "RELATION": "Relation",
+            "WARN": "Please check and update your information",
+            "PROFILE_PIC_WARN": "Profile picture (picture's age lower than 2 years)"
+        },
+        "DONATION": {
+            "DONATE_BTN": "Donate",
+            "DONATE": "Donate",
+            "AMOUNT": "Amount"
+        },
+        "EVENTS": {
+            "REGISTER": "Register this event",
+            "DONATE": "Donate"
+        },
+        "SHOPPING": {
+            "ADDCART": "Add to Cart",
+            "CART": "Cart",
+            "CART_TITLE": "My shopping cart",
+            "SHIPPING": "Shipping",
+            "PAYMENT": "Payment",
+            "ADDRESS": "Address",
+            "CART_EMPTY": "Cart Empty",
+            "CHECKOUT": "Register",
+            "CONFIRM_REMOVE_CART_ITEM": "Are you sure you want to remove this item from your cart?",
+            "REGISTER": "Register"
+        },
+        "PRODUCT": {
+            "ITEM_INFO": "Item Info"
+        },
+        "HEADER": {
+            "GENERAL_INFORMATION": "สั่งซื้อ",
+            "COMPANY_INFORMATION": "",
+            "FUNDRAISING_OBJECTIVE": "",
+            "SHIPPING_INFORMATION": "ระบุที่อยู่",
+            "PAYMENT": "ชำระเงิน"
+        }
+    }
+}

@@ -1,0 +1,119 @@
+<ion-header header-bar [logo]='false' title="{{'COMMON.MENU.HELP' | translate}}">
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines>
+          <ion-select style="max-width: 100%;width:100%" [(ngModel)]="selectedMenu" interface="popover">
+            <ion-option value="1">การสมัครสมาชิก</ion-option>
+            <ion-option value="2">การสมัครสมาชิกยุวพุทธฯ</ion-option>
+            <!-- <ion-option value="3">การบริจาค</ion-option>
+            <ion-option value="4">การสมัครเข้าอบรมหลักสูตรปฏิบัติธรรม หรือการเข้าร่วมกิจกรรม</ion-option> -->
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="selectedMenu==1">
+      <ion-col>
+        <ion-slides style="height: auto">
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/re01.jpg"><br>
+                <h2>1. กดเมนูมุมซ้ายบน</h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/re02.jpg"><br>
+                <h2>2. เลือกเมนูลงทะเบียน</h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/re03.jpg"><br>
+                <h2>3. กรอกข้อมูลให้ครบ อ่านข้อตกลงให้เข้าใจ และกดยอมรับข้อตกลง</h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/re04.jpg"><br>
+                <h2>4. ยืนการสมัครสมาชิก ที่กล่องขาเข้าอีเมลที่ใช้สมัคร<br><span style="color:red">*หมายเหตุ รูปแบบอีเมลจะแตกต่างกันไปขึ้นอยู่กับอุปกรณ์ที่ผู้ใช้งานใช้</span></h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="selectedMenu==2">
+      <ion-col>
+        <ion-slides style="height: auto">
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/yre01.jpg">
+                <br>
+                <h2>1. เลือกเมนูลงชื่อเข้าใช้</h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/yre02.jpg"><br>
+                <h2>2. เข้าสู่ระบบด้วย อีเมลที่ใช้ทำการสมัครสมาชิก และพาสเวิดที่ตั้ง</h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/yre03.jpg"><br>
+                <h2>3. เลือกเมนูสมาชิกยุวพุทธ และเลือกประเภทสมาชิกที่ต้องการ</h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/yre04.jpg"><br>
+                <h2>4. กดปุ่มบริจาค และไปที่ตระกร้าสินค้ามุมขวาบน</h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/yre05.jpg"><br>
+                <h2>5. กดปุ่มยืนยันการชำระเงิน</h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/yre06.jpg"><br>
+                <h2>6. ตรวจสอบข้อมูลที่ปรากฎ แล้วกดยืนยันการชำระเงิน</h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-content>
+                <img style="width:65%;margin:auto;" src="assets/img/tutorials/yre07.jpg"><br>
+                <h2>7. เลือกประเภทการชำระเงินที่ต้องการ และกดยืนยันการชำระเงิน<br><span style="color:red">*หมายเหตุ หากเลือกประเภทการชำระเงินเป็นโอนผ่านธนาคาร ต้องมีการยืนยันการโอนเงินผ่านธนาคารที่เมนูรายการของฉันด้วย</span></h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

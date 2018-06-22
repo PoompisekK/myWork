@@ -1,0 +1,9 @@
+keytool -exportcert -alias androiddebugkey -keystore C:\Users\Bundit.Ng\.android\debug.keystore | openssl sha1
+Password : android
+
+
+keytool -exportcert -alias ybat-app -keystore "D:\CFD\DMPMobile\KeyStore\ybat-release-key.keystore" | openssl sha1
+Password : P@55w0rd
+
+
+

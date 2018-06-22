@@ -1,0 +1,25 @@
+<ion-header header-bar>
+</ion-header>
+<ion-content>
+  <button ion-button (click)="rest()">foo</button><br>
+  <button ion-button (click)="makeObject()">makeObject</button><br>
+  <button ion-button (click)="getEntity()">Get Entity</button>
+  <button ion-button (click)="stop()">Stop get Entity</button>
+  <br>
+  <button ion-button (click)="waterfallTesting()">Waterfall</button><br>
+  <button ion-button (click)="testPaymentSuccess()">Test Payment Success page</button><br>
+  <button ion-button (click)="getNotification()">Notification NOW !</button><br>
+
+  <canvas #myCanvas width="500" height="200" style="border:2px solid black"></canvas>
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ date }}</ion-label>
+      <ion-datetime name="date" [(ngModel)]="date" required displayFormat="D MMMM YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ beDate | json }}</ion-label>
+      <ion-datetime-be item-content name="birthdate" [(ngModel)]="beDate" required displayFormat="D MMMM YYYY HH:mm"></ion-datetime-be>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

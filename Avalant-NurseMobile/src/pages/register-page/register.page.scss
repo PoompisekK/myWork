@@ -1,0 +1,173 @@
+/**
+ * @author Bundit.Ng
+ * @since  Tue May 30 2017
+ * Copyright (c) 2017 Avalant Co.,Ltd.
+ */
+
+//Declaration
+$bgColor: #03A9F5;
+$fontColor: white;
+$paddingSize: 1.5em;
+$plcHldOpacity: .75;
+//Style------------------------
+register-page {
+    ion-input[type=text],
+    ion-input[type=password] {
+         ::-webkit-input-placeholder {
+            color: $fontColor;
+            opacity: $plcHldOpacity;
+        }
+         ::-moz-placeholder {
+            color: $fontColor;
+            opacity: $plcHldOpacity
+        }
+         :-ms-input-placeholder {
+            color: $fontColor;
+            opacity: $plcHldOpacity;
+        }
+         :-moz-placeholder {
+            color: $fontColor;
+            opacity: $plcHldOpacity;
+        }
+    }
+    .wrapper-company{
+        position: absolute;
+        right: 0px;
+        width: 2.5vh;
+        height: 2.5vh;
+        font-size: 0.7em;
+        background: white;
+        text-align: center;
+        color: red;
+
+        // background: red;
+        border-radius: 50%;
+        border: 2px solid;
+        border-color: gray;
+    }
+    .employee-list{
+        border-radius: 50%;
+        border: 2px solid;
+        border-color: gray;
+        height: 3.5em;
+        width: 3.5em;
+    }
+    div.item-div {
+        width: 100%;
+        height: 3em;
+        display: inline-flex;
+        border-bottom: 1px solid $fontColor;
+    }
+    ion-item.item,
+    ion-item.item.input-has-focus {
+        div.item-inner {
+            border: none !important;
+            box-shadow: none !important;
+        }
+    }
+    ion-content.content {
+        background-color: $bgColor;
+    }
+    div.Header {
+        color: $fontColor;
+        font-size: 2em;
+        font-weight: normal;
+        top: 0;
+        left: 1em;
+    }
+    ion-grid.regisContent {
+        padding: 0 $paddingSize;
+        left: 0;
+        .inputIcon {
+            width: 2em;
+            height: 2em;
+        }
+        ion-input {
+            color: $fontColor;
+        }
+        span.textCaption {
+            color: $fontColor;
+            font-weight: lighter;
+        }
+        ion-row.activeUserMethod {
+            background-color: transparent;
+            ion-col {
+                ion-radio {
+                    .radio-icon {
+                        border-color: $fontColor;
+                    }
+
+                }
+                ion-label {
+                    color: $fontColor;
+                    font-size: 0.9em;
+                }
+            }
+        }
+        ion-item.keepUp2dateChk .checkbox-md {
+            margin: 0;
+        }
+        ion-item.keepUp2dateChk .checkbox-md .checkbox-icon {
+            background-color: transparent;
+            border-color: $fontColor;
+            margin: 1em;
+        }
+        ion-item.keepUp2dateChk,
+        ion-item.keepUp2dateChk .item-inner {
+            background-color: transparent;
+            font-weight: lighter;
+            color: $fontColor;
+            border: none;
+            font-size: 1em;
+            padding: 0;
+        }
+        button.signUpBtn.activated {
+            background-color: transparent !important;
+            opacity: .5;
+        }
+        button.signUpBtn:hover {
+            background-color: transparent !important;
+        }
+        button.signUpBtn {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid white;
+            box-shadow: none;
+            color: $fontColor;
+            text-transform: capitalize;
+            font-weight: normal
+        }
+    }
+    .margin-auto {
+        margin: auto;
+    }
+    div.closeDvBtn {
+        z-index: 100;
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        img.closeImgBtn:active {
+            opacity: .1;
+        }
+        img.closeImgBtn {
+            width: 2em !important;
+            height: 2em !important;
+            fill: white;
+            color: white;
+        }
+    }
+    @media (max-width: 567px) {
+        //Small likes iphone5 < 567px3
+        .img-avatar {
+            width: 100%!important;
+            border-radius: 50%;
+        }
+    }
+    @media (min-width: 567px) {
+        //Large < 567px
+        .img-avatar {
+            width: 50%;
+            border-radius: 50%;
+        }
+    }
+}

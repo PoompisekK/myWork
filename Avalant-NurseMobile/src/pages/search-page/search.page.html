@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <!--<ion-title>Search</ion-title>-->
+    <ion-searchbar  #searchbar class="search-input" [(ngModel)]="searchInputModel" 
+    (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
+    ></ion-searchbar>
+    <ion-spinner #spinner [hidden]="!isLoading"></ion-spinner>
+  </ion-navbar>
+</ion-header>
+<ion-content style="padding:5px">
+  <ion-grid>
+    <ion-list *ngFor="let shopList of shopTypeList">
+      <ion-list-header>
+        <div *ngIf="!categoryName">{{mapTabTitleName(shopList)}}</div>
+        <div *ngIf="categoryName">{{categoryName}}</div>
+      </ion-list-header>
+      <div *ngFor="let item of searchResult">
+        <ion-item text-wrap *ngIf="item.shop_type_id == shopList" (click)="clickItem(item)">
+          <ion-row>
+            <ion-col col-3 style="margin:auto;">
+              <img [src]="getImg(item.image_key)">
+            </ion-col>
+            <ion-col col-9 style="margin:auto;">
+              <ion-row>
+                <ion-col>{{item.display_name}}</ion-col>
+              </ion-row>
+              <ion-row *ngIf="item.fullprice && item.fullprice == item.productprice">
+                <ion-col>{{item.fullprice}} {{'COMMON.UNIT.CURRENCY' | translate}}</ion-col>
+              </ion-row>
+              <ion-row *ngIf="item.fullprice && item.fullprice != item.productprice">
+                <ion-col style="font-size:0.8em" style="color:red">
+                  <s>{{item.fullprice}} {{'COMMON.UNIT.CURRENCY' | translate}}</s>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="item.productprice && item.fullprice != item.productprice">
+                <ion-col>{{item.productprice}} {{'COMMON.UNIT.CURRENCY' | translate}}</ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </div>
+    </ion-list>
+    <ion-list *ngIf="!searchResult?.length && searchInputModel">
+      <ion-item style="text-align:center">
+        {{'COMMON.ALERT.NOTFOUND' | translate}}
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,36 @@
+ion-app {
+    &.ybat,
+    &.ybat-theme {
+        // Begin Loading styles
+        .loading {
+            // background: rgb(254, 193, 7);
+            background: #fec107;
+            .app-logo {
+                text-align: center;
+                img {
+                    width: 40%;
+                }
+            }
+            .spinner-md-crescent circle {
+                stroke: #303477;
+            }
+        } // End Loading styles
+        // Begin Header bar styles
+        [header-bar] {
+            .avalogo {
+                visibility: hidden;
+            }
+        } // End Header bar styles
+        // Begin Organization header styles
+        organization-header {
+            .logo-brand-wrapper .logo-brand {
+                box-shadow: none !important;
+                background: transparent !important;
+                border: 0 !important;
+            }
+            .sub-header-cover {
+                padding-top: 55px !important;
+            }
+        } // End Organization header styles
+    }
+}

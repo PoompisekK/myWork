@@ -1,0 +1,421 @@
+// Optimise touching
+html {
+    touch-action: manipulation;
+}
+
+$loading-bg-color: #1976D3; // old : #27aae1;
+// Loading style
+ion-app>.loading {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // background: $loading-bg-color;
+    background: white;
+    .loading-inner-wrap {
+        margin: auto;
+    } // .app-logo {
+    // }
+    $loading-spinner-size: 100px;
+    .spinner {
+        margin: 0 auto;
+        display: block;
+        height: $loading-spinner-size;
+        width: $loading-spinner-size;
+        background-image: url(../assets/img/u-white.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .spinner-crescent {
+        circle {
+            fill: transparent;
+            stroke-width: 4px;
+            stroke: rgba(255, 255, 255, 0.2);
+            stroke-dasharray: initial; // 2px;
+            stroke-dashoffset: initial;
+            &.spin1 {
+                stroke: #1976D3; // #fff;
+                stroke-dasharray: 128px;
+                stroke-dashoffset: 82px;
+            }
+            &.spin2 {
+                stroke: rgba(25, 118, 211, 0.527); // rgba(255, 255, 255, 0.4);
+                stroke-dasharray: 128px;
+                stroke-dashoffset: 112px;
+            }
+            &.spin3 {
+                stroke: rgba(25, 118, 211, 0.158);// rgba(255, 255, 255, 0.4);
+                stroke-dasharray: 128px;
+                stroke-dashoffset: 132px;
+            }
+        }
+    }
+}
+
+// Ion Img placeholder
+ion-img.img-unloaded {
+    background-size: cover;
+}
+
+.bg-placeholder {
+    background-image: url('../assets/img/placeholder.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+// Ionic Content
+ion-content.cards-bg {
+    background-color: #f4f4f7;
+}
+
+// Card
+$card-ios-box-shadow: 0 1px 4px 0px rgba(0,
+0,
+0,
+0.2);
+$card-md-box-shadow: $card-ios-box-shadow;
+.card.orange {
+    $bg: #F98435;
+    $text: #fff;
+    background-color: $bg;
+    color: $text;
+    .item {
+        background-color: $bg;
+        color: $text;
+        .price {
+            color: $text;
+        }
+    }
+}
+
+// Refresher
+.has-refresher>.scroll-content {
+    border-top: 0 !important;
+}
+
+// Ionic header
+// ion-header {
+//   ion-navbar {
+//     .toolbar-background,
+//     .toolbar-background-md {
+//       background: #fff;
+//     }
+//   }
+// }
+ion-header.header-md::after,
+.tabs-md[tabsPlacement="top"]>.tabbar::after,
+ion-header.footer-md::before,
+.tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    // box-shadow: inset 0 1px 0px 0px #ddd;
+    background-image: none;
+}
+
+// Header toolbar nav icon badge
+ion-icon.icon ion-badge.badge {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    line-height: 24px;
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    border-radius: 100%;
+    font-family: $font-family-base;
+    font-weight: normal;
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    border-bottom: 2px solid color($colors, 'primary');
+}
+
+// Tabs Styles (Material Design)
+// @see http://ionicframework.com/docs/api/components/tabs/Tabs/#sass-variables
+$tabs-md-tab-min-height: 4rem;
+$tabs-md-tab-color-active: color($colors,
+'primary');
+$tabs-md-tab-text-color: color($colors,
+'dark');
+$tabs-md-tab-text-color-active: color($colors,
+'primary');
+$tabs-md-tab-text-capitalization: none; //uppercase;
+///--------------------------------------------------------------------
+@mixin makeIcon($arg,
+$val) {
+    .ion-ios-#{$arg}:before,
+    .ion-ios-#{$arg}-circle:before,
+    .ion-ios-#{$arg}-circle-outline:before,
+    .ion-ios-#{$arg}-outline:before,
+    .ion-md-#{$arg}:before,
+    .ion-md-#{$arg}-circle:before,
+    .ion-md-#{$arg}-circle-outline:before,
+    .ion-md-#{$arg}-outline:before {
+        content: $val;
+        font-size: 1em;
+    }
+}
+
+// @include makeIcon(applyIcon, url('../assets/img/apply_black_24px.png'));
+// @include makeIcon(approveIcon, url('../assets/img/approve_black_24px-01.png'));
+@include makeIcon(applyIcon,
+url('../assets/img/svg/apply_black_24px.svg'));
+@include makeIcon(approveIcon,
+url('../assets/img/svg/approve_black_24px.svg'));
+@include makeIcon(brandPageIcon,
+url('../assets/img/tabs/card_black_24px.svg'));
+@include makeIcon(feedPageIcon,
+url('../assets/img/tabs/card_black_24px.svg'));
+@include makeIcon(straemPageIcon,
+url('../assets/img/tabs/ic_movie_filter_black_24px.svg'));
+@include makeIcon(browsePageIcon,
+url('../assets/img/tabs/grid_on_black_24px.svg'));
+@include makeIcon(minePageIcon,
+url('../assets/img/tabs/ic_person_black_24px.svg'));
+@include makeIcon(placePageIcon,
+url('../assets/img/tabs/ic_room_black_24px.svg'));
+@include makeIcon(u,
+url('../assets/img/u-white.svg'));
+// Segment button
+.segment-md .segment-button {
+    text-transform: none !important;
+    font-size: 1.4rem !important;
+}
+
+super-tab-button .title {
+    text-transform: none;
+}
+
+// .small .toolbar .segment-button {
+//     line-height: 3rem;
+//     .icon {
+//         line-height: 2rem;
+//     }
+// }
+
+/*
+ * Product Grid
+ */
+
+$ellipsis-lines-to-show: 2;
+.ellipsis {
+    display: block;
+    display: -webkit-box; // max-height: 3em; // height: $font-size * $line-height * $lines-to-show;
+    margin: 0 auto;
+    -webkit-line-clamp: $ellipsis-lines-to-show;
+    -webkit-box-orient: vertical; //This will not compiled to CSS
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hideSearchIcon.searchbar-md {
+    padding: 0;
+    .searchbar-input-container {
+        .searchbar-search-icon {
+            display: none;
+        }
+        .searchbar-input {
+            padding: 0px 0px;
+            box-shadow: none;
+        }
+    }
+}
+
+.searchbar-input-container {
+    display: flex !important;
+}
+
+.alert-md .alert-radio-label {
+    white-space: initial !important;
+}
+
+.card.cart-item>.item>.item-inner>.input-wrapper {
+    align-items: flex-start;
+}
+
+ion-grid.underline .row .col {
+    border-bottom: 1px solid #dedede;
+}
+
+// Fix Sidebar buttons style
+.sidebar .menu-inner .list .menu-item button {
+    margin: 0;
+    height: 4rem;
+    .icon-arrow-property {
+        top: 12px;
+    }
+}
+
+ion-item.item.no-padding-2 {
+    padding: 0;
+    .item-inner {
+        padding: 0;
+        .input-wrapper .label {
+            margin-right: 0;
+        }
+    }
+}
+
+input[type="email"]::-webkit-input-placeholder {
+    color: #e2d7e0;
+}
+
+.select-searchable,
+.item-select-disabled ion-label {
+    opacity: 1 !important;
+    max-width: 100% !important;
+}
+
+.total-amount {
+    font-size: 1.5em !important;
+    border-top-style: double !important;
+    border-top-color: black !important;
+    border-top-width: medium !important;
+}
+
+.item-radio.item-ios ion-label {
+    white-space: normal !important;
+}
+
+.item-radio.item-md ion-label {
+    white-space: normal !important;
+}
+
+div#networkDv.networkDiv {
+    text-align: center;
+    position: absolute;
+    z-index: 100;
+    width: 100vw;
+    line-height: 4em;
+    height: 4em;
+    background-color: #EE4B5E;
+    span {
+        color: white;
+        font-size: 1em;
+    }
+}
+
+.hideDiv {
+    top: -200px;
+}
+
+.showDiv {
+    animation-name: showEffect;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+}
+
+@keyframes showEffect {
+    0% {
+        top: -200px;
+        display: inherit;
+    }
+    25% {
+        top: -150px;
+        display: inherit;
+    }
+    50% {
+        top: -100px;
+        display: inherit;
+    }
+    75% {
+        top: -50px;
+        display: inherit;
+    }
+    100% {
+        top: 0px;
+        display: inherit;
+    }
+}
+
+.border-circle {
+    border-radius: 100% !important;
+}
+
+.picker-toolbar-multi-picker-cancel {
+    // Fix for Ion Multi Picker Module
+    text-align: left !important;
+}
+
+.price {
+    color: color($colors, orange);
+}
+
+.price+.price {
+    text-decoration: line-through;
+}
+
+.button.icon {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: 14vh;
+    .button-inner {
+        flex-flow: column;
+        white-space: normal;
+        color: #fff;
+        img {
+            margin-bottom: 1rem;
+            width: 75%;
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(72, 138, 255, 0.4);
+        box-shadow: 0 0 0 0 rgba(72, 138, 255, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(72, 138, 255, 0);
+        box-shadow: 0 0 0 10px rgba(72, 138, 255, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(72, 138, 255, 0);
+        box-shadow: 0 0 0 0 rgba(72, 138, 255, 0);
+    }
+}
+
+[align-self-center] {
+    align-self: center;
+}
+
+div {
+    .bar {
+        content: "";
+        display: inline;
+        height: 100%;
+        left: 50%;
+        position: absolute;
+        text-align: center;
+        width: 0;
+    }
+    .bar:nth-child(1) {
+        background-color: red;
+        animation: loading 2s linear infinite;
+    }
+    .bar:nth-child(2) {
+        background-color: #3b78e7;
+        animation: loading 2s linear 1s infinite;
+    }
+    .bar:nth-child(3) {
+        background-color: rgba(200, 200, 200, .5);
+        animation: loading 2s linear 2s infinite;
+    }
+    @keyframes loading {
+        from {
+            left: 50%;
+            width: 0;
+            z-index: 100;
+        }
+        33.3333% {
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        to {
+            left: 0;
+            width: 100%;
+        }
+    }
+}

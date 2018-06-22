@@ -1,0 +1,4 @@
+<div #readMoreWrapper [class.collapsed]="isCollapsed" [style.height]="isCollapsed ? collapsedHeight : null">
+  <ng-content></ng-content>
+</div>
+<button ion-button small no-padding *ngIf="isCollapsed" (click)="isCollapsed = false" class="readmore" clear translate>Read more</button>

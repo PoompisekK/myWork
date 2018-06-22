@@ -1,0 +1,19 @@
+page-settings-page {
+    font-family: 'RobotoRegular', 'Prompt';
+    ion-row.settinghead {
+        background-color: color($colors-theme, "app-theme");
+        color: white;
+        div {
+            height: 3em;
+        }
+    }
+    ion-row.btsetting {
+        margin-top: 1em;
+    }
+    .lang-badge {
+        width: 100%;
+        height: 2em;
+        line-height: 1.5em;
+        border-radius: 5em;
+    }
+}

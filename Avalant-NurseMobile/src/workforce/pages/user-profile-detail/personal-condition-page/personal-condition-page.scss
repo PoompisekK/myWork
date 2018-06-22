@@ -1,0 +1,29 @@
+personal-condition-page {
+    ion-grid.bgform {
+        background-color: rgb(231, 231, 231);
+        height: 100%;
+        font-family: 'RobotoRegular', 'Prompt';
+        >ion-row {
+            background-color: white;
+            margin-bottom: .3em;
+            margin-left: -.5em;
+            margin-right: -.5em;
+            >ion-col {
+                margin-left: 1.2em;
+                h3 {
+                    font-size: 1.3em;
+                }
+                p {
+                    font-size: .8em;
+                }
+            }
+        }
+        >ion-card.card.card-md {
+            height: 100%;
+            background-color: transparent;
+            img {
+                margin-top: 5em;
+            }
+        }
+    }
+}

@@ -1,0 +1,272 @@
+<ion-header>
+    <app-nav-header [pageName]="'M_APPROVAL.MY_APPROVAL'"></app-nav-header>
+</ion-header>
+
+<ion-content class="bg-workforce">
+    <div>
+        <ion-grid padding>
+            <ion-row class="imgSelect">
+                <ion-col col-3 no-padding text-center (click)="getSlideTask('leave')">
+                    <img class="svg-image-shift" src="./assets/img/leave.png">
+                    <span class="button-label" translate>M_APPROVAL.LEAVE</span>
+                </ion-col>
+                <ion-col col-3 no-padding text-center (click)="getSlideTask('shiftSwapAcceptant')">
+                    <img class="svg-image-shift" src="./assets/img/Shift Swap Acceptant.png">
+                    <span class="button-label" translate>M_APPROVAL.SHIFT_SWAP_ACCEPTANT</span>
+                </ion-col>
+                <ion-col col-3 no-padding text-center (click)="getSlideTask('shiftSwap')">
+                    <img class="svg-image-shift" src="./assets/img/shift swap.png">
+                    <span class="button-label" translate>M_APPROVAL.SHIFT_SWAP</span>
+                </ion-col>
+                <ion-col col-3 no-padding text-center (click)="getSlideTask('shift')">
+                    <img class="svg-image-shift" src="./assets/img/shift.png">
+                    <span class="button-label" translate>M_APPROVAL.SHIFT</span>
+                </ion-col>
+                <!-- <ion-col no-padding text-center (click)="getSlideTask('resource')">
+                    <img class="svg-image-shift" src="./assets/img/resource.png">
+                    <span class="button-label">Resource</span>
+                </ion-col> -->
+            </ion-row>
+            <ion-row class="selectType">
+                <ion-col no-padding>
+                    <div class="selectShift {{type_Leave}}"></div>
+                    <p text-center>{{ numLeave }}</p>
+                </ion-col>
+                <ion-col no-padding>
+                    <div class="selectShift {{type_shiftSwapAcceptant}}"></div>
+                    <p text-center>{{ numShiftSwapAcceptant }}</p>
+                </ion-col>
+                <ion-col no-padding>
+                    <div class="selectShift {{type_shiftSwap}}"></div>
+                    <p text-center>{{ numShiftSwap }}</p>
+                </ion-col>
+                <ion-col no-padding>
+                    <div class="selectShift {{type_shift}}"></div>
+                    <p text-center>{{ numShift }}</p>
+                </ion-col>
+                <!-- <ion-col no-padding>
+                    <div class="selectShift {{type_Resource}}"></div>
+                    <p text-center>0</p>
+                </ion-col> -->
+            </ion-row>
+        </ion-grid>
+    </div>
+    <ion-refresher (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-row class="bg-workforce" [@peekAnimation] *ngIf="isLoading">
+        <ion-col text-center>
+            <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
+        </ion-col>
+    </ion-row>
+    <ion-card [@peekAnimation] ava-empty-card style="background: none;" *ngIf="!isLoading && (allList||[]).length == 0" text-center
+        margin-horizontal padding-vertical>
+        <img src="./assets/img/svg/emptydata_blue.svg">
+        <p class="ava-empty-label" translate>M_NODATA.NODATA</p>
+    </ion-card>
+    <div class="cardList" padding>
+        <div *ngIf="typeSelect == 'leave' && !isLoading">
+            <ion-list class="group-list-leave" *ngFor="let groupItm of (allList||[]); let index = index">
+                <p style="margin-left: 1em;">{{ groupItm?.date }}</p>
+                <ion-card padding class="cardItem" *ngFor="let listItm of (groupItm.task||[]); let idx = index">
+                    <ion-row (click)="checkApproval && checkApproval(idx,index,listItm)">
+                        <ion-col col-3>
+                            <ava-avatar-img class="assign-by" [srcPath]="listItm.delegateEmployeeCode | loadImg"></ava-avatar-img>
+                        </ion-col>
+                        <ion-col col-9 no-padding no-boxs class="dataList">
+                            <ion-row no-padding class="type-date">
+                                <ion-col col-5>
+                                    <p>{{ listItm?.leaveTypeName }}</p>
+                                </ion-col>
+                                <ion-col col-7>
+                                    <div style="float: right">
+                                        <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
+                                        <span>{{ setDate(listItm?.startDate,listItm?.endDate) }}</span>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row no-padding class="name-day">
+                                <ion-col col-8>
+                                    <span>{{ listItm?.requestName }}</span>
+                                </ion-col>
+                                <ion-col col-4>
+                                    <p>{{ listItm?.leaveDays | number:0 }}  Days</p>
+                                    <div style="float: right" *ngIf='listItm?.shift'>
+                                        <div dot class="dot-yellow"></div>
+                                        <span class="shift"> {{ listItm?.shift || 'D(15:00 - 23:00)' }}</span>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">
+                        <ion-col col-6>
+                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')"
+                                translate>M_BUTTON.REJECT</button>
+                        </ion-col>
+                        <ion-col col-6 border-left>
+                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')"
+                                translate>M_BUTTON.APPROVE</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </ion-list>
+        </div>
+        <div *ngIf="typeSelect == 'shiftSwapAcceptant' && !isLoading">
+            <ion-list class="group-list-shiftSwapAcceptant" *ngFor="let groupItm of (allList||[]); let index = index">
+                <p style="margin-left: 1em;">{{ groupItm?.date }}</p>
+                <ion-card padding class="cardItem" *ngFor="let listItm of (groupItm.task||[]); let idx = index">
+                    <ion-row (click)="checkApproval && checkApproval(idx,index,listItm)">
+                        <ion-col col-3>
+                            <ava-avatar-img class="assign-by" [srcPath]="listItm.employeeCode | loadImg"></ava-avatar-img>
+                        </ion-col>
+                        <ion-col col-9 no-padding>
+                            <ion-row>
+                                <ion-col>
+                                    <p>{{ listItm?.fullName }}</p>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="showDetail" no-padding>
+                                <ion-col col-5 no-padding>
+                                    <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
+                                    <span style="margin-left: .5em">{{ listItm?.fromDate | amLocal:'en' | amDateFormat:'ddd. D' }}</span>
+                                    <br>
+                                    <div dot class="dot-yellow" *ngIf="listItm?.mySchedule"></div>
+                                    <span *ngIf="listItm?.mySchedule"> {{ listItm?.mySchedule }}</span>
+                                    <!-- <br *ngIf="listItm?.mySchedule">
+                                    <span *ngIf="listItm?.mySchedule">OFF</span> -->
+                                </ion-col>
+                                <ion-col col-2 text-center>
+                                    <ion-icon name="ios-swap-outline" class="noOff"></ion-icon>
+                                    <!-- <ion-icon name="ios-swap-outline" class="off" *ngIf="listItm?.status == 'off'"></ion-icon>
+                                    <ion-icon name="ios-swap-outline" class="noOff" *ngIf="listItm?.status == 'nooff'"></ion-icon> -->
+                                </ion-col>
+                                <ion-col col-5 no-padding>
+                                    <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
+                                    <span style="margin-left: .5em">{{ listItm?.toDate | amLocal:'en' | amDateFormat:'ddd. D' }}</span>
+                                    <br>
+                                    <!-- <span *ngIf="listItm?.swapSchedule">OFF</span>
+                                    <br *ngIf="listItm?.swapSchedule"> -->
+                                    <div dot class="dot-green" *ngIf="listItm?.swapSchedule"></div>
+                                    <span *ngIf="listItm?.swapSchedule"> {{ listItm?.swapSchedule }}</span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">
+                        <ion-col col-6>
+                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(leaveItm,'reject')"
+                                translate>M_BUTTON.REJECT</button>
+                        </ion-col>
+                        <ion-col col-6 border-left>
+                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(leaveItm,'approve')"
+                                translate>M_BUTTON.ACCEPT</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </ion-list>
+        </div>
+        <div *ngIf="typeSelect == 'shiftSwap' && !isLoading">
+            <ion-list class="group-list-shiftSwap" *ngFor="let groupItm of (allList||[]); let index = index">
+                <p style="margin-left: 1em;">{{ groupItm?.date }}</p>
+                <ion-card padding class="cardItem" *ngFor="let listItm of (groupItm.task||[]); let idx = index">
+                    <ion-row (click)="checkApproval && checkApproval(idx,index)">
+                        <ion-col col-3>
+                            <ava-avatar-img class="assign-by" [srcPath]=" listItm?.approveEmployeeCode | loadImg"></ava-avatar-img>
+                        </ion-col>
+                        <ion-col col-9 no-padding>
+                            <ion-row class="textName">
+                                <ion-col col-5>
+                                    <p>{{ listItm?.requestName }}</p>
+                                </ion-col>
+                                <ion-col col-2></ion-col>
+                                <ion-col col-5>
+                                    <p>{{ listItm?.swapName }}</p>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="showDetail" no-padding>
+                                <ion-col col-5 no-padding>
+                                    <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
+                                    <!-- <span style="margin-left: .5em">{{ listItm?.fromDate | amLocal:'en' | amDateFormat:'ddd. D' }}</span> -->
+                                    <span style="margin-left: .5em">{{ listItm?.myScheduleDate }}</span>
+                                    <br>
+                                    <div dot class="dot-yellow"></div>
+                                    <span> {{ listItm?.myScheduleShift }}</span>
+                                    <!-- <br *ngIf="listItm?.status == 'off'">
+                                    <span *ngIf="listItm?.status == 'off'">OFF</span> -->
+                                </ion-col>
+                                <ion-col col-2 text-center>
+                                    <ion-icon name="ios-swap-outline" class="off" *ngIf="listItm?.status == 'off'"></ion-icon>
+                                    <ion-icon name="ios-swap-outline" class="noOff" *ngIf="listItm?.status == 'nooff'"></ion-icon>
+                                </ion-col>
+                                <ion-col col-5 no-padding>
+                                    <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
+                                    <!-- <span style="margin-left: .5em">{{ listItm?.toDate | amLocal:'en' | amDateFormat:'ddd. D' }}</span> -->
+                                    <span style="margin-left: .5em">{{ listItm?.swapScheduleDate }}</span>
+                                    <br>
+                                    <!-- <span *ngIf="listItm?.status == 'off'">OFF</span>
+                                    <br *ngIf="listItm?.status == 'off'"> -->
+                                    <div dot class="dot-green"></div>
+                                    <span> {{ listItm?.swapScheduleShift }}</span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">                      
+                        <ion-col col-6>
+                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(leaveItm,'reject')"
+                                translate>M_BUTTON.REJECT</button>
+                        </ion-col>
+                        <ion-col col-6 border-left>
+                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(leaveItm,'approve')"
+                                translate>M_BUTTON.APPROVE</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </ion-list>
+        </div>
+        <div *ngIf="typeSelect == 'shift' && !isLoading">
+            <ion-list class="group-list-shift" *ngFor="let groupItm of (allList||[]); let index = index">
+                <p style="margin-left: 1em;">{{ groupItm?.date }}</p>
+                <ion-card padding class="cardItem" *ngFor="let listItm of (groupItm.task||[]); let idx = index">
+                    <ion-row (click)="checkApproval && checkApproval(idx,index,listItm)">
+                        <ion-col col-3>
+                            <ava-avatar-img class="assign-by" [srcPath]="listItm?.approveEmployeeCode | loadImg"></ava-avatar-img>
+                        </ion-col>
+                        <ion-col col-9 no-padding>
+                            <p>{{ listItm?.requestName }}</p>
+                            <ion-row class="statusShift" no-padding>
+                                <ion-col>
+                                    <div dot class="dot-yellow"></div>
+                                    <span style="font-size: 12px;"> {{ listItm?.shiftNameName }}</span>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="fromToZone" no-padding>
+                                <ion-col col-4>
+                                    <span>{{ listItm?.fromGroupName }}</span>
+                                </ion-col>
+                                <ion-col col-2>
+                                    <ion-icon name="ios-arrow-round-forward"></ion-icon>
+                                </ion-col>
+                                <ion-col col-4>
+                                    <span>{{ listItm?.toGroupName }}</span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">                      
+                        <ion-col col-6>
+                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(leaveItm,'reject')"
+                                translate>M_BUTTON.REJECT</button>
+                        </ion-col>
+                        <ion-col col-6 border-left>
+                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(leaveItm,'approve')"
+                                translate>M_BUTTON.APPROVE</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </ion-list>
+        </div>        
+    </div>
+</ion-content>

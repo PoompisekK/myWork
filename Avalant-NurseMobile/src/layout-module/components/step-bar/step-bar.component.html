@@ -1,0 +1,25 @@
+<!-- <img src="assets/img/stepbar-cmp-temp.jpg" alt=""> -->
+<div class="step-wrapper">
+  <div class="progress-wrapper">
+    <div class="progress" [style.width]="progress + '%'"></div>
+  </div>
+  <div class="step-items">
+    <div *ngFor="let stepItem of stepItemList; let i = index" class="step" [class.passed]="isStepPassed(i)" [class.current]="currentStep === (i + 1)" [style.left]="'calc(' + calcStepPosition(i) + '% - 30px)'">
+      <div class="circle">
+        <ion-icon [name]="stepItem.icon || 'happy'"></ion-icon>
+      </div>
+      <div class="sub-title" [style.white-space]="stepItem.isNoWrap ? 'nowrap' : null">{{ stepItem.text }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- !!! For testing ONLY !!! -->
+<!-- <ion-range [(ngModel)]="progress">
+  <ion-icon range-left name="remove"></ion-icon>
+  <ion-icon range-right name="add"></ion-icon>
+</ion-range>
+<button ion-button (click)="prevStep()">Prev</button>
+<button ion-button (click)="nextStep()">Next</button>
+Current Step : {{ currentStep }}<br>
+Current Progress : {{ progress }} -->
+<!-- -->

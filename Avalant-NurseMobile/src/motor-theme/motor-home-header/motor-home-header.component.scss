@@ -1,0 +1,21 @@
+motor-home-header {
+    .org-header section {
+        min-height: 9.5em;
+        background-size: cover;
+    }
+    .brand-container {
+        padding: 16px;
+        padding-top: 6em;
+    }
+    .brand-name {
+        margin-bottom: 0;
+        line-height: 1;
+    }
+    .brand-desc {
+        margin: 0 0 1rem;
+        line-height: 1;
+    } // Click througth
+    ion-searchbar .searchbar-input {
+        pointer-events: none;
+    }
+}

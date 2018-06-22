@@ -1,0 +1,36 @@
+<ion-header header-bar [title]="organizationData?.name" [logo]="!organizationData || !organizationData.name">
+</ion-header>
+<ion-content class="" no-bounce>
+  <user-vehicle-bar class="user-selected-vehicle" name="vehicle" *ngIf="!!currentVehicle" [(ngModel)]="currentVehicle" [@peekAnimation]
+    (addButtonClick)="addVehicle($event)" (click)="selectCar($event)"></user-vehicle-bar>
+  <motor-home-header [organizationData]="organizationData" (searchClick)="onSearchClick($event)"></motor-home-header>
+  <ion-list style="margin-bottom: 0;" *ngIf="!!categories && categories.length">
+    <ion-item class="no-padding-2">
+      <slide-menu [items]="categories" selectMode="true" [selectOnSlide]="false" (ngModelChange)="productCategorySelect($event)"></slide-menu>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-grid>
+    <ion-row *ngIf="productList && productList.length; else productEmpty">
+      <ion-col col-12 *ngFor="let product of productList">
+        <product-item [product]="product" minHeight="200px" noPadding="true"></product-item>
+      </ion-col>
+    </ion-row>
+
+    <ng-template #productEmpty>
+      <ion-row>
+        <ion-col>
+          There is have no item in here :O
+        </ion-col>
+      </ion-row>
+    </ng-template>
+
+    <ng-template #loading>
+
+    </ng-template>
+  </ion-grid> -->
+
+  <product-grid *ngFor="let category of productListGrid" [data]="category.productsDisplay" [forceOneColumn]="!isTablet" (product-click)="productClick($event)"
+    title="Popular Products"></product-grid>
+
+</ion-content>

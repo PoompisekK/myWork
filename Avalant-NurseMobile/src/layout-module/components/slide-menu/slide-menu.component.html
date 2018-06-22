@@ -1,0 +1,7 @@
+<h1 translate>{{ title }}</h1>
+
+<ion-slides *ngIf="items && items.length" [slidesPerView]="slidesPerView" [centeredSlides]="centeredSlides" (ionSlideDidChange)="onSlideDidChange($event)">
+  <ion-slide *ngFor="let slideMenuItem of items">
+    <slide-menu-item [ngModel]="slideMenuItem" (click)="onItemClick($event, slideMenuItem)" [selected]="isSelected(slideMenuItem)"></slide-menu-item>
+  </ion-slide>
+</ion-slides>

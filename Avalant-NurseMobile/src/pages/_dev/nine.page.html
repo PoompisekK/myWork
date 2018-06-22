@@ -1,0 +1,98 @@
+<ion-header header-bar [logo]='false' [marquee]="true" title="11111111111111111111111111111111111111111111111111">
+</ion-header>
+<ion-content>
+  <!-- <form #form01="ngForm">
+    <ion-item>
+      <ion-label>test</ion-label>
+      <ion-input type="text" name="test" [(ngModel)]="wtf" (ionFocus)="click($event,model,form01,titleList,'titleName','titleCode','test')"></ion-input>
+    </ion-item>
+  </form> -->
+  <!-- <ion-item (click)="clickV2(model,titleList,'titleName','titleCode')">
+    <ion-label>test</ion-label>
+    <ion-select disabled class="select-searchable" [(ngModel)]="model">
+      <ion-option *ngFor="let item of titleList" [value]="item.titleCode">{{item.titleName}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-8 text-left>
+        <h4 translate>Test</h4>
+      </ion-col>
+      <ion-col col-4 text-right>
+        <ion-icon style="font-size:4em" ios="ios-more-outline" md="ios-more-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <img [src]="getEAFRestImage(imageKey)">
+      </ion-col>
+      <ion-col>
+        <button ion-button tappable (click)="test2()">Test</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-row>
+          <ion-col tappable style="text-align: center" (click)="selectPayment='credit'">
+            <ion-row>
+              <ion-col no-padding>
+                <img *ngIf="selectPayment=='credit'" class="selected-payment" style="height: 70px" src="./assets/img/payment-method/credit.png">
+                <img *ngIf="selectPayment!='credit'" style="height: 70px" src="./assets/img/payment-method/credit.png">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col no-padding>
+                <span>ชำระผ่านบัตรเครดิต</span>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6>
+        <ion-row>
+          <ion-col tappable style="text-align: center" (click)="selectPayment='bp'">
+            <ion-row>
+              <ion-col no-padding>
+                <img *ngIf="selectPayment=='bp'" class="selected-payment" style="height: 70px" src="./assets/img/payment-method/bp.png">
+                <img *ngIf="selectPayment!='bp'" style="height: 70px" src="./assets/img/payment-method/bp.png">
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col no-padding>
+                <span>โอนผ่านธนาคาร</span>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <ion-item (click)="searchSelect(model,titleList,'titleName','titleCode')">
+    <ion-label>test</ion-label>
+    <ion-select disabled class="select-searchable" [(ngModel)]="model">
+      <ion-option *ngFor="let item of titleList" [value]="item.titleCode">{{item.titleName}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <!-- <h1 padding>
+    การสมัครสมาชิก
+  </h1>
+  <ion-slides>
+    <ion-slide>
+      <img style="width:60%" src="./assets/img/tutorials/re01.jpg"><br>
+      <p>1. กดเมนูมุมซ้ายบน</p>
+    </ion-slide>
+    <ion-slide>
+      <img style="width:60%" src="./assets/img/tutorials/re02.jpg"><br>
+      <p>2. เลือกเมนูลงทะเบียน</p>
+    </ion-slide>
+    <ion-slide>
+      <img style="width:60%" src="./assets/img/tutorials/re03.jpg"><br>
+      <p>3. กรอกข้อมูลให้ครบ อ่านข้อตกลงให้เข้าใจ และกดยอมรับข้อตกลง</p>
+    </ion-slide>
+    <ion-slide>
+      <img style="width:60%" src="./assets/img/tutorials/re04.jpg"><br>
+      <p>4. ยืนการสมัครสมาชิก ที่กล่องขาเข้าอีเมลที่ใช้สมัคร<br><span style="color:red">*หมายเหตุ รูปแบบอีเมลจะแตกต่างกันไปขึ้นอยู่กับอุปกรณ์ที่ผู้ใช้งานใช้</span></p>
+    </ion-slide>
+  </ion-slides> -->
+
+</ion-content>

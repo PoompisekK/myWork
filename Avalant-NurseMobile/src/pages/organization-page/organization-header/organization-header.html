@@ -1,0 +1,44 @@
+<!-- Generated template for the OrganizationHeader component -->
+<div class="orgHeader" #orgHeader>
+  <section>
+    <div style="min-height:9.5em">
+      <ion-slides #slides *ngIf="organizationData?.organizationImage && organizationData.organizationImage.length" autoplay="3000"
+        loop="true" [options]="slideOptions" (ionSlideDidChange)="slideChanged()" style="min-height:9.5em">
+        <ion-slide *ngFor="let img of organizationData?.organizationImage | imgSlide">
+          <div class="header-cover" [style.background-image]="'url(' + (img.imageKey | imagekey) + ')'"></div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div class="logo-brand-cover">
+      <!-- <ion-img class="logo-brand" src="{{organizationData?.iconPath}}"></ion-img> -->
+      <img class="logo-brand" src="{{organizationData?.logo | imagekey}}" />
+    </div>
+  </section>
+  <div padding text-center *ngIf="!isLoading; else organizationLoading">
+    <h5 class="brand-name" [innerHTML]="organizationData?.name"></h5>
+    <!--Brand/Org Description removed due more room-->
+    <!--<p class="brand-desc" color="sub-title" [innerHTML]="organizationData?.description"></p>-->
+    <div *ngIf="businessUserM != null">
+      <button ion-button small outline round [color]="isFollowed ? 'secondary' : 'black'" tappable (click)="followBtn()" class="follow-btn"
+        [class.followed]="isFollowed" [disabled]="isFollowBtnLoading">
+        <ion-spinner *ngIf="isFollowBtnLoading"></ion-spinner>
+        <ion-icon *ngIf="isFollowed && !isFollowBtnLoading" name="checkmark"></ion-icon>
+        <span translate style="padding: 0 0.5em;">{{ isFollowed ? 'STORE.AUTHEN.FOLLOW' : 'STORE.AUTHEN.FOLLOW' }}</span>
+      </button>
+      <button ion-button small outline round [color]="'black'" tappable (click)="settingBtn()" class="setting-btn">
+        <span translate style="padding: 0 0.25em;">COMMON.MENU.SETTINGS</span>
+      </button>
+    </div>
+  </div>
+  <ng-template #organizationLoading>
+    <div padding text-center class="sub-header-cover">
+      <div class="animated-background" style="height: 48px;">
+        <div class="background-masker gray" style="top: 0;left: 0;bottom: 0;width: 63px;"></div>
+        <div class="background-masker gray" style="top: 0;right: 0;bottom: 0;width: 63px;"></div>
+        <div class="background-masker gray" style="top: 20px;width: 100%;height: 7px;"></div>
+        <div class="background-masker gray" style="top: 0;left: 59px;width: 50px;height: 20px;"></div>
+        <div class="background-masker gray" style="top: 0;right: 59px;width: 50px;height: 20px;"></div>
+      </div>
+    </div>
+  </ng-template>
+</div>

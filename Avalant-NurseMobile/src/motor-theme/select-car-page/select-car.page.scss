@@ -1,0 +1,39 @@
+select-car-page {
+    ion-content>.fixed-content,
+    ion-content>.scroll-content {
+        background-color: #112653;
+    }
+    ion-slides {
+        height: auto;
+    }
+    .hexa-plus {
+        width: 36px;
+    }
+    .vehicle-card {
+        border-radius: 10px;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 32px;
+        &.selected {
+            box-shadow: 0px 0px 0px 4px #71cc16, 0 1px 4px 0px rgba(0, 0, 0, 0.2);
+        }
+        button[disabled] {
+            background-color: #71cc16;
+            color: #000;
+        }
+    }
+    .car-bg {
+        background-image: url(../assets/img/bg-outdoor.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .car-image {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        width: 100%;
+        height: 30vh;
+    }
+}

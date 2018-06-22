@@ -1,0 +1,58 @@
+<ion-header header-bar [logo]="false" title="Garage Selection" [message]="false" [cart-enabled]="false"></ion-header>
+<ion-content class="garage-bg">
+  <ion-grid>
+    <!-- <ion-row class="title-row">
+      <ion-grid>
+        <H1>เลือกประเภทศูนย์บริการ</H1>
+      </ion-grid>
+    </ion-row> -->
+    <ion-row class="buttons-filter">
+      <ion-col text-center>
+        <button ion-button tappable (click)="loadGarages('nearest')" clear class="icon" [class.selected]="selectedCondition == 'nearest'">
+          <img src="assets/img/icon/nearest.png" />ใกล้ที่สุด
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button tappable (click)="loadGarages('inexpensive')" clear class="icon" [class.selected]="selectedCondition == 'inexpensive'">
+          <img src="assets/img/icon/cheapest.png" />ถูกที่สุด
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-slides #garageSlide effect="slide" slidesPerView="auto" [pager]="true">
+    <ion-slide [centeredSlides]="true" *ngFor="let garage of garageList">
+      <ion-card class="garage-card" [id]="garage.id" [class.selected]="selectedGarage === garage">
+        <div class="garage-bg">
+          <img class="garage-image" src="assets/img/garage-bg.jpg" />
+        </div>
+        <ion-card-content text-left>
+          <div class="garage-profile-pic">
+            <img src="assets/img/user.jpg" />
+          </div>
+          <!-- <p class="margin-b-2">
+            {{ garage.fullPrice }}
+          </p> -->
+          <ion-list>
+            <ion-item>
+              <ion-icon name="chatbubbles" item-start></ion-icon>
+              <h2>{{ garage.name }}</h2>
+              <h3>ที่อยู่ .............</h3>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="call" item-start></ion-icon>
+              <h3>
+                <a [href]="'tel:' + '02-222-xxxx'">02-222-xxxx</a>
+              </h3>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="cash" item-start></ion-icon>
+              <h3>{{ garage.price }}</h3>
+            </ion-item>
+          </ion-list>
+          <button (click)="selectGarage(garage)" icon-start class="guideline btn-select" ion-button block [color]="selectedGarage !== garage ? 'positive' : 'selected'">{{ (selectedGarage !== garage ? 'Select' : 'Selected') | translate }}</button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,162 @@
+page-tasks-detail-page {
+    $dot: .7em;
+    ion-badge.status-badge {
+        background-color: transparent;
+        border-radius: 5em;
+        height: 2em;
+        line-height: 2em;
+        padding: 0 1em;
+        color: white;
+        text-transform: capitalize;
+    }
+    .svg-image-leave {
+        width: 1.2em;
+    }
+    .head-detail {
+        margin-left: 1em;
+        margin-right: 1em;
+        font-family: 'RobotoRegular', 'Prompt';
+        color: #010101;
+        ion-col[col-9] {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        ion-col[col-3] {
+            ava-avatar-img.assign-by {
+                text-align: center;
+                img {
+                    height: 4em;
+                    width: 4em;
+                    text-align: center;
+                    display: block;
+                }
+            }
+        }
+    }
+    ion-row {
+        color: #909090;
+        margin-left: 1em;
+        margin-right: 1em;
+        font-family: 'RobotoMedium', 'Prompt';
+        ion-col[col-1] {
+            ion-icon {
+                font-size: 16px;
+            }
+        }
+        ion-col[col-11] {
+            p {
+                margin-top: -0em;
+                font-size: 12px;
+            }
+        }
+    }
+    ion-row.btn {
+        font-family: 'RobotoRegular', 'Prompt';
+        margin-top: .5em;
+        border-top: 1px solid #dadada;
+        ion-col[border-left] button.action-btn {
+            border-left: 1px solid #eaeaea;
+        }
+        ion-col {
+            padding: 0.25em !important;
+            button.action-btn {
+                box-shadow: none !important;
+                background: none;
+                color: #626262;
+            }
+        }
+    }
+    .people-detail {
+        margin-top: 1em;
+        ion-col[col-1] {
+            margin-top: .5em;
+        }
+        ion-col[col-11] {
+            margin-top: -.5em;
+        }
+    }
+    .file-detail {
+        ion-col[col-11] {
+            display: inline-flex;
+            div {
+                margin-right: .5em;
+                border: 1px solid #6c6c6c;
+                width: auto;
+                height: 1.2em;
+                border-radius: 15px;
+                p {
+                    margin-left: 1em;
+                    margin-right: 1em;
+                }
+            }
+        }
+    }
+    .divInput {
+        width: 100%;
+        font-size: 1.5em;
+        background-color: white;
+        display: inline-flex;
+        overflow: hidden;
+        border-radius: 5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        ion-icon {
+            margin: .5em;
+        }
+    }
+    .commment {
+        margin-top: 1em;
+        ion-row {
+            font-family: 'RobotoRegular', 'Prompt';
+            ion-col[col-1] {
+                margin-top: .2em;
+                div.com-start {
+                    background-color: teal;
+                    height: 2em;
+                    width: 2em;
+                    text-align: center;
+                    display: table-caption;
+                    border-radius: 3px;
+                    div.com-end {
+                        margin-top: .3em;
+                        color: white;
+                    }
+                }
+            }
+            ion-col[col-11] {
+                color: #7d7d7d;
+                p {
+                    margin-left: 1em;
+                }
+            }
+        }
+    }
+    .listpeople {
+        color: #909090;
+        .div-col-attendees {
+            display: inline-block;
+            margin: .2em;
+        }
+        .peoplemore {
+            display: inline-block;
+            margin: .2em 0 0 0;
+            .attendees-avatar {
+                text-align: center;
+                border-radius: 50%;
+                width: 3em;
+                height: 3em;
+                &.more {
+                    border: 1px solid #dedede;
+                    display: table-caption;
+                    font-size: 1em;
+                    padding: .25em 0;
+                    .more-amt {
+                        font-family: 'RobotoMedium', 'Prompt';
+                        color: #909090;
+                        font-size: .8em;
+                        margin: .5em;
+                    }
+                }
+            }
+        }
+    }
+}

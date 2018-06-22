@@ -1,0 +1,117 @@
+<ion-header>
+    <app-nav-header [pageName]="'Address'"></app-nav-header>
+</ion-header>
+<ion-content>
+
+    <div padding>
+        <img src="assets/img/payment-step2.png" />
+    </div>
+
+    <div padding>
+        <span style="font-size:1.3em;">Claim information</span>
+        <ion-item style="padding:0;">
+            <!-- <ion-label style="font-size:1.8em;"> <ion-icon color="light" name="person"></ion-icon></ion-label> -->
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Select Car License"></ion-input>
+        </ion-item>
+    </div>
+
+
+    <div padding>
+        <div style="margin-bottom:2.5em;">
+            <span style="font-size:1.3em;margin-bottom:1.5em;">Take a photo</span>
+        </div>
+        <div text-center style="position:relative;" class="icn-camera">
+            <img style="width:50%" src="assets/img/car.png" />
+
+            <ion-row style="position: absolute;top: 0;width: 100%;">
+                <ion-col>
+                </ion-col>
+
+                <ion-col>
+                    <ion-row>
+                        <ion-col>
+                            <ion-icon name="ios-camera-outline"></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                    </ion-row>
+                </ion-col>
+
+                <ion-col>
+                </ion-col>
+            </ion-row>
+
+            <ion-row style="position: absolute;top: 20%;width: 100%;">
+                <ion-col text-left>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+                <ion-col>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+                <ion-col text-right>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+            </ion-row>
+
+            <ion-row style="position: absolute;top: 40%;width: 100%;">
+                <ion-col text-left>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+                <ion-col>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+                <ion-col text-right>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+            </ion-row>
+
+            <ion-row style="position: absolute;top: 60%;width: 100%;">
+                <ion-col text-left>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+                <ion-col>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+                <ion-col text-right>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+            </ion-row>
+
+            <ion-row style="position: absolute;top: 80%;width: 100%;">
+                <ion-col text-left>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+                <ion-col>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+                <ion-col text-right>
+                    <ion-icon name="ios-camera-outline"></ion-icon>
+                </ion-col>
+            </ion-row>
+
+        </div>
+    </div>
+
+    <div padding>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Date of accident"></ion-input>
+            <ion-icon name="ios-calendar-outline" item-right></ion-icon>
+        </ion-item>
+
+        <ion-item style="padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Time of accident"></ion-input>
+        </ion-item>
+
+
+        <div style="padding:16px 11px 16px 11px;">
+            <button (click)="goToClaimMotor3()" color="light-blue" style="border-radius:5px;" ion-button block>Next</button>
+        </div>
+
+    </div>
+    <!-- <div (click)="goToCart3()" class="bg-home-demo">
+
+  </div> -->
+
+
+</ion-content>

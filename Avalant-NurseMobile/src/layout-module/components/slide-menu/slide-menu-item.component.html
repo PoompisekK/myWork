@@ -1,0 +1,14 @@
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-only outline large class="border-circle" [class.selected]="selected">
+        <img class="icon" src="{{ value?.iconUrl }}" alt="{{ makeAltText(value?.name) }}">
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row no-padding>
+    <ion-col no-padding>
+      <span class="name" ion-text color="dark">{{ value?.name }}</span>
+    </ion-col>
+  </ion-row>
+</ion-grid>

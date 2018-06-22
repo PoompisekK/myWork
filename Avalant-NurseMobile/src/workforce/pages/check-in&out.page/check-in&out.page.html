@@ -1,0 +1,79 @@
+<ion-header>
+    <app-nav-header [pageName]="'M_CHECK_INOUT.CLOCK'" [buttonCfg]="buttonCfg"></app-nav-header>
+</ion-header>
+<ion-content class="bg-workforce" no-bounce>
+    <div>
+        <!-- <ion-row no-padding>
+            <ion-col col-9 class="text-header" style="font-weight: 800;padding-left: .5em;">
+                {{displayText.titleClockInOut}}
+            </ion-col>
+            <ion-col col-3 text-right class="margin-auto">
+                <ion-icon name="time" class="icn-clock" style="position: absolute; right: 0.5em; top: -0.5em;"></ion-icon>
+            </ion-col>
+        </ion-row> -->
+        <!-- <ion-row>
+            <ion-col>
+                {{displayText.subTitleClockInOut}}
+                {{checkInOutLang?.currentTime || 'Current Time'}}
+            </ion-col>
+        </ion-row> -->
+        <ion-row text-center>
+            <ion-col no-padding style="margin-bottom: 1em;">
+                <ion-row class="fontdate">
+                    <ion-col col-12 text-center no-padding>
+                        <span class="time">{{ currentDate | amLocale:'en' | amDateFormat:'h:mm' }}</span>
+                        <span class="time-am-pm">{{ currentDate | amLocale:'en' | amDateFormat:'a.' }}</span>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col col-12 style="margin-top: -.5em">
+                <div class="line"></div>
+                <p class="textdate">{{ currentDate | amLocale:'en' | amDateFormat:'ddd, LL' }}</p>
+            </ion-col>
+        </ion-row>
+        <ion-card class="card-bt-red">
+            <div *ngIf="mapLoading" class="map-loadding" style="height:45vh;">
+                <ion-spinner class="map-loadding"></ion-spinner>
+            </div>
+            <div style="height:45vh" id="map" #map></div>
+        </ion-card>
+        <ion-row class="bt-checkinout">
+            <ion-col>
+                <div text-center class="bt_checkinout">
+                    <button (click)="checkIn()" ion-button color="dark" clear full>{{displayText.nameButtonCheckInOut}}</button>
+                </div>
+            </ion-col>
+        </ion-row>        
+        <ion-card class="current-date-out current-date-hist" *ngIf="recentTimeToday.recorderDate && recentTimeToday.recorderOut"
+            (click)="goToHisPage && goToHisPage()">
+            <ion-card-content>
+                <ion-row>
+                    <ion-col col-9>
+                        <h2 translate>M_CHECK_INOUT.CLOCK_OUT_COMPLETED</h2>
+                        <p>{{ recentTimeToday?.recorderDate | amLocale:'en' | amDateFormat:'MMM DD, YYYY' }} </p>
+                    </ion-col>
+                    <ion-col col-3 text-right>
+                        <span>
+                            {{ (recentTimeToday?.recorderDate+'T'+recentTimeToday?.recorderOut) | amLocale:'en' | amDateFormat:'LT' }}
+                        </span>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+        <ion-card class="current-date-in current-date-hist" *ngIf="recentTimeToday.recorderDate && recentTimeToday.recorderIn" (click)="goToHisPage && goToHisPage()">
+            <ion-card-content *ngIf="recentTimeToday.recorderIn">
+                <ion-row>
+                    <ion-col col-9>
+                        <h2 translate>M_CHECK_INOUT.CLOCK_IN_COMPLETED</h2>
+                        <p>{{ recentTimeToday?.recorderDate | amLocale:'en' | amDateFormat:'MMM DD, YYYY' }} </p>
+                    </ion-col>
+                    <ion-col col-3 text-right>
+                        <span>
+                            {{ (recentTimeToday?.recorderDate+'T'+recentTimeToday?.recorderIn) | amLocale:'en' | amDateFormat:'LT' }}
+                        </span>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ion-content>

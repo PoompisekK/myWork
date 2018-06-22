@@ -1,0 +1,74 @@
+<!--*
+ @author Bundit.Ng
+ @since  Tue Sep 05 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<ion-header no-border>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button class="closeDvBtn" tappable (click)="exittoLoginPage()">
+                <img class="closeImgBtn" src="./assets/img/login/close.png" />
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content style="padding: 0 .5em .5em .5em">
+    <div class="inputOTP">
+        <div style="color:white">
+            <ion-grid style="padding:0 5px;">
+                <ion-row class="messageTop">
+                    <ion-col col-1></ion-col>
+                    <ion-col col-10 class="message">
+                        <h3 translate>COMMON.SIGNUP.VERIFIED_OTP_PWD</h3>
+                        <span translate>COMMON.SIGNUP.OTP_PWD_HAS_SEND1</span>
+                        <span class="messageMobile">{{reqRegisUser.mobile}}</span>
+                        <span translate>COMMON.SIGNUP.OTP_PWD_HAS_SEND2</span>
+                    </ion-col>
+                    <ion-col col-1></ion-col>
+                </ion-row>
+                <ion-row class="messageMid">
+                    <ion-col col-1></ion-col>
+                    <ion-col col-10 class="message">
+                        <span translate>COMMON.SIGNUP.OTP_INPUT_BELOW</span>
+                    </ion-col>
+                    <ion-col col-1></ion-col>
+                </ion-row>
+                <ion-row class="messageOTPCode" style=" font-size: 2em">
+                    <ion-col col-1></ion-col>
+                    <ion-col col-10 class="digitPad" (click)="showKeyBoard()">
+                        <ion-row>
+                            <div col-2 *ngFor="let col of [{},{},{},{},{},{}];let indx = index" class="digitBox">
+                                <span *ngIf="indx < otpInputList.length">{{(otpInputList[indx]||'')}}</span>
+                            </div>
+                        </ion-row>
+                    </ion-col>
+                    <ion-col col-1></ion-col>
+                </ion-row>
+                <ion-row class="messageRefer">
+                    <ion-col col-1></ion-col>
+                    <ion-col col-10 class="message">
+                        <span><span translate>COMMON.SIGNUP.OTP_REFER_CODE</span> {{(verifyOtpM.referKey||'')}}</span>
+                    </ion-col>
+                    <ion-col col-1></ion-col>
+                </ion-row>
+                <ion-row class="messageButton">
+                    <ion-col col-1></ion-col>
+                    <ion-col col-10 class="messageBtn">
+                        <ion-row>
+                            <ion-col col-6 style="text-align: left">
+                                <button class="resent_otp" (click)="resentOtp()" ion-button icon-only small outline translate> COMMON.SIGNUP.OTP_RESENT_CODE </button>
+                            </ion-col>
+                            <ion-col col-6 style="text-align: right">
+                                <button class="submit_otp" (click)="submitOtp()" ion-button icon-only small outline translate> COMMON.BUTTON.CONFIRM </button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                    <ion-col col-1></ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+    <div class="numberPad" style="height: 50vh;">
+        <ion-digit-keyboard [swipeToHide]="true" [rightActionOptions]="{ iconName: 'ios-backspace-outline', fontSize: '1.3em' }" [showLetters]="false" [theme]="'messenger'" (buttonClick)="onKeyboardButtonClick($event)" (rightActionClick)="deleteNumber($event)"></ion-digit-keyboard>
+    </div>
+</ion-content>

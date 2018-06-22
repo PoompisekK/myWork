@@ -1,0 +1,25 @@
+<ion-header>
+    <app-nav-header [buttonCfg]="buttonCfg" [pageName]="'M_MYPROFILE.SKILL'" translate></app-nav-header>
+</ion-header>
+
+<ion-content no-padding>
+
+    <div *ngIf="isLoading" style="width: 100%; height: 75%; position: absolute; margin: auto auto; text-align: center;">
+        <ion-spinner [@peekAnimation] style="top: 30%; width: 100%; height: 22.5%;"></ion-spinner>
+    </div>
+    <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && ((skillDec||[]) == '') && ((skillLV||[]) == '')" text-center margin-horizontal padding-vertical>
+        <img src="assets/img/svg/emptydata.svg">
+        <p class="ava-empty-label" translate>M_LEAVEPAGE.NODATA</p>
+    </ion-card>
+
+    <ion-grid class="bgform" *ngIf="!isLoading && ((skillDec||[]) != '') && ((skillLV||[]) != '')">
+        <ion-row>
+            <ion-col col-6>
+                <h4>{{skillDec}}</h4>
+            </ion-col>
+            <ion-col col-6>
+                <h5>{{skillLV}}</h5>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

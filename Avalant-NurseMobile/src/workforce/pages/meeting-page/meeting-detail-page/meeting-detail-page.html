@@ -1,0 +1,99 @@
+<ion-header>
+    <app-nav-header [pageName]="' '"></app-nav-header>
+</ion-header>
+<ion-content no-padding style="padding: 0;">
+    <div class="meeting-task-list" no-padding>
+        <ion-item no-lines no-padding>
+            <ion-grid no-padding>
+                <ion-row no-padding>
+                    <ion-col no-padding col-2 text-center>
+                        <div dot class="meeting-status {{ getMeetingClassStatus(meeting?.assignStatus) }}"></div>
+                    </ion-col>
+                    <ion-col no-padding col-8>
+                        <ion-grid no-padding>
+                            <ion-row no-padding>
+                                <ion-col col-12 class="meeting-topic-desc">
+                                    <p>{{ meeting?.topicDesc }}</p>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row no-padding>
+                                <ion-col col-12 class="meeting-assign-desc">
+                                    <span>{{ meeting?.assignDesc }}</span>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="attachments" no-padding *ngIf="(meeting.listAttachmentFile||[]).length > 0" (click)="showAttaches = !showAttaches">
+                                <ion-col col-12 class="meeting-attachments">
+                                    <ion-icon name="ios-attach"></ion-icon>
+                                    <span> ({{ (meeting?.listAttachmentFile||[]).length }})</span>
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-list class="attachments-item" *ngIf="showAttaches && leaveAttachFile.length > 0" [@peekAnimation] no-lines no-border no-padding>
+                                <ion-item style="height: 1em; padding: 0; font-size: 0.9em; " *ngFor="let fileItm of (meeting.listAttachmentFile||[]);let idx = index" [@peekAnimation]>
+                                    <ion-icon color="color-gray" name="ios-attach-outline" style="margin-right: .5em " item-left></ion-icon>
+                                    {{ fileItm?.name }}
+                                </ion-item>
+                            </ion-list>
+
+                            <ion-row class="home-name" no-padding>
+                                <ion-col col-12 class="meeting-home-name">
+                                    <ion-icon name="ios-home-outline"></ion-icon>
+                                    <span ellipsis>{{ meetingLang?.actualPlaceName || 'Actual place name' }}</span>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="start-date" no-padding>
+                                <ion-col col-12 class="meeting-start-date">
+                                    <ion-icon name="ios-calendar-outline"></ion-icon>
+                                    <span ellipsis>
+                                        {{ meeting?.startDateTime | amLocal :'en' | amDateFormat:'D MMMMM YYYY, h:mm a' }}
+                                        <!-- {{ meeting?.startTime | amLocal :'en' | amDateFormat:'h:mm a' }} -->
+                                    </span>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row *ngIf="meeting.placeDesc" class="place-desc" no-padding>
+                                <ion-col col-12 class="meeting-place-desc">
+                                    <ion-icon name="ios-pin-outline"></ion-icon>
+                                    <span ellipsis>{{ meeting?.placeDesc }}</span>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="status-desc" no-padding>
+                                <ion-col col-12 class="meeting-status-desc">
+                                    <ion-icon name="ios-flash-outline"></ion-icon>
+                                    <ion-badge class="status-badge meeting-status {{ getMeetingClassStatus && getMeetingClassStatus(meeting.assignStatus) }}">{{ meeting?.statusDesc || (getMeetingClassStatus && getMeetingClassStatus(meeting.assignStatus)) }}</ion-badge>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="people" no-padding>
+                                <ion-col col-12 class="meeting-people">
+                                    <ion-icon name="ios-person-outline"></ion-icon>
+                                    <div *ngFor="let attendeesPerson of (meeting.listAssignResponsible||[]);let idx = index" class="div-col-attendees">
+                                        <!-- <img *ngIf="idx < 4" class="attendees-avatar {{ attendeesPerson.responsibleStatus }} img-avatar margin-auto wrapper-employee" [src]="attendeesPerson?.employeeCode | loadImg " /> -->
+                                        <ava-avatar-img *ngIf="idx < 4" class="attendees-avatar {{ attendeesPerson.responsibleStatus }} img-avatar margin-auto wrapper-employee" [srcPath]="attendeesPerson?.employeeCode  | loadImg"></ava-avatar-img>
+                                        <div *ngIf="idx == 4" class="attendees-avatar more">
+                                            <span class="more-amt">{{ '+'+(meeting?.listAssignResponsible||[]).length }}</span>
+                                        </div>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                    <ion-col no-padding col-2 text-right>
+                        <!-- <span class="meeting-time">{{ meeting?.targetTime | amLocal:'en' | amDateFormat:'h:mm a' }}</span> -->
+                        <span class="meeting-time">{{ meeting?.startTime }}</span>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="isHasLatLngParams(meeting)" ava-padding style="margin-top: 0.25em;">
+                    <google-static-map [InLatLng]="getLatLngParams(meeting)"></google-static-map>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <ion-row class="meeting-action">
+        <ion-col col-12 text-center>
+            <button class="wf-button" text-center ion-button split3 (click)=" rejectAssign(meeting)">{{ meetingLang?.reject || 'Reject' }}</button>
+            <button class="wf-button" text-center ion-button split3 (click)=" acceptAssign(meeting)">{{ meetingLang?.join || 'Join' }}</button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

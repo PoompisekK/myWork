@@ -1,0 +1,102 @@
+<ion-grid>
+  <ion-row>
+    <ion-col text-left style="font-size: 1.3em;" translate>COMMON.CHECKOUT.SUMMARY</ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-card class="cart-item" *ngFor="let cartItmDtl of cartItemList; let i = index; trackBy: trackByCartDetail">
+  <ion-item text-wrap>
+    <!-- <ion-thumbnail item-left style="width: 3em;height: 3em">
+      <img src="{{cartItmDtl?.SRC_ITEM_IMAGE | imagekey }}" style="width: 100%;height: auto" />
+    </ion-thumbnail> -->
+    <h2>{{ cartItmDtl?.productItemName }}</h2>
+    <p>Quantity : {{ cartItmDtl.itemQuantity }}</p>
+    <div item-end>
+      <!-- Price -->
+      <span class="discount" *ngIf="cartItmDtl?.discount">{{ cartItmDtl?.discount | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}
+        <br>
+      </span>
+      <span class="price">{{ cartItmDtl?.itemPrice | baht }} {{'COMMON.UNIT.CURRENCY' | translate}}</span>
+      <!-- End Price -->
+    </div>
+  </ion-item>
+</ion-card>
+
+<!-- <ion-row>
+  <ion-col class="disabledText" translate>
+    COMMON.CHECKOUT.SUB_TOTAL
+  </ion-col>
+  <ion-col style="text-align: right;">
+    {{paymentService.order?.totalAmt | baht}}
+    <span translate>COMMON.UNIT.CURRENCY</span>
+  </ion-col>
+</ion-row> -->
+
+<!-- <ion-row *ngIf="paymentService.order?.promoDiscount!='0'">
+  <ion-col class="disabledText" translate>
+    COMMON.CHECKOUT.DISCOUNT
+  </ion-col>
+  <ion-col style="text-align: right;">
+    <span style="color:red">{{paymentService.order?.promoDiscount | baht}}</span>
+    <span translate>COMMON.UNIT.CURRENCY</span>
+  </ion-col>
+</ion-row> -->
+<!-- <ion-row *ngIf="paymentService.order?.privelegeDiscount!='0'">
+  <ion-col class="disabledText" translate>
+    COMMON.CHECKOUT.DISCOUNTMEMBER
+  </ion-col>
+  <ion-col style="text-align: right;">
+    <span style="color:red">{{paymentService.order?.privelegeDiscount | baht}}</span>
+    <span translate>COMMON.UNIT.CURRENCY</span>
+  </ion-col>
+</ion-row> -->
+<!-- <ion-row *ngIf="paymentService.order?.couponDiscounty!='0'">
+  <ion-col class="disabledText" translate>
+    COMMON.CHECKOUT.DISCOUNTCOUPON
+  </ion-col>
+  <ion-col style="text-align: right;">
+    <span style="color:red">{{paymentService.order?.couponDiscount | baht}}</span>
+    <span translate>COMMON.UNIT.CURRENCY</span>
+  </ion-col>
+</ion-row> -->
+
+
+<!-- <ion-row>
+  <ion-col class="disabledText" translate>
+    COMMON.CHECKOUT.SHIPPING
+  </ion-col>
+  <ion-col style="text-align: right;">
+    {{paymentService.order?.shippingAmt | baht}}
+    <span translate>COMMON.UNIT.CURRENCY</span>
+  </ion-col>
+</ion-row> -->
+
+<!-- <ion-row>
+  <ion-col translate>
+    COMMON.CHECKOUT.TOTAL
+  </ion-col>
+  <ion-col style="text-align: right;">
+    {{paymentService.order?.netAmt | baht}}
+    <span translate>COMMON.UNIT.CURRENCY</span>
+  </ion-col>
+</ion-row> -->
+
+<ion-card>
+  <ion-item text-wrap>
+    <h2 translate>COMMON.CHECKOUT.SHIPPING</h2>
+
+    <div item-end>
+      <span class="price">{{paymentService.order?.shippingAmt | baht}} {{'COMMON.UNIT.CURRENCY' | translate}}</span>
+    </div>
+  </ion-item>
+</ion-card>
+
+<ion-card class="orange">
+  <ion-item text-wrap>
+    <h2 translate>COMMON.CHECKOUT.TOTAL</h2>
+
+    <div item-end>
+      <span class="price">{{paymentService.order?.netAmt | baht}} {{'COMMON.UNIT.CURRENCY' | translate}}</span>
+    </div>
+  </ion-item>
+</ion-card>

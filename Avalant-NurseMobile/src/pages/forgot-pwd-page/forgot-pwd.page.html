@@ -1,0 +1,76 @@
+<!--*
+ @author Bundit.Ng
+ @since  Fri Sep 15 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<!-- TODO: Make a close page button !! -->
+<ion-header no-border>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button class="closeDvBtn" tappable (click)="gotoLoginPage()">
+                <img class="closeImgBtn" src="./assets/img/login/close.png" />
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content style="padding: .5em">
+    <form #forgotForm="ngForm" (ngSubmit)="submitForgotPassword(forgotUserModel)">
+        <ion-grid class="forgotContent">
+            <ion-row>
+                <ion-col tappable (click)="gotoLoginPage()">
+                    <div class="Header">
+                        <p translate>COMMON.SIGNIN.FORGOTPASSWORD</p>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <div class="forgot-image">
+                    <div>
+                        <img src="./assets/img/login/OTP.svg" alt="">
+                    </div>
+                </div>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="item-div">
+                        <img class="inputIcon" src="./assets/img/login/username_icon.svg" />
+                        <ion-item class="dividerGrey" style="padding: 0 .5em;background-color: transparent;">
+                            <ion-input style="width: 75%" type="text" validate-input required [formInput]="forgotForm" [input-type]="'text'" name="username" [(ngModel)]="forgotUserModel.scmUserName" placeholder="{{ 'COMMON.SIGNUP.USERNAME' | translate }}" (input)="onInputUserName(forgotUserModel.scmUserName,scmUserName)" ></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="radio-activate-type" *ngIf="scmUserName != null && scmUserName != '' " radio-group [(ngModel)]="activateType" [ngModelOptions]="{standalone: true}">
+                <ion-col>
+                    <ion-row>
+                        <ion-col col-5 class="item-div">
+                            <span translate>COMMON.ACTIVATE_TYPE.ACTIVATE</span>
+                        </ion-col>
+                        <ion-col col-7 class="item-div">
+                            <ion-item no-lines style="background-color: transparent;height: 2.5em;min-height: 0;">
+                                <ion-radio color="light" tappable class="item-left-margin" item-left value="sms" [disabled]="isEmptyMobile"></ion-radio>
+                                <ion-label style="white-space: pre-line" translate>COMMON.ACTIVATE_TYPE.SMS</ion-label>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-5 class="item-div">
+                        </ion-col>
+                        <ion-col col-7 class="item-div">
+                            <ion-item no-lines style="background-color: transparent;height: 2.5em;min-height: 0;">
+                                <ion-radio color="light" tappable class="item-left-margin" item-left value="email" [disabled]="isEmptyEmail"></ion-radio>
+                                <ion-label style="white-space: pre-line" translate>COMMON.ACTIVATE_TYPE.EMAIL</ion-label>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <button ion-button tappable *ngIf="scmUserName == null || scmUserName ==''  " type="submit" block class="forgotNextBtn" [disabled]="forgotUserModel.scmUserName == '' || forgotUserModel.scmUserName == null || forgotUserModel.scmUserName.length < 4" translate>COMMON.BUTTON.NEXT</button>
+                    <button ion-button tappable *ngIf="scmUserName != null && scmUserName !=''  " type="submit" block class="forgotNextBtn" [disabled]="activateType == '' || activateType == null" translate>COMMON.BUTTON.CONFIRM</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

@@ -1,0 +1,172 @@
+page-tasks-page {
+    *:not(ion-icon) {
+        font-family: 'RobotoRegular', 'Prompt';
+    }
+    .svg-image-leave {
+        width: 1.2em;
+    }
+    .head-padding {
+        padding: 0 16px;
+        h1 {
+            margin: 0;
+        }
+    }
+    ion-row.spin>ion-col>ion-spinner * {
+        stroke: #fff !important;
+    }
+    ion-row.icontask {
+        margin-top: .5em;
+        ion-col {
+            margin-left: auto;
+            margin-right: auto;
+            div.icon-circle-btn {
+                &.active {
+                    border: 1px solid white;
+                    opacity: 1;
+                }
+                background-color: #34528f;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 50%;
+                height: 5em;
+                opacity: 0.75;
+                width: 5em;
+                img {
+                    margin-top: 1em;
+                    height: 3em;
+                    width: 3em;
+                }
+                ion-icon {
+                    margin-top: .1em;
+                    font-size: 4em;
+                }
+            }
+            p {
+                font-size: 1em;
+                font-family: 'RobotoLight', 'Prompt';
+            }
+        }
+    }
+    ion-card {
+        ion-row {
+            ion-col[col-3] {
+                margin-top: 1em;
+                ava-avatar-img.assign-by {
+                    text-align: center;
+                    img {
+                        height: 4em;
+                        width: 4em;
+                        text-align: center;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    ion-grid.headmessagetask {
+        &.pass-due-label {
+            height: 3em;
+            p {
+                padding: 0;
+                padding-left: .25em;
+                margin: 0;
+            }
+        }
+        ion-row {
+            ion-col {
+                p {
+                    color: white;
+                    font-family: 'RobotoRegular', 'Prompt';
+                }
+            }
+        }
+        ion-card {
+            border-radius: .5em;
+        }
+    }
+    ion-grid.messagetask {
+        ion-row {
+            ion-col {
+                button {
+                    margin-top: -.5em;
+                    height: 1.2em;
+                    width: 5em;
+                    background-color: #1ad0Be;
+                }
+                h2 {
+                    font-family: 'RobotoRegular', 'Prompt';
+                    color: #101010;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    ion-grid.datatask {
+        margin-top: -1em;
+        ion-row {
+            ion-col[col-1] {
+                color: #909090;
+                ion-icon[name=ios-person-outline] {
+                    margin-top: .7em;
+                }
+            }
+            ion-col[col-11] {
+                p {
+                    color: #909090;
+                }
+            }
+        }
+        .task-people {
+            color: #909090;
+            .div-col-attendees {
+                display: inline-block;
+                margin: .2em;
+            }
+            .peoplemore {
+                display: inline-block;
+                // height: 2.25em;
+                margin: .2em 0 0 0;
+                .attendees-avatar {
+                    text-align: center;
+                    border-radius: 50%;
+                    width: 3em;
+                    height: 3em;
+                    &.more {
+                        border: 1px solid #dedede;
+                        display: table-caption;
+                        font-size: 1em;
+                        padding: .25em 0;
+                        .more-amt {
+                            font-family: 'RobotoMedium', 'Prompt';
+                            color: #909090;
+                            font-size: .8em;
+                            margin: .5em;
+                        }
+                    }
+                }
+            }
+            .icon-outline {
+                margin-left: .5em;
+            }
+        }
+    }
+    ion-row.btn {
+        * {
+            font-family: 'RobotoRegular', 'Prompt';
+        }
+        margin-top: .5em;
+        border-top: 1px solid #dadada;
+        ion-col[border-left] button.action-btn {
+            border-left: 1px solid #eaeaea;
+        }
+        ion-col {
+            padding: 0.25em !important;
+            button.action-btn {
+                box-shadow: none !important;
+                background: none;
+                color: #626262;
+            }
+        }
+    }
+}

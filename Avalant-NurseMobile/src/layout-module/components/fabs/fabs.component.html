@@ -1,0 +1,50 @@
+<ion-fab #fab bottom [hidden]="isHidden">
+  <button ion-fab color="dark" class="main-fab">
+    <ion-icon name="u"><ion-badge color="danger">{{ allNotiCount > 99 ? '99+' : allNotiCount || '' }}</ion-badge></ion-icon>
+  </button>
+
+  <ion-fab-list side="top">
+    <!-- Add Ion-Grid & Row -->
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-fab color="secondary" (click)="fab.close(); onSearchClick($event)"><ion-icon name="search" class="fab"></ion-icon></button>
+        </ion-col>
+        <ion-col col-4 *ngIf="appState.businessUser">
+          <button ion-fab color="primary" (click)="fab.close(); onNotiClick($event)"><ion-icon name="ios-notifications-outline" class="fab"><ion-badge *ngIf="notificationCount > 0" color="danger">{{ notificationCount }}</ion-badge></ion-icon></button>
+        </ion-col>
+        <ion-col col-4 *ngFor="let fabButton of fabButtons">
+          <button ion-fab [color]="fabButton.color" (click)="fab.close(); onCustomButtonClick(fabButton)"><ion-icon [name]="fabButton.icon" class="fab"></ion-icon></button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-fab-list>
+
+  <!-- <ion-fab-list side="top">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-fab color="primary"><ion-icon name="ios-notifications-outline" class="fab"></ion-icon></button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-fab color="primary"><ion-icon name="ios-notifications-outline" class="fab"></ion-icon></button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-fab color="primary"><ion-icon name="ios-notifications-outline" class="fab"></ion-icon></button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-fab color="primary"><ion-icon name="ios-notifications-outline" class="fab"></ion-icon></button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-fab color="primary"><ion-icon name="ios-notifications-outline" class="fab"></ion-icon></button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-fab color="primary"><ion-icon name="ios-notifications-outline" class="fab"></ion-icon></button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-fab-list> -->
+
+</ion-fab>
+<ion-backdrop *ngIf="isShowBackdrop" [@fadeAnimation] [class.backdrop-no-tappable]="true" (click)="onBdClick($event)" (pan)="onBdClick($event)"></ion-backdrop>

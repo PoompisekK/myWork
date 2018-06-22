@@ -1,0 +1,6 @@
+keytool -exportcert -alias androiddebugkey -keystore "%HOMEPATH%\.android\debug.keystore" | openssl sha1 -binary | openssl base64
+Default Password is : android
+
+
+keytool -exportcert -alias ybat-app -keystore "D:\CFD\DMPMobile\KeyStore\ybat-release-key.keystore" | openssl sha1 -binary | openssl base64
+Password is : P@ssw0rd

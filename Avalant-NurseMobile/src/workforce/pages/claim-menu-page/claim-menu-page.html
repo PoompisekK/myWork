@@ -1,0 +1,42 @@
+<ion-header>
+  <app-nav-header [pageName]="'Menu'"></app-nav-header>
+</ion-header>
+<ion-content> 
+  <div class="bg-menu-demo">
+    <ion-grid text-center style="height:100%;justify-content: center;">
+      <ion-row>
+        <ion-col (click)="goToClaimMotor1()" col-4>
+          <img class="icn-menu" src="assets/img/menu-claim1.png" />
+          <p style="color:white;">Motor</p>
+        </ion-col>
+        <ion-col col-4>
+          <img class="icn-menu"  src="assets/img/menu-claim2.png" />
+           <p style="color:white;">Travel</p>
+        </ion-col>
+        <ion-col col-4>
+          <img class="icn-menu"  src="assets/img/menu-claim3.png" />
+           <p style="color:white;">Property</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          <img class="icn-menu"  src="assets/img/menu-claim4.png" />
+           <p style="color:white;">Marine</p>
+        </ion-col>
+        <ion-col col-4>
+          <img class="icn-menu" src="assets/img/menu-claim5.png" />
+           <p style="color:white;">Accident</p>
+        </ion-col>
+        <ion-col col-4>
+          <img class="icn-menu" src="assets/img/menu-claim6.png" />
+          <p style="color:white;">Other</p> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <!-- style="position:absolute;margin-top: 7em;margin-left: 10.5em;width: 22%;height: 15%;" -->
+
+
+
+
+</ion-content>

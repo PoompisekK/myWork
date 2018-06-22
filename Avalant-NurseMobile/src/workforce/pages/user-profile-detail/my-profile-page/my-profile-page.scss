@@ -1,0 +1,60 @@
+my-profile-page {
+    .bg {
+        background-color: color($colors-theme, "app-theme");
+    }
+    ion-grid.myprofile {
+        height: 15%;
+        color: white;
+        >ion-row {
+            >ion-col {
+                margin-left: auto;
+                margin-right: auto;
+                font-family: 'RobotoRegular', 'Prompt';
+                >img {
+                    border-radius: 50%;
+                    height: 7em;
+                    width: 7em;
+                    border: thick solid color($colors-theme, "app-theme");
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+                & h2 {
+                    font-size: 1.2em;
+                    margin-top: 1.2em;
+                    text-transform: capitalize;
+                }
+                & p {
+                    text-align: left;
+                    margin-top: -.2em;
+                    font-size: 1em;
+                    color: rgb(211, 211, 211);
+                }
+            }
+        }
+    }
+    ion-grid.bgform {
+        margin-top: 3em;
+        background-color: rgb(231, 231, 231);
+        height: 80%;
+        >ion-row {
+            background-color: white;
+            margin-top: .2em;
+            margin-left: -.5em;
+            margin-right: -.5em;
+            >ion-col {
+                font-family: 'RobotoRegular', 'Prompt';
+                h4 {
+                    font-size: 1em;
+                    margin-left: 1em;
+                }
+                h5 {
+                    font-size: 1em;
+                    margin-right: 1em;
+                    color: grey;
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

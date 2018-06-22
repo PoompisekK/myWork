@@ -1,0 +1,42 @@
+super-tabs {
+    &.disable-page-scroll .scroll-content {
+        overflow-y: hidden;
+    }
+    &.full-size {
+        $stHeight: initial;
+        height: $stHeight;
+        super-tabs-container {
+            height: $stHeight;
+            display: block;
+            contain: none;
+            .ion-page {
+                position: relative;
+                contain: none;
+                ion-content.content {
+                    position: relative;
+                    contain: none;
+                    .scroll-content {
+                        position: relative;
+                        padding: 0;
+                        contain: none;
+                        overflow-y: hidden;
+                    }
+                }
+            }
+        }
+        super-tabs-container {
+            height: initial !important;
+        }
+        &.fixed-toolbar {
+            margin-top: 48px;
+            super-tabs-toolbar {
+                position: fixed;
+                top: 56px;
+            }
+        }
+    }
+}
+
+super-tabs-toolbar>ion-toolbar.toolbar.scroll-tabs .tab-buttons-container .tab-buttons super-tab-button {
+    min-width: auto !important; // Fix text overlapped
+}

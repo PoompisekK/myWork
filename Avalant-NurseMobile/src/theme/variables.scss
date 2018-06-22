@@ -1,0 +1,186 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+$font-path: "../assets/fonts";
+
+// @import "../../node_modules/compass-mixins/lib/compass";
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+$font-subkhumvit-like: 'Prompt', sans-serif;//'Sukhumvit Set', 
+
+// Font for platforms
+
+// iOS will apply on content only.
+ion-app.ios * ion-content {
+  font-family: $font-subkhumvit-like;
+}
+
+// For Android
+$font-family-md-base: $font-subkhumvit-like;
+
+// $font-family-base: $font-subkhumvit;
+// $font-family-ios-base: $font-family-base;
+// $font-family-md-base: $font-family-base;
+
+$button-md-text-transform: none;
+$img-placeholder-background: #fff url('../assets/img/placeholder.png') center no-repeat;
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary:    #64B5F6, //#1976D3,
+  primary-light:    #64B5F6,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  black:     #000,
+  
+brown: 	#A52A2A,
+green: 	#008000,
+olive: 	#808000,
+orange: 	#FF6D0A,
+purple: 	#800080,
+RebeccaPurple: 	#663399,
+red: 	#FF0000,
+whitesmoke: 	#F5F5F5,
+yellow: 	#FFFF00,
+yellowgreen: 	#9ACD32,
+bluecyan: #273d6a,
+selected: #71cc16,
+
+  title: #000,
+  sub-title: gray,
+  blue-tab:#0099FF,
+  gray: #9B9B9B,
+  approve-btn: #64b5f6,
+  reject-btn: #ff5a54,
+  light-blue: #64b5f6,
+  bg-workforce: #273E6A,
+);
+
+$colors-theme: (
+  app-theme: #273E6A,
+);
+
+$colors-border: (
+  primary: gray,
+  default: gray,
+  
+);
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+
+
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+@import "custom-ionic";
+@import "custom-super-tabs";
+@import "loading-placeholder";
+@import "breadcrumb";
+
+// YBAT
+// @import "ybat";
+// @import "workforce";
+@import "nurse-mobile";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+// @import "noto-sans";
+
+@import "fonts";
+
+
+
+//Custom Component
+// --------------------------------------------------
+//popover 
+$popover-md-box-shadow-color :rgba(0, 0, 0, 0.5);
+
+$radio-md-transition-duration:100ms;
+
+.col4-image-effect{
+  height: 9em;
+  border: 1px solid lightgrey;
+  border-radius: .25em;
+  box-shadow:1px 1px 2px lightgrey;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  // margin: 5px;
+}
+.preview-image-popup{
+  width: 100%;
+  .alert-head{
+    // display: none;
+  }
+  .alert-wrapper{
+    max-width: 95% !important;
+
+    .alert-message{
+      max-height: 80% !important;
+    }
+  }
+  .alert-button-group{
+    height: 6em !important;
+  }
+}
+img.preview-image{
+  width: auto;
+  height: auto;
+}
+
+div.preview-image{
+  text-align: center;
+}
+$input-item-border-color:#dedede;
+$text-input-highlight-color-valid: 1px solid #dedede;

@@ -1,0 +1,30 @@
+<ion-header header-bar [logo]="false" title="My Cart" [message]="false" [cartEnabled]="false" [backButtonCallback]="customBackButtonFnDelegate"></ion-header>
+<ion-content class="shopping-cart" no-bounce>
+  <step-bar #stepBar [stepItemList]="stepItems"></step-bar>
+  <ion-slides #pageSlide [slidesPerView]="1" (ionSlideNextStart)="onSlideNextStart()" (ionSlidePrevStart)="onSlidePrevStart()">
+    <ion-slide class="slide-page">
+      <motor-cart [carts]="carts"></motor-cart>
+    </ion-slide>
+    <ion-slide class="slide-page">
+      <shipping #shipping></shipping>
+    </ion-slide>
+    <ion-slide class="slide-page">
+      <motor-payment-method #paymentMethod></motor-payment-method>
+    </ion-slide>
+    <ion-slide class="slide-page">
+      <motor-order-summary #orderSummary></motor-order-summary>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons start class="split">
+      <button *ngIf="footerStepButtonTextList[pageSlide.getActiveIndex()]?.prevText" ion-button tappable outline full (click)="onBackClick()"
+        [disabled]="isDisabledFooterStepButton" translate>{{ footerStepButtonTextList[pageSlide.getActiveIndex()].prevText }}</button>
+    </ion-buttons>
+    <ion-buttons end class="split">
+      <button *ngIf="footerStepButtonTextList[pageSlide.getActiveIndex()]?.nextText" ion-button tappable color="orange" outline
+        full (click)="onNextClick(carts[0])" [disabled]="isDisabledFooterStepButton" translate>{{ footerStepButtonTextList[pageSlide.getActiveIndex()].nextText }}</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,18 @@
+[header-bar] {
+  ion-buttons[start] {
+    order: 1;
+  }
+  ion-icon.icon ion-badge.badge:empty {
+    display: none;
+  }
+  button.iconBtn {
+    margin-right: .5em;
+  }
+  button.iconBtn:active {
+    opacity: .5;
+  }
+  .title-text {
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+  }
+}

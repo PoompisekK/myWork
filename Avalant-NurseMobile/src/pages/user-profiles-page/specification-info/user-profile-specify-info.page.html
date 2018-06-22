@@ -1,0 +1,64 @@
+<!--*
+ @author Bundit.Ng
+ @since  Mon May 22 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<ion-header no-border>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title translate>COMMON.USERPROFILE.MEDICAL_INFORMATION_HEAD</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content style="padding: 5px;">
+    <div style="padding: 1em;">
+        <ion-item no-lines style="margin-top: .5em">
+            <ion-label class="userprofile-input-label head-text" translate>COMMON.USERPROFILE.MEDICAL_INFORMATION_HEAD</ion-label>
+        </ion-item>
+        <ion-list style="margin:.5em 0 0 0;">
+            <div *ngFor="let questionItm of ybatMedicalQuestionList;">
+                <div>
+                    <ion-list-header *ngIf="questionItm?.ybatMsMedicalQuestion?.questionName != '' " no-lines style="min-height: 0;height: 2em;text-indent: .5em">
+                        {{questionItm?.ybatMsMedicalQuestion?.questionName}}<span class="required"></span>
+                    </ion-list-header>
+                    <ion-row *ngIf="isRadioType(questionItm)" radio-group style="margin: 0;padding: 0;height: auto;min-height: 0; ">
+                        <ion-col col-auto *ngFor="let choiceitm of questionItm.ybatMsMedicalChoices">
+                            <ion-item no-lines style="height: auto;min-height: 0;">
+                                <ion-radio tappable (click)="clickAnswerRadio(questionItm, choiceitm)" [checked]="isAnswerChecked(questionItm, choiceitm)" class="item-left-margin" item-left [value]="choiceitm?.choiceCode"></ion-radio>
+                                <ion-label style="white-space: pre-line">{{choiceitm?.choiceDesc}}</ion-label>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div *ngIf="isCheckboxType(questionItm)" [hidden]="questionItm.displayFlag == 'N'">
+                    <ion-row *ngFor="let choiceitm of questionItm.ybatMsMedicalChoices" style="margin: 0;padding: 0;height: auto;min-height: 0; ">
+                        <ion-col col-auto>
+                            <ion-item no-lines style="height: auto;min-height: 0;">
+                                <ion-checkbox tappable (click)="clickAnswerCheckbox(questionItm, choiceitm)" [checked]="isAnswerChecked(questionItm, choiceitm)" class="item-left-margin" item-left></ion-checkbox>
+                                <ion-label style="white-space: pre-line">{{choiceitm?.choiceDesc}}</ion-label>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col col-auto [hidden]="!(choiceitm?.isrequireOtherDetail == 'Y' && isAnswerChecked(questionItm, choiceitm))">
+                            <ion-item no-lines style="height: auto;min-height: 0;">
+                                <ion-label style="white-space: pre-line">{{choiceitm?.choiceDesc}}<span class="required"></span></ion-label>
+                                <ion-input type="text" [(ngModel)]="otherAnswer" maxlength="50" (ionBlur)="inputAnswerOther(questionItm, choiceitm, otherAnswer)"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </div>
+        </ion-list>
+        <!-- <div>
+            <button ion-button color="primary" block tappable (click)="nexto2Attachment($event)" translate> COMMON.BUTTON.NEXT </button>
+        </div> -->
+        <div style="margin: 1em 0 1em 1em;" ion-row>
+            <ion-col width-50>
+                <button ion-button color="danger" type="button" (click)="backBtn()" block tappable translate>COMMON.BUTTON.BACK</button>
+            </ion-col>
+            <ion-col width-50>
+                <button ion-button color="primary" (click)="nexto2Attachment($event)" block tappable translate>COMMON.BUTTON.NEXT</button>
+            </ion-col>
+        </div>
+    </div>
+</ion-content>

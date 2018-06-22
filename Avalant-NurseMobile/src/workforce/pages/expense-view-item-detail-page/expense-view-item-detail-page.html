@@ -1,0 +1,85 @@
+<ion-content no-padding>
+    <div class="modal-nav">
+        <button ion-button icon-only transparent no-box no-lines close-modal-view *ngIf="!showAddExpenseItem">
+                <ion-icon name="ios-close-outline" style="color: black;"></ion-icon>
+            </button>
+    </div>
+    <ion-grid no-padding>
+        <ion-row no-padding>
+            <ion-col col-12 no-padding>
+                <ion-grid class="input-form">
+                    <ion-slides #expenseItemSlides no-padding pager>
+                        <!-- <ion-slide *ngFor="let expItmObjt of (expenseM.expenseItemList||[]);let expItmIdx = index;"> -->
+                        <ion-slide *ngFor="let expItmObjt of (expenseM.listExpenseDetail);let expItmIdx = index;">
+                            <ion-row class="header-label" no-padding>
+                                <ion-col no-padding text-left>
+                                    <h3>Expense Item {{ ((expItmIdx||0)+1) }}</h3>
+                                </ion-col>
+                                <ion-col col-2>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row no-padding>
+                                <ion-col no-padding>
+                                    <ion-row no-padding>
+                                        <ion-col no-padding col-12>
+                                            <ion-item no-box no-padding>
+                                                <ion-label floating floated>{{ expenseLang?.expenseType || 'Expense type'}}</ion-label>
+                                                <ion-select readonly disabled [(ngModel)]="expItmObjt.expenseTypeCode" interface="popover" style="max-width: 100%;width: 100%;padding-left:8px;">
+                                                    <ion-option *ngFor="let expType of (expenseTypeLists||[])" [value]="expType.expenseCode" style="text-transform: capitalize;">{{expType?.expenseName}}</ion-option>
+                                                </ion-select>
+                                            </ion-item>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row no-padding>
+                                        <ion-col no-padding col-12>
+                                            <ion-item no-box no-padding>
+                                                <ion-label floating floated>{{ expenseLang?.expenseDetail || 'Expense detail' }}</ion-label>
+                                                <ion-textarea readonly disabled fz-elastic [(ngModel)]="expItmObjt.reason" style="color:black;padding:0;"></ion-textarea>
+                                            </ion-item>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row no-padding>
+                                        <ion-col no-padding col-12>
+                                            <ion-item no-box no-padding>
+                                                <ion-label floating floated>{{ expenseLang?.when || 'When'}}</ion-label>
+                                                <ion-input readonly disabled [value]="expItmObjt?.invoiceDate | amDateFormat:'MMM D YYYY'" type="text"></ion-input>
+                                            </ion-item>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row no-padding>
+                                        <ion-col no-padding col-12>
+                                            <ion-item no-box no-padding>
+                                                <ion-label floating floated>{{ expenseLang?.amount ||'Amont' }}</ion-label>
+                                                <ion-input disabled type="number" number-format="3.2" [(ngModel)]="expItmObjt.amount"></ion-input>
+                                            </ion-item>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="attach-file-label" no-padding>
+                                        <ion-col no-padding col-12>
+                                            <ion-item no-box no-padding style="height: 4.5em;">
+                                                <ion-label floating floated>{{ expenseLang?.attachFile || 'Attach file' }}</ion-label>
+                                                <ion-icon item-end name="ios-attach-outline"></ion-icon>
+                                            </ion-item>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="attach-file" no-padding *ngIf="expItmObjt.files && (expItmObjt.files||[]).length > 0">
+                                        <ion-col no-padding col-12>
+                                            <ion-item no-lines no-box *ngFor="let fileItm of (expItmObjt.files||[]);let idx = index">
+                                                <ion-label>
+                                                    <img *ngIf="isFileType(fileItm, 1)" attach-icon src="./assets/img/svg/doc.svg">
+                                                    <img *ngIf="isFileType(fileItm, 2)" attach-icon src="./assets/img/svg/pdf.svg">
+                                                    <img *ngIf="isFileType(fileItm, 3)" attach-icon src="./assets/img/svg/pic.svg">
+                                                    <img *ngIf="!(isFileType(fileItm, 1)||isFileType(fileItm, 2)||isFileType(fileItm, 3))" attach-icon src="./assets/img/svg/otherfile.svg"> {{ fileItm?.name || fileItm?.fileName }}
+                                                </ion-label>
+                                            </ion-item>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-col>
+                            </ion-row>
+                        </ion-slide>
+                    </ion-slides>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

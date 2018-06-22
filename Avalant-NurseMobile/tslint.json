@@ -1,0 +1,13 @@
+{
+    "rules": {
+        "no-unused-variable": false,
+        "no-duplicate-variable": true,
+        "semicolon": [true, "always"],
+        "no-consecutive-blank-lines": [true, 1],
+        "only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
+        "member-access": [true, "check-parameter-property"]
+    },
+    "rulesDirectory": [
+        "node_modules/tslint-eslint-rules/dist/rules"
+    ]
+}

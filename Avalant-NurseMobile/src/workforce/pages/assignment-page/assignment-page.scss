@@ -1,0 +1,131 @@
+assignment-page {
+    .head-div {
+        height: 11em;
+    }
+    ion-grid.assign-button-action {
+        ion-col {
+            &.today-col,
+            &.thisweek-col,
+            &.nextweek-col {
+                img {
+                    margin-top: 1em;
+                    height: 2.75em;
+                }
+                // 
+                h3.amt,
+                p {
+                    font-family: 'RobotoRegular','Prompt';
+                    margin: 0;
+                }
+                h3.amt {
+                    font-size: 2.5em;
+                }
+                p {
+                    font-size: .9em;
+                    margin-top: 1em;
+                }
+            }
+            &.today-col {
+                h3.amt {
+                    font-family: 'RobotoBlack';
+                }
+            }
+        }
+    }
+    div.assign-blue-bar {
+        * {
+            margin: 0;
+        }
+        background-color: #5495e5;
+        ion-col {
+            height: 4.75em;
+        }
+        button[transparent] {
+            height: 100%;
+            vertical-align: middle;
+            box-shadow: none;
+            ion-icon {
+                color: white;
+                font-size: 2em;
+                &[name=ios-add] {
+                    font-size: 3em;
+                }
+            }
+        }
+    }
+    div.assign-task-list {
+        .group-assign {
+            margin: 1em 0;
+        }
+        .label-task-date {
+            font-family: 'RobotoRegular','Prompt';
+            font-size: .75em;
+            font-weight: bold;
+            color: #101010;
+            padding-left: 1em;
+            margin: .5em .5em;
+        }
+        [ava-lines] {
+            padding: 0;
+            .item-inner {
+                border-bottom: 1px solid #e5e5e5 !important;
+                padding: 0;
+                ion-label {
+                    padding: 0;
+                    margin: .5em 0;
+                }
+            }
+        }
+        .item-inner {
+            padding: 0 !important;
+            ion-label {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        .assign-grid {
+            padding: 0;
+            ion-col {
+                img.img-avatar {
+                    width: 4em;
+                    margin-top: .5em;
+                }
+                &.assign-msg {
+                    padding: 0;
+                    padding-left: .5em;
+                    h3 {
+                        font-family: 'RobotoRegular','Prompt';
+                        color: #101010;
+                        font-size: 1.25em;
+                        margin: .25em 0;
+                    }
+                    p[ellipsis],
+                    span[ellipsis] {
+                        margin: 0;
+                        margin-top: -.75em;
+                        font-family: 'RobotoRegular','Prompt';
+                        color: #909090;
+                        height: 3em;
+                        font-size: .75em;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: pre-line;
+                        &:after,
+                        &::after {
+                            content: "...";
+                        }
+                    }
+                }
+                span.assign-time {
+                    font-size: .75em;
+                    color: #586069;
+                    font-family: 'RobotoMedium','Prompt';
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: 1em;
+                    margin-right: 1em;
+                }
+            }
+        }
+    }
+}

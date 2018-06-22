@@ -1,0 +1,54 @@
+.paymentType {
+  text-align: center;
+  font-size: 12px!important;
+}
+
+.paymentMethodText {
+  font-size: 2em;
+  text-align: center;
+  margin: 1em 0;
+}
+
+.selectText {
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-width: thin;
+  border-color: #cecece;
+}
+
+.creditCardText {
+  margin: 15px 0 0 0.5em;
+  color: #969696;
+}
+
+.selectedPaymentType {
+  font-size: 2em;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.detailBorder {
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  border-color: #cecece;
+}
+
+.disabledText {
+  color: #969696;
+}
+@media screen and (min-width: 768px) {
+    .paymentType {
+      font-size: 24px!important;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .paymentType {
+      font-size: 32px!important;
+    }
+}
+

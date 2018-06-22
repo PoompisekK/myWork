@@ -1,0 +1,5 @@
+<payment-donation-component *ngIf="cart?.shopTypeId == shopType.DONATE"></payment-donation-component>
+<payment-privilege-component *ngIf="cart?.shopTypeId == shopType.PRIVILEGE"></payment-privilege-component>
+<payment-shop-component *ngIf="cart?.shopTypeId == shopType.STORE"></payment-shop-component>
+<order-success-component *ngIf="cart?.shopTypeId == shopType.GROUP_EVENT"></order-success-component>
+<order-success-component *ngIf="cart?.shopTypeId == shopType.COURSE_EVENT"></order-success-component>

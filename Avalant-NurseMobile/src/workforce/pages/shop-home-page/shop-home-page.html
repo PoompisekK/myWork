@@ -1,0 +1,66 @@
+<ion-header>
+    <app-nav-header [pageName]="'Shopping'"></app-nav-header>
+</ion-header>
+
+<ion-content>
+    <!-- Session 1 -->
+    <div padding style="background:#273d6a;">
+        <ion-item style="background:#273d6a;padding-bottom:5px;padding-left:5px;">
+            <!-- <ion-label style="font-size:1.8em;"> <ion-icon color="light" name="person"></ion-icon></ion-label> -->
+            <ion-icon color="light" name="ios-search-outline" item-left style="position: absolute; top:1px"></ion-icon>
+            <ion-input style="border-bottom:1px solid white;color:white;padding:0;padding-left: 32px;" type="text" placeholder=""></ion-input>
+        </ion-item>
+    </div>
+    <!-- //Session 1 -->
+
+    <!-- Promotion Text -->
+    <div>
+        <p class="pl-16 text-header">Insurance Category</p>
+    </div>
+
+    <div>
+        <ion-card>
+            <!-- <ion-card-header>
+        Text HERE
+      </ion-card-header> -->
+            <img (click)="goToShopDetail()" src="assets/img/promotion3.jpg" />
+
+            <ion-card-content>
+                <ion-row no-padding>
+                    <ion-col (click)="goToShopDetail()" col-9 class="margin-auto">
+                        <b>Special for employee</b>
+                    </ion-col>
+                    <ion-col col-3 text-right>
+                        <button ion-button clear small icon-start>
+                          <span style="color:black;">200&nbsp;&nbsp;</span>
+                          <ion-icon color="danger" name='heart'> </ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+            <!-- <ion-card-header>
+        Text HERE
+      </ion-card-header> -->
+            <img (click)="goToShopDetail()" src="assets/img/promotion4.jpg" />
+            <ion-card-content>
+                <ion-row no-padding>
+                    <ion-col (click)="goToShopDetail()" col-9 class="margin-auto">
+                        <b>Car Insurance for you</b>
+                    </ion-col>
+                    <ion-col col-3 text-right>
+                        <button ion-button clear small icon-start>
+                          <span style="color:black;">200&nbsp;&nbsp;</span>
+                          <ion-icon color="danger" name='heart'> </ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <!-- 
+  <div (click)="goToShopDetail()" class="bg-home-demo">
+  </div> -->
+</ion-content>

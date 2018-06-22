@@ -1,0 +1,47 @@
+<div id="networkDv" *ngIf="!isNetworkAvaliable" class='networkDiv' [class.showDiv]="!isNetworkAvaliable" [class.hideDiv]="isNetworkAvaliable">
+    <span>Network Not avaliable !!!</span>
+</div>
+<ion-split-pane when="(min-width: 900px)">
+    <input style="display: none;" type="file" accept="image/*" capture="camera" id="userImageFileInputId" #userImageFileInputId multiple (change)="getAttachments && getAttachments()">
+    <ion-menu type="overlay" [content]="content" class="sidebar" (ionOpen)="statusBarToggle(false)" (ionClose)="statusBarToggle(true)">
+        <ion-header>
+            <ion-toolbar color="primary" [ngStyle.min-height]="appState.isLoggedIn ? '16px' : '0px'">
+                <div *ngIf="appState.isLoggedIn">
+                    <ion-item class="avatar-item">
+                        <ion-avatar no-box item-left (click)="uploadUserProfileImage()">
+                            <!-- <img safe src="{{appState.businessUser.socialPicProfile | imagekey}}" /> -->
+                            <!-- <img no-box safe src="assets/img/transparents.png" class="image-profile" [style.background-image]="'url(' + ((appState?.businessUser?.employeeCode||appState?.businessUser?.userCode) | loadImg) + ')'" /> -->
+                            <img no-box safe src="assets/img/transparents.png" class="image-profile" [style.background-image]="sanitizedImageUser" />
+                            <!-- <img safe src="../assets/img/transparents.png" [style.background-image]="'url(' + (appState.businessUser.socialPicProfile | imagekey) + ')'" /> -->
+                        </ion-avatar>
+                        <!-- </ion-item>
+                    <ion-item class="avatar-item grow-shadow" color="dark"> -->
+                        <ion-row nowrap>
+                            <ion-col col-12>
+                                <span style="display: block; white-space: normal;color: white;font-size: 1.1em;font-weight:bold; font-family: 'RobotoRegular', 'Prompt';text-transform: capitalize; ">{{appState?.businessUser?.custFname}}&nbsp;&nbsp;{{appState?.businessUser?.custLname}}</span><br>
+                                <span style="color: rgb(194, 194, 194);font-family: 'RobotoRegular','Prompt';font-size: .9em ">{{appState?.businessUser?.memberEmail}}</span>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+                </div>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list style="margin-top: 1em; font-family:'RobotoRegular', 'Prompt'; margin-left: .7em">
+                <div class="menu-item" *ngFor="let p of pages" (click)="openPage(p,'main',$event)" [hidden]="!isMenuShow(p)">
+                    <button class="btn-property btn-color-main" color="light" ion-button full [disabled]="p.isDisabled">
+                        <span  *ngIf="p.title != null" translate>
+                            <ion-icon name="{{p?.iconName}}" style="color: rgb(168, 166, 166);font-size: 25px; margin-top: .6em; float: left"></ion-icon>
+                            <!-- <img src="../assets/img/user.png"> -->
+                            <p style="margin-left: 2em; font-size: 18px;" translate>{{p?.title}}</p>
+                        </span>
+                        <!-- <span *ngIf="p.title == null" style="font-size: 0.85em;" >{{p?.messages}}</span>   -->
+                    <ion-icon *ngIf="p.title == 'COMMON.MENU.MY_REWARD' " [name]="activeSubMenu ? 'arrow-dropup' : 'arrow-dropdown'" class="icon-arrow-property"></ion-icon>
+                    </button>
+                    <button class="btn-property btn-color-sub sub-menu" color="light" ion-button full (click)="openPage(p,'sub',$event);$event.stopPropagation();" *ngIf="p.title == 'COMMON.MENU.MY_REWARD' &&activeSubMenu==true" translate>COMMON.MY_REWARD.YBAT</button>
+                </div>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main></ion-nav>
+</ion-split-pane>

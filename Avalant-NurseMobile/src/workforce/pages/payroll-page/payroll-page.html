@@ -1,0 +1,125 @@
+<ion-header>
+    <app-nav-header [pageName]="'Pay Slip'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh && doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-card style="margin-top: 0;">
+        <ion-card-content no-padding>
+            <ion-slides>
+                <ion-slide *ngFor="let item of [{}];" no-padding>
+                    <ion-grid class="page-payroll">
+                        <ion-row no-padding class="payroll-card-title">
+                            <ion-col col-1>
+                                <ion-icon name="ios-arrow-back"></ion-icon>
+                            </ion-col>
+                            <ion-col>
+                                <h4>{{ paySlipDataM?.startDate | amLocal: 'en' | amDateFormat : 'MMMM YYYY' }}</h4>
+                            </ion-col>
+                            <ion-col col-1>
+                                <ion-icon name="ios-arrow-forward"></ion-icon>
+                            </ion-col>
+                        </ion-row>
+                        <ion-item-divider class="no-padding-divider"></ion-item-divider>
+                        <ion-row no-padding>
+                            <ion-col no-padding text-left>
+                                <div class="address" no-padding style="width: 100%;height: 100%; margin-left: 2%">
+                                    <h2>Avalant Co,.Ltd.</h2>
+                                    <p class="address">20 Bubhajit Bldg., 15 Fl., North Sathorn Road,</p>
+                                    <p class="address">Silom, Bangrak, Bangkok 10500 </p>
+                                    <!-- <p class="address">TEL: (66)-0-2633-9367-69, (66)-0-2633-8170-75 </p> -->
+                                    <!-- <p class="address">FAX: (66)-0-2633-8174 </p> -->
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                        <ion-item-divider class="no-padding-divider"></ion-item-divider>
+                        <ion-row no-margin class="task-header" no-padding style="font-size: 14px; margin: 2%">
+                            <ion-col no-padding col-2 style="padding: 0.75em 0;display: block">
+                                <ion-avatar no-padding item-start>
+                                    <!-- <img class="img-avatar" [src]="currentEmpCode | loadImg " alt="" style="height: 3em;width: 3em;"> -->
+                                    <ava-avatar-img [srcPath]="currentEmpCode  | loadImg"></ava-avatar-img>
+                                </ion-avatar>
+                            </ion-col>
+                            <ion-col col-6 style="padding:0.75em 0" text-left>
+                                <div style="margin-left:15px">
+                                    <p style="font-weight:bold">{{ businesUser?.custFname}}&nbsp; </p>
+                                    <p style="color: #a0a0a0;"> {{ businesUser?.custLname}} </p>
+                                </div>
+                            </ion-col>
+                            <ion-col col-4 style="padding:0.75em 0" class="col-date">
+                                <p class="p-date">{{ paySlipDataM?.startDate | amLocal: 'en' | amDateFormat : 'D MMMM YYYY' }}</p>
+                            </ion-col>
+                        </ion-row>
+                        <ion-item-divider style="margin-top: 0;" class="no-padding-divider"></ion-item-divider>
+                        <ion-card no-padding style="color: black;margin-left: 0;margin-right: 0;width: 100%;"> <!-- class="bg-workforce-ligther" -->
+                            <ion-card no-padding style="margin: 0%; width: 100%;" *ngFor="let incomeItm of (paySlipM.incomeList||[]);let pItmIdx = index;">
+                                <ion-card-content no-padding>
+                                    <ion-grid class="payroll-type">
+                                        
+                                        <!-- <ion-row>
+                                            <ion-col col-6>{{ payrollLang?.rate || 'Rate' }}</ion-col>
+                                            <ion-col col-6>฿ {{ incomeItm?.rate | number:'1.2-2':'th' }}</ion-col>
+                                        </ion-row> -->
+                                        <!-- <ion-row>
+                                            <ion-col col-6>{{ payrollLang?.vat || 'Vat' }}</ion-col>
+                                            <ion-col col-6>{{ incomeItm?.vat | number:'1.2-2':'th' }} %</ion-col>
+                                        </ion-row> -->
+                                        <ion-row class="row-total">
+                                            <ion-col col-6>{{ incomeItm?.groupName }}</ion-col>
+                                            <ion-col col-6>฿ {{ incomeItm?.amount | number:'1.2-2':'th' }}</ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-card-content>
+                            </ion-card>
+                            <ion-card no-padding style="margin: 0%; width: 100%;">
+                                <ion-card-content no-padding>
+                                    <ion-grid class="payroll-type">
+                                       
+                                        <ion-row class="row-total">
+                                            <ion-col col-6>{{ paySlipM?.totalDeuction?.groupName }}</ion-col>
+                                            <ion-col col-6>฿ {{ paySlipM?.totalDeuction?.amount | number:'1.2-2':'th' }}</ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-card-content>
+                            </ion-card>
+                            <ion-card no-padding style="margin: 0%; width: 100%;">
+                                <ion-card-content no-padding>
+                                    <ion-grid class="payroll-type">
+                                      
+                                        <ion-row class="row-total">
+                                            <ion-col col-6>{{ paySlipM?.totalIncome?.groupName }}</ion-col>
+                                            <ion-col col-6>฿ {{ paySlipM?.totalIncome?.amount | number:'1.2-2':'th' }}</ion-col>
+                                        </ion-row>
+                                    </ion-grid>                                  
+                                </ion-card-content>
+                            </ion-card>
+                            <ion-item-divider style="margin-top: 1.5em;" class="no-padding-divider"></ion-item-divider>
+                            <ion-card>
+                                <ion-card-content no-padding class="sumpayrool">
+                                    <ion-grid no-padding no-box>                                       
+                                        <ion-row style="color: #8c8c8c; font-size:18px; text-align:right;">
+                                            <ion-col col-7>{{payrollLang?.total || 'Total'}}</ion-col>
+                                            <ion-col col-5>฿ {{ sumpayslip | number:'1.2-2':'th' }}</ion-col>
+                                        </ion-row>
+                                        <ion-row style="color: #8c8c8c; font-size:18px; text-align:right;">
+                                            <ion-col col-7>{{ payrollLang?.nonReimbursable || 'Non Reimbursable' }}</ion-col>
+                                            <ion-col col-5>฿ 2,000.00 </ion-col>
+                                        </ion-row>
+                                        <ion-row style="font-size:18px; text-align:right;">
+                                            <ion-col col-7>{{ payrollLang?.reimbursableTotal || 'Reimbursable Total' }}</ion-col>
+                                            <ion-col col-5>฿ {{payslipans | number:'1.2-2':'th'}}</ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-card-content>
+                            </ion-card>   
+                                                   
+                        </ion-card>
+                        <!-- <button ion-button block color="primary" style="border-radius: .5em">{{ payrollLang?.ok || 'OK' }}</button> -->                        
+                    </ion-grid>
+                </ion-slide>
+            </ion-slides>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

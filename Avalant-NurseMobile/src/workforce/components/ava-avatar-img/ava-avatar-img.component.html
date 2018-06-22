@@ -1,0 +1,4 @@
+<div [@fadeAnimation] *ngIf="showStatusDesc" id="balloons-status" class="task-status meeting-status {{ getEmpStatus && getEmpStatus() }}">{{ getEmpStatus && getEmpStatus() }}</div>
+<div id="sign-status" class="task-status meeting-status {{ getEmpStatus && getEmpStatus() }}"></div>
+<img (click)="trigger()" class="avatar-image {{ getEmpStatus && getEmpStatus() }}" [style.background-image]="'url(' + srcPath + ')'" src="./assets/img/transparents.png">
+<!-- <img class="avatar-image" [style.background-image]="'url(' + ('00061'|loadImg) + ')'" src="./assets/img/transparents.png"> -->

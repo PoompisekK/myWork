@@ -1,0 +1,166 @@
+<ion-content>
+  <ion-grid class="detailBorder">
+    <ion-row style="margin-top: 1em;">
+      <ion-col>
+        <ion-row>
+          <ion-col style="text-align:center">
+            <ion-icon class="selectedPaymentType"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="paymentType">
+            GENERAL<br>INFORMATION
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-col style="text-align:center">
+            <ion-icon class="selectedPaymentType"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="paymentType">
+            SHIPPING<br>INFORMATION
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-col style="text-align:center">
+            <ion-icon name="pin" class="selectedPaymentType"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="paymentType">
+            PAYMENT
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="paymentMethodText">
+        Payment Method
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="selectText">
+        Select your Payment Method
+      </ion-col>
+    </ion-row>
+
+    <ion-row radio-group [(ngModel)]="selectedPaymentMethod">
+      <ion-col>
+        <ion-row>
+
+          <ion-col *ngFor="let item of paymentMethodList">
+            <ion-row>
+              <ion-col col-3>
+                <ion-item no-lines no-padding>
+                  <ion-radio item-center value="{{item.paymentMethodCode}}"></ion-radio>
+                </ion-item>
+              </ion-col>
+              <ion-col tappable (click)="selectedPaymentMethod=item.paymentMethodCode" col-9 style="text-align: center">
+                <img style="height: 70px" *ngIf="item.paymentMethodCode == 'BP'" src="./assets/img/icon/bank_transfer.png">
+                <img style="height: 70px" *ngIf="item.paymentMethodCode == 'CREDIT'" src="./assets/img/icon/credit.svg">
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <!--<div *ngIf="selectedPaymentMethod == 'CREDIT'">
+
+      <ion-row>
+        <ion-item no-padding>
+          <ion-input type="text" placeholder="First Name"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <ion-item no-padding>
+          <ion-label floating>Credit Card Number</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <ion-item no-padding>
+          <ion-label floating>Digitcode (?)</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-padding>
+            <ion-datetime text-center placeholder="Valid From" displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="validDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item no-padding>
+            <ion-datetime text-center placeholder="Expire Date" displayFormat="MM/YYYY" pickerFormat="MM YYYY" [(ngModel)]="expireDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </div>-->
+
+
+
+  </ion-grid>
+  <ion-grid padding>
+    <ion-row>
+      <ion-col style="font-size: 1.5em;">
+        Order Summary
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="disabledText">
+        Intem(s) Total
+      </ion-col>
+      <ion-col style="text-align: right;">
+        THB 1,500
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="disabledText">
+        Shipping
+      </ion-col>
+      <ion-col style="text-align: right;">
+        THB 100
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-9>
+        <ion-item no-padding>
+          <ion-input type="text" placeholder="Promo Code"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button style="width: 100%">Apply</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        Total
+      </ion-col>
+      <ion-col style="text-align: right;">
+        THB 100
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row>
+    <button full ion-button tappable (click)="pay()">Confirm Payment</button>
+  </ion-row>
+
+</ion-content>
+
+<!--<ion-footer>
+
+</ion-footer>-->

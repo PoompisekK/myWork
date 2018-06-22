@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "697370751997",
+    "firebase_url": "https://ava-sgaffinite-dev.firebaseio.com",
+    "project_id": "ava-sgaffinite-dev",
+    "storage_bucket": "ava-sgaffinite-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697370751997:android:538cabf4400b6a60",
+        "android_client_info": {
+          "package_name": "com.dev.sg.affinite.workforce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "697370751997-emum3phl3fu9m1j1tb2bu7p0p9e5an08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dev.sg.affinite.workforce",
+            "certificate_hash": "2120c975686bce2710c36c70ef07b654fecb94e0"
+          }
+        },
+        {
+          "client_id": "697370751997-rkf0hves3shb4fa8te74lb71j23v8iep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV886OVFib4xb0pnBn-TztbbLazjD-3K8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "697370751997-rkf0hves3shb4fa8te74lb71j23v8iep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

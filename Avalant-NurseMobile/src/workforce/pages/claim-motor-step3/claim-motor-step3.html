@@ -1,0 +1,92 @@
+<ion-header>
+    <app-nav-header [pageName]="'Address'"></app-nav-header>
+</ion-header>
+<ion-content>
+
+    <div padding>
+        <img src="assets/img/payment-step2.png" />
+    </div>
+
+    <div padding>
+        <span style="font-size:1.3em;">Select Your Address</span>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Policy No."></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Name"></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Lastname"></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Date of birth"></ion-input>
+        </ion-item>
+
+        <ion-item style="padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Telephone"></ion-input>
+        </ion-item>
+
+    </div>
+
+    <div padding>
+        <span style="font-size:1.3em;">Claim Detail</span>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Car License"></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Area of Accident"></ion-input>
+            <ion-icon color="color-gray" name="ios-pin-outline" item-right></ion-icon>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Date of Accident"></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Time of Accident"></ion-input>
+        </ion-item>
+
+        <ion-item style="margin-bottom:1.5em;padding:0;">
+            <ion-input style="border-bottom:1px solid #d1d6df;color:black;padding:0;" type="text" placeholder="Detail of Accident"></ion-input>
+        </ion-item>
+
+        <ion-label>Accident Document</ion-label>
+        <ion-row>
+            <ion-col>
+                <img src="assets/img/AccidentDoc/drive-license.png" />
+            </ion-col>
+            <ion-col>
+                <img src="assets/img/AccidentDoc/id-card.png" />
+            </ion-col>
+            <ion-col>
+                <img src="assets/img/AccidentDoc/car-license.png" />
+            </ion-col>
+            <ion-col>
+                <img src="assets/img/AccidentDoc/accident-location.png" />
+            </ion-col>
+            <ion-col>
+                <img src="assets/img/AccidentDoc/other.png" />
+            </ion-col>
+        </ion-row>
+
+    </div>
+
+
+
+
+    <div style="padding:16px 11px 16px 11px;">
+        <button (click)="goToClaimStep4()" color="light-blue" style="border-radius:5px;" ion-button block>Submit</button>
+    </div>
+
+    <!-- <div (click)="goToCart3()" class="bg-home-demo">
+
+  </div> -->
+
+
+</ion-content>

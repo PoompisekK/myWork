@@ -1,0 +1,16 @@
+motor-cart-page {
+    ion-buttons.split {
+        width: 50%;
+    }
+    [full].bar-button {
+        width: 100%;
+    }
+    ion-slides {
+        overflow: scroll;
+        height: auto;
+        .slide-page {
+            overflow: scroll;
+            align-items: start;
+        }
+    }
+}

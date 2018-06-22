@@ -1,0 +1,105 @@
+workforce-home {
+    ion-grid.myprofile {
+        height: 35%;
+        color: white;
+        background-color: #273E6A;
+        >ion-row {
+            >ion-col {
+                // margin-left: auto;
+                // margin-right: auto;
+                text-align: center;
+                font-family: 'RobotoRegular', 'Prompt';
+                >img {
+                    border-radius: 50%;
+                    // text-align: center;
+                    height: 8em;
+                    width: 8em;
+                    border: thick solid color($colors-theme, "app-theme");
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+                & h2 {
+                    font-size: 1.2em;
+                    margin-top: .2em;
+                    text-transform: capitalize;
+                }
+                & p {
+                    margin-top: -.2em;
+                    font-size: .9em;
+                    color: rgb(211, 211, 211);
+                }
+            }
+            ion-col.avaLogo {
+                // background-image: url('../assets/img/login/applogo.svg');
+                background-image: url('../assets/img/login/bdms-logo.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: 40%;
+                height: 5.5em;
+                margin-top: 1.5em;
+            }
+        }
+    }
+    ion-grid.textMenu {
+        background-color: rgb(223, 223, 223);
+        font-family: 'RobotoRegular', 'Prompt';
+        margin-left: auto;
+        margin-right: auto;
+        >ion-row {
+            margin-left: -1em;
+            margin-right: -.5em;
+            >ion-col {
+                background-color: white;
+                margin-left: .1em;
+                margin-bottom: .1em;
+                .red {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 0;
+                    height: 0;
+                    border-bottom-width: 25px;
+                    border-bottom-style: solid;
+                    border-bottom-color: transparent;
+                    border-right-width: 25px;
+                    border-right-style: solid;
+                    border-right-color: red;
+                }
+                img {
+                    margin-top: 1em;
+                }
+                p {
+                    margin-bottom: 1em;
+                }
+            }
+        }
+    }
+    ion-grid.CheckInTime {
+        background-color: #273E6A;
+        font-family: 'RobotoRegular', 'Prompt';
+        >ion-row {
+            text-align: center;
+            >ion-col {
+                color: white;
+                p {
+                    font-size: 1.2em;
+                    margin-bottom: -1em;
+                }
+                .time {
+                    font-size: 4em;
+                }
+                .time-am-pm {
+                    padding-left: .25em;
+                    position: absolute;
+                    text-transform: uppercase;
+                    top: 1em;
+                }
+            }
+        }
+    }
+    .toolbar-content {
+        position: absolute;
+        width: 100%;
+    }
+}

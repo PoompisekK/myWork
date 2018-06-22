@@ -1,0 +1,6 @@
+<ion-item no-lines no-padding [style.width]="width">
+  <button [disabled]="disableInput" item-left ion-button icon-only color="black" outline class="first" (click)="removeClick($event)"><ion-icon name="remove"></ion-icon></button>
+  <!--<ion-input type="number" [(ngModel)]="value"></ion-input>-->
+  <input readonly class="number" type="number" [disabled]="disableInput" [(ngModel)]="_value || value" (ionBlur)="checkOnBlur()"  color="black" outline text-center />
+  <button [disabled]="disableInput" item-right ion-button icon-only color="black" outline class="last" (click)="addClick($event)"><ion-icon name="add"></ion-icon></button>
+</ion-item>

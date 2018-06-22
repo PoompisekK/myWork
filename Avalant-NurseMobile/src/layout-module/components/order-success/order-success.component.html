@@ -1,0 +1,27 @@
+<ion-header *ngIf="haveHeader" header-bar [custom-back-button]="!canGoBack" (back-click)="goHome()">
+</ion-header>
+<ion-content>
+  <ion-grid style="height: 100%" *ngIf="isSuccessful">
+    <ion-row style="height: 100%;text-align: center;margin : auto;" *ngIf="!showSummary; else summarySection">
+      <div class="svg" style="margin : auto;padding-bottom: 5em;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="10em" height="10em" viewBox="-263.5 236.5 26 26">
+          <g class="svg-success">
+            <circle cx="-250.5" cy="249.5" r="12" />
+            <path d="M-256.46 249.65l3.9 3.74 8.02-7.8" />
+          </g>
+        </svg>
+        <!-- <p *ngIf="!haveHeader" style="font-size:2em;margin:0;color:#1976d3" translate>COMMON.PAYMENT.ORDERSUCCESS</p> -->
+        <p style="font-size:2em;margin:0;color:#1976d3" translate>COMMON.PAYMENT.SUCCESS</p>
+        <br>
+        <p>Your order ID is: {{paymentService.order.orderID}}</p>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid *ngIf="isSuccessful">
+    <ion-row>
+      <button ion-button style="width:100%" outline tappable (click)="goHome()" translate>COMMON.PAYMENT.GO_HOME</button>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

@@ -1,0 +1,34 @@
+working-hours-summary-page {
+    font-family: 'RobotoRegular', 'Prompt';
+    .bg {
+        background-color: color($colors-theme, "app-theme");
+    } 
+    ion-grid.date {
+        background-color: white;
+        ion-row {
+            margin-top: .5em;
+            margin-bottom: .5em;
+        }        
+        ion-col[col-12] {
+            font-size: 18px;
+            font-weight: bold;
+            color: #273E6A;
+            margin-top: .1em;
+        }
+    }   
+    ion-grid.bgfrom {        
+        background-color: white;
+        margin-top: .5em;
+        ion-row {
+            margin-top: 1em;
+            span.titel {
+                font-size: 16px;            
+                margin-right: 1em;
+            }          
+            span.text {
+                font-size: 16px;
+                margin-left: 1em;
+            }          
+        }
+    }      
+}

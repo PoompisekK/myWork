@@ -1,0 +1,287 @@
+/* Important !!!!
+ * This files will be work after imported in the ".\src\theme\variables.scss"
+ */
+
+ion-app.workforce,
+ion-app.workforce-theme {
+    .toolbar-title {
+        font-family: 'RobotoRegular';
+    }
+    .bg-workforce {
+        background-color: color($colors, "bg-workforce");
+        color: white;
+        ion-refresher {
+            .refresher-pulling *,
+            .refresher-refreshing * {
+                color: #fff !important;
+            }
+        }
+        ion-refresher ion-spinner *,
+        ion-row>ion-col>ion-spinner * {
+            stroke: #fff !important;
+        }
+        .hist-button-act,
+        .button-act {
+            border-bottom: 2px solid white;
+        }
+    }
+    // Begin Loading styles
+    .loading {
+        // background: rgb(254, 193, 7);
+        background: #4ba0f0;
+        .app-logo {
+            text-align: center;
+            img {
+                width: 40%;
+            }
+        }
+        .spinner-md-crescent circle {
+            stroke: #303477;
+        }
+    } // End Loading styles
+    // Begin Header bar styles
+    [header-bar] {
+        .avalogo {
+            visibility: hidden;
+        }
+    } // End Header bar styles
+    // Begin Organization header styles
+    organization-header {
+        .logo-brand-wrapper .logo-brand {
+            box-shadow: none !important;
+            background: transparent !important;
+            border: 0 !important;
+        }
+        .sub-header-cover {
+            padding-top: 55px !important;
+        }
+    } // End Organization header styles
+    .item-input-has-value {
+        ion-label[floating] {
+            transform: translate3d(0, 0, 0) scale(0.75) !important;
+        }
+    }
+    button.btn-workforce,
+    button.wf-button {
+        * {
+            font-family: 'RobotoRegular', 'Prompt';
+        }
+        background-color: color($colors, "bg-workforce");
+        border-radius: .25em;
+        &.no-border,
+        &.no-box,
+        &.btn-flat {
+            border: none;
+            box-shadow: none;
+        }
+    }
+    .round {
+        border-radius: .25em;
+    }
+    // input field form 
+    *[required]:after {
+        // color: red;
+        // content: " *";
+        // position: absolute;
+        // display: block;
+    }
+    [baht-front] {
+        &::before,
+        &:before {
+            content: "฿ ";
+            display: inline;
+        }
+        &[no-space] {
+            &::before,
+            &:before {
+                content: "฿";
+                display: inline;
+            }
+        }
+    }
+    [baht-back] {
+        &::after,
+        &:after {
+            content: " ฿";
+            display: inline;
+        }
+        &[no-space] {
+            &::after,
+            &:after {
+                content: "฿";
+                display: inline;
+            }
+        }
+    }
+    ion-input[read-only],
+    ion-input[readonly] {
+        pointer-events: none;
+    }
+    .item {
+        &[no-lines],
+        &[no-lines] .item-inner {
+            border: none;
+            box-shadow: none !important;
+        }
+    }
+    [floated] {
+        color: #999 !important;
+        transform: translate3d(0, 0, 0) scale(0.75) !important;
+    }
+    [ava-padding] {
+        padding: .5em;
+    }
+    [roboto-black] {
+        font-family: 'RobotoBlack', 'Prompt' !important;
+    }
+    [arial-f] {
+        font-family: 'Arial', 'Prompt' !important;
+    }
+    [bold] {
+        font-weight: bold;
+    }
+    [transparent] {
+        background-color: transparent;
+    }
+    [all-no-padding] {
+        padding: 0;
+        * {
+            padding: 0;
+        }
+    }
+    [no-margin] {
+        margin: 0;
+        &[item-start],
+        &[item-left] {
+            margin: 0 !important;
+        }
+    }
+    [all-no-margin] {
+        margin: 0;
+        * {
+            margin: 0;
+        }
+    }
+    [ellipsis] {
+        width: 100%;
+        line-height: 1.5em;
+        padding-right: .5em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: inline-block;
+    }
+    [mutil-lines] {
+        &[lines-3] {
+            white-space: normal;
+            line-height: 1.5em;
+            height: auto;
+            max-height: 4.5em;
+        }
+    }
+    ion-row[ava-loading] {
+        margin: .25em 0;
+    }
+    ion-card[ava-empty-card] {
+        background-color: white;
+        margin: 25% 0;
+        width: auto;
+        height: 10em;
+        box-shadow: none;
+        img,
+        .ava-empty-label {
+            width: 50%;
+            margin: 0 auto;
+        }
+        .ava-empty-label {
+            font-family: 'RobotoRegular', 'Prompt';
+            color: #c4c4c4;
+        }
+    }
+    .bg-workforce ion-card[ava-empty-card] {
+        background-color: transparent;
+    }
+    ion-spinner[ava-loading-spinner] {
+        width: 3.5em;
+        height: 3.5em;
+        margin: 0.2em;
+    }
+    [no-box] {
+        box-shadow: none;
+    }
+    ion-modal {
+        &.modal-view.wf-input-form {
+            padding: 1em;
+            position: absolute;
+            z-index: 10;
+            div.modal-nav {
+                z-index: 20;
+                height: 2.5em;
+                float: right;
+                .button-md:hover:not(.disable-hover) {
+                    background-color: transparent;
+                }
+            }
+            ion-backdrop {
+                background: linear-gradient(#283E6D, #82A1E2);
+                opacity: 1 !important;
+                visibility: visible;
+                z-index: -100;
+            }
+        }
+    }
+    ion-popover.select-popover {
+        div.popover-content {
+            * {
+                font-family: 'RobotoRegular', 'Prompt';
+            }
+        }
+    }
+    ion-select .select-text {
+        font-family: 'RobotoMedium', 'Prompt';
+    }
+    .red {
+        .item-inner {
+            border-bottom: 1px solid red !important;
+        }
+    }
+    ion-badge.status-badge {
+        background-color: transparent;
+        border-radius: 5em;
+        height: 2em;
+        line-height: 2em;
+        padding: 0 1em;
+        color: white;
+        text-transform: capitalize;
+    }
+    .task-status,
+    .meeting-status {
+        *:not(ion-icon) {
+            font-family: 'RobotoRegular', 'Prompt';
+        }
+        &.open {
+            background-color: #C5C5C5;
+            color: white;
+        }
+        &.onprocess {
+            background-color: #ECC93F;
+        }
+        &.done {
+            background-color: #1AD08E;
+        }
+        &.cancel {
+            background-color: #FF5252;
+        }
+        &.complete {
+            background-color: #72ADE6;
+        }
+    }
+}
+
+[red] {
+    border: 1px solid red;
+}
+
+[blue] {
+    border: 1px solid blue;
+}

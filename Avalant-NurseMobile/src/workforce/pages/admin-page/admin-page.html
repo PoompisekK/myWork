@@ -1,0 +1,19 @@
+<ion-header>
+    <app-nav-header [pageName]="'Admin'"></app-nav-header>
+</ion-header>
+<ion-content padding>
+
+
+    <ion-title text-center>
+        {{adminUsreLang?.verifyUserList || 'Verify user list'}} 
+    </ion-title>
+    <ion-list>
+        <br>
+        <ion-item *ngFor="let userProfile of userList" (click)="goToProfile(userProfile)">
+            <ion-label>{{userProfile.custFname}} {{userProfile.custLname}}</ion-label>
+            <ion-icon name="arrow-forward" item-right></ion-icon>
+        </ion-item>
+    </ion-list>
+
+
+</ion-content>

@@ -1,0 +1,4 @@
+<ion-list class="select-option-popover" style="margin:0">
+    <button ion-item (click)="close(item?.code)" *ngFor="let item of itemList">{{ item?.name }}</button>
+    <button ion-item *ngIf="itemList.length == 0">No data</button>
+</ion-list>

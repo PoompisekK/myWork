@@ -1,0 +1,47 @@
+<ion-header>
+    <app-nav-header [pageName]="'Assessment Summary'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <div class="bg-workforce">
+        <ion-grid no-padding>
+            <ion-row class="head-row">
+                <ion-col col-4 no-padding> </ion-col>
+                <ion-col col-4 no-padding class="patient-image" text-center>
+                    <ava-avatar-img [srcPath]="(patientUserData?.employeeCode) | loadImg"></ava-avatar-img>
+                </ion-col>
+                <ion-col col-4 no-padding> </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-2> </ion-col>
+                <ion-col col-8 text-center>
+                    <p>{{ '#43GG2323GQD' }}</p>
+                    <p><span>{{ patientUserData?.name }}</span> <span>{{ patientUserData?.surname }}</span></p>
+                </ion-col>
+                <ion-col col-2> </ion-col>
+            </ion-row>
+            <ion-row class="assessment-result">
+                <ion-col col-1> </ion-col>
+                <ion-col col-3 text-center>
+                    <p>Level</p>
+                    <p><span>1</span></p>
+                </ion-col>
+                <ion-col col-4 text-center>
+                    <p>Acuity</p>
+                    <p><span>Self Care</span></p>
+                </ion-col>
+                <ion-col col-3 text-center>
+                    <p>NHPPD</p>
+                    <p><span>3.275</span></p>
+                </ion-col>
+                <ion-col col-1> </ion-col>
+            </ion-row>
+            <ion-row class="assessment-btn">
+                <ion-col col-1></ion-col>
+                <ion-col col-10>
+                    <button (click)="completeAcuity && completeAcuity()" ion-button full block class="btn-workforce">Done</button>
+                </ion-col>
+                <ion-col col-1></ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

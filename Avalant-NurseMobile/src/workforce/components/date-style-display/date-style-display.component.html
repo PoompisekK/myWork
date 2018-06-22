@@ -1,0 +1,10 @@
+<div class="col-date" *ngIf="displayDate" style="position: absolute; top: 1em;">
+    <span class="label-group">
+        <span class="label-text"><ion-icon name="ios-time-outline"></ion-icon> {{displayLabel}}</span>
+    </span>
+    <div class="due-date">
+        <span class="day">{{ displayDate | amDateFormat:'DD' }}</span>
+        <span class="month">{{ displayDate | amDateFormat:'MMM' }}</span>
+        <span class="year">{{ displayDate | amDateFormat:'YYYY' }}</span>
+    </div>
+</div>

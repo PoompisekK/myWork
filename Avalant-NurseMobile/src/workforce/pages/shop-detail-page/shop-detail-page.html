@@ -1,0 +1,41 @@
+<ion-header>
+    <app-nav-header [pageName]="'Shopping'"></app-nav-header>
+</ion-header>
+
+<ion-content>
+    <div>
+        <img style="width:100%;" src="assets/img/promotion3.jpg" />
+    </div>
+
+    <div padding>
+        <span class="text-header">ประกันภัยอาคเนย์ Home Guard</span>
+        <p style="color:gray;">ด้วยเบี้ยประกันเริ่มต้นเพียงวันละ 5 บาท ก็ให้คุณสบายใจได้กับการคุ้มภัยที่ครอบคลุมจากอาคเนย์โฮมการ์ด</p>
+
+        <span class="text-header2">รายละเอียดผลิตภัณฑ์</span>
+        <p style="color:gray;">ไม่ว่าจะเป็นอัคคีภัย โจรกรรม ภัยธรรมชาติ ความเสียหายต่อทรัพย์สินส่วนบุคลรวมไปถึงการซ่อมแซมโยกย้ายทรัพย์สิน และค่าใช้จ่ายในการดับเพลิงที่มีให้คุณได้เลือกถึง 3 แผนประกันภัย ให้ความคุ้มครองสูงสุดถึง 30 ล้านบาท</p>
+
+        <ion-grid class="margin-t-d1">
+            <ion-row>
+                <ion-col text-left col-5 class="margin-auto">
+                    <div no-padding text-left class="div-add-del">
+                        <ion-icon class="add-btn" name="ios-remove-circle-outline" (click)="decrement()"> </ion-icon>
+                        <span class="text-number">{{currentNumber}}</span>
+                        <ion-icon class="del-btn" name="ios-add-circle-outline" (click)="increment()"> </ion-icon>
+                    </div>
+                </ion-col>
+                <ion-col text-right col-7>
+                    <p style="color:#FF7F27;">฿ <strong class="price">2,500</strong>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button (click)="goToCart1()" color="light-blue" style="margin-top:1em;border-radius:8px;" ion-button block>หยิบเข้าตระกร้า</button>
+    </div>
+
+
+    <!-- <div (click)="goToCart1()" class="bg-home-demo">
+
+  </div> -->
+
+
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-header>
+    <app-nav-header [pageName]="'Dashboard'"></app-nav-header>
+</ion-header>
+<ion-content>
+    <div class="bg-workforce">
+        <ion-grid text-center style="height:100%;justify-content: center;">
+            <ion-row>
+                <ion-col *ngFor="let menuItem of dashboardMenus;let menuIdx = index;" (click)="goRoot(menuItem.page)" col-4>
+                    <img class="icn-menu" src="{{ menuItem.iconSrc}}" />
+                    <p style="color:white;">{{ menuItem.name }}</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

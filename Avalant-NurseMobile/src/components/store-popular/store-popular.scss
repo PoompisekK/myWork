@@ -1,0 +1,66 @@
+store-popular {
+    .headerGrap {
+        margin-top: 1em;
+        height: 3em;
+        line-height: 3em;
+    }
+    .CpText {
+        font-size: 1.5em;
+        margin: .5em;
+    }
+    .readMore {
+        font-size: .95em;
+        float: right;
+        margin-right: 1em;
+    }
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+    .cardClick:active {
+        opacity: .5;
+    }
+    div.cardDv {
+        // box-shadow: 0.1em 0.1em 0.5em #888888;
+        // width: 95%;
+        // padding: 1em .5em  1.5em .5em;//top right bottom left
+        padding: 0;
+        margin: .5em;
+        margin-top: 1.5em;
+        // background-color: #F0F0F0;
+        border-radius: .35em;
+        div.cardImg {
+            div.cardImgPrev {
+                margin: 0 auto;
+                width: 95%;
+                height: 12em;
+                border-radius: .25em;
+                background-color: white;
+                background-size: cover;
+                background-position: center top;
+                padding: 0; //.5em;
+            }
+        }
+        .cardContent {
+            padding: .5em .5em;
+        }
+        .name {
+            font-size: 1em;
+            text-overflow: ellipsis; //dot
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .desc {
+            height: 3.75em;
+            display: block;
+            font-size: .75em;
+            text-overflow: ellipsis; //dot
+            overflow: hidden;
+        }
+    }
+    .slides {
+        .swiper-container {
+            .swiper-pagination {
+                bottom: 1px;
+            }
+        }
+    }
+}

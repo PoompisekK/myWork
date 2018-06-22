@@ -1,0 +1,84 @@
+<ion-header>
+    <app-nav-header [pageName]="'Benefit'"></app-nav-header>
+</ion-header>
+<ion-content class="bg-workforce">
+    <ion-grid no-padding style="height: 100%">
+        <ion-row no-padding style="height: 40%">
+            <ion-col no-padding class="btn-effect">
+                <ion-slides *ngIf="benefitsList.length > 0" class="benefit-slides" (ionSlideWillChange)="ionSlideWillChange()" [pager]="true"
+                    [paginationType]="">
+                    <ion-slide *ngFor="let benefitItm of benefitsList">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col class="col-img" col-12>
+                                    <img *ngIf="benefitItm.benefitType == 'G00001' " src="assets/img/wellness.png" alt="">
+                                    <img *ngIf="benefitItm.benefitType == 'G00002' " src="assets/img/gadgets.png" alt="">
+                                    <img *ngIf="benefitItm.benefitType == 'G00003' " src="assets/img/pills.png" alt="">
+                                    <img *ngIf="benefitItm.benefitType == 'G00004' " src="assets/img/phone-billing.png" alt="" class="img-over">
+                                    <img *ngIf="benefitItm.benefitType == '04401' " src="assets/img/teeths.png" alt="">
+                                    <img *ngIf="benefitItm.benefitType == '04405' " src="assets/img/eyes.png" alt="">
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="text-ben" style="margin-top: -1.2em;">
+                                <ion-col col-12>
+                                    {{benefitItm.benefitTypeName}}
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="text-ben" style="margin-top: -.5em;">
+                                <ion-col col-12>
+                                    ฿ {{benefitItm.amount | number:'1.0':'th'}}
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                        <!-- <ion-col  no-padding col-12>
+                        <ion-card no-padding>
+                                <ion-card-content>
+                                    <ion-row>
+                                        <ion-col text-left style="font-weight: bold"> {{benefitItm.benefitTypeName}} </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col col-6 text-center>
+                                            <img *ngIf="benefitItm.benefitType == 'G00001' " margin src="assets/img/wellness.png" alt="" style="width:45%;">
+                                            <img *ngIf="benefitItm.benefitType == 'G00002' " margin src="assets/img/gadgets.png" alt="" style="width:45%;">
+                                            <img *ngIf="benefitItm.benefitType == 'G00003' " margin src="assets/img/pills.png" alt="" style="width:45%;">
+                                            <img *ngIf="benefitItm.benefitType == 'G00004' " margin src="assets/img/phone-billing.png" alt="" style="width:45%;">
+                                            <img *ngIf="benefitItm.benefitType == '04401' " margin src="assets/img/teeths.png" alt="" style="width:45%;">
+                                            <img *ngIf="benefitItm.benefitType == '04405' " margin src="assets/img/eyes.png" alt="" style="width:45%;">
+                                        </ion-col>
+                                        <ion-col col-6>
+                                            {{benefitItm.amount}}
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card-content>
+                            </ion-card> 
+                        </ion-col> -->
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+        </ion-row>
+        <ion-row class="recent">
+            <ion-col>
+                <p style="padding-left: .5em;color: white; font-size: 16px;">
+                    {{ benefitLang?.recentActivity || 'Recent Activity' }}
+                </p>
+                <ion-list no-lines>
+                    <ion-card *ngFor="let itm of [{},{},{},{}]">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col col-4>
+                                    {{currentTime | amDateFormat:'D MMM YYYY'}}
+                                </ion-col>
+                                <ion-col col-5>
+                                    Taxi Overnight
+                                </ion-col>
+                                <ion-col col-3 text-right>
+                                    ฿ {{ 4500 | number:'1.0':'th'}}
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

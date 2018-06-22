@@ -1,0 +1,210 @@
+assignment-viewEvent-page {
+   
+    div.head-div {
+        min-height: 9em;
+        >ion-grid {
+            height: 100%;
+            >ion-row {
+                margin-top: .75em;
+                ava-avatar-img {
+                    $circle: 5em;
+                    img {
+                        // background-image: url("https://av.alworks.io/HCMRestService/file/profileimage/00008");
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        // background-size: contain;
+                        background-size: cover;
+                        border-radius: 50%;
+                        border: 1px solid #ededed;
+                        height: $circle;
+                        width: $circle;
+                        margin: 0 .5em;
+                    }
+                }
+            }
+        }
+        // .img-avatar {
+        //     width: 3.5em;
+        // }
+        
+        ion-col {
+            &.assign-topic-desc p,
+            &.assign-assign-desc span {
+                display: block;
+                width: 100%;
+                word-break: break-word;
+                white-space: pre-line;
+                word-wrap: break-word;
+                font-family: 'RobotoRegular','Prompt';                
+            }
+            &.assign-topic-desc p {
+                color: #101010;
+                margin: 1em 0 0 0;
+                font-size: 1em;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+            &.assign-assign-desc span {
+                color: #909090;
+                margin: 0;
+                font-size: .8em;
+                padding-bottom: 1.5em;
+            }
+            .assign-time {
+                font-size: .75em;
+                color: #586069 !important;
+                font-family: 'RobotoMedium','Prompt';
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 1em;
+                margin: 1.75em 1em 0 0;
+            }
+        }
+    }
+    div.assign-blue-bar {
+        * {
+            margin: 0;
+        }
+        background-color: #283D6A;
+        ion-col {
+            // height: 4.75em;
+            height: 6em;
+        }
+        button[transparent] {
+            height: 100%;
+            vertical-align: middle;
+            box-shadow: none;
+            span.button-inner {
+                display: grid;
+                margin: 0;
+                padding: 0;
+                img {
+                    text-align: center;
+                    display: block;
+                    margin: 0 auto;
+                }
+                span.label-bottom {
+                    font-family: 'RobotoRegular','Prompt';
+                    font-size: .75em;
+                    margin: 0;
+                    margin-top: -1.75em;
+                    padding: 0;
+                }
+            }
+        }
+    }
+    div.assign-detail {
+        >ion-grid {
+            margin-top: 1em;
+        }
+        ion-row {
+            &.attachments,
+            &.start-date,
+            &.people,
+            &.place-desc,
+            &.home-name {
+                margin-top: .75em !important;
+            }
+            ion-col {
+                ion-icon {
+                    color: #c8c8c8;
+                    font-size: 1.2em;
+                    padding-right: .25em;
+                    text-align: center;
+                    width: 1.25em;
+                }
+                &.assign-attachments,
+                &.assign-start-date,
+                &.assign-people,
+                &.assign-home-name {
+                    span {
+                        margin: 0;
+                        font-size: .8em;
+                        font-family: 'RobotoMedium','Prompt';
+                        color: #909090;
+                    }
+                }
+                &.assign-place-desc {
+                    span {
+                        font-family: 'RobotoMedium','Prompt';
+                        font-size: .75em;
+                        color: #bcbcbc;
+                        &[ellipsis] {
+                            width: 80%;
+                            padding-right: 0;
+                        }
+                    }
+                }
+                &.assign-people {
+                    padding: .5em;
+                    ion-icon[name=ios-person-outline] {
+                        vertical-align: middle;
+                        margin-bottom: 1.5em;
+                    }
+                    $avaSize: 2.5em;
+                    .div-col-attendees {
+                        display: inline-block;
+                        padding-right: .5em;
+                        height: $avaSize;
+                        margin: .25em 0 0 0;
+                        .attendees-avatar {
+                            text-align: center;
+                            border-radius: 50%;
+                            width: $avaSize;
+                            height: $avaSize;
+                            &.more {
+                                border: 1px solid #dedede;
+                                display: table-caption;
+                                font-size: 1em;
+                                padding: .35em 0;
+                                .more-amt {
+                                    font-family: 'RobotoMedium','Prompt';
+                                    color: #909090;
+                                    font-size: .75em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        google-static-map {
+            img {
+                max-height: none !important;
+                height: auto;
+            }
+        }
+    }
+    ion-footer {
+        border: none;
+        box-shadow: none;
+        &:before,
+        &::before {
+            background: transparent !important;
+        }
+        ion-row {
+            &.assign-action {
+                border-top: 1px solid #dadada;
+                ion-col {
+                    text-align: center;
+                    button {
+                        background: transparent !important;
+                        box-shadow: none;
+                        margin-right: .25em;
+                        &[split3] {
+                            width: 28%;
+                            border-radius: 0;
+                            &:not(:first-child) {
+                                border-left: 1px solid #dedede;
+                            }
+                        }
+                        * {
+                            font-family: 'RobotoLight','Prompt';
+                            color: #626262;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

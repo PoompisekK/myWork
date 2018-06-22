@@ -1,0 +1,355 @@
+{
+  "COMMON": {
+      "BUTTON": {
+          "BACK": "ย้อนกลับ",
+          "CONFIRM_JOIN": "ยืนยันการจอง",
+          "Confirm_Payment": "ยืนยันการสั่งซื้อ",
+          "DEL": "ลบ",
+          "EDIT": "แก้ไข",
+          "GOHOME": "กลับสู่หน้าแรก",
+          "NEWADDRESS": "เพิ่มที่อยู่จัดส่งใหม่",
+          "NEXT": "ต่อไป",
+          "SAVE": "บันทึก",
+          "SUBMIT": "ยืนยัน"
+      },
+      "CHECKOUT": {
+          "BOOK_INFO": "ระบุข้อมูลผู้สมัคร",
+          "CHECK_OUT": "สั่งซื้อ",
+          "DONATION_TYPE": "ประเภทผู้บริจาค",
+          "REQUEST_DONATION": "แจ้งความจำนงบริจาค",
+          "REQUEST_PRIVILEGE": "แจ้งความจำนงบริจาค"
+      },
+      "INFO": {
+          "ADDBEFORECON": "กรุณาเพิ่มที่อยู่จัดส่งก่อนดำเนินการขั้นต่อไป",
+          "CHOOSESHIPPING": "เลือกที่อยู่จัดส่ง",
+          "DONATION_INFORMATION": "ระบุข้อมูลผู้บริจาค",
+          "INFORMATION": "ระบุข้อมูล",
+          "Shipping_Address": "ที่อยู่ส่งของ",
+          "SHIPPING_HERE": "จัดส่งที่อยู่นี้",
+          "TITLECOURSE": "ผลการสมัคร"
+      },
+      "PARENTPROFILE": {
+          "Education_Level": "ระดับการศึกษา",
+          "Email": "Email",
+          "Emergency_Contact": "ข้อมูลติดต่อด่วน",
+          "full_name": "ชื่อ-นามสกุล",
+          "General_Infomation": "ข้อมูลพื้นฐาน",
+          "Mobile_Phone": "Mobile Phone",
+          "Occupation": "Occupation",
+          "Office_Phone": "เบอร์โทร (ที่ทำงาน)",
+          "Parent_Information": "ข้อมูลผู้ปกครอง",
+          "Parent_Name": "ชื่อ - นามสกุลผู้ปกครอง",
+          "parent_surname": "parent's surname",
+          "Position": "ตำเเหน่ง / ชั้นเรียน",
+          "Relation": "ความสัมพันธ์",
+          "Workplace": "สถานที่ทำงาน / สถานศึกษา"
+      },
+      "PAYMENT": {
+          "Item_Total": "รายการสินค้าทั้งหมด",
+          "MOREPRODUCT": "ดูผลิตภัณฑ์เพิ่มเติม",
+          "ORDER": "ลำดับ",
+          "Order_Summary": "สรุปยอดรวม",
+          "ORDERSUCCESS": "ทำรายการ",
+          "Payment": "ชำระเงิน",
+          "PAYMENT": "ชำระเงิน",
+          "Payment_Method": "ประเภทการชำระเงิน",
+          "Select": "กรุณาเลือกประเภทการชำระเงิน",
+          "STATUS": "สถานะ",
+          "SUCCESS": "สำเร็จ",
+          "THB": "บาท",
+          "Total": "ยอดรวม"
+      },
+      "TIME": {
+          "AFTERNOON": "บ่าย",
+          "FULL_DAY": "เย็น",
+          "MORNING": "เช้า",
+          "STAY_NIGHT": "ข้ามคืน"
+      },
+      "TITLE": {
+          "CONTACTINFO": "ข้อมูลติดต่อ",
+          "GENERALINFO": "ข้อมูลพื้นฐาน",
+          "PERSONALINFO": "ข้อมูลส่วนตัว",
+          "SHIPPINGINFO": "เพิ่มที่อยู่จัดส่ง"
+      },
+      "USERPROFILE": {
+          "ADDRESS_NO": "เลขที่บ้าน",
+          "ADDRESSNAME": "ชื่อที่อยู่",
+          "CARDID": "หมายเลขบัตรประชาชน",
+          "COUNTRY": "ประเทศ",
+          "DISTRICT": "เขต/อำเภอ",
+          "EMAIL": "อีเมล",
+          "FIRSTNAME": "ชื่อ",
+          "JOINTIME": "เวลาเข้าร่วม",
+          "LASTNAME": "นามสกุล",
+          "MOBILE": "เบอร์โทรศัพท์มือถือ",
+          "MOO": "หมู่",
+          "POSTCODE": "รหัสไปรษณีย์",
+          "PROVINCE": "จังหวัด",
+          "ROOM": "ห้อง",
+          "SEX": "เพศ",
+          "SOI": "ซอย",
+          "STREET": "ถนน",
+          "SUBDISTRICT": "แขวง/ตำบล",
+          "TELEPHONE": "เบอร์โทรศัพท์บ้าน",
+          "TITLE": "คำนำหน้าบุคคล",
+          "TITLE_OTHER": "คำนำหน้าบุคคล ระบุ"
+      }
+  },
+  "ERROR": {
+      "LOGIN": "เข้าสู่ระบบผิดพลาด."
+  },
+  "MSG": {
+      "ADD_FAVORITE": "เพิ่มในรายการโปรด",
+      "AGO": "ที่แล้ว",
+      "AGREE": "ยอมรับ",
+      "ANSWER": {
+          "CANCEL": "ยกเลิก",
+          "CONFIRM": "ยืนยัน",
+          "DONE": "สำเร็จ",
+          "NEXT": "ถัดไป",
+          "NO": "ไม่ใช่",
+          "NOT_NOW": "ไม่ใช่ตอนนี้",
+          "NOT_SURE": "ไม่แน่ใจ",
+          "OK": "ตกลง",
+          "SURE": "แน่ใจ",
+          "YES": "ใช่"
+      },
+      "AUTH": {
+          "CLEAR": "ล้างข้อมูล",
+          "CONFIRM_PASSWORD": "รหัสผ่านอีกครั้ง",
+          "EMAIL": "อีเมล",
+          "FIRST_NAME": "ชื่อ",
+          "FORGOT_PASSWORD": "ลืมรหัสผ่าน ?",
+          "INVALID_CREDIENTIAL": "อีเมล์หรือรหัสผ่านไม่ถูกต้อง",
+          "LAST_NAME": "นามสกุล",
+          "LOGIN_WITH": "เข้าสู่ระบบด้วย",
+          "LOGOUT_CONFIRMATION": "คุณกำลังจะออกจากระบบ แน่ใจหรือไม่ ?",
+          "NEED_EMAIL_ACTIVATED": "กรุณาตรวจสอบอีเมล์เพื่อยืนยันตัวตน",
+          "NICK_NAME": "ชื่อเรียก",
+          "OR": "หรือ",
+          "PASSWORD": "รหัสผ่าน",
+          "REGISTER_NOTICE": "ชื่อเรียกของคุณจะปรากฎสู่สาธารณะบนเว็บไซต์ หน้าโปรไฟล์ และกิจกรรมที่เกี่ยวข้อง",
+          "SUBSCRIBE_NEWS": "ติดตามข่าวสารล่าสุด",
+          "USERNAME": "ชื่อผู้ใช้"
+      },
+      "BRAND": {
+          "FAVORITE": "แบรนด์ที่ติดตาม",
+          "POPULAR": "แบรนด์โดดเด่น",
+          "VIEW_ALL": "ดูทั้งหมด"
+      },
+      "BROWSE": "แบรนด์",
+      "CHANGE_LANGUAGE": "เปลี่ยนภาษา",
+      "COMMENT": "ความเห็น",
+      "COMMENTS": "ความเห็น",
+      "COMPANY": "องค์กร",
+      "COURSES": {
+          "CARD_NO": "เลขที่บัตรประชาชน",
+          "COURSE_NAME": "ชื่อหลักสูตร",
+          "F_NAME": "ชื่อ",
+          "FILL_INFORMATION": "แก้ไขข้อมูล",
+          "L_NAME": "นามสกุล",
+          "PARTICIPANT_LIST": "รายชื่อผู้เข้าร่วม",
+          "PROFILE_PIC_WARN": "รูปโปรไฟล์ (รูปถ่ายปัจจุบันอายุไม่เกิน 2 ปี)",
+          "REGISTER": "ยืนยันการสมัคร",
+          "RELATION": "ความสัมพันธ์",
+          "WARN": "รบกวนตรวจสอบข้อมูลของท่านให้เป็นปัจจุบัน"
+      },
+      "CURRENCY": {
+          "THB": "บาท"
+      },
+      "DONATION": {
+          "AMOUNT": "จำนวนเงิน",
+          "DONATE": "ร่วมบริจาค",
+          "DONATE_BTN": "บริจาค"
+      },
+      "EVENTS": {
+          "DONATE": "บริจาค",
+          "REGISTER": "สมัครเข้าร่วม"
+      },
+      "FACEBOOK": "Facebook",
+      "FEED": "ข่าวสาร",
+      "FOLLOW": "ติดตาม",
+      "FOLLOWED": "ติดตามแล้ว",
+      "GOOGLE": "Google",
+      "HEADER": {
+          "COMPANY_INFORMATION": "",
+          "FUNDRAISING_OBJECTIVE": "",
+          "GENERAL_INFORMATION": "สั่งซื้อ",
+          "PAYMENT": "ชำระเงิน",
+          "SHIPPING_INFORMATION": "ระบุที่อยู่"
+      },
+      "LANG": {
+          "ENGLISH": "อังกฤษ",
+          "THAI": "ไทย"
+      },
+      "LANGUAGE": "ภาษา",
+      "LIKE": "ถูกใจ",
+      "LIKES": "ถูกใจ",
+      "LINKEDIN": "LinkedIn",
+      "LOADING": "กำลังโหลด",
+      "LOGGING_IN": "กำลังเข้าสู่ระบบ",
+      "LOGGING_OUT": "กำลังออกจากระบบ",
+      "LOGIN": "เข้าสู่ระบบ",
+      "LOGOUT": "ออกจากระบบ",
+      "MESSAGE": "ข้อความ",
+      "MESSENGER": "ข้อความ",
+      "MINE": "ฉัน",
+      "MONTHS": "มกราคม กุมภาพันธ์ มีนาคม เมษายน พฤษภาคม มิถุนายน กรกฎาคม สิงหาคม กันยายน ตุลาคม พฤศจิกายน ธันวาคม",
+      "NOW": "ปัจจุบัน",
+      "ORGANIZATION": {
+          "COURSE_EVENT": "ปฏิบัติธรรม",
+          "DONATION": "ร่วมบุญ",
+          "GROUP_EVENTS": "กิจกรรม",
+          "HOME_PAGE": "หน้าแรก",
+          "PRIVILEGES": "สมาชิกยุวพุทธ",
+          "STORE": "ผลิตภัณฑ์"
+      },
+      "PLACE": "Place",
+      "PRODUCT": {
+          "ITEM_INFO": "รายละเอียด"
+      },
+      "REGISTER": "ลงทะเบียน",
+      "SAVE": "บันทึก",
+      "SETTING": {
+          "HISTORY": "ประวัติการทำรายการ",
+          "MY_ORDER": "รายการของฉัน",
+          "MY_REWARD": "รางวัลของฉัน",
+          "USER_PROFILE": "ข้อมูลผู้ใช้งาน"
+      },
+      "SETTINGS": "ตั้งค่า",
+      "SHOPPING": {
+          "ADDCART": "เพิ่มลงในตะกร้า",
+          "ADDRESS": "ที่อยู่",
+          "CART": "ตะกร้า",
+          "CART_EMPTY": "ไม่มีสินค้าในตะกร้าสินค้า",
+          "CART_TITLE": "ตระกร้าสินค้า",
+          "CHECKOUT": "บริจาค",
+          "CONFIRM_REMOVE_CART_ITEM": "คุณต้องการลบสินค้านี้ออกจากตะกร้า หรือไม่?",
+          "PAYMENT": "ชำระเงิน",
+          "REGISTER": "สมัคร",
+          "SHIPPING": "จัดส่ง",
+          "TOTAL": "ราคารวม"
+      },
+      "SHORT_MONTHS": "ม.ค. ก.พ. มี.ค. ม.ย. พ.ค. มิ.ย. ก.ค. ส.ค. ก.ย. ต.ค. พ.ย. ธ.ค.",
+      "SIGN_UP": "ลงทะเบียน",
+      "UN_FAVORITE": "ลบออกจากรายการโปรด",
+      "USER_PROFILE": {
+          "INFO_HEAD": "ปรับปรุงข้อมูล",
+          "UPDATE_COMPLETE": "ระบบปรับปรุงข้อมูลของคุณเรียบร้อยแล้ว.",
+          "UPDATE_PROFILE": "กำลังปรับปรุงข้อมูล."
+      },
+      "USERPROFIEL_P1": {
+          "AGE": "อายุ",
+          "DATE_OF_BIRTH": "วันเดือนปีเกิด",
+          "GENDER": "เพศ",
+          "GENDERS": {
+              "FEMALE": "หญิง",
+              "MALE": "ชาย"
+          },
+          "HEIGHT": "ส่วนสูง",
+          "ID_NO": "เลขที่บัตรประชาชน",
+          "NAME": "ชื่อ",
+          "NATIONALITY": "สัญชาติ",
+          "NICKNAME": "ชื่อเล่น",
+          "PASSPORT_NO": "เลขที่หนังสือเดินทาง",
+          "RACE": "เชื้อชาติ",
+          "RELIGION": "ศาสนา",
+          "SURENAME": "นามสกุล",
+          "TITLE": "คำนำหน้าชื่อ",
+          "TITLE_NAME": "คำนำหน้า-ระบุ",
+          "WEIGHT": "น้ำหนัก",
+          "YEARS": "ปี"
+      },
+      "USERPROFIEL_P2": {
+          "ADDRESS": "เลขที่บ้าน",
+          "ADDRESSNAME": "หมู่บ้าน/อาคาร",
+          "ADDRESSTOPIC": "ที่อยู่",
+          "DISTRICT": "เขต/อำเภอ",
+          "EMAIL": "อีเมล",
+          "LINE_ID": "Line ID",
+          "MOBILE_NO": "เบอร์โทรศัพท์มือถือ",
+          "MOO": "หมู่",
+          "PHONE": "เบอร์โทรศัพท์บ้าน",
+          "PHONE_EXT": "ต่อ",
+          "POST_CODE": "รหัสไปรษณีย์",
+          "PROVINCE": "จังหวัด",
+          "ROAD": "ถนน",
+          "ROOM_NO": "ห้อง",
+          "SOI": "ซอย",
+          "STREET": "ถนน",
+          "SUB_DISTRICT": "แขวง/ตำบล"
+      },
+      "USERPROFIEL_P3": {
+          "EDUCATION_INFORMATION": {
+              "ADDRESS": "เลขที่บ้าน",
+              "DISTRICT": "เขต/อำเภอ",
+              "EDUCATION": "ระดับการศึกษา",
+              "INFO_HEAD": "ข้อมูลสถานที่ทำงาน/สถานที่ศึกษา",
+              "OCCUPATION": "อาชีพ",
+              "OFFICE_PHONE": "เบอร์โทรศัพท์ที่ทำงาน",
+              "POST_CODE": "รหัสไปรษณีย์",
+              "PROVINCE": "จังหวัด",
+              "ROAD": "ถนน",
+              "SOIL": "ซอย",
+              "SUB_DISTRICT": "แขวง/ตำบล"
+          },
+          "EMERGENCY_INFORMATION": {
+              "INFO_EMAIL": "อีเมล์",
+              "INFO_HEAD": "ข้อมูลติดต่อกรณีฉุกเฉิน",
+              "INFO_MOBILE": "เบอร์โทรศัพท์มือถือ",
+              "INFO_NAME": "ชื่อ ผู้ติดต่อ",
+              "INFO_RELATION": "ความสัมพันธ์",
+              "INFO_SURENAME": "นามสกุล ผู้ติดต่อ"
+          },
+          "PARENT_INFORMATION": {
+              "INFO_EMAIL": "อีเมล์",
+              "INFO_HEAD": "ข้อมูลผู้ปกครอง",
+              "INFO_MOBILE": "เบอร์โทรศัพท์มือถือ",
+              "INFO_NAME": "ชื่อ ผู้ปกครอง",
+              "INFO_SURENAME": "นามสกุล ผู้ปกครอง"
+          }
+      },
+      "USERPROFIEL_P4": {
+          "MEDICAL_INFORMATION": "ข้อมูลทางการแพทย์"
+      },
+      "USERPROFIEL_P5": {
+          "ATTACH_DOCUMENT_INFORMATION": "ข้อมูลเอกสารแสดงตัวตน",
+          "ATTACHMENT": "รูป เอกสารยืนยันตัวตน",
+          "INFO_HEAD": "เอกสารแสดงตัวตน"
+      }
+  },
+  "NOW": "ปัจจุบัน",
+  "ORGANIZATION": {
+      "COURSE_EVENT": "กิจกรรม",
+      "DONATION": "บริจาค",
+      "HOME_PAGE": "หน้าแรก",
+      "STORE": "ผลิตภัณฑ์"
+  },
+  "PLACE": "Place",
+  "REGISTER": {
+      "Email exist": "อีเมล์นี้ถูกลงทะเบียนแล้ว",
+      "ERROR": "ลงทะเบียนไม่สำเร็จ",
+      "PASSWORD_LESSTHAN4": "กรุณาตรวจสอบข้อมูลพาสเวริดที่กรอก, พาสเวริดจะต้องมีอักษระอย่างน้อย 4 ตัวอักษร",
+      "PLEASE_ACTIVATE": "กรุณาคลิกลิงค์ที่ส่งไปยังอีเมล์ของท่านเพื่อเปิดใช้งานระบบ",
+      "REGISTER": "ลงทะเบียน",
+      "SIGNUP_LOADING": "กำลังดำเนินการลงทะเบียน",
+      "SUCCESS": "ลงทะเบียนสำเร็จ",
+      "VERIFY_INPUT": "กรุณาตรวจสอบข้อมูลที่กรอก"
+  },
+  "SETTINGS": "ตั้งค่า",
+  "SHOPPING": {
+      "ADDRESS": "ที่อยู่",
+      "CART": "ตะกร้า",
+      "CART_TITLE": "ตระกร้าสินค้า",
+      "ERROR": {
+          "HAVE_IN_CART": "สินค้านี้อยู่ในตระกร้าแล้ว",
+          "LOGIN": "ไม่สามารถเข้าสู่ระบบได้",
+          "OUT_OF_STOCK": "สินค้าหมด"
+      },
+      "PAYMENT": "การชำระเงิน",
+      "SHIPPING": "จัดส่ง"
+  },
+  "SIGNIN": {
+      "SIGNINING": "กำลังเข้าสู่ระบบ"
+  }
+}

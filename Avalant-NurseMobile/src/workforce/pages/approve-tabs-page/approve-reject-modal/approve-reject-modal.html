@@ -1,0 +1,58 @@
+<div class="content bg-workforce" *ngIf="approveType == 'reject'">
+    <ion-grid class="reject-grid-popup">
+        <ion-row no-padding>
+            <ion-col col-12 no-padding>
+                <p text-center translate>M_APPROVEREJECTMODAL.REJECT_LEAVE_REQUEST</p>
+                <ion-item no-padding>
+                    <!-- <ion-label floating floated>{{ approveRejectModal?.rejectReason || 'Reject Reason *' }}</ion-label> -->
+                    <ion-input class="textarea" placeholder="{{textReject}}" type="text" [(ngModel)]="rejectReason"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-row no-padding class="approve-action">
+        <ion-col col-6>
+            <button class="action-btn reject-btn" ion-button small block close-modal-view out-line color="reject-btn" translate>M_BUTTON.CANCEL</button>
+        </ion-col>
+        <ion-col col-6 border-left>
+            <!-- <button class="action-btn approve-btn" ion-button small block color="approve-btn" [disabled]="isEmptyRejectReason()" (click)="doReject && doReject()">Confirm</button> -->
+            <button class="action-btn approve-btn" ion-button small block color="approve-btn" [disabled]="isEmptyRejectReason()" (click)="checkApproveLeave && checkApproveLeave()" translate>M_BUTTON.CONFIRM</button>
+        </ion-col>
+    </ion-row>
+</div>
+<div class="content bg-workforce" *ngIf="approveType == 'approve'">
+    <ion-grid class="reject-grid-popup">
+        <ion-row no-padding>
+            <ion-col col-12 no-padding>
+                <p text-center class="titel" translate>M_APPROVEREJECTMODAL.CONFIRM_TO_APPROVE</p>
+                <p text-center class="text" translate>M_APPROVEREJECTMODAL.THIS_LEAVE_WILL_BE_APPROVE</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-row no-padding class="approve-action">
+        <ion-col col-6>
+            <button class="action-btn reject-btn" ion-button small block close-modal-view out-line color="reject-btn" translate>M_BUTTON.CANCEL</button>
+        </ion-col>
+        <ion-col col-6 border-left>
+            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="checkApproveLeave && checkApproveLeave()" translate>M_BUTTON.CONFIRM</button>
+        </ion-col>
+    </ion-row>
+</div>
+<div class="content bg-workforce" *ngIf="approveType == 'create'">
+    <ion-grid class="reject-grid-popup">
+        <ion-row no-padding>
+            <ion-col col-12 no-padding>
+                <p text-center class="titel" translate>M_APPROVEREJECTMODAL.CONFIRM_CREATE</p>
+                <p text-center class="text" translate>M_APPROVEREJECTMODAL.YOU_SURE_SAVE</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-row no-padding class="approve-action">
+        <ion-col col-6>
+            <button class="action-btn reject-btn" ion-button small block close-modal-view out-line color="reject-btn" translate>M_BUTTON.CANCEL</button>
+        </ion-col>
+        <ion-col col-6 border-left>
+            <button class="action-btn approve-btn" ion-button small block color="approve-btn" translate (click)="closeModal && closeModal()">M_BUTTON.CONFIRM</button>
+        </ion-col>
+    </ion-row>
+</div>

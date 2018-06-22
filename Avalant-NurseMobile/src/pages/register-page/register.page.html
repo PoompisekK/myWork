@@ -1,0 +1,136 @@
+<!--*
+ @author Bundit.Ng
+ @since  Tue May 30 2017
+ Copyright (c) 2017 Avalant Co.,Ltd.
+-->
+<!-- TODO: Make a close page button !! -->
+<ion-content style="padding: .5em">
+    <div class="closeDvBtn" tappable (click)="gotoLoginPage()">
+        <img class="closeImgBtn" src="./assets/img/login/close.png" />
+    </div>
+    <form #registerForm="ngForm" (ngSubmit)="signItUp(registerForm)">
+        <ion-grid class="regisContent">
+            <ion-row>
+                <ion-col tappable>
+                    <div class="Header">
+                        <p translate>COMMON.MENU.SIGNUP</p>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="item-div">
+                        <img class="inputIcon" src="./assets/img/login/username_icon.svg" />
+                        <ion-item class="dividerGrey" style="padding: 0 .5em;background-color: transparent">
+                            <ion-input type="text" validate-input required [formInput]="registerForm" [input-type]="'text'" name="firstname" [(ngModel)]="regisUserModel.custFname" placeholder="{{ 'COMMON.SIGNUP.FIRSTNAME' | translate }}"></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="item-div">
+                        <img class="inputIcon" src="./assets/img/login/username_icon.svg" />
+                        <ion-item class="dividerGrey" style="padding: 0 .5em;background-color: transparent">
+                            <ion-input type="text" validate-input required [formInput]="registerForm" [input-type]="'text'" name="lastname" [(ngModel)]="regisUserModel.custLname" placeholder="{{ 'COMMON.SIGNUP.LASTNAME' | translate }}"></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="item-div">
+                        <img class="inputIcon" src="./assets/img/login/username_icon.svg" />
+                        <ion-item class="dividerGrey" style="padding: 0 .5em;background-color: transparent">
+                            <ion-input type="text" validate-input required [formInput]="registerForm" [input-type]="'englishonly'" name="username" [(ngModel)]="regisUserModel.scmUserName" placeholder="{{ 'COMMON.SIGNUP.USERNAME' | translate }}"></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="item-div">
+                        <img class="inputIcon" src="./assets/img/login/emailregis_icon.svg" />
+                        <ion-item class="dividerGrey" style="padding: 0 .5em;background-color: transparent">
+                            <ion-input type="text" validate-input [required]="activeUserMethod != 'otp' " [formInput]="registerForm" [input-type]="'email'" name="email" [(ngModel)]="regisUserModel.memberEmail" placeholder="{{ 'COMMON.SIGNUP.EMAIL' | translate }}"></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="item-div">
+                        <img class="inputIcon" src="./assets/img/login/password_icon.svg" />
+                        <ion-item class="dividerGrey" style="padding: 0 .5em;background-color: transparent">
+                            <ion-input type="password" validate-input required [formInput]="registerForm" [input-type]="'text'" name="password" [(ngModel)]="regisUserModel.password" placeholder="{{ 'COMMON.SIGNUP.PASSWORD' | translate }}" minlength="4" maxlength="12"></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="item-div">
+                        <img class="inputIcon" src="./assets/img/login/password_icon.svg" />
+                        <ion-item class="dividerGrey" style="padding: 0 .5em;background-color: transparent">
+                            <ion-input type="password" validate-input required [formInput]="registerForm" [input-type]="'text'" name="confirm_pwd" [(ngModel)]="regisUserModel.confirmPassword" placeholder="{{ 'COMMON.SIGNUP.CONFIRM_PWD' | translate }}" minlength="4" maxlength="12"></ion-input>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+
+            <!-- <ion-row>
+                <ion-col>
+                  <span class="textCaption" translate>รายชื่อบริษัท</span>
+                </ion-col>
+              </ion-row> -->
+            <!-- <ion-col style="padding:0 5px 0 5px" col-2 *ngFor="let company of listCompany">
+                <img style="width:100%;height:100%" class="employee-list" src="{{company.url}}">
+              </ion-col> -->
+            <ion-row style="margin-bottom: .5em;border:none;border-bottom:1px solid white;opacity:0.9">
+                <ion-col>
+                    <div class="item-div" style="border: none;">
+                        <ion-item style="color:white;padding-left: 0;margin-top: .5em;background-color: transparent;opacity: .9;" no-lines>
+                            <ion-label style="color:white;" class="textCaption">Company Code<span class="required"></span></ion-label>
+                            <ion-select validate-input [(ngModel)]="regisUserModel.companyCode" [formInput]="registerForm" [input-type]="'text'" name="companyCode" required interface="popover">
+                                <ion-option *ngFor="let company of listCompany" style="color:white;" [value]="company?.code">{{company?.name}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <!--
+              <ion-row radio-group [(ngModel)]="activeUserMethod" type="text" validate-input required [formInput]="registerForm" [input-type]="'text'"
+              name="actived_method" class="activeUserMethod">
+              <ion-col>
+                <ion-item no-lines style="background-color: transparent;height: 2.5em;min-height: 0;">
+                  <ion-radio color="light" tappable [checked]="true" class="item-left-margin" item-left value="email"></ion-radio>
+                  <ion-label style="white-space: pre-line">ยืนยันตัวตนด้วยอีเมล์</ion-label>
+                </ion-item>
+                <ion-item no-lines style="background-color: transparent;height: 2.5em;min-height: 0;">
+                  <ion-radio color="light" tappable class="item-left-margin" item-left value="otp"></ion-radio>
+                  <ion-label style="white-space: pre-line">ยืนยันตัวตนผ่านเบอร์โทรศัพท์ ด้วยรหัส OTP</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          -->
+            <ion-row>
+                <ion-col>
+                    <span class="textCaption" translate>COMMON.SIGNUP.WARNING</span>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item class="keepUp2dateChk">
+                        <ion-label translate>COMMON.SIGNUP.CONFIRM</ion-label>
+                        <ion-checkbox color="white" [ngModelOptions]="{standalone: true}" [(ngModel)]="regisUserModel.isKeepUpdate" checked="regisUserModel.isKeepUpdate" (ionChange)="updateIsKeep2Date($event)"></ion-checkbox>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <button ion-button tappable type="submit" block class="signUpBtn" [disabled]="regisUserModel.isKeepUpdate != true" translate>COMMON.BUTTON.SIGN_UP</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

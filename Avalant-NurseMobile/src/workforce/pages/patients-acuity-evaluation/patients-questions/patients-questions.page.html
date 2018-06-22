@@ -1,0 +1,43 @@
+<ion-header>
+    <app-nav-header [pageName]="'Patients Acuity Evaluation'"></app-nav-header>
+</ion-header>
+<ion-content class="bg-workforce">
+    <div class="contain">
+        <ion-row [@peekAnimation] *ngIf="isLoading" class="bg-workforce">
+            <ion-col text-center>
+                <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
+            </ion-col>
+        </ion-row>
+        <ion-slides [@peekAnimation] *ngIf="!isLoading" pager [ngStyle]="{ 'height': slidesMoving ? 'auto' : (slidesHeight + 'px') }" (ionSlideDidChange)="slideDidChange()" (ionSlideWillChange)="slideWillChange()">
+            <ion-slide *ngFor="let questionItm of (questions||[]);let qIndx = index;">
+                <ion-grid class="chioce" radio-group>
+                    <ion-row>
+                        <ion-col col-12 text-left>
+                            <p>{{ (qIndx+1)+'. '+questionItm?.topic }}</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row line-bottom *ngFor="let chioceItm of (questionItm.choices||[]);let cIndx = index;">
+                        <ion-col col-12 text-left>
+                            {{ 'ระดับที่ '+ (cIndx+1) }}
+                            <ion-item no-padding no-lines>
+                                <ion-label class="radio-text">{{ chioceItm?.choiceName }}</ion-label>
+                                <ion-radio item-left style="margin: 0; margin-right: 1em;" value="{{ cIndx+1 }}"></ion-radio>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide>
+        </ion-slides>
+        <ion-grid style="margin-bottom: 1em">
+            <ion-row>
+                <ion-col [@peekAnimation] col-6 *ngIf="slidesActiveIndex != 0">
+                    <button class="wf-button" ion-button block full (click)="slideStep(-1)">Previous </button>
+                </ion-col>
+                <ion-col push-col-6>
+                    <button *ngIf="slidesActiveIndex != ((questions||[]).length - 1)" (click)="slideStep(1)" full class="wf-button" ion-button block>Next </button>
+                    <button *ngIf="slidesActiveIndex == ((questions||[]).length - 1)" (click)="slideStep(0)" full class="wf-button" ion-button block>Complete </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

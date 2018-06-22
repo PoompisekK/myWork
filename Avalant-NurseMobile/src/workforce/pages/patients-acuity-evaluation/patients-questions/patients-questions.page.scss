@@ -1,0 +1,30 @@
+patients-questions {
+    ion-content {
+        div.contain {
+            padding: 0 1em;
+        }
+        ion-slides * {
+            background-color: transparent;
+            color: white;
+        }
+    }
+    .chioce ion-item {
+        background-color: transparent !important;
+    }
+    ion-label.radio-text {
+        font-size: .80em !important;
+    }
+    ion-list.bg-workforce {
+        margin: 0 1em;
+        ion-label {
+            white-space: initial;
+        }
+    }
+    ion-row[line-bottom] {
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, .5);
+    }
+    ion-slides div.swiper-container {
+        padding-bottom: 4.5em;
+    }
+}

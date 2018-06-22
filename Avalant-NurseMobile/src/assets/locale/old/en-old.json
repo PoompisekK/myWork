@@ -1,0 +1,355 @@
+{
+  "ERROR": {
+    "LOGIN": "SignIn Error"
+  },
+  "MSG": {
+    "SAVE": "Save",
+    "AGREE": "Agree",
+    "MONTHS": "January February March April May June July August September October November December",
+    "SHORT_MONTHS": "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",
+    "AGO": "ago",
+    "ANSWER": {
+      "DONE": "Done",
+      "OK": "OK",
+      "CANCEL": "Cancel",
+      "YES": "Yes",
+      "NO": "No",
+      "SURE": "Sure",
+      "NOT_SURE": "Not sure",
+      "NOT_NOW": "Not now",
+      "CONFIRM": "Confirm",
+      "NEXT": "Next"
+    },
+    "AUTH": {
+      "LOGIN_WITH": "Sign In with",
+      "OR": "Or",
+      "CLEAR": "Clear",
+      "USERNAME": "Username",
+      "PASSWORD": "Password",
+      "CONFIRM_PASSWORD": "Confirm Password",
+      "FORGOT_PASSWORD": "Forgot Your Password ?",
+      "FIRST_NAME": "First name",
+      "LAST_NAME": "Last name",
+      "NICK_NAME": "Nickname",
+      "EMAIL": "Email",
+      "NEED_EMAIL_ACTIVATED": "Need Email Activated",
+      "REGISTER_NOTICE": "Your nickname will be publicly visible on Website, User profile page and associated with your activities.",
+      "SUBSCRIBE_NEWS": "Keep me updated about the latest",
+      "LOGOUT_CONFIRMATION": "Are you sure you want to Sign out ?",
+      "INVALID_CREDIENTIAL": "Email or Password is incorrect."
+    },
+    "BRAND": {
+      "FAVORITE": "My Favorite Brand",
+      "POPULAR": "Popular Brand",
+      "VIEW_ALL": "View All"
+    },
+    "BROWSE": "Browse",
+    "CHANGE_LANGUAGE": "Change language",
+    "COMMENT": "Comment",
+    "COMMENTS": "Comments",
+    "COMPANY": "Company",
+    "CURRENCY": {
+      "THB": "Thai Baht"
+    },
+    "FACEBOOK": "Facebook",
+    "FEED": "Stream",
+    "FOLLOW": "Follow",
+    "ADD_FAVORITE": "Add to favorite",
+    "UN_FAVORITE": "Remove from favorite",
+    "FOLLOWED": "Followed",
+    "GOOGLE": "Google",
+    "LANG": {
+      "THAI": "Thai",
+      "ENGLISH": "English"
+    },
+    "LANGUAGE": "Language",
+    "LIKE": "Like",
+    "LIKES": "Likes",
+    "LINKEDIN": "LinkedIn",
+    "LOADING": "Loading",
+    "LOGGING_IN": "Signing in",
+    "LOGGING_OUT": "Signing out",
+    "LOGIN": "Sign In",
+    "LOGOUT": "Sign Out",
+    "MESSAGE": "Message",
+    "MESSENGER": "Messenger",
+    "MINE": "Mine",
+    "NOW": "Now",
+    "ORGANIZATION": {
+      "HOME_PAGE": "Home",
+      "STORE": "Store",
+      "DONATION": "Donation",
+      "COURSE_EVENT": "Course Event",
+      "GROUP_EVENTS": "Group Events",
+      "PRIVILEGES": "Privilege"
+    },
+    "PLACE": "Place",
+    "REGISTER": "Sign Up",
+    "SETTING": {
+      "USER_PROFILE": "User Profile",
+      "MY_ORDER": "My Orders",
+      "HISTORY": "My Histories",
+      "MY_REWARD": "My Reward"
+    },
+    "SETTINGS": "Settings",
+    "SIGN_UP": "Sign Up",
+    "USERPROFIEL_P1": {
+      "GENDERS": {
+        "MALE": "Male",
+        "FEMALE": "Female"
+      },
+      "TITLE": "Title Name",
+      "TITLE_NAME": "Specify Title Name",
+      "NAME": "Name",
+      "SURENAME": "Surename",
+      "NICKNAME": "Nickname",
+      "GENDER": "Gender",
+      "NATIONALITY": "Nationality",
+      "ID_NO": "ID No.",
+      "PASSPORT_NO": "Passport No.",
+      "RACE": "Race",
+      "RELIGION": "Religion",
+      "DATE_OF_BIRTH": "Date of birth",
+      "YEARS": "Years",
+      "AGE": "Age",
+      "WEIGHT": "Weight",
+      "HEIGHT": "Height"
+    },
+    "USERPROFIEL_P2": {
+      "LINE_ID": "Line ID",
+      "ADDRESS": "Address No",
+      "ADDRESSTOPIC": "Address",
+      "MOO": "Moo",
+      "ROAD": "Road",
+      "ADDRESSNAME": "Address Name",
+      "ROOM_NO": "Room No.",
+      "SOI": "Soi",
+      "STREET": "Road",
+      "PROVINCE": "Province",
+      "DISTRICT": "District",
+      "SUB_DISTRICT": "Sub District",
+      "POST_CODE": "Post Code",
+      "EMAIL": "E-mail",
+      "MOBILE_NO": "Mobile No.",
+      "PHONE": "Tel.",
+      "PHONE_EXT": "Ext."
+    },
+    "USERPROFIEL_P3": {
+      "PARENT_INFORMATION": {
+        "INFO_HEAD": "Parent Information",
+        "INFO_NAME": "First Name",
+        "INFO_SURENAME": "Last Name",
+        "INFO_EMAIL": "E-mail",
+        "INFO_MOBILE": "Mobile No."
+      },
+      "EDUCATION_INFORMATION": {
+        "INFO_HEAD": "Business Info/Education Info",
+        "OCCUPATION": "Occupation",
+        "EDUCATION": "Education",
+        "ADDRESS": "Address",
+        "SOIL": "Alley",
+        "ROAD": "Road",
+        "PROVINCE": "Province",
+        "DISTRICT": "District",
+        "SUB_DISTRICT": "Sub District",
+        "POST_CODE": "Post Code",
+        "OFFICE_PHONE": "Office Phone"
+      },
+      "EMERGENCY_INFORMATION": {
+        "INFO_HEAD": "Emergency Information",
+        "INFO_NAME": "First Name",
+        "INFO_SURENAME": "Last Name",
+        "INFO_RELATION": "Relation",
+        "INFO_EMAIL": "E-mail",
+        "INFO_MOBILE": "Mobile No."
+      }
+    },
+    "USERPROFIEL_P4": {
+      "MEDICAL_INFORMATION": "Medical Information"
+    },
+    "USERPROFIEL_P5": {
+      "INFO_HEAD": "Attach File",
+      "ATTACH_DOCUMENT_INFORMATION": "Attachment identification",
+      "ATTACHMENT": "Attachment Image (image does't over 2 years)"
+    },
+    "USER_PROFILE": {
+      "INFO_HEAD": "Update Profile",
+      "UPDATE_PROFILE": "Updating your information.",
+      "UPDATE_COMPLETE": "System have been updated your information."
+    },
+    "COURSES": {
+      "REGISTER": "Register this course",
+      "COURSE_NAME": "Course name",
+      "F_NAME": "First Name",
+      "L_NAME": "Last Name",
+      "CARD_NO": "Card NO.",
+      "FILL_INFORMATION": "Edit Information",
+      "PARTICIPANT_LIST": "Participant List",
+      "RELATION": "Relation",
+      "WARN": "Please check and update your information",
+      "PROFILE_PIC_WARN": "Profile picture (picture's age lower than 2 years)"
+    },
+    "DONATION": {
+      "DONATE_BTN": "Donate",
+      "DONATE": "Donate",
+      "AMOUNT": "Amount"
+    },
+    "EVENTS": {
+      "REGISTER": "Register this event",
+      "DONATE": "Donate"
+    },
+    "SHOPPING": {
+      "ADDCART": "Add to Cart",
+      "CART": "Cart",
+      "CART_TITLE": "My shopping cart",
+      "SHIPPING": "Shipping",
+      "PAYMENT": "Payment",
+      "ADDRESS": "Address",
+      "CART_EMPTY": "Cart Empty",
+      "CHECKOUT": "Register",
+      "CONFIRM_REMOVE_CART_ITEM": "Are you sure you want to remove this item from your cart?",
+      "REGISTER": "Register"
+    },
+    "PRODUCT": {
+      "ITEM_INFO": "Item Info"
+    },
+    "HEADER": {
+      "GENERAL_INFORMATION": "สั่งซื้อ",
+      "COMPANY_INFORMATION": "",
+      "FUNDRAISING_OBJECTIVE": "",
+      "SHIPPING_INFORMATION": "ระบุที่อยู่",
+      "PAYMENT": "ชำระเงิน"
+    }
+  },
+  "NOW": "Now",
+  "ORGANIZATION": {
+    "HOME_PAGE": "Home page",
+    "STORE": "Store",
+    "DONATION": "Donation",
+    "COURSE_EVENT": "Course Event"
+  },
+  "PLACE": "Place",
+  "REGISTER": {
+    "REGISTER": "REGISTER",
+    "VERIFY_INPUT": "Please verify input",
+    "SIGNUP_LOADING": "Registration processing",
+    "ERROR": "Registration Fail",
+    "SUCCESS": "Success Registration",
+    "PLEASE_ACTIVATE": "Please activate your account by clicking the link in the email we sent to you",
+    "PASSWORD_LESSTHAN4": "Please verify input password, password must greater than 4 characters.",
+    "Email exist": "This email already registered."
+  },
+  "SETTINGS": "Setting",
+  "SHOPPING": {
+    "CART": "Cart",
+    "CART_TITLE": "Cart",
+    "SHIPPING": "Shipping",
+    "PAYMENT": "Payment",
+    "ADDRESS": "Address",
+    "ERROR": {
+      "LOGIN": "Can't sign in",
+      "OUT_OF_STOCK": "This product out of stock.",
+      "HAVE_IN_CART": "This product already added into cart."
+    }
+  },
+  "SIGNIN": {
+    "SIGNINING": "SignIn processing"
+  },
+  "COMMON": {
+    "CHECKOUT": {
+      "CHECK_OUT": "CHECK OUT",
+      "REQUEST_DONATION": "REQUEST DONATION",
+      "DONATION_TYPE": "Donation Type",
+      "BOOK_INFO": "BOOK INFO",
+      "REQUEST_PRIVILEGE": "REQUEST PRIVILEGE"
+    },
+    "INFO": {
+      "DONATION_INFORMATION": "DONATION INFORMATION",
+      "SHIPPING_HERE": "SHIPPING HERE",
+      "Shipping_Address": "Shipping Address",
+      "INFORMATION": "INFORMATION",
+      "CHOOSESHIPPING": "Choose a Shipping Address",
+      "ADDBEFORECON": "Please add new shipping address before continue.",
+      "TITLECOURSE": "Order Summary"
+    },
+    "PAYMENT": {
+      "PAYMENT": "PAYMENT",
+      "Order_Summary": "Order Summary",
+      "THB": "THB",
+      "Total": "Total",
+      "Payment_Method": "Payment Method",
+      "Select": "Select your Payment Method",
+      "Item_Total": "Item Total",
+      "Payment": "Payment",
+      "SUCCESS": "Successful",
+      "STATUS": "Status",
+      "ORDER": "Order",
+      "MOREPRODUCT": "See more products",
+      "GOHOME": "Go to home",
+      "ORDERSUCCESS": "Order"
+    },
+    "BUTTON": {
+      "SUBMIT": "SUBMIT",
+      "NEXT": "NEXT",
+      "BACK": "BACK",
+      "CONFIRM_JOIN": "Confirm Join",
+      "Confirm_Payment": "Confirm Payment",
+      "EDIT": "Edit",
+      "DEL": "Delete",
+      "SAVE": "Save"
+    },
+    "TITLE": {
+      "GENERALINFO": "General Information",
+      "PERSONALINFO": "Personal Information",
+      "CONTACTINFO": "Contact Information",
+      "NEWADDRESS": "Add New Shipping Address",
+      "SHIPPINGINFO": "Add Shipping"
+    },
+    "USERPROFILE": {
+      "CARDID": "Card id.",
+      "TITLE": "Tilte",
+      "TITLE_OTHER": "Other Title",
+      "FIRSTNAME": "Firstname",
+      "LASTNAME": "Lastname",
+      "MOBILE": "Moblie Phone",
+      "TELEPHONE": "Tel.",
+      "ADDRESSNAME": "Address Name",
+      "ADDRESS_NO": "Address No.",
+      "MOO": "Moo",
+      "ROOM": "Room",
+      "SOI": "Soi",
+      "STREET": "Road",
+      "PROVINCE": "Province",
+      "DISTRICT": "District",
+      "SUBDISTRICT": "SubDistrict",
+      "POSTCODE": "Postal Code",
+      "EMAIL": "E-mail",
+      "SEX": "Gender",
+      "JOINTIME": "Enter Time",
+      "COUNTRY": "Country"
+    },
+    "PARENTPROFILE": {
+      "General_Infomation": "General Infomation",
+      "Parent_Information": "Parent Information",
+      "Parent_Name": "Parent's Name",
+      "parent_surname": "parent's surname",
+      "full_name": "Full Name",
+      "Email": "Email",
+      "Mobile_Phone": "Mobile Phone",
+      "Workplace": "Workplace",
+      "Position": "Position",
+      "Occupation": "Occupation",
+      "Education_Level": "Education Level",
+      "Emergency_Contact": "Emergency Contact",
+      "Office_Phone": "Office Phone",
+      "Relation": "Relation"
+
+    },
+    "TIME": {
+      "MORNING": "Morning",
+      "AFTERNOON": "Afternoon",
+      "FULL_DAY": "Full Day",
+      "STAY_NIGHT": "Stay Night"
+    }
+  }
+}

@@ -1,0 +1,164 @@
+expense-page {
+    *:not(ion-icon) {
+        font-family: 'RobotoRegular', 'Prompt';
+        // unicode-range: 'U+0E00-U+0E7F';
+    }
+    .item-inner {
+        margin: 0 !important;
+    }
+    .calendar_date {
+        border: 0.55px solid;
+        border-color: #dadada;
+        border-radius: 5px;
+    }
+    .plus-sign-btn {
+        border-radius: 0.3em;
+        font-size: 1.25em;
+        height: 1.5em;
+        margin: 0;
+        position: absolute;
+        right: 0.5em;
+        top: 0.75em;
+        width: 1.5em;
+        ion-icon {
+            font-size: 75%;
+        }
+    }
+    ion-badge.status-badge {
+        background-color: transparent;
+        border-radius: 5em;
+        height: 2em;
+        line-height: 2em;
+        padding: 0 1em;
+        &.draft {
+            background-color: #F3F3F3;
+            color: gray;
+        }
+        &.submit {
+            background-color: #ECC93F;
+        }
+        &.approve {
+            background-color: #1AD08E;
+        }
+        &.reject {
+            background-color: #FF5252;
+        }
+        &.pay {
+            background-color: #72ADE6;
+        }
+    }
+    div.expense-card {
+        ion-card {
+            border-radius: .5em;
+            margin-bottom: 1.5em;
+            // ion-row {
+            //     // height: 2.25em;
+            // }
+        }
+        $p-left: .75em;
+        h2.exp-title {
+            padding-top: 0.25em;
+            padding-left: $p-left;
+            color: #101010;
+            font-size: 1.3em;
+            font-family: 'RobotoMedium','Prompt';
+            font-weight: 400 !important;
+        }
+        p.exp-sub-title {
+            color: #b3b3b3;
+            font-size: 0.75em;
+            font-weight: bolder;
+            height: 2.75em;
+            line-height: 2.25em;
+            margin: auto 0;
+            padding-right: $p-left;
+            word-spacing: -1px;
+        }
+        .exp-amt[baht-back] {
+            &::after {
+                font-family: 'RobotoBlack' !important;
+                font-weight: normal;
+                font-size: 1em;
+            }
+        }
+        span.exp-amt {
+            padding-left: .5em;
+            font-weight: bold;
+            font-size: 1.75em;
+            color: color($colors-theme, "app-theme");
+            span.exp-amt-unit {
+                margin-left: .35em;
+                vertical-align: top;
+                font-size: 0.6em;
+                color: #b3b3b3;
+            }
+        }
+    }
+    $dvSize:1.25em;
+    .status-dv {
+        width: $dvSize;
+        height: $dvSize;
+        color: white;
+        border-radius: 2em;
+        float: right;
+        margin-right: .5em;
+        // background-color: red;
+        // border: 0.5px solid #fff;
+        position: absolute;
+        top: -.5em;
+        right: -.5em;
+        z-index: 99;
+        ion-icon {
+            font-size: 1.75em;
+            margin: .25em 0;
+        }
+        &.approve {
+            background-color: #4CAF50;
+        }
+        &.waiting {
+            background-color: #F4B400;
+        }
+        &.reject {
+            background-color: #D32F2F;
+        }
+    }
+    .better-searchbar {
+        display: none;
+    }
+    ion-grid>ion-row>ion-col>p {
+        padding: 0;
+        margin: 0;
+        margin-bottom: .75em;
+        padding-left: .75em;
+        font-size: .90em;
+        font-family: 'RobotoRegular'
+    }
+    .expense-type-simple {
+        $width: 1.5em;
+        img.image-item-type {
+            float: right;
+            width: $width;
+            height: $width;
+            border-radius: 50%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 1px;
+        }
+        padding-right: .5em;
+    }
+    .expense-status>ion-icon {
+        font-size: 1.15em;
+        float: right;
+        opacity: .5;
+        &.close {
+            color: #FF5B5B;
+        }
+        &.information {
+            color: #00B900;
+        }
+        &.checkmark {
+            color: #7F96F9;
+        }
+    }
+}

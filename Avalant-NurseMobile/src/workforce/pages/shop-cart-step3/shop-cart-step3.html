@@ -1,0 +1,82 @@
+<ion-header>
+    <app-nav-header [pageName]="'Payment'"></app-nav-header>
+</ion-header>
+
+<ion-content>
+    <div padding text-center>
+        <img src="assets/img/payment-step3.png" />
+    </div>
+    <div padding>
+        <strong style="font-size:1.3em;">Payment Method</strong>
+    </div>
+    <ion-list radio-group class="no-margin">
+        <ion-row>
+            <ion-col>
+                <ion-item style="border:0;">
+                    <ion-radio mode="md" item-left checked="true" value="visa"></ion-radio>
+                    <img item-right src="assets/img/payment-method/visa.png" />
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item style="border:0;">
+                    <ion-radio mode="md" item-left checked="fales" value="paypal"></ion-radio>
+                    <img item-right src="assets/img/payment-method/paypal.png" />
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item style="border:0;">
+                    <ion-radio mode="md" item-left checked="fales" value="bank"></ion-radio>
+                    <img item-right src="assets/img/payment-method/bank_transfer.png" />
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-list>
+    <div padding style="padding-top:0;">
+        <ion-item>
+            <ion-label style="color:darkgray;" stacked>Firstname</ion-label>
+            <ion-input type="text" placeholder="" value="Wisanupong Wongintarachai"></ion-input>
+        </ion-item>
+        <hr>
+    </div>
+    <div padding style="padding-top:0;padding-bottom:0;">
+        <span padding>Credit Card Number</span>
+        <ion-grid style="padding:10px;">
+            <ion-row>
+                <ion-col col-3 text-right style="margin:auto;">
+                    <ion-input style="border:1px solid darkgray;border-radius:4px;height:2em;" type="" placeholder="">
+                    </ion-input>
+                </ion-col>
+                <ion-col col-3 text-right style="margin:auto;">
+                    <ion-input style="border:1px solid darkgray;border-radius:4px;height:2em;" type="" placeholder="">
+                    </ion-input>
+                </ion-col>
+                <ion-col col-3 text-right style="margin:auto;">
+                    <ion-input style="border:1px solid darkgray;border-radius:4px;height:2em;" type="" placeholder="">
+                    </ion-input>
+                </ion-col>
+                <ion-col col-3 text-right style="margin:auto;">
+                    <ion-input style="border:1px solid darkgray;border-radius:4px;height:2em;" type="" placeholder="">
+                    </ion-input>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div padding style="padding-top:0;">
+        <ion-item>
+            <ion-label style="color:darkgray;" stacked>Digicode
+                <ion-icon name="help" style="border: 1px solid;border-radius: 50%;width: 1.2em;text-align: center;"></ion-icon>
+            </ion-label>
+        </ion-item>
+        <hr>
+    </div>
+
+    <div style="padding:16px 11px 16px 11px;">
+        <button (click)="goToPaymentComplete()" color="light-blue" style="border-radius:5px;" ion-button block>Confirm payment</button>
+    </div>
+
+    <!-- <div (click)="goToPaymentComplete()" class="bg-home-demo">
+
+  </div> -->
+
+</ion-content>
