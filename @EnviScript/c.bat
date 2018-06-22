@@ -1,0 +1,1 @@
+cls && echo 'console clear !!!'
