@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { AnimateCss } from '../../../../animations/animate-store';
+import { AppConstant } from '../../../../constants/app-constant';
 import { AppLoadingService } from '../../../../services/app-loading-service/app-loading.service';
+import { AppServices } from '../../../../services/app-services';
+import { HCMTranslationService } from '../../../modules/hcm-translation.service';
 import { AppAlertService } from '../../../service/appAlertService';
 import { ApproveService } from '../../../service/approveService';
-import { LeaveService } from '../../../service/leaveService';
-import { AppServices } from '../../../../services/app-services';
-import { AppConstant } from '../../../../constants/app-constant';
 import { ExpenseService } from '../../../service/expenseService';
-import { TranslationService } from 'angular-l10n';
+import { LeaveService } from '../../../service/leaveService';
 
 @Component({
     selector: 'approve-reject-modal',
@@ -32,12 +32,12 @@ export class ApproveRejectModalPage implements OnInit {
         private navParams: NavParams,
         private viewCtrl: ViewController,
         private expenseService: ExpenseService,
-        private translationService: TranslationService,
+        private hcmTranslationService: HCMTranslationService,
         private appService: AppServices,
     ) {
 
     }
-    private textReject = this.translationService.translate('M_APPROVEREJECTMODAL.REJECT_REASON');
+    private textReject = this.hcmTranslationService.translate('M_APPROVEREJECTMODAL.REJECT_REASON','Reject Reason');
     private approveType: string;
     public ngOnInit(): void {
         this.approveType = this.navParams.get('select');

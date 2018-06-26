@@ -10,6 +10,7 @@ import { AppServices } from '../../../services/app-services';
 import { HCMShiftRestService } from '../../../services/userprofile/hcm-shift.service';
 import { LeaveDetailPage } from '../leave-page/leave-detail-pages/leave-detail-page';
 import { ShiftCreatePage } from './shift-create-page/shift-create-page';
+import { ShiftSwapCreatePage } from './shift-swap-create-page/shift-swap-create-page';
 
 @Component({
     selector: 'shift-page',
@@ -19,38 +20,6 @@ import { ShiftCreatePage } from './shift-create-page/shift-create-page';
     ]
 })
 export class ShiftPage implements OnInit {
-
-    private makeShiftSwap = [
-        {
-            status: 'Waiting For Approval',
-            name: 'Angelica Ramos',
-            fromDate: '2018-05-12',
-            toDate: '2018-05-13',
-            fromShift: 'D(07:00) - (15:00)',
-            toShift: 'E(15:00) - (07:00)',
-            off: 'OFF',
-            requestDate: '2018-05-07'
-        },
-        {
-            status: 'Approved',
-            name: 'Angelica Ramos',
-            fromDate: '2018-06-08',
-            toDate: '2018-06-09',
-            fromShift: 'D(07:00) - (15:00)',
-            toShift: 'E(15:00) - (07:00)',
-            requestDate: '2018-06-07'
-        },
-        {
-            status: 'Rejected',
-            name: 'Angelica Ramos',
-            fromDate: '2018-05-10',
-            toDate: '2018-05-11',
-            fromShift: 'D(07:00) - (15:00)',
-            toShift: 'E(15:00) - (07:00)',
-            off: 'OFF',
-            requestDate: '2018-05-07'
-        }
-    ];
 
     constructor(
         public navCtrl: NavController,
@@ -82,14 +51,30 @@ export class ShiftPage implements OnInit {
 
     public ngOnInit() {
         this.Shift_Swap = 'select';
-        this.listShift = this.makeShiftSwap;
         this.selectType(this.shiftType);
+        this.hcmShiftRestService.getShiftSwap().subscribe(dataShiftSwap => {
+            this.numShiftSwap = dataShiftSwap.length;          
+        });
+        this.hcmShiftRestService.getShift().subscribe(dataShift => {
+            this.numShift = dataShift.length;
+        });
     }
 
-    private openCreate() {
-        this.navCtrl.push(ShiftCreatePage, {
-            shiftType: this.shiftType
-        });
+    public getDisplayDate(_inDateStr: string): string {
+        let dateObj = moment(_inDateStr || '', ["DD/MM/YYYY", "YYYY/MM/DD"]);
+        if (dateObj.isValid()) {
+            return dateObj.format("ddd D");
+        } else {
+            null;
+        }
+    }
+
+    public openCreate() {
+        if ("shiftSwap".equals(this.shiftType)) {
+            this.navCtrl.push(ShiftSwapCreatePage, { shiftType: this.shiftType });
+        } else {
+            this.navCtrl.push(ShiftCreatePage, { shiftType: this.shiftType });
+        }
     }
     private selectType(_shift) {
         if (_shift != 'shift') {
@@ -110,11 +95,14 @@ export class ShiftPage implements OnInit {
             this.getShift(); //get data              
         }
     }
+    private numShift = 0;
+    private numShiftSwap = 0;
     private getShift() {
         this.hcmShiftRestService.getShift().subscribe(dataShift => {
             this.isLoading = false;
             this.listShift = dataShift;
-            this.groupList();
+            this.numShift = dataShift.length;
+            this.groupList('shift');
         });
     }
 
@@ -122,7 +110,8 @@ export class ShiftPage implements OnInit {
         this.hcmShiftRestService.getShiftSwap().subscribe(dataShiftSwap => {
             this.isLoading = false;
             this.listShift = dataShiftSwap;
-            this.groupList();
+            this.numShiftSwap = dataShiftSwap.length;
+            this.groupList('shiftSwap');
         });
     }
 
@@ -137,9 +126,12 @@ export class ShiftPage implements OnInit {
         });
     }
 
+    private dataListShift = [];
+    private dataListShiftSwap = [];
+
     private listShift: any; // data start
     private groupListShift = []; // data end
-    private groupList() {
+    private groupList(_selectType) {
         var result = [];
         this.listShift.forEach(element => {
             result.push(moment(element.requestDate).format('YYYY-MM'));
@@ -192,5 +184,14 @@ export class ShiftPage implements OnInit {
         });
         this.groupListShift = groupList;
         console.log('groupListShift : ', this.groupListShift);
+        this.selectDataList(this.groupListShift,_selectType);
+    }
+
+    private selectDataList(_data,_selectType) {
+        if (_selectType == 'shift') {
+            this.dataListShift = _data;
+        } else {
+            this.dataListShiftSwap = _data;
+        }
     }
 }

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { AppNavConfig } from '../../../components/app-nav-header/app-nav-header.component';
-
-import { UserProfilePage } from './user-profile/user-profile';
-import { AppState } from '../../../../app/app.state';
-import { AnimateCss } from '../../../../animations/animate-store';
-import * as moment from 'moment';
 import { TranslationService } from 'angular-l10n';
+import { NavController } from 'ionic-angular';
+import * as moment from 'moment';
+
+import { AnimateCss } from '../../../../animations/animate-store';
+import { AppState } from '../../../../app/app.state';
+import { HCMTranslationService } from '../../../modules/hcm-translation.service';
 
 @Component({
     selector: 'time-recording-page',
@@ -21,6 +20,7 @@ export class timeRecordingPage {
         private navCtrl: NavController,
         private appState: AppState,
         private translationService: TranslationService,
+        private hcmTranslationService: HCMTranslationService,
     ) {
 
     }
@@ -63,9 +63,9 @@ export class timeRecordingPage {
         const time = moment(date+'T'+_time).format('hmm');
         console.log('Time : ', parseInt(time));
         if (parseInt(time) > 800) {           
-            return this.translationService.translate('M_TIMERECORDING.LATE');
+            return this.hcmTranslationService.translate('M_TIMERECORDING.LATE','Late');
         } else {
-            return this.translationService.translate('M_TIMERECORDING.NORMAL_WORKING_DAY');
+            return this.hcmTranslationService.translate('M_TIMERECORDING.NORMAL_WORKING_DAY','Normal Working Day');
         }
     }
 }

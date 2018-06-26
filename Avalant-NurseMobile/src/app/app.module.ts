@@ -31,7 +31,7 @@ import { MyApp } from './app.component';
 import { APP_DECLARATIONS, APP_ENTRY_COMPONENTS } from './app.declarations';
 import { APP_PROVIDERS } from './app.providers';
 import { UearnTranslationProvider } from '../services/localization/uearn-translation.provider';
-import { HCMTranslationProvider } from '../services/localization/hcm-translation.provider';
+import { HCMTranslationProvider } from '../workforce/modules/hcm-translation.provider';
 
 @NgModule({
   declarations: [

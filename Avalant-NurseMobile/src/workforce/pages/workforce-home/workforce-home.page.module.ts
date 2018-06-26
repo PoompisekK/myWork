@@ -9,6 +9,7 @@ import { NgCalendarModule } from 'ionic2-calendar';
 import { DatePickerModule } from 'ionic2-date-picker';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 
+import { HCM_DECLARATIONS, HCM_EXPORTS, HCM_PROVIDERS } from '../../modules/hcm-translations.module';
 import { WorkForceHomePage } from './workforce-home.page';
 import {
   WORKFORCE_DECLARATIONS,
@@ -35,16 +36,19 @@ import {
   ],
   declarations: [
     ...WORKFORCE_DECLARATIONS,
+    ...HCM_DECLARATIONS,
   ],
   providers: [
     ...WORKFORCE_PROVIDERS,
     ...WORKFORCE_PIPES,
+    ...HCM_PROVIDERS,
   ],
   entryComponents: [
     ...WORKFORCE_PAGES,
   ],
   exports: [
-    ...WORKFORCE_EXPORTS
+    ...WORKFORCE_EXPORTS,
+    ...HCM_EXPORTS,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -55,6 +59,9 @@ export class WorkforceModule {
     return {
       ngModule: WorkforceModule,
       providers: [
+        ...HCM_PROVIDERS,
+        ...HCM_DECLARATIONS,
+        
         ...WORKFORCE_PROVIDERS,
         ...WORKFORCE_PIPES,
         ...WORKFORCE_DIRECTIVE,

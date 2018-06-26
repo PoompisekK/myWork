@@ -65,6 +65,7 @@ import { HCMUserProfileRestService } from '../services/userprofile/hcm-userprofi
 import { HCMEAFRestService } from '../services/eaf-rest/hcm-eaf-rest.service';
 import { HCMShiftRestService } from '../services/userprofile/hcm-shift.service';
 import { HCMApprovalRestService } from '../services/userprofile/hcm-approval.service';
+import { HCMMicroFlowService } from '../services/userprofile/hcm-microflow.service';
 
 // let providers = {
 //   "google": {
@@ -183,6 +184,7 @@ export const APP_PROVIDERS: any[] = [
   TestService,
   Transfer,
   UserProfileService,
+  HCMMicroFlowService,
   HCMUserProfileRestService,
   HCMApprovalRestService,
   HCMShiftRestService,

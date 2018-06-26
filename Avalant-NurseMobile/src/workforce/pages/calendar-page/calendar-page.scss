@@ -1,296 +1,151 @@
-calendar-page {
-    ion-row.calendar-header {
-        height: 3.5em;
-        padding: .5em 1em;
-        border-bottom: 1px solid #c6c6c6;
-        ion-col {
-            button span.button-inner {
-                width: max-content;
-            }
-            span.month-title {
-                margin: .5em 0;
-                font-family: 'RobotoMedium','Prompt';
-                font-weight: bold;
-                font-size: 1.25em;
-                color: black;
-            }
-            &.calendar-view {
-                // border: 1px solid red;
-                display: -webkit-box;
-                .btn-mode {
-                    &.week {
-                        display: none;
-                    }
-                    button {
-                        * {
-                            font-family: 'RobotoMedium','Prompt';
-                            color: black;
-                        }
-                        text-align: right;
-                        border: none;
-                        margin: 0;
-                        box-shadow: none;
-                        p.label-view,
-                        span {
-                            width: 100%;
-                        }
-                        &.activeViewMode {
+    calendar-page {
+        ion-row.calendar-header {
+            height: 3.5em;
+            padding: .5em 1em;
+            border-bottom: 1px solid #c6c6c6;
+            ion-col {
+                button span.button-inner {
+                    width: max-content;
+                }
+                span.month-title {
+                    margin: .5em 0;
+                    font-family: 'RobotoMedium', 'Prompt';
+                    font-weight: bold;
+                    font-size: 1.25em;
+                    color: black;
+                }
+                &.calendar-view {
+                    // border: 1px solid red;
+                    display: -webkit-box;
+                    .btn-mode {
+                        button {
                             * {
-                                color: #429BF4;
-                                font-weight: bold;
+                                font-family: 'RobotoMedium', 'Prompt';
+                                color: black;
                             }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    //----------------------------------------------
-    calendar.calendar-comp {
-        $calendarTableSize: 95vw;
-        .monthview-container {
-            height: 90vw;
-            table {
-                &.table-bordered {
-                    border: none;
-                    thead th,
-                    tbody td {
-                        border: none !important;
-                    }
-                }
-                &.monthview-datetable {
-                    margin: 0 auto;
-                    width: $calendarTableSize !important;
-                    height: 90vw !important;
-                    border-collapse: separate !important;
-                    thead {
-                        small {
-                            font-family: 'RobotoMedium','Prompt';
-                            color: #101010 !important;
-                            text-transform: uppercase;
-                        }
-                        th:first-child,
-                        th:last-child {
-                            small {
-                                color: #787878 !important;
+                            text-align: right;
+                            border: none;
+                            margin: 0;
+                            box-shadow: none;
+                            p.label-view,
+                            span {
+                                width: 100%;
                             }
-                        }
-                    }
-                    tr {
-                        td {
-                            // width: 2em !important;;
-                            // height: 2em !important;;
-                            font-family: 'RobotoMedium','Prompt';
-                            color: #101010;
-                            font-size: 1em !important;
-                            &.text-muted {
-                                color: #aeaeae;
-                            }
-                            &.monthview-selected,
-                            &.monthview-current {
-                                background-color: transparent;
-                                color: #101010;
-                            }
-                            &.monthview-selected.monthview-current {
-                                background-color: transparent;
-                                border: 1px solid #429BF4 !important;
-                                color: #449cf5;
-                            }
-                            &.monthview-selected {
-                                border: 1px solid #101010 !important;
-                                border-radius: 50%;
-                            }
-                            &.monthview-current {
-                                background-color: transparent;
-                                color: #449cf5;
-                            }
-                            &.monthview-primary-with-event {
-                                background-color: transparent;
-                            }
-                            ion-row.day-object {
-                                padding: 0;
-                                height: 100%;
-                                ion-col {
-                                    padding: 0;
-                                    line-height: 1.5em;
-                                    vertical-align: middle;
+                            &.activeViewMode {
+                                * {
+                                    color: #429BF4;
+                                    font-weight: bold;
                                 }
                             }
-                            p[dotEvent] {
-                                position: absolute;
-                                margin: 0;
-                                margin-left: auto;
-                                margin-right: auto;
-                                left: 0;
-                                right: 0;
-                                top: 0;
-                                font-size: 2em;
-                                margin-top: .25em;
+                        }
+                    }
+                }
+            }
+        } //----------------------------------------------
+        calendar.calendar-comp {
+            $calendarTableSize: 95vw;
+            .monthview-container {
+                height: 90vw;
+                table {
+                    &.table-bordered {
+                        border: none;
+                        thead th,
+                        tbody td {
+                            border: none !important;
+                        }
+                    }
+                    &.monthview-datetable {
+                        margin: 0 auto;
+                        width: $calendarTableSize !important;
+                        height: 90vw !important;
+                        border-collapse: separate !important;
+                        thead {
+                            small {
+                                font-family: 'RobotoMedium', 'Prompt';
+                                color: #101010 !important;
+                                text-transform: uppercase;
+                            }
+                            th:first-child,
+                            th:last-child {
+                                small {
+                                    color: #787878 !important;
+                                }
+                            }
+                        }
+                        tr {
+                            td {
+                                // width: 2em !important;;
+                                // height: 2em !important;;
+                                font-family: 'RobotoMedium', 'Prompt';
+                                color: #101010;
+                                font-size: 1em !important;
+                                &.text-muted {
+                                    color: #aeaeae;
+                                }
+                                &.monthview-selected,
+                                &.monthview-current {
+                                    background-color: transparent;
+                                    color: #101010;
+                                }
+                                &.monthview-selected.monthview-current {
+                                    background-color: transparent;
+                                    border: 1px solid #429BF4 !important;
+                                    color: #449cf5;
+                                }
+                                &.monthview-selected {
+                                    border: 1px solid #101010 !important;
+                                    border-radius: 50%;
+                                }
+                                &.monthview-current {
+                                    background-color: transparent;
+                                    color: #449cf5;
+                                }
+                                &.monthview-primary-with-event {
+                                    background-color: transparent;
+                                }
+                                ion-row.day-object {
+                                    padding: 0;
+                                    height: 100%;
+                                    ion-col {
+                                        padding: 0;
+                                        line-height: 1.5em;
+                                        vertical-align: middle;
+                                    }
+                                }
+                                p[dotEvent] {
+                                    position: absolute;
+                                    margin: 0;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    left: 0;
+                                    right: 0;
+                                    top: 0;
+                                    font-size: 2em;
+                                    margin-top: .25em;
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
-    ion-row {
-        &.events-title {
-            height: 2.5em;
-            background-color: #F4F4F4;
-            span {
-                font-family: 'RobotoRegular','Prompt';
-                color: #101010;
-                font-size: .75em;
-                font-weight: bold;
-                padding-left: 1em;
-            }
-        }
-    }
-    div.calendar-task-list {
-        height: 100%;
-        ion-list {
-            height: 100%;
-            margin: 0;
-        }
-        [ava-lines] {
-            padding: 0;
-            .item-inner {
-                border-bottom: 1px solid #e5e5e5 !important;
-                padding: 0;
-                ion-label {
-                    padding: 0;
-                    margin: .5em 0;
-                }
-            }
-        }
-        $dot: .5em;
-        [dot] {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 1em;
-            border-radius: 50%;            
-            height: $dot;
-            width: $dot;
-        }
-        .dotgreen {
-            background-color: #73D57E;
-        }
-        .dotred {
-            background-color: red;
-        }
-        .dotorange {
-            background-color: rgb(241, 191, 24);
-        }
-        * {
-            color: black;
-        }
-        ion-col {
-            .calendar-topic-desc {
-                p {
-                    margin: 0 0 .25em 0;
-                    font-size: 1em;
-                    font-family: 'RobotoRegular','Prompt';
-                    font-weight: bold;
-                }
-            }
-            .calendar-assign-desc {
-                p {
-                    margin-top: -.5em;
-                    font-size: .8em;
-                    font-family: 'RobotoRegular','Prompt';
-                    color: #909090;
-                }
-            }
-            .calendar-place-desc {
-                font-family: 'RobotoMedium','Prompt';
-                font-size: .75em;
+        ion-row {
+            &.events-title {
+                height: 2.5em;
+                background-color: #F4F4F4;
                 span {
-                    color: #bcbcbc;
-                    &[ellipsis] {
-                        padding-right: 0;
-                    }
-                }
-                [name=ios-pin-outline] {
-                    padding-right: .25em;
-                    color: #bababa;
-                    vertical-align: text-top;
-                }
-            }
-        }
-        span.calendar-time {
-            font-size: .75em;
-            color: #586069;
-            font-family: 'RobotoMedium','Prompt';
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 1em;
-            margin-right: 1em;
-        }
-    }
-    div.month-mode-dv {}
-    div.week-mode-dv {}
-    div.day-mode-dv {
-        div.day-date {
-            height: 9em;
-            ion-row {
-                ion-col {
-                    h1 {
-                        font-size: 4.5em;
-                        margin: .25em 0 -.25em 0;
-                        font-family: 'RobotoThin';
-                        color: #878a8f;
-                    }
-                    p {
-                        font-size: .75em;
-                        color: #878a8f;
-                        font-family: 'RobotoMedium','Prompt';
-                    }
-                    button[transparent] {
-                        height: 100%;
-                        vertical-align: middle;
-                        box-shadow: none;
-                        ion-icon {
-                            color: #878a8f;
-                        }
-                    }
-                }
-            }
-        }
-        div.calendar-blue-bar {
-            * {
-                margin: 0;
-            }
-            button {
-                background-color: #91bef5;
-                ion-icon {
-                    font-size: 13px;
-                }
-            }
-            button.active {
-                background-color: #5495e5;
-            }
-            ion-col {
-                height: 4em;
-            }
-            button[transparent] {
-                height: 100%;
-                vertical-align: middle;
-                box-shadow: none;
-                ion-icon {
-                    color: white;
-                    font-size: 2em;
-                }
-            }
-            ion-row ion-col button {
-                font-family: 'RobotoMedium','Prompt';
-                color: "#fff";
-                img {
-                    margin: 0 .5em;
+                    font-family: 'RobotoRegular', 'Prompt';
+                    color: #101010;
+                    font-size: .75em;
+                    font-weight: bold;
+                    padding-left: 1em;
                 }
             }
         }
         div.calendar-task-list {
+            height: 100%;
             ion-list {
+                height: 100%;
                 margin: 0;
             }
             [ava-lines] {
@@ -310,12 +165,8 @@ calendar-page {
                 vertical-align: middle;
                 line-height: 1em;
                 border-radius: 50%;
-                background-color: #73D57E;
                 height: $dot;
                 width: $dot;
-            }
-            * {
-                color: black;
             }
             .dotgreen {
                 background-color: #73D57E;
@@ -326,25 +177,28 @@ calendar-page {
             .dotorange {
                 background-color: rgb(241, 191, 24);
             }
+            * {
+                color: black;
+            }
             ion-col {
-                .meeting-topic-desc {
+                .calendar-topic-desc {
                     p {
                         margin: 0 0 .25em 0;
                         font-size: 1em;
-                        font-family: 'RobotoRegular','Prompt';
+                        font-family: 'RobotoRegular', 'Prompt';
                         font-weight: bold;
                     }
                 }
-                .meeting-assign-desc {
+                .calendar-assign-desc {
                     p {
-                        margin: 0 0 .5em 0;
+                        margin-top: -.5em;
                         font-size: .8em;
-                        font-family: 'RobotoRegular','Prompt';
+                        font-family: 'RobotoRegular', 'Prompt';
                         color: #909090;
                     }
                 }
-                .meeting-place-desc {
-                    font-family: 'RobotoMedium','Prompt';
+                .calendar-place-desc {
+                    font-family: 'RobotoMedium', 'Prompt';
                     font-size: .75em;
                     span {
                         color: #bcbcbc;
@@ -358,73 +212,215 @@ calendar-page {
                         vertical-align: text-top;
                     }
                 }
-                .meeting-people {
-                    padding: .5em;
-                    $avaSize: 2.5em;
-                    .div-col-attendees {
-                        display: inline-block;
-                        padding-right: .5em;
-                        height: $avaSize;
-                        margin: .25em 0 0 0;
-                        .attendees-avatar {
-                            text-align: center;
-                            border-radius: 50%;
-                            width: $avaSize;
-                            // height: $avaSize;
-                            &.more {
-                                width: $avaSize;
-                                border: 1px solid #dedede;
-                                display: table-caption;
-                                font-size: 1em;
-                                padding: .5em 0;
-                                .more-amt {
-                                    font-family: 'RobotoMedium','Prompt';
-                                    color: #909090;
-                                    font-size: .75em;
-                                }
-                            }
-                        }
-                    }
-                }
             }
-            span.meeting-time {
+            span.calendar-time {
                 font-size: .75em;
                 color: #586069;
-                font-family: 'RobotoMedium','Prompt';
+                font-family: 'RobotoMedium', 'Prompt';
                 display: inline-block;
                 vertical-align: middle;
                 line-height: 1em;
                 margin-right: 1em;
             }
-            ion-row.meeting-action {
+        }
+        div.month-mode-dv {}
+        div.week-mode-dv {
+        }
+        div.day-mode-dv {
+            div.day-date {
+                height: 9em;
+                ion-row {
+                    ion-col {
+                        h1 {
+                            font-size: 4.5em;
+                            margin: .25em 0 -.25em 0;
+                            font-family: 'RobotoThin';
+                            color: #878a8f;
+                        }
+                        p {
+                            font-size: .75em;
+                            color: #878a8f;
+                            font-family: 'RobotoMedium', 'Prompt';
+                        }
+                        button[transparent] {
+                            height: 100%;
+                            vertical-align: middle;
+                            box-shadow: none;
+                            ion-icon {
+                                color: #878a8f;
+                            }
+                        }
+                    }
+                }
+            }
+            div.calendar-blue-bar {
+                * {
+                    margin: 0;
+                }
+                button {
+                    background-color: #91bef5;
+                    ion-icon {
+                        font-size: 13px;
+                    }
+                }
+                button.active {
+                    background-color: #5495e5;
+                }
                 ion-col {
-                    text-align: center;
-                    button {
-                        background: transparent;
-                        border: 1px solid #eaeaea;
-                        box-shadow: none;
-                        margin-right: .25em;
-                        * {
-                            font-family: 'RobotoMedium','Prompt';
+                    height: 4em;
+                }
+                button[transparent] {
+                    height: 100%;
+                    vertical-align: middle;
+                    box-shadow: none;
+                    ion-icon {
+                        color: white;
+                        font-size: 2em;
+                    }
+                }
+                ion-row ion-col button {
+                    font-family: 'RobotoMedium', 'Prompt';
+                    color: "#fff";
+                    img {
+                        margin: 0 .5em;
+                    }
+                }
+            }
+            div.calendar-task-list {
+                ion-list {
+                    margin: 0;
+                }
+                [ava-lines] {
+                    padding: 0;
+                    .item-inner {
+                        border-bottom: 1px solid #e5e5e5 !important;
+                        padding: 0;
+                        ion-label {
+                            padding: 0;
+                            margin: .5em 0;
+                        }
+                    }
+                }
+                $dot: .5em;
+                [dot] {
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: 1em;
+                    border-radius: 50%;
+                    background-color: #73D57E;
+                    height: $dot;
+                    width: $dot;
+                }
+                * {
+                    color: black;
+                }
+                .dotgreen {
+                    background-color: #73D57E;
+                }
+                .dotred {
+                    background-color: red;
+                }
+                .dotorange {
+                    background-color: rgb(241, 191, 24);
+                }
+                ion-col {
+                    .meeting-topic-desc {
+                        p {
+                            margin: 0 0 .25em 0;
+                            font-size: 1em;
+                            font-family: 'RobotoRegular', 'Prompt';
+                            font-weight: bold;
+                        }
+                    }
+                    .meeting-assign-desc {
+                        p {
+                            margin: 0 0 .5em 0;
+                            font-size: .8em;
+                            font-family: 'RobotoRegular', 'Prompt';
+                            color: #909090;
+                        }
+                    }
+                    .meeting-place-desc {
+                        font-family: 'RobotoMedium', 'Prompt';
+                        font-size: .75em;
+                        span {
                             color: #bcbcbc;
+                            &[ellipsis] {
+                                padding-right: 0;
+                            }
+                        }
+                        [name=ios-pin-outline] {
+                            padding-right: .25em;
+                            color: #bababa;
+                            vertical-align: text-top;
+                        }
+                    }
+                    .meeting-people {
+                        padding: .5em;
+                        $avaSize: 2.5em;
+                        .div-col-attendees {
+                            display: inline-block;
+                            padding-right: .5em;
+                            height: $avaSize;
+                            margin: .25em 0 0 0;
+                            .attendees-avatar {
+                                text-align: center;
+                                border-radius: 50%;
+                                width: $avaSize; // height: $avaSize;
+                                &.more {
+                                    width: $avaSize;
+                                    border: 1px solid #dedede;
+                                    display: table-caption;
+                                    font-size: 1em;
+                                    padding: .5em 0;
+                                    .more-amt {
+                                        font-family: 'RobotoMedium', 'Prompt';
+                                        color: #909090;
+                                        font-size: .75em;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                span.meeting-time {
+                    font-size: .75em;
+                    color: #586069;
+                    font-family: 'RobotoMedium', 'Prompt';
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: 1em;
+                    margin-right: 1em;
+                }
+                ion-row.meeting-action {
+                    ion-col {
+                        text-align: center;
+                        button {
+                            background: transparent;
+                            border: 1px solid #eaeaea;
+                            box-shadow: none;
+                            margin-right: .25em;
+                            * {
+                                font-family: 'RobotoMedium', 'Prompt';
+                                color: #bcbcbc;
+                            }
                         }
                     }
                 }
             }
         }
-    }
-    ion-fab {
-        ion-fab-list {
-            $fabSize: 4em;
-            button {
-                width: $fabSize !important;
-                height: $fabSize !important;
-                img {
-                    width: calc(#{$fabSize} - .125em);
-                    height: calc(#{$fabSize} - .125em);
-                    max-width: none;
+        ion-fab {
+            ion-fab-list {
+                $fabSize: 4em;
+                button {
+                    width: $fabSize !important;
+                    height: $fabSize !important;
+                    img {
+                        width: calc(#{$fabSize} - .125em);
+                        height: calc(#{$fabSize} - .125em);
+                        max-width: none;
+                    }
                 }
             }
         }
     }
-}

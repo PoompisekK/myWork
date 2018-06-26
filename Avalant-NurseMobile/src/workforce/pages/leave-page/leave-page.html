@@ -1,5 +1,5 @@
 <ion-header>
-    <app-nav-header [pageName]="'M_HOME.LEAVEREQUEST'" translate></app-nav-header>
+    <app-nav-header [pageName]="'M_HOME.LEAVEREQUEST'|hcmtranslate:'Leave Request'" translate></app-nav-header>
 </ion-header>
 
 <ion-content class="bg-workforce">
@@ -8,25 +8,25 @@
             <ion-row class="image-leave" no-padding>
                 <ion-col no-padding text-center col-3 (click)="selectType && selectType('sick')">
                     <img class="svg-image-leave" src="./assets/img/sick-icon.png">
-                    <span class="button-label" translate>M_LEAVEPAGE.SICK</span>
+                    <span class="button-label">{{'M_LEAVEPAGE.SICK'|hcmtranslate:'Sick'}}</span>
                     <div class="selectShift {{Sick}}"></div>
                     <p text-center> {{ leaveSummaryYear?.sick }} </p>
                 </ion-col>
                 <ion-col no-padding text-center col-3 (click)="selectType && selectType('annual')">
                     <img class="svg-image-leave" src="./assets/img/annual.png">
-                    <span class="button-label" translate>M_LEAVEPAGE.ANNUAL</span>
+                    <span class="button-label">{{'M_LEAVEPAGE.ANNUAL'|hcmtranslate:'Annual'}}</span>
                     <div class="selectShift {{Annual}}"></div>
                     <p text-center>{{ leaveSummaryYear?.annual }}</p>
                 </ion-col>
                 <ion-col no-padding text-center col-3 (click)="selectType && selectType('personal')">
                     <img class="svg-image-leave" src="./assets/img/leave.png">
-                    <span class="button-label" translate>M_LEAVEPAGE.PERSONAL</span>
+                    <span class="button-label">{{'M_LEAVEPAGE.PERSONAL'|hcmtranslate:'Personal'}}</span>
                     <div class="selectShift {{Personal}}"></div>
                     <p text-center>{{ leaveSummaryYear?.personal }}</p>
                 </ion-col>
                 <ion-col no-padding text-center col-3 (click)="selectType && selectType('other')">
                     <img class="svg-image-leave" src="./assets/img/other-leave.png">
-                    <span class="button-label" translate>M_LEAVEPAGE.OTHER</span>
+                    <span class="button-label">{{'M_LEAVEPAGE.OTHER'|hcmtranslate:'Other'}}</span>
                     <div class="selectShift {{Other}}"></div>
                     <p text-center>0</p>
                 </ion-col>
@@ -82,7 +82,7 @@
     </ion-row>
     <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (leavesCollapsedGroup||[]).length == 0" text-center margin-horizontal padding-vertical>
         <img src="./assets/img/svg/emptydata_blue.svg">
-        <p class="ava-empty-label" translate>M_LEAVEPAGE.NODATA</p>
+        <p class="ava-empty-label" hcmtranslate>M_LEAVEPAGE.NODATA</p>
     </ion-card>
 
     <div class="leave" *ngIf="!isLoading">

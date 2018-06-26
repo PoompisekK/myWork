@@ -4,7 +4,9 @@ import { TranslationService } from 'angular-l10n';
 import { NavController } from 'ionic-angular';
 import * as moment from 'moment';
 
+import { AnimateCss } from '../../../animations/animate-store';
 import { AppState } from '../../../app/app.state';
+import { AppConstant } from '../../../constants/app-constant';
 import { EAFRestApi } from '../../../constants/eaf-rest-api';
 import { HCMRestApi } from '../../../constants/hcm-rest-api';
 import { LoginPage } from '../../../pages/login-page/login.page';
@@ -26,11 +28,14 @@ import { MenuPage } from '../menu-page/menu-page';
 import { PatientAcuityEvaluationPage } from '../patients-acuity-evaluation/patients-acuity-evaluation.page';
 import { ShiftPage } from '../shift-page/shift-page';
 import { UserProfileDetailPage } from '../user-profile-detail/user-profile-detail';
-import { AppConstant } from '../../../constants/app-constant';
+import { isEmptyObject } from '../../../constants/environment';
 
 @Component({
     selector: 'workforce-home',
-    templateUrl: 'workforce-home.page.html'
+    templateUrl: 'workforce-home.page.html',
+    animations: [
+        AnimateCss.peek()
+    ]
 })
 export class WorkForceHomePage {
 
@@ -53,6 +58,7 @@ export class WorkForceHomePage {
         private sanitizer: DomSanitizer,
         private workforceService: WorkforceService,
     ) {
+
     }
 
     public ionViewWillEnter() {
@@ -76,8 +82,10 @@ export class WorkForceHomePage {
                 if (toDayList && toDayList.length > 0) {
                     let currDate = toDayList[0];
                     this.checkInTime = moment(currDate.recorderDate + "T" + currDate.recorderIn);
+                    console.log("this.checkInTime : " , this.checkInTime);
                     if (currDate.recorderOut) {
                         this.checkOutTime = moment(currDate.recorderDate + "T" + currDate.recorderOut);
+                        console.log("this.checkOutTime : " , this.checkOutTime);
                     }
                     this.isDateLoading = false;
                 } else {
@@ -108,6 +116,7 @@ export class WorkForceHomePage {
         "Shift": ShiftPage,
         "Dashboard": DashboardsPage,
         "Patient Acuity Eevaluation": PatientAcuityEvaluationPage,
+        "TeamView": null,
     };
 
     private goRoot(pageName: any) {
@@ -117,7 +126,11 @@ export class WorkForceHomePage {
             return;
         }
         const pageComponent = this.PAGE_COMP[pageName];
-        this.navCtrl.push(pageComponent, {}, { animate: true, direction: "forward" });
+        if (!isEmptyObject(pageComponent)) {
+            this.navCtrl.push(pageComponent, {}, { animate: true, direction: "forward" });
+        } else {
+            console.warn(`pageComponent[${pageName}]:`, pageComponent);
+        }
     }
 
     public uploadUserProfileImageWF() {

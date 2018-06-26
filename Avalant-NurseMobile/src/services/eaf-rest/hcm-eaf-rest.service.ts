@@ -190,16 +190,15 @@ export class HCMEAFRestService {
                         // Evaluate method
                         let responseStr = response.text();
                         let rawObject: EAFRestResponse = this.extractResponseData(responseStr);
-                        // console.debug('⚠️⚠️ rawObject.status ===>', rawObject.status);
-
                         // Check if response is failed
                         if (rawObject && AppConstant.EAF_RESPONSE_CONST.isFailed(rawObject.status)) {
                             // Throw to capture by retryWhen
                             console.warn('⚠️ Requestion failed :', rawObject.message);
                             throw new Error('Error response : ' + rawObject.message);
                         }
-
-                        return clazz ? EAFRestUtil.mapResponseList(clazz, rawObject) : rawObject;
+                        let result = clazz ? EAFRestUtil.mapResponseList(clazz, rawObject) : rawObject;
+                        console.log("result:", result);
+                        return result;
                     }).retryWhen((errors) => {
                         // Retry when error occurred.
                         return errors.scan((errorCount, error) => {
@@ -441,7 +440,7 @@ export class HCMEAFRestService {
         return this.toCamelCase(attrKeys.replace("Model", ""));
     }
 
-    private toCamelCase(str): string {
+    public toCamelCase(str): string {
         return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => {
             return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
         }).replace(/\s+/g, '');

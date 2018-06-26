@@ -343,22 +343,46 @@ export class ApproveTabPage implements OnInit {
     private numShift = 0;
 
     private getApproveLeave() {
-        this.hcmApprovalRestService.getDelegateLeaveApprove().subscribe(empDeleteLeave => {
-            this.numLeave = (empDeleteLeave || []).length;
-            this.groupList(empDeleteLeave || []);
-            console.log('data leave approve : ', empDeleteLeave);
+        let leaveList = [];
+        this.hcmApprovalRestService.getLeaveApprove().subscribe(empDeleteLeave => {
+            let checkArray = empDeleteLeave instanceof Array;
+            if (empDeleteLeave) {
+                if (checkArray == true) {
+                    leaveList = empDeleteLeave;
+                } else if (checkArray == false) {
+                    leaveList.push(empDeleteLeave);
+                }
+            }
+            this.numLeave = (leaveList || []).length;
+            this.groupList(leaveList || []);
+            console.log('data leave approve : ', leaveList);
         });
+        // Leave Delegate -----------------------------------------------------------------------
+        // this.hcmApprovalRestService.getDelegateLeaveApprove().subscribe(empDeleteLeave => {
+        //     this.numLeave = (empDeleteLeave || []).length;
+        //     this.groupList(empDeleteLeave || []);
+        //     console.log('data leave approve : ', empDeleteLeave);
+        // });
     }
 
     private getShiftSwapAcceptant() {
         let listSwapAcceptant = [];
         this.hcmApprovalRestService.getSwapTransactionApprove().subscribe(data => {
             console.log('data shift swap acceptant approve : ', data);
-            (data || []).forEach(element => {
-                if (element.status == 'Waiting For Accept') {
-                    listSwapAcceptant.push(element);
-                };
-            });
+            let checkArray = data instanceof Array;
+            if (data) {
+                if (checkArray == true) {
+                    (data || []).forEach(element => {
+                        if (element.status == 'Waiting For Accept' || element.status == 'Waiting For Approval') {
+                            listSwapAcceptant.push(element);
+                        };
+                    });
+                } else {
+                    if (data.status == 'Waiting For Accept') {
+                        listSwapAcceptant.push(data);
+                    }
+                }
+            }
             this.numShiftSwapAcceptant = (listSwapAcceptant || []).length;
             this.groupList(listSwapAcceptant || []);
             console.log('list status is Waiting For Accept : ', listSwapAcceptant);
@@ -366,10 +390,19 @@ export class ApproveTabPage implements OnInit {
     }
 
     private getShiftApprove() {
+        let listShiftApprove = [];
         this.hcmApprovalRestService.getShiftApprove().subscribe(shiftApprove => {
-            console.log('data shift approve : ', shiftApprove);
-            this.numShift = (shiftApprove || []).length;
-            this.groupList(shiftApprove || []);
+            let checkArray = shiftApprove instanceof Array;
+            if (shiftApprove) {
+                if (checkArray == true) {
+                    listShiftApprove = shiftApprove;
+                } else {
+                    listShiftApprove.push(shiftApprove);
+                }
+            }
+            console.log('data shift approve : ', listShiftApprove);
+            this.numShift = (listShiftApprove || []).length;
+            this.groupList(listShiftApprove || []);
         });
     }
 
@@ -377,7 +410,14 @@ export class ApproveTabPage implements OnInit {
         let listShiftSwapApprove = [];
         this.hcmApprovalRestService.getShiftSwapApprove().subscribe(shiftSwapApprove => {
             console.log('data shift swap approve : ', shiftSwapApprove);
-            listShiftSwapApprove.push(shiftSwapApprove);
+            let checkArray = shiftSwapApprove instanceof Array;
+            if (shiftSwapApprove) {
+                if(checkArray == true) {
+                    listShiftSwapApprove = shiftSwapApprove;
+                } else {
+                    listShiftSwapApprove.push(shiftSwapApprove);
+                }                
+            }
             this.numShiftSwap = (listShiftSwapApprove || []).length;
             this.groupList(listShiftSwapApprove || []);
         });
@@ -385,7 +425,6 @@ export class ApproveTabPage implements OnInit {
 
     private groupList(_list) {
         this.isLoading = false;
-        console.log("List: ", _list);
         var result = [];
         for (let i = 0; i < _list.length; i++) {
             var fromDate = moment(_list[i].requestDate).format('YYYY-MM');

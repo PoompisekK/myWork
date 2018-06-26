@@ -29,7 +29,7 @@
     "editor.minimap.enabled": false,
     "editor.tabSize": 4,
     "workbench.sideBar.location": "left",
-    "workbench.colorTheme": "Monokai",
+    "workbench.colorTheme": "Default High Contrast",
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.colorCustomizations": {

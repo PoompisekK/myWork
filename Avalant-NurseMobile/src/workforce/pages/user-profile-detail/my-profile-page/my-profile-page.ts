@@ -42,13 +42,12 @@ export class MyProfilePage {
                 hospital: employeeInformation.nodeLevel_1,
                 position: employeeInformation.poName,
                 job: employeeInformation.functionName,
+                job_level: employeeInformation.functionLevelName,
                 department: employeeInformation.nodeLevel_3,
                 managerName: employeeInformation.managerFullName,
                 certificateD: employeeInformation.certificateDate,
             };
-
-            console.log("PROFILE ITEM: " , this.profileItm.name)
-            
+            console.log('certificateDate: ' , this.profileItm.certificateD);
             this.isLoading = false;
         });
     }

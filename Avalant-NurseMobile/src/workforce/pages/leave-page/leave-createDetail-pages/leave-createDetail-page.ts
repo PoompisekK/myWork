@@ -375,6 +375,7 @@ export class LeaveCreateDetailPage implements OnInit {
         }
         if (isErroe == false) {
             console.log('Create Leave');
+            // this.rejectThisTask('Create Leave','create');
             this.createLeave();
         } else {
             let alert = this.alertCtrl.create({
@@ -571,7 +572,7 @@ export class LeaveCreateDetailPage implements OnInit {
                 let shiftTime2 = (resp || []).filter(itm => 'SNC0000000082'.equals(itm.shiftNameCode));
                 let shiftTime3 = (resp || []).filter(itm => 'SNC0000000083'.equals(itm.shiftNameCode));
 
-                console.log("shiftTime1: " , shiftTime1[0]);
+                console.log("shiftTime1: ", shiftTime1[0]);
 
                 this.availableShiftList = [shiftTime1[0], shiftTime2[0], shiftTime3[0]];
 
@@ -632,14 +633,7 @@ export class LeaveCreateDetailPage implements OnInit {
 
         const approveRejectModal = this.modalCtrl.create(ApproveRejectModalPage, {
             select: _type,
-            createDetail: _taskItemDetail,
-            onClickSubmit: () => {
-                console.log("onClickSubmit !!!!!!!!!!!!!");
-                this.navCtrl.pop();
-                approveRejectModal.dismiss();
-            }, onClickCancel: () => {
-                console.log("onClickCancel !!!!!!!!!!!!!");
-            }
+            createDetail: _taskItemDetail,            
         }, modalOpt);
         console.log("createDetail Data: " + _taskItemDetail);
         approveRejectModal.present();

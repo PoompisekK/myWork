@@ -1,5 +1,5 @@
 <ion-header>
-    <app-nav-header [buttonCfg]="buttonCfg" [pageName]="'M_SIDEMENU.MY_PROFILE'" translate></app-nav-header>
+    <app-nav-header [buttonCfg]="buttonCfg" [pageName]="'M_SIDEMENU.MY_PROFILE'|hcmtranslate:'My Profile'"></app-nav-header>
 </ion-header>
 
 <ion-content no-padding class="bg">
@@ -20,7 +20,7 @@
     <ion-grid class="bgform" value="item" *ngIf="!isLoading">
         <ion-row>
             <ion-col col-3>
-                <h4 translate>M_PROFILE.NAME</h4>
+                <h4>{{'M_PROFILE.NAME'|hcmtranslate:'Name'}}</h4>
             </ion-col>
             <ion-col col-9>
                 <!-- <h5> {{employee_N_S}} </h5> -->
@@ -29,7 +29,7 @@
         </ion-row>
         <ion-row>
             <ion-col col-4>
-                <h4 translate>M_PROFILE.HOSPITAL</h4>
+                <h4>{{'M_PROFILE.HOSPITAL'|hcmtranslate:'Hospital'}}</h4>
             </ion-col>
             <ion-col col-8>
                 <h5> {{checkEmptyInf(profileItm.hospital)}} </h5>
@@ -37,7 +37,7 @@
         </ion-row>
         <ion-row>
             <ion-col col-4>
-                <h4 translate>M_PROFILE.DEPARTMENT</h4>
+                <h4>{{'M_PROFILE.DEPARTMENT'|hcmtranslate:'Department'}}</h4>
             </ion-col>
             <ion-col col-8>
                 <h5> {{checkEmptyInf(profileItm.department)}} </h5>
@@ -45,7 +45,7 @@
         </ion-row>
         <ion-row>
             <ion-col col-3>
-                <h4 translate>M_PROFILE.POSITION</h4>
+                <h4>{{'M_PROFILE.POSITION'|hcmtranslate:'Position'}}</h4>
             </ion-col>
             <ion-col col-9>
                 <h5> {{checkEmptyInf(profileItm.position)}} </h5>
@@ -53,23 +53,23 @@
         </ion-row>
         <ion-row>
             <ion-col col-3>
-                <h4 translate>M_PROFILE.JOB</h4>
+                <h4>{{'M_PROFILE.JOB'|hcmtranslate:'Job'}}</h4>
             </ion-col>
             <ion-col col-9>
                 <h5> {{checkEmptyInf(profileItm.job)}} </h5>
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col col-6>
-                <h4 translate>M_PROFILE.JOB_LEVEL</h4>
+            <ion-col col-5>
+                <h4>{{'M_PROFILE.JOB_LEVEL'|hcmtranslate:'Job Level'}}</h4>
             </ion-col>
-            <ion-col col-6>
-                <h5> </h5>
+            <ion-col col-7>
+                <h5> {{ checkEmptyInf(profileItm.job_level) }}</h5>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col col-6>
-                <h4 translate>M_PROFILE.MANAGER_NAME</h4>
+                <h4>{{'M_PROFILE.MANAGER_NAME'|hcmtranslate:'Manager Name'}}</h4>
             </ion-col>
             <ion-col col-6>
                 <h5> {{profileItm.managerName}} </h5>
@@ -77,10 +77,10 @@
         </ion-row>
         <ion-row>
             <ion-col col-8>
-                <h4 translate>M_PROFILE.CERTIFICATE_EXPD</h4>
+                <h4>{{'M_PROFILE.CERTIFICATE_EXPD'|hcmtranslate:'Certificate Expire Date'}}</h4>
             </ion-col>
             <ion-col col-4>
-                <h5> {{ (profileItm.certificateD) | amLocale:'en' | amDateFormat: 'DD/MM/YYY' }} </h5>
+                <h5 *ngIf="(profileItm?.certificateD != null)" > {{ (profileItm?.certificateD) | amLocale:'en' | amDateFormat: 'DD/MM/YYYY' }} </h5>
             </ion-col>
         </ion-row>
     </ion-grid>

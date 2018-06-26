@@ -1,5 +1,5 @@
 <ion-header>
-    <app-nav-header [buttonCfg]="buttonCfg" [pageName]="'M_SIDEMENU.MY_PROFILE'" translate></app-nav-header>
+    <app-nav-header [buttonCfg]="buttonCfg" [pageName]="'M_SIDEMENU.MY_PROFILE'|hcmtranslate:'My Profile'"></app-nav-header>
 </ion-header>
 
 <ion-content no-padding class="bg">
@@ -16,12 +16,12 @@
     </ion-grid>
     <ion-grid class="bgfrom">
         <ion-row>
-            <button ion-item (click)="goRoot('MyProfilePage')" translate>M_MYPROFILE.PROFILE</button>
-            <button ion-item (click)="goRoot('PersonalConditionPage')" translate>M_MYPROFILE.PERSONALCONDITION</button>
-            <button ion-item (click)="goRoot('SkillPage')" translate>M_MYPROFILE.SKILL</button>
-            <button ion-item (click)="goRoot('LeaveSummaryPage')" translate>M_MYPROFILE.LEAVESUMMARY</button>
-            <button ion-item (click)="goRoot('WorkingHoursSummeryPage')" translate>M_MYPROFILE.WORKINGHOURSSUMMARY</button>
-            <button ion-item (click)="goRoot('TimeRecordingPage')" translate>M_MYPROFILE.TIMERECORDING</button>
+            <button ion-item (click)="goRoot('MyProfilePage')">{{'M_MYPROFILE.PROFILE'|hcmtranslate:'My Profile'}}</button>
+            <button ion-item (click)="goRoot('PersonalConditionPage')">{{'M_MYPROFILE.PERSONALCONDITION'|hcmtranslate:'Personal Condition'}}</button>
+            <button ion-item (click)="goRoot('SkillPage')">{{'M_MYPROFILE.SKILL'|hcmtranslate:'Skill'}}</button>
+            <button ion-item (click)="goRoot('LeaveSummaryPage')">{{'M_MYPROFILE.LEAVESUMMARY'|hcmtranslate:'Leave Summary'}}</button>
+            <button ion-item (click)="goRoot('WorkingHoursSummeryPage')">{{'M_MYPROFILE.WORKINGHOURSSUMMARY'|hcmtranslate:'Working Hours Summary'}}</button>
+            <button ion-item (click)="goRoot('TimeRecordingPage')">{{'M_MYPROFILE.TIMERECORDING'|hcmtranslate:'Time Recording'}}</button>
         </ion-row>
 
     </ion-grid>

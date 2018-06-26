@@ -330,13 +330,14 @@ export class LeavePage implements OnInit {
 	private selectLeaveType(_leave) {
 		let leaveList: any = [];
 		if (this.shiftType == 'sick') {
-			leaveList = (_leave || []).filter(itm => 'Sick Leave'.equals(itm.leaveType));
+			leaveList = (_leave || []).filter(itm => ('Sick Leave') && ('Sick').equals(itm.leaveType));
 		} else if (this.shiftType == 'annual') {
 			leaveList = (_leave || []).filter(itm => 'Annual Leave'.equals(itm.leaveType));
 		} else if (this.shiftType == 'personal') {
 			leaveList = (_leave || []).filter(itm => 'Personal Leave'.equals(itm.leaveType));
 		} else if (this.shiftType == 'other'){
             leaveList = (_leave || []).filter(itm => !('Sick Leave').equals(itm.leaveType) 
+                && !('Sick').equals(itm.leaveType)
                 && !('Annual Leave').equals(itm.leaveType) 
                 && !('Personal Leave').equals(itm.leaveType)
             );

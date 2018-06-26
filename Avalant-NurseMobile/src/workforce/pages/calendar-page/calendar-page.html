@@ -3,30 +3,27 @@
 </ion-header>
 <ion-content no-padding style="padding: 0;">
     <ion-row class="calendar-header" no-padding>
-        <ion-col col-9 no-padding>
+        <ion-col col-8 no-padding>
             <!-- <span class="month-title">{{ viewTitle }}</span> -->
             <button ion-button icon-only transparent block no-border no-box no-margin item-left item-start (click)="getEventsMonth()">
                 <span class="month-title">{{ viewTitle }}</span>
             </button>
         </ion-col>
-        <ion-col class="calendar-view" col-3 no-padding>
+        <ion-col class="calendar-view" col-4 no-padding>
             <ion-grid no-padding no-margin>
                 <ion-row no-padding no-margin>
                     <ion-col class="btn-mode month" no-padding no-margin>
-                        <button ion-button icon-only transparent block full text-center [ngClass]="{ 'activeViewMode' : calendarCfg.mode == KEY_MONTH }"
-                            (click)="changeMode('M')">
+                        <button ion-button icon-only transparent block full text-center [ngClass]="{ 'activeViewMode' : calendarCfg.mode == KEY_MONTH }" (click)="changeMode('M')">
                             <p class="label-view" translate>M_CALENDAR.M</p>
                         </button>
                     </ion-col>
                     <ion-col class="btn-mode week" no-padding no-margin>
-                        <button ion-button icon-only transparent block full text-center [ngClass]="{ 'activeViewMode' : calendarCfg.mode == KEY_WEEK }"
-                            (click)="changeMode('W')">
+                        <button ion-button icon-only transparent block full text-center [ngClass]="{ 'activeViewMode' : calendarCfg.mode == KEY_WEEK }" (click)="changeMode('W')">
                             <p class="label-view" translate>M_CALENDAR.W</p>
                         </button>
                     </ion-col>
                     <ion-col class="btn-mode day" no-padding no-margin>
-                        <button ion-button icon-only transparent block full text-center [ngClass]="{ 'activeViewMode' : calendarCfg.mode == KEY_DAY }"
-                            (click)="changeMode('D')">
+                        <button ion-button icon-only transparent block full text-center [ngClass]="{ 'activeViewMode' : calendarCfg.mode == KEY_DAY }" (click)="changeMode('D')">
                             <p class="label-view" translate>M_CALENDAR.D</p>
                         </button>
                     </ion-col>
@@ -47,10 +44,21 @@
 
     <!-- (onCurrentDateChanged)="onCurrentDateChanged($event)" -->
     <!-- (onEventSelected)="onEventSelected($event)"  -->
-    <calendar class="calendar-comp" *ngIf="calendarCfg.mode == KEY_MONTH" [autoSelect]="false" [dateFormatter]="calendarCfg.dateFormatter"
-        [showEventDetail]="false" [monthviewDisplayEventTemplate]="monthviewDisplayEventTemplate" [startHour]="6" [endHour]="21"
-        [eventSource]="eventSource" [calendarMode]="calendarCfg.mode" [currentDate]="calendarCfg.currentDate" (onTitleChanged)="onViewTitleChanged($event)"
-        [allDayLabel]="''" (onTimeSelected)="onTimeSelected($event)" [timeInterval]="30" [step]="30">
+    
+    <calendar class="calendar-comp" *ngIf="calendarCfg.mode == KEY_MONTH" 
+    (onTimeSelected)="onTimeSelected($event)" 
+    (onTitleChanged)="onViewTitleChanged($event)"
+    [allDayLabel]="''" 
+    [autoSelect]="false" 
+    [calendarMode]="calendarCfg.mode"
+    [currentDate]="calendarCfg.currentDate" 
+    [dateFormatter]="calendarCfg.dateFormatter" 
+    [eventSource]="eventSource"
+    [monthviewDisplayEventTemplate]="monthviewDisplayEventTemplate" 
+    [showEventDetail]="false" 
+    [startHour]="6" [endHour]="21"
+    [step]="30"
+    [timeInterval]="30">
     </calendar>
 
     <div [@peekAnimation] class="month-mode-dv" *ngIf="calendarCfg.mode == KEY_MONTH ">
@@ -91,15 +99,35 @@
                 <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
             </ion-col>
         </ion-row>
-        <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (groupCalendarList||[]).length == 0" text-center margin-horizontal
-            padding-vertical style="margin: 0; height: auto; border-top: 1px solid #dedede; padding-top: 3em;">
+        <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (groupCalendarList||[]).length == 0" text-center margin-horizontal padding-vertical style="margin: 0; height: auto; border-top: 1px solid #dedede; padding-top: 3em;">
             <img src="./assets/img/svg/emptydata.svg">
             <p class="ava-empty-label" translate>M_NODATA.NODATA</p>
         </ion-card>
     </div>
 
-    <div [@peekAnimation] class="week-mode-dv" *ngIf="calendarCfg.mode == KEY_WEEK ">
-        Waiting Screen Design
+
+
+    <ng-template #weekviewAllDayEventTemplate let-displayEvent="displayEvent">
+        <div class="calendar-event-inner">{{displayEvent.event.title}}</div>
+    </ng-template>
+
+    <calendar class="calendar-comp" *ngIf="calendarCfg.mode == KEY_WEEK" 
+        [autoSelect]="false" 
+        [dateFormatter]="calendarCfg.dateFormatter" 
+        [showEventDetail]="false" 
+        [weekviewAllDayEventTemplate]="weekviewAllDayEventTemplate"
+        [startHour]="6" [endHour]="24"
+        [eventSource]="eventSource" 
+        [calendarMode]="calendarCfg.mode" 
+        [currentDate]="calendarCfg.currentDate" 
+        (onTitleChanged)="onViewTitleChanged($event)" 
+        [allDayLabel]="''" 
+        (onTimeSelected)="onTimeSelected($event)" 
+        [timeInterval]="60" 
+        [step]="30">
+    </calendar>
+    <div [@peekAnimation] class="week-mode-dv" *ngIf="calendarCfg.mode == KEY_WEEK">
+        
     </div>
 
     <div [@peekAnimation] class="day-mode-dv" *ngIf="calendarCfg.mode == KEY_DAY ">
@@ -150,8 +178,7 @@
                             <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
                         </ion-col>
                     </ion-row>
-                    <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (daySldItm.groupCalendarList||[]).length == 0" text-center margin-horizontal
-                        padding-vertical>
+                    <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (daySldItm.groupCalendarList||[]).length == 0" text-center margin-horizontal padding-vertical>
                         <img src="./assets/img/svg/emptydata.svg">
                         <p class="ava-empty-label" translate>M_NODATA.NODATA</p>
                     </ion-card>
@@ -183,8 +210,7 @@
                                             <ion-row>
                                                 <ion-col col-12 class="meeting-people">
                                                     <div *ngFor="let attendeesPerson of calendarItm.listAssignResponsible;let idx = index" class="div-col-attendees">
-                                                        <img *ngIf="idx < 4" class="attendees-avatar {{ attendeesPerson.responsibleStatus }} img-avatar margin-auto wrapper-employee"
-                                                            [src]="attendeesPerson?.employeeCode | loadImg " />
+                                                        <img *ngIf="idx < 4" class="attendees-avatar {{ attendeesPerson.responsibleStatus }} img-avatar margin-auto wrapper-employee" [src]="attendeesPerson?.employeeCode | loadImg " />
                                                         <div *ngIf="idx == 4" class="attendees-avatar more">
                                                             <!-- <span class="more-amt">{{ '+'+(calendarItm?.listAssignResponsible||[]).length }}</span> -->
                                                         </div>
@@ -202,7 +228,7 @@
         </ion-slides>
     </div>
 
-    <ion-fab [@peekAnimation] bottom right *ngIf="calendarCfg.mode == KEY_MONTH || calendarCfg.mode == KEY_DAY">
+    <ion-fab [@peekAnimation] bottom right *ngIf="calendarCfg.mode == KEY_MONTH || calendarCfg.mode == KEY_DAY || calendarCfg.mode == KEY_WEEK">
         <button ion-fab class="bg-workforce">
             <ion-icon name="ios-add"></ion-icon>
         </button>
@@ -212,7 +238,7 @@
             </button>
             <button ion-fab class="bg-workforce" (click)="createShift && createShift()">
                 <ion-icon style="font-size: 2.5em" name="ios-shuffle-outline"></ion-icon>
-            </button>            
+            </button>
         </ion-fab-list>
     </ion-fab>
 </ion-content>

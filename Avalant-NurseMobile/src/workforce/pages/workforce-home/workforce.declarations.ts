@@ -37,6 +37,7 @@ import { RangeDateTime } from '../../pipe/rangeDateTime.pipe';
 import { ApproveService } from '../../service/approveService';
 import { AssignmentService } from '../../service/assignmentService';
 import { BenefitService } from '../../service/benefitService';
+import { ChartJSService } from '../../service/charjsService';
 import { CheckInOutService } from '../../service/checkInOutService';
 import { ExpenseService } from '../../service/expenseService';
 import { HttpRequestWFService } from '../../service/httpRequestWFService';
@@ -113,6 +114,7 @@ import { PatientsQuestionsPage } from '../patients-acuity-evaluation/patients-qu
 import { PayRollPage } from '../payroll-page/payroll-page';
 import { ShiftCreatePage } from '../shift-page/shift-create-page/shift-create-page';
 import { ShiftPage } from '../shift-page/shift-page';
+import { ShiftSwapCreatePage } from '../shift-page/shift-swap-create-page/shift-swap-create-page';
 import { ShopCartStep1 } from '../shop-cart-step1/shop-cart-step1';
 import { ShopCartStep2 } from '../shop-cart-step2/shop-cart-step2';
 import { ShopCartStep3 } from '../shop-cart-step3/shop-cart-step3';
@@ -130,7 +132,6 @@ import { UserProfileDetailPage } from '../user-profile-detail/user-profile-detai
 import { WorkingHoursSummaryPage } from '../user-profile-detail/working-hours-summary-page/working-hours-summary-page';
 import { WorkForceHomePage } from './workforce-home.page';
 
-import { ChartJSService } from '../../service/charjsService';
 /**
  * @author Bundit.Ng
  * @since  Fri Mar 30 2018
@@ -217,6 +218,7 @@ export const WORKFORCE_PAGES = [
     DashboardsPage,
     DashboardChartPage,
     ShiftCreatePage,
+    ShiftSwapCreatePage,
     MyProfilePage,
     PersonalConditionPage,
     SkillPage,
@@ -238,11 +240,13 @@ export const WORKFORCE_DIRECTIVE = [
 ];
 
 export const WORKFORCE_PROVIDERS = [
+    AppLoadingService,
     ApproveService,
     AssignmentService,
     BenefitService,
     CalendarDatePickerService,
     Camera,
+    ChartJSService,
     CheckInOutService,
     DatePickerIonicNative,
     Diagnostic,
@@ -253,15 +257,13 @@ export const WORKFORCE_PROVIDERS = [
     Geolocation,
     HttpRequestWFService,
     LeaveService,
+    LocationAccuracy,
     MeetingService,
     OpenNativeSettings,
+    PaySlipService,
     SuperTabs,
     WorkforceHttpService,
     WorkforceService,
-    LocationAccuracy,
-    PaySlipService,
-    ChartJSService,
-    AppLoadingService,
 ];
 
 export const WORKFORCE_EXPORTS = [
