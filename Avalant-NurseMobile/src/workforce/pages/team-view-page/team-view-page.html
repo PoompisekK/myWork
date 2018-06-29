@@ -1,0 +1,216 @@
+<ion-header>
+    <app-nav-header [buttonCfg]="buttonCfg" [pageName]="'Team View'"></app-nav-header>
+</ion-header>
+
+<ion-content no-padding class="bg">
+    <!-- <h3 text-center> {{viewTitle}} </h3> -->
+    <!-- <ng-template #monthviewDisplayEventTemplate let-view="view" let-row="row" let-col="col" red>
+        
+    </ng-template> -->
+    <ion-grid class="monthTitle">
+        <ion-row>
+            <ion-col col-2>
+                <ion-icon name="ios-arrow-back-outline"></ion-icon>
+            </ion-col>
+            <ion-col col-8>
+                <h3>June 2018</h3>
+            </ion-col>
+            <ion-col col-2>
+                <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-row class="team-calendar">
+        <ion-col col-5>
+            <table>
+                <tr class="team-calendar-head">
+                    <td><h3> Name </h3></td>
+                    <td><h3> Work Hour </h3></td>
+                    <td><h3> OT </h3></td>
+                    <td><h3> RLV ADM </h3></td>
+                </tr>
+                <tr class="team-calendar-inner">
+                    <td><p> Michael </p><p>N1234</p></td>
+                    <td><p> 160 </p></td>
+                    <td><p> 0 </p></td>
+                    <td><p> 12 </p></td>
+                </tr>
+                <tr class="team-calendar-inner">
+                    <td><p> Gloria </p><p>N1234</p></td>
+                    <td><p> 176 </p></td>
+                    <td><p> 8 </p></td>
+                    <td><p> 22 </p></td>
+                </tr >
+                <tr class="team-calendar-inner">
+                    <td><p> Jenette </p><p>N1234</p></td>
+                    <td><p> 176 </p></td>
+                    <td><p> 8 </p></td>
+                    <td><p> 20 </p></td>
+                </tr>
+            </table>
+        </ion-col>
+        <ion-col col-7>
+            <ion-slides  (ionSlideDidChange)="slideChanged()">
+                <ion-slide text-center>
+                    <table>
+                        <tr class="day-slide-head">
+                            <td *ngFor="let d of (weekDatePrev||[])"> 
+                                <p> {{d.date}} </p> 
+                                <p> {{d.dateNum}} </p>
+                            </td>
+                        </tr>
+                        <tr class="day-slide-content">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        
+                    </table>
+                </ion-slide>
+                <ion-slide text-center>
+                    <table>
+                        <tr class="day-slide-head">
+                            <td *ngFor="let d of (weekDate||[])"> 
+                                <p> {{d.date}} </p> 
+                                <p> {{d.dateNum}} </p>
+                            </td>
+                        </tr>
+                        <tr class="day-slide-content">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </ion-slide>
+                <ion-slide text-center>
+                    <table>
+                        <tr class="day-slide-head">
+                            <td *ngFor="let d of (weekDateNext||[])"> 
+                                <p> {{d.date}} </p> 
+                                <p> {{d.dateNum}} </p>
+                            </td>
+                        </tr>
+                        <tr class="day-slide-content">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </ion-slide>
+            </ion-slides>
+        </ion-col>
+    </ion-row>
+    <ion-grid class="header-content">
+        <ion-row>
+            <ion-col col-12>
+                <h3>Shift Summary</h3>
+            </ion-col>
+        </ion-row>
+        <ion-row class="table-content">
+            <ion-col col-12>
+                <table>
+                    <tr>
+                        <td style="width: 39%;"><h4> Morning(07:00 - 15:00) </h4></td>
+                        <td><p>3</p></td>
+                        <td><p>2</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                        <td><p>3</p></td>
+                        <td><p>3</p></td>
+                    </tr>
+                    <tr>
+                        <td><h4> Evening(15:00 - 23:00) </h4></td>
+                        <td><p>3</p></td>
+                        <td><p>0</p></td>
+                        <td><p>3</p></td>
+                        <td><p>3</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                    </tr>
+                    <tr>
+                        <td><h4> Night(23:00 - 07:00) </h4></td>
+                        <td><p>3</p></td>
+                        <td><p>0</p></td>
+                        <td><p>3</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                    </tr>
+                    <tr>
+                        <td><h4 style="text-align: right; margin-right:.2em;"> <b> Total </b></h4></td>
+                        <td><p><b> 9</b></p></td>
+                        <td><p><b> 2</b></p></td>
+                        <td><p><b> 6</b></p></td>
+                        <td><p><b> 3</b></p></td>
+                        <td><p><b> 3</b></p></td>
+                        <td><p><b> 3</b></p></td>
+                    </tr>
+                </table>
+            </ion-col>
+        </ion-row>  
+    </ion-grid>
+    <ion-grid class="header-content">
+        <ion-row>
+            <ion-col col-12>
+                <h3>No. of Holidays</h3>
+            </ion-col>
+        </ion-row>
+        <ion-row class="table-content">
+            <ion-col col-12>            
+                <table>
+                    <tr>
+                        <td style="width: 39%;"><h4>Day Off Summary </h4></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                    </tr>
+                    <tr>
+                        <td><h4> Leave Summary </h4></td>
+                        <td><p>0</p></td>
+                        <td><p>1</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                        <td><p>0</p></td>
+                    </tr>
+                    <tr>
+                        <td><h4 style="text-align: right; margin-right:.2em;"> <b> Total </b></h4></td>
+                        <td><p><b>0</b></p></td>
+                        <td><p><b>1</b></p></td>
+                        <td><p><b>0</b></p></td>
+                        <td><p><b>0</b></p></td>
+                        <td><p><b>0</b></p></td>
+                        <td><p><b>0</b></p></td>
+                    </tr>
+                </table>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>
+<!-- <ion-col >
+                        <calendar [eventSource]="eventSource"
+                        [calendarMode]="calendar.mode"
+                        [currentDate]="calendar.currentDate"
+                        (onEventSelected)="onEventSelected($event)"
+                        (onTimeSelected)="onTimeSelected($event)" 
+                        (onTitleChanged)="onViewTitleChanged($event)" 
+                        [step]="1">
+                        </calendar>
+                    </ion-col> -->

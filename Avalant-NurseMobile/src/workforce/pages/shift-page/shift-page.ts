@@ -37,12 +37,11 @@ export class ShiftPage implements OnInit {
     private doRefresh(refresher) {
         this.isLoading = true;
         this.appLoadingService.showLoading();
-        // this.getDisplayApproveList(() => {
-        this.appLoadingService.hideLoading().then(() => {
-            this.isLoading = false;
-            refresher.complete();
+        this.selectType(this.shiftType,() => {
+            this.appLoadingService.hideLoading().then(() => {
+                refresher.complete();
+            });
         });
-        // });        
     }
 
     private shiftType = "shiftSwap";
@@ -53,7 +52,7 @@ export class ShiftPage implements OnInit {
         this.Shift_Swap = 'select';
         this.selectType(this.shiftType);
         this.hcmShiftRestService.getShiftSwap().subscribe(dataShiftSwap => {
-            this.numShiftSwap = dataShiftSwap.length;          
+            this.numShiftSwap = dataShiftSwap.length;
         });
         this.hcmShiftRestService.getShift().subscribe(dataShift => {
             this.numShift = dataShift.length;
@@ -76,7 +75,7 @@ export class ShiftPage implements OnInit {
             this.navCtrl.push(ShiftCreatePage, { shiftType: this.shiftType });
         }
     }
-    private selectType(_shift) {
+    private selectType(_shift,cd?) {
         if (_shift != 'shift') {
             this.shiftType = 'shiftSwap';
             this.Shift = '';
@@ -84,7 +83,7 @@ export class ShiftPage implements OnInit {
             this.listShift = [];
             this.groupListShift = [];
             this.isLoading = true;
-            this.getShiftSwap();
+            this.getShiftSwap(cd);
         } else {
             this.shiftType = 'shift';
             this.Shift = 'select';
@@ -92,13 +91,14 @@ export class ShiftPage implements OnInit {
             this.listShift = [];
             this.groupListShift = [];
             this.isLoading = true;
-            this.getShift(); //get data              
-        }
+            this.getShift(cd); //get data              
+        }        
     }
     private numShift = 0;
     private numShiftSwap = 0;
-    private getShift() {
+    private getShift(cd?) {
         this.hcmShiftRestService.getShift().subscribe(dataShift => {
+            cd && cd();
             this.isLoading = false;
             this.listShift = dataShift;
             this.numShift = dataShift.length;
@@ -106,8 +106,9 @@ export class ShiftPage implements OnInit {
         });
     }
 
-    private getShiftSwap() {
+    private getShiftSwap(cd?) {
         this.hcmShiftRestService.getShiftSwap().subscribe(dataShiftSwap => {
+            cd && cd();
             this.isLoading = false;
             this.listShift = dataShiftSwap;
             this.numShiftSwap = dataShiftSwap.length;
@@ -184,10 +185,10 @@ export class ShiftPage implements OnInit {
         });
         this.groupListShift = groupList;
         console.log('groupListShift : ', this.groupListShift);
-        this.selectDataList(this.groupListShift,_selectType);
+        this.selectDataList(this.groupListShift, _selectType);
     }
 
-    private selectDataList(_data,_selectType) {
+    private selectDataList(_data, _selectType) {
         if (_selectType == 'shift') {
             this.dataListShift = _data;
         } else {

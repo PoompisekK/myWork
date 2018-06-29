@@ -108,31 +108,36 @@ export class CalendarPage {
                     title:"Test 01",
                     status: "Waiting for Approve",
                     startTime: new Date(moment('080000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('150000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss"))
+                    endTime: new Date(moment('150000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
+                    color: 'black',
                 },
                 {
                     title:"Test 02",
                     status: "Approved",
                     startTime: new Date(moment('150000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('210000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss"))
+                    endTime: new Date(moment('210000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
+                    color: 'black',
                 },
                 {
                     title:"Test 03",
                     status: "Waiting for Approve",
                     startTime: new Date(moment('080000', "HHmmss").add(1, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('160000', "HHmmss").add(1, 'days').format("YYYY/MM/DD H:mm:ss"))
+                    endTime: new Date(moment('160000', "HHmmss").add(1, 'days').format("YYYY/MM/DD H:mm:ss")),
+                    color: 'black',
                 },
                 {
                     title:"Test 04",
                     status: "Waiting for Approve",
                     startTime: new Date(moment('080000', "HHmmss").add(2, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('160000', "HHmmss").add(2, 'days').format("YYYY/MM/DD H:mm:ss"))
+                    endTime: new Date(moment('160000', "HHmmss").add(2, 'days').format("YYYY/MM/DD H:mm:ss")),
+                    color: 'black',
                 },
                 {
                     title:"Test 04",
                     status: "Waiting for Approve",
                     startTime: new Date(moment('150000', "HHmmss").add(0, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('210000', "HHmmss").add(0, 'days').format("YYYY/MM/DD H:mm:ss"))
+                    endTime: new Date(moment('210000', "HHmmss").add(0, 'days').format("YYYY/MM/DD H:mm:ss")),
+                    color: 'black',
                 },
             ];
             console.log("eventSource : ", this.eventSource);
@@ -373,6 +378,7 @@ export class CalendarPage {
         console.log("CalendarPage getEventsMonth seqIndx : " + (this.seqIndx++));
         this.viewingMonth = this.viewingMonth || new Date();
         this.getCalendar(this.firstDayMonth(this.viewingMonth)).then((_events) => {
+            console.log("this.getCalendar _events: " , _events);
             this.eventSource = _events.events;
             this.groupCalendarList = _events.groupCalendars;
             this.appLoadingService.hideLoading().then(() => {

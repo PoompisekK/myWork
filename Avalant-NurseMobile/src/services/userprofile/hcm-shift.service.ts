@@ -9,6 +9,9 @@ import { EmployeeShiftSwapRequestViewModel } from '../../model/hcm-user/hcm-empl
 import { EmployeeWorkingShiftViewModel } from '../../model/hcm-user/hcm-employeeWorkShift.model';
 import { EmployeeTeamGroupModel } from '../../model/hcm-user/hcm-teamGroup.model';
 import { HCMEAFRestService } from '../eaf-rest/hcm-eaf-rest.service';
+import { EmployeeProfileModel } from '../../model/hcm-user/hcm-userprofile.model';
+import { EAFContext } from '../../eaf/eaf-context';
+import { EmployeePositionBoxCodeViewModel } from '../../model/hcm-user/hcm-employeePositionBoxCode.model';
 
 @Injectable()
 export class HCMShiftRestService {
@@ -45,7 +48,7 @@ export class HCMShiftRestService {
         return this.hcmEAFRestService.searchEntity(EmployeeSelectTeamModel, EmployeeSelectTeamModel.ENTITY_ID, data || {}, HCMEAFRestService.cfgSearch);
     }
 
-    public getNotWorkShift(_date,data?: { [key: string]: any }): Observable<any> {
+    public getNotWorkShift(_date, data?: { [key: string]: any }): Observable<any> {
         data = data ? data : {};
         data["EMPLOYEE_CODE"] = this.appState.businessUser.employeeCode;
         data["AS_DATE"] = _date;
@@ -54,9 +57,18 @@ export class HCMShiftRestService {
 
     public saveShift(params, data?: { [key: string]: any }): Observable<any> {
         data = data ? data : {};
-        // data["EMPLOYEE_CODE"] = this.appState.businessUser.employeeCode;
         data["ORGANIZE_ID"] = this.appState.businessUser.orgId;
-        return this.hcmEAFRestService.saveEntity('EN_180314105529175_v001' , params ,  data || {}, HCMEAFRestService.cfgSearch);
+
+        params.EMPLOYEE_SHIFT_REQUEST["ORGANIZE_ID"] = this.appState.businessUser.orgId;
+        params.EMPLOYEE_SHIFT_REQUEST["EMPLOYEE_CODE"] = this.appState.businessUser.employeeCode;
+        params.EMPLOYEE_SHIFT_REQUEST["UPDATE_BY"] = this.appState.businessUser.custFname + ' ' + this.appState.businessUser.custLname;
+        return this.hcmEAFRestService.saveEntityShift('EN_180314105529175_v001', params, data || {}, HCMEAFRestService.cfgSearch);
+    }
+    
+    public getPositionBoxCode(data?: { [key: string]: any }): Observable<any> {
+        data = data ? data : {};
+        data["ORGANIZE_ID"] = this.appState.businessUser.orgId;
+        return this.hcmEAFRestService.searchEntity(EmployeePositionBoxCodeViewModel, EmployeePositionBoxCodeViewModel.ENTITY_ID, data || {}, HCMEAFRestService.cfgSearch);
     }
 
 }

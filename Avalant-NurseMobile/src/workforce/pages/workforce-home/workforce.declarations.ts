@@ -131,6 +131,7 @@ import { timeRecordingPage } from '../user-profile-detail/time-recording-page/ti
 import { UserProfileDetailPage } from '../user-profile-detail/user-profile-detail';
 import { WorkingHoursSummaryPage } from '../user-profile-detail/working-hours-summary-page/working-hours-summary-page';
 import { WorkForceHomePage } from './workforce-home.page';
+import { TeamViewPage } from '../team-view-page/team-view-page';
 
 /**
  * @author Bundit.Ng
@@ -225,6 +226,7 @@ export const WORKFORCE_PAGES = [
     LeaveSummaryPage,
     timeRecordingPage,
     WorkingHoursSummaryPage,
+    TeamViewPage
 ];
 
 export const WORKFORCE_PIPES = [

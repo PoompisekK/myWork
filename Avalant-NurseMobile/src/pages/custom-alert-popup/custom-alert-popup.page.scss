@@ -7,6 +7,14 @@ custom-alert-popup-page {}
     padding: .75em
 }
 
+.alert-footer.recover-btn {
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+    right: 35%;
+    padding: .75em;
+}
+
 @media screen and (orientation:portrait) {
     $max-height: 23em;
     ion-modal.custom-alert {
@@ -101,6 +109,34 @@ custom-alert-popup-page {}
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
     right: 16px;
+}
+
+.ionic-super-popup .sa-icon.sa-recover {
+    border-color: rgb(43, 226, 250);
+}
+
+.ionic-super-popup .sa-icon.sa-recover .sa-r-body {
+    position: absolute;
+    width: 5px;
+    height: 35px;
+    left: 50%;
+    bottom: 15px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    margin-left: -2px;
+    background-color: rgb(43, 226, 250);
+}
+
+.ionic-super-popup .sa-icon.sa-recover .sa-r-dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-left: -3px;
+    left: 50%;
+    top: 18px;
+    background-color: rgb(43, 226, 250);
 }
 
 .ionic-super-popup .sa-icon.sa-warning {
@@ -496,6 +532,29 @@ custom-alert-popup-page {}
     }
     100% {
         left: 0;
+    }
+}
+
+.pulseRecover {
+    -webkit-animation: pulseRecover 0.5s;
+    animation: pulseRecover 0.5s;
+}
+
+@-webkit-keyframes pulseRecover {
+    0% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+@keyframes pulseRecover {
+    0% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: transparent;
     }
 }
 

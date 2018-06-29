@@ -416,7 +416,78 @@ export class HCMEAFRestService {
 
         return RxJSUtil.makeHot<ResponseBaseModel>(observable);
     }
+    //----------------------------------- Make Service -------------------------------------------------
+    public saveEntityShift<T extends EAFModuleBase>(entityId: string, modelList: EAFModelWithMethod[],
+        searchParams: { [key: string]: any }, eafOptions?: IEAFRestHeader) {
+        // http://192.168.11.251:8080/eaf-rest/entity/EN_170428154750387_v001/save?handleForm=Y&CART_ID=2
 
+        if (!searchParams) {
+            console.warn(`Saving Entity may require to passed parameters to get a success result.`);
+        }
+
+        searchParams = {
+            ...searchParams,
+            ...EAFRestUtil.safeSaveOption(eafOptions)
+        };
+
+        let modelTest = {
+            MD1181113885: [
+                {
+                    INSERT: modelList
+                }
+            ]
+        };
+        console.log('modelTest : ',modelTest);
+        let body = modelTest;
+        let observable = this.httpService.httpPostObservable<ResponseBaseModel>(`${HCMRestApi.URL_ENTITY}/${entityId}/save`, searchParams,
+            body, RequestContentType.APPLICATION_JSON, this.makeAuthHeader(this.hcmEAFSession))
+            .map((response: Response) => {
+                // Evaluate method
+                let responseStr = response.text();
+                let rawObject: EAFRestEntityResponse = this.extractResponseData(responseStr);
+
+                return ObjectsUtil.instantiate(ResponseBaseModel, rawObject);
+            })
+            .catch(this.handleError);
+
+        return RxJSUtil.makeHot<ResponseBaseModel>(observable);
+    }
+    public saveEntityApprove<T extends EAFModuleBase>(entityId: string, modelList: EAFModelWithMethod[],
+        searchParams: { [key: string]: any }, eafOptions?: IEAFRestHeader) {
+        // http://192.168.11.251:8080/eaf-rest/entity/EN_170428154750387_v001/save?handleForm=Y&CART_ID=2
+
+        if (!searchParams) {
+            console.warn(`Saving Entity may require to passed parameters to get a success result.`);
+        }
+
+        searchParams = {
+            ...searchParams,
+            ...EAFRestUtil.safeSaveOption(eafOptions)
+        };
+        
+        let modelTest =  {
+            MD1181454401: [{
+                UPDATE: {
+                    EMPLOYEE_SWAP_TRANSACTION: modelList
+                }
+            }]
+        };
+        console.log('modelTest : ',modelTest);
+        let body = modelTest;
+        let observable = this.httpService.httpPostObservable<ResponseBaseModel>(`${HCMRestApi.URL_ENTITY}/${entityId}/save`, searchParams,
+            body, RequestContentType.APPLICATION_JSON, this.makeAuthHeader(this.hcmEAFSession))
+            .map((response: Response) => {
+                // Evaluate method
+                let responseStr = response.text();
+                let rawObject: EAFRestEntityResponse = this.extractResponseData(responseStr);
+
+                return ObjectsUtil.instantiate(ResponseBaseModel, rawObject);
+            })
+            .catch(this.handleError);
+
+        return RxJSUtil.makeHot<ResponseBaseModel>(observable);
+    }
+    //-------------------------------------------------------------------------------------------------------------
     public validateSession(): boolean {
         return !(!this.hcmEAFSession || !DateUtil.isValidDate(this.hcmEAFSession.expireDate)
             || this.hcmEAFSession.expireDate.getTime() - new Date().getTime() < 0

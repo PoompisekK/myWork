@@ -375,7 +375,6 @@ export class LeaveCreateDetailPage implements OnInit {
         }
         if (isErroe == false) {
             console.log('Create Leave');
-            // this.rejectThisTask('Create Leave','create');
             this.createLeave();
         } else {
             let alert = this.alertCtrl.create({
@@ -634,6 +633,13 @@ export class LeaveCreateDetailPage implements OnInit {
         const approveRejectModal = this.modalCtrl.create(ApproveRejectModalPage, {
             select: _type,
             createDetail: _taskItemDetail,            
+            onClickSubmit: () => {
+                console.log("onClickSubmit !!!!!!!!!!!!!");
+                this.navCtrl.pop();
+                approveRejectModal.dismiss();
+            }, onClickCancel: () => {
+                console.log("onClickCancel !!!!!!!!!!!!!");
+            }
         }, modalOpt);
         console.log("createDetail Data: " + _taskItemDetail);
         approveRejectModal.present();

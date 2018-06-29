@@ -22,6 +22,9 @@ export class AppAlertService {
     public errorAlertPopup(alerParamM: AppAlertOpt | { description: string }): Observable<any> {
         return this.showAlert({ description: alerParamM.description, status: AppConstant.Status.ERROR });
     }
+    public forgotAlertPopup(alerParamM: AppAlertOpt | { description: string }): Observable<any>{
+        return this.showAlert({ description: alerParamM.description, status: AppConstant.Status.RECOVER });
+    }
 
     private showAlert(alerParamM: AppAlertOpt): Observable<any> {
         let modelOtp: ModalOptions = {};

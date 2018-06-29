@@ -90,12 +90,14 @@
                         <p>{{ leave?.requestDate | amLocal:'en' | amDateFormat:'D/M/YYYY hh:mm A' }} </p>
                     </ion-col>
                 </ion-row>
-                <ion-row no-padding class="leave-center" *ngFor="let item of (leave.listAttachmentFile||[])">
+                <ion-row no-padding class="leave-center">
                     <ion-col col-6>
                         <p translate> M_LEAVEDETAIL.ATTACHMENT </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
-                        <p> {{ item?.fileName }} </p>
+                        <ion-row *ngFor="let item of (leave.listAttachmentFile||[])">
+                            <p> {{ item?.fileName }} </p>
+                        </ion-row>
                     </ion-col>
                 </ion-row>
                 <ion-row no-padding class="leave-center">
@@ -106,13 +108,12 @@
                         <p> {{ checkNull(leave?.reason) }} </p>
                     </ion-col>
                 </ion-row>
-                <ion-row no-padding class="leave-center">
+                <ion-row no-padding class="leave-center" *ngIf="!isApprover">
                     <ion-col col-6>
                         <p translate> M_LEAVEDETAIL.APPROVER_1 </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <p *ngIf="!isApprover"> {{ checkNull(leave?.waitingApproveName) }} </p>
-                        <p *ngIf="isApprover"> {{ leave?.delegateApproveName }} </p>
                     </ion-col>
                 </ion-row>
                 <ion-row no-padding class="leave-center" *ngIf="!isApprover">
@@ -123,6 +124,16 @@
                         <p> {{checkNull(leave?.waitingApproveName2)}} </p>
                     </ion-col>
                 </ion-row>
+                <ion-grid no-padding *ngIf="isApprover">
+                    <ion-row no-padding class="leave-center" *ngFor="let user of (userApprove || [])">
+                        <ion-col col-6>
+                            <p translate> M_LEAVEDETAIL.APPROVER_1 </p>
+                        </ion-col>
+                        <ion-col col-6 style="margin-left: -2em;">
+                            <p> {{ user?.fullName }} </p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
 
                 <!-- <ion-row *ngIf="isApprover" class="leave-center">
                     <ion-col>
@@ -169,7 +180,7 @@
                                 <p translate>M_SHIFTDETAIL.SWAP_WITH</p>
                             </ion-col>
                             <ion-col col-6>
-                                <p>{{ dataShift?.fullName || dataShift?.swapEmployeeName }}</p>
+                                <p>{{ dataShift?.fullName || dataShift?.swapEmployeeName || dataShift?.swapName }}</p>
                             </ion-col>
                         </ion-row>
                         <ion-row>
@@ -177,7 +188,7 @@
                                 <p translate>M_SHIFTDETAIL.WORKGROUP</p>
                             </ion-col>
                             <ion-col col-6>
-                                <p>{{ dataShift?.jobLeaveName }}</p>
+                                <p>{{ dataShift?.jobLeaveName || 'Undefined' }}</p>
                             </ion-col>
                         </ion-row>
                         <ion-row>
@@ -196,22 +207,19 @@
                                 <p>Undefined</p>
                             </ion-col>
                         </ion-row>
-                        <ion-row *ngIf="isApprover">
-                            <ion-col col-6>
-                                <p translate>M_LEAVEDETAIL.APPROVER_1</p>
-                            </ion-col>
-                            <ion-col col-6>
-                                <p>{{ dataShift?.fullNameSwap }}</p>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row *ngIf="isApprover">
-                            <ion-col col-6>
-                                <p translate>M_LEAVEDETAIL.APPROVER_2</p>
-                            </ion-col>
-                            <ion-col col-6>
-                                <p>Undefined</p>
-                            </ion-col>
-                        </ion-row>
+                        <ion-grid style="padding: 0">
+                            <ion-row *ngFor="let user of (userApprove || []); let idx = index">
+                                <ion-col col-6>
+                                    <p>
+                                        <span translate>M_SHIFTDETAIL.APPROVER</span>
+                                        <span>{{ idx+1 }}</span>
+                                    </p>
+                                </ion-col>
+                                <ion-col col-6>
+                                    <p> {{ user?.fullName }} </p>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
                     </ion-col>
                     <ion-col col-12 *ngIf="select_type == 'shift'">
                         <ion-row>
@@ -261,15 +269,20 @@
                             <ion-col col-6>
                                 <p>Undefined</p>
                             </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col col-6>
-                                <p translate>M_SHIFTDETAIL.APPROVER</p>
-                            </ion-col>
-                            <ion-col col-6>
-                                <p>{{ dataShift?.requestName }}</p>
-                            </ion-col>
-                        </ion-row>
+                        </ion-row>                        
+                        <ion-grid style="padding: 0">
+                            <ion-row *ngFor="let user of (userApprove || []); let idx = index">
+                                <ion-col col-6>
+                                    <p>
+                                        <span translate>M_SHIFTDETAIL.APPROVER</span>
+                                        <span>{{ idx+1 }}</span>
+                                    </p>
+                                </ion-col>
+                                <ion-col col-6>
+                                    <p> {{ user?.fullName }} </p>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
                     </ion-col>
                 </ion-row>
             </ion-grid>

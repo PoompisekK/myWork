@@ -18,6 +18,8 @@
                     // border: 1px solid red;
                     display: -webkit-box;
                     .btn-mode {
+                    &.week {
+                    }
                         button {
                             * {
                                 font-family: 'RobotoMedium', 'Prompt';
@@ -41,7 +43,8 @@
                     }
                 }
             }
-        } //----------------------------------------------
+    }
+    //----------------------------------------------
         calendar.calendar-comp {
             $calendarTableSize: 95vw;
             .monthview-container {
@@ -224,8 +227,7 @@
             }
         }
         div.month-mode-dv {}
-        div.week-mode-dv {
-        }
+    div.week-mode-dv {}
         div.day-mode-dv {
             div.day-date {
                 height: 9em;

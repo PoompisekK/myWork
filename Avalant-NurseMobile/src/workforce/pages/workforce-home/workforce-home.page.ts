@@ -29,6 +29,7 @@ import { PatientAcuityEvaluationPage } from '../patients-acuity-evaluation/patie
 import { ShiftPage } from '../shift-page/shift-page';
 import { UserProfileDetailPage } from '../user-profile-detail/user-profile-detail';
 import { isEmptyObject } from '../../../constants/environment';
+import { TeamViewPage } from '../team-view-page/team-view-page';
 
 @Component({
     selector: 'workforce-home',
@@ -82,10 +83,8 @@ export class WorkForceHomePage {
                 if (toDayList && toDayList.length > 0) {
                     let currDate = toDayList[0];
                     this.checkInTime = moment(currDate.recorderDate + "T" + currDate.recorderIn);
-                    console.log("this.checkInTime : " , this.checkInTime);
                     if (currDate.recorderOut) {
                         this.checkOutTime = moment(currDate.recorderDate + "T" + currDate.recorderOut);
-                        console.log("this.checkOutTime : " , this.checkOutTime);
                     }
                     this.isDateLoading = false;
                 } else {
@@ -116,7 +115,7 @@ export class WorkForceHomePage {
         "Shift": ShiftPage,
         "Dashboard": DashboardsPage,
         "Patient Acuity Eevaluation": PatientAcuityEvaluationPage,
-        "TeamView": null,
+        "TeamView": TeamViewPage,
     };
 
     private goRoot(pageName: any) {

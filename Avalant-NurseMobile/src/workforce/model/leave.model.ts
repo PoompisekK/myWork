@@ -19,6 +19,7 @@ export class LeaveModel {
     public recordDate: string;
     public shiftNameCode: string;
     public attachFile: any[] = [];
+    public listAttachmentFile: any[] = [];
     public acknowledge: any[] = [];
     public urgentRequest: string = "N";
 }

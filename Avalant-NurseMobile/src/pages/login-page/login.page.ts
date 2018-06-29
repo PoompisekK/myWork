@@ -36,6 +36,7 @@ import { UserProfileService } from '../../services/userprofile/userprofile.servi
 import { ObjectsUtil } from '../../utilities/objects.util';
 import { WorkforceHttpService } from '../../workforce/service/workforceHttpService';
 import { RegisterRequestOTPPage } from '../register-request-otp-page/register-request-otp.page';
+import { AppAlertService } from '../../workforce/service/appAlertService';
 
 @IonicPage({
     segment: 'login',
@@ -97,6 +98,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
         private dom: DomController,
         private mobileInfoService: MobileInfoService,
         private wfHttpService: WorkforceHttpService,
+        private appAlertService: AppAlertService,
     ) {
         this.providerName = AppConstant.SocialSignInType;
     }
@@ -390,13 +392,10 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
         this.navCtrl.push('RegisterPage');
     }
 
-    public forgotPassword(): void {
-        // this.navCtrl.setRoot(ForgotPwdPage);
-        this.alertCtrl.create({
-            title: 'Recover Password',
-            subTitle: 'Please Contact Your IT Admin',
-            buttons: ['Close']
-        }).present();
+    public forgotPassword(): void {        
+        this.appAlertService.forgotAlertPopup({ description: "Please Contact Your IT Admin" }).subscribe(() => {
+            this.navCtrl.pop();
+        });
     }
     /* public forgotPassword(): void {
       // console.debug('TODO: Forgot password page ...');

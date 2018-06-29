@@ -1,0 +1,162 @@
+team-view-page {
+    .bg {
+        background-color: rgb(228, 228, 228);
+    }
+    ion-grid.monthTitle {
+        background-color: rgb(231, 231, 231);
+        >ion-row {
+            background-color: white;
+            margin-left: -.5em;
+            margin-right: -.5em;
+            margin-top: -.8em;
+            margin-bottom: -.3em;
+            ion-col[col-8] {
+                >h3 {
+                    color: color($colors-theme, "app-theme");
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 1.3em;
+                }
+            }
+            ion-col[col-2] {                
+                margin-top: .4em;
+                font-size: 26px;
+                >ion-icon{
+                    margin-left: .65em;
+                    margin-right: .65em;
+                }
+            }
+        }
+    }
+    ion-row.team-calendar{
+        // margin-left: -.5em;
+        background-color: white;
+        ion-col[col-5] {
+            margin-left: -.5em;
+            // background-color: white;
+            table{
+                width: 100%;
+                text-align: center;
+                // margin-left: .5em;
+                tr.team-calendar-head{
+                    height: 3em;
+                    width: 4em;
+                    background-color: color($colors-theme, "app-theme");
+                    td{
+                        h3{
+                            color: white;
+                            font-size: .8em;
+                            margin-top: auto;
+                            margin-bottom: auto;
+                        }
+                    }
+                }
+                tr.team-calendar-inner{
+                    // background-color: white;
+                    height: 7em;
+                    td{
+                        border-style: solid;
+                        border-color: rgb(230, 230, 230);
+                        width: 3em;
+                        p{
+                            // color: white;
+                            font-size: .7em;
+                            margin-top: auto;
+                            margin-bottom: auto;
+                        }
+                    }
+                }
+            }
+        }
+        ion-col[col-7]{
+            // margin-left: -.7em;
+            width: 10em;
+            ion-slides{
+                ion-slide{
+                    table{
+                        width: 100%;
+                        tr.day-slide-head{
+                            background-color: color($colors-theme, "app-theme");
+                            td{
+                                // width: 3em;
+                                height: 2.3em;
+                                p{
+                                    color: white;
+                                    font-size: .6em;
+                                    margin-top: auto;
+                                    margin-bottom: auto;
+                                }
+                            }
+                        }
+                        tr.day-slide-content{
+                            td{
+                                height: 16em;
+                                // width: 3em;
+                                border-style: solid;
+                                border-color: rgb(230, 230, 230);
+                            }
+                        }
+                    }
+                    
+                    ion-row{
+                        margin-left: -.3em;
+                        ion-col{
+                            // background-color: color($colors-theme, "app-theme");     
+                            height: 1.8em;                         
+                            p{
+                                color: white;
+                                font-size: .6em;
+                                margin-top: auto;
+                                margin-bottom: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ion-grid.header-content{
+        background-color: color($colors-theme, "app-theme");
+        ion-row{
+            ion-col{
+                height: 15%;
+                h3{
+                    margin-left: 1em;
+                    font-size: 1em;
+                    color: white;
+                }
+            }
+        }
+        ion-row.table-content{
+                background-color: white;
+                margin-left: -.7em;
+                margin-right: -0.8em;
+            ion-col[col-12]{
+                table{
+                    background-color: white;
+                    width: 100%;
+                    tr{
+                        td{
+                            border-style: solid;
+                            border-color: rgb(230, 230, 230);
+                            text-align: center;
+                            margin-left: auto;
+                            margin-right: auto;
+                            width: 1em;
+                            height: 1em;
+                            h4{
+                                margin-left: .2em;
+                                text-align: left;
+                                font-size: .8em;
+                            }
+                            p{
+                                font-size: .8em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}

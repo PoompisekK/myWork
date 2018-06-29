@@ -15,6 +15,8 @@ import { ApproveService } from '../../service/approveService';
 import { LeaveService } from '../../service/leaveService';
 import { LeaveDetailPage } from '../leave-page/leave-detail-pages/leave-detail-page';
 import { ApproveRejectModalPage } from './approve-reject-modal/approve-reject-modal';
+import { EAFContext } from '../../../eaf/eaf-context';
+import { HCMShiftRestService } from '../../../services/userprofile/hcm-shift.service';
 
 @Component({
     selector: 'approve-tabs-page',
@@ -25,159 +27,15 @@ import { ApproveRejectModalPage } from './approve-reject-modal/approve-reject-mo
 })
 export class ApproveTabPage implements OnInit {
 
-    private makeApprove = [
-        {
-            ListAttachFile: [],
-            approveNo: "AF0000010792",
-            approveOrderNo: "20",
-            empCode: "00008",
-            empName: "Akanit Bhaholpolbhayuhasena",
-            fromDate: "2018-05-01",
-            fromTime: "08:00:00",
-            fullDay: "N",
-            leaveDays: 1,
-            leaveHours: 0,
-            leaveReason: "ปวดหัว เป็นไข้",
-            leaveStatus: "Waiting Approve",
-            leaveType: "Sick Leave",
-            period: "Half Day",
-            shiftName: "General Shift",
-            toDate: "2018-05-01",
-            toTime: "10:00:00",
-            urgentRequest: "Y",
-            year: "2018",
-            requestDate: '2018-04-30'
-        },
-        {
-            ListAttachFile: [],
-            approveNo: "AF0000010792",
-            approveOrderNo: "20",
-            empCode: "00008",
-            empName: "Akanit Bhaholpolbhayuhasena",
-            fromDate: "2018-05-02",
-            fromTime: "08:00:00",
-            fullDay: "N",
-            leaveDays: 1,
-            leaveHours: 0,
-            leaveReason: "zjkayo86f",
-            leaveStatus: "Waiting Approve",
-            leaveType: "Sick Leave",
-            period: "Half Day",
-            shiftName: "General Shift",
-            toDate: "2018-05-02",
-            toTime: "10:00:00",
-            urgentRequest: "Y",
-            year: "2018",
-            requestDate: '2018-05-01'
-        },
-        {
-            ListAttachFile: [],
-            approveNo: "AF0000010793",
-            approveOrderNo: "20",
-            empCode: "00008",
-            empName: "Akanit Bhaholpolbhayuhasena",
-            fromDate: "2018-04-01",
-            fromTime: "08:00:00",
-            fullDay: "N",
-            leaveDays: 1,
-            leaveHours: 0,
-            leaveReason: "ท้องเสีย",
-            leaveStatus: "Waiting Approve",
-            leaveType: "Sick Leave",
-            period: "Half Day",
-            shiftName: "General Shift",
-            toDate: "2018-04-01",
-            toTime: "10:00:00",
-            urgentRequest: "Y",
-            year: "2018",
-            requestDate: '2018-03-30'
-        }
-    ];
-    private makeShiftSwapAcceptant = [
-        {
-            name: 'Angelica Ramos',
-            fromDate: '2018-06-09',
-            fromShift: 'D(07:00 - 15:00)',
-            toDate: '2018-06-09',
-            toShift: 'E(15:00 - 23:00)',
-            status: 'nooff',
-            requestDate: '2018-06-08'
-        },
-        {
-            name: 'Angelica Ramos',
-            fromDate: '2018-05-10',
-            fromShift: 'D(07:00 - 15:00)',
-            toDate: '2018-05-10',
-            toShift: 'E(15:00 - 23:00)',
-            status: 'off',
-            requestDate: '2018-05-08'
-        },
-        {
-            name: 'Angelica Ramos',
-            fromDate: '2018-05-11',
-            fromShift: 'D(07:00 - 15:00)',
-            toDate: '2018-05-11',
-            toShift: 'E(15:00 - 23:00)',
-            status: 'no',
-            requestDate: '2018-05-08'
-        }
-    ];
-    private makeShiftSwap = [
-        {
-            fromname: 'Angelica Ramos',
-            toname: 'Robert Thingnongnai',
-            fromDate: '2018-06-09',
-            fromShift: 'D(07:00 - 15:00)',
-            toDate: '2018-06-9',
-            toShift: 'E(15:00 - 23:00)',
-            status: 'nooff',
-            requestDate: '2018-06-08'
-        },
-        {
-            fromname: 'Angelica Ramos',
-            toname: 'Robert Thingnongnai',
-            fromDate: '2018-06-10',
-            fromShift: 'D(07:00 - 15:00)',
-            toDate: '2018-06-10',
-            toShift: 'E(15:00 - 23:00)',
-            status: 'off',
-            requestDate: '2018-05-08'
-        },
-        {
-            fromname: 'Angelica Ramos',
-            toname: 'Robert Thingnongnai',
-            fromDate: '2018-05-10',
-            fromShift: 'D(23:00 - 07:00)',
-            toDate: '2018-05-10',
-            toShift: 'E(07:00 - 15:00)',
-            status: 'nooff',
-            requestDate: '2018-04-08'
-        }
-    ];
-    private makeShift = [
-        {
-            name: 'Angelica Ramos',
-            zoneA: 'Zone A',
-            zoneB: 'Zone B',
-            shift: 'E(07:00 - 15:00)',
-            fromDate: '2018-05-10',
-            requestDate: '2018-05-08'
-        },
-        {
-            name: 'Angelica Ramos',
-            zoneA: 'Zone A',
-            zoneB: 'Zone B',
-            shift: 'D(23:00 - 07:00)',
-            fromDate: '2018-06-10',
-            requestDate: '2018-06-08'
-        }
-    ];
-
     private type_Leave: string = '';
     private type_shiftSwapAcceptant: string = '';
     private type_shiftSwap: string = '';
     private type_shift: string = '';
-    private type_Resource: string = '';
+
+    private dataLeave: any;
+    private dataShiftSwapAcceptant: any;
+    private dataShiftSwap: any;
+    private dataShift: any;
 
     constructor(
         private hcmApprovalRestService: HCMApprovalRestService,
@@ -192,6 +50,7 @@ export class ApproveTabPage implements OnInit {
         private hcmUserProfileService: HCMUserProfileRestService,
         private hcmEAFRestService: HCMEAFRestService,
         private appState: AppState,
+        private shiftService: HCMShiftRestService,
     ) {
         this.appServices.subscribe(AppConstant.EVENTS_SUBSCRIBE.REJECT_LEAVE, () => {
             this.getSlideTask(this.typeSelect);
@@ -202,6 +61,72 @@ export class ApproveTabPage implements OnInit {
         this.getApproveLeave();
         this.typeSelect = 'leave';
         this.type_Leave = 'select';
+
+        this.hcmApprovalRestService.getLeaveApprove().subscribe(data => {
+            let checkArray = data instanceof Array;
+            let listData = [];
+            if (data) {
+                if (checkArray == true) {
+                    this.numLeave = (data || []).length;
+                } else {
+                    listData.push(data);
+                    this.numLeave = (listData || []).length;
+                }
+            } else {
+                this.numLeave = (listData || []).length;
+            }
+
+        });
+        this.hcmApprovalRestService.getSwapTransactionApprove().subscribe(data => {
+            let checkArray = data instanceof Array;
+            let listData = [];
+            if (data) {
+                if (checkArray == true) {
+                    data.forEach(element => {
+                        if (element.status == 'Waiting For Accept') {
+                            listData.push(element);
+                        }
+                    });
+                    this.numShiftSwapAcceptant = (listData || []).length;
+                } else {
+                    if (data.status == 'Waiting For Accept') {
+                        listData.push(data);
+                        this.numShiftSwapAcceptant = (listData || []).length;
+                    }
+                }
+            } else {
+                this.numShiftSwapAcceptant = (listData || []).length;
+            }
+        });
+        this.hcmApprovalRestService.getShiftApprove().subscribe(data => {
+            let checkArray = data instanceof Array;
+            let listData = [];
+            if (data) {
+                if (checkArray == true) {
+                    this.numShift = (data || []).length;
+                } else {
+                    listData.push(data);
+                    this.numShift = (listData || []).length;
+                }
+            } else {
+                this.numShift = (listData || []).length;
+            }
+
+        });
+        this.hcmApprovalRestService.getShiftSwapApprove().subscribe(data => {
+            let checkArray = data instanceof Array;
+            let listData = [];
+            if (data) {
+                if (checkArray == true) {
+                    this.numShiftSwap = (data || []).length;
+                } else {
+                    listData.push(data);
+                    this.numShiftSwap = (listData || []).length;
+                }
+            } else {
+                this.numShiftSwap = (listData || []).length;
+            }
+        });
     }
 
     private checkID = [];
@@ -234,6 +159,7 @@ export class ApproveTabPage implements OnInit {
     }
 
     private checkApproval(_idx, _index, _data?) {
+        console.log('data approve : ', _data);
         if (this.checkID[_index][_idx] == true) {
             this.navCtrl.push(LeaveDetailPage, {
                 viewMode: true,
@@ -265,20 +191,6 @@ export class ApproveTabPage implements OnInit {
         console.log('checkID : ', this.checkID);
     }
 
-    private rejectThisTask(_taskItemDetail: any, _type) {
-        console.log('_taskItemDetail : ', _taskItemDetail);
-        const modalOpt: ModalOptions = {};
-        modalOpt.cssClass = "reject-modal";
-        modalOpt.enableBackdropDismiss = false;
-        modalOpt.showBackdrop = false;
-        const approveRejectModal = this.modalCtrl.create(ApproveRejectModalPage, {
-            select: _type,
-            "taskItemDetail": _taskItemDetail,
-            "rejectType": this.typeSelect
-        }, modalOpt);
-        approveRejectModal.present();
-    }
-
     private typeSelect: string;
 
     private getSlideTask(_activeIdx) {
@@ -291,7 +203,6 @@ export class ApproveTabPage implements OnInit {
                 this.type_shiftSwapAcceptant = '';
                 this.type_shiftSwap = '';
                 this.type_shift = '';
-                this.type_Resource = '';
                 this.checkID = [];
                 this.getApproveLeave();
                 break;
@@ -303,7 +214,6 @@ export class ApproveTabPage implements OnInit {
                 this.type_shiftSwapAcceptant = 'select';
                 this.type_shiftSwap = '';
                 this.type_shift = '';
-                this.type_Resource = '';
                 this.checkID = [];
                 this.getShiftSwapAcceptant();
                 break;
@@ -315,7 +225,6 @@ export class ApproveTabPage implements OnInit {
                 this.type_shiftSwapAcceptant = '';
                 this.type_shiftSwap = 'select';
                 this.type_shift = '';
-                this.type_Resource = '';
                 this.checkID = [];
                 this.shiftSwapApprove();
                 break;
@@ -327,7 +236,6 @@ export class ApproveTabPage implements OnInit {
                 this.type_shiftSwapAcceptant = '';
                 this.type_shiftSwap = '';
                 this.type_shift = 'select';
-                this.type_Resource = '';
                 this.checkID = [];
                 this.getShiftApprove();
                 break;
@@ -354,7 +262,7 @@ export class ApproveTabPage implements OnInit {
                 }
             }
             this.numLeave = (leaveList || []).length;
-            this.groupList(leaveList || []);
+            this.groupList(leaveList || [], 'leave');
             console.log('data leave approve : ', leaveList);
         });
         // Leave Delegate -----------------------------------------------------------------------
@@ -372,20 +280,26 @@ export class ApproveTabPage implements OnInit {
             let checkArray = data instanceof Array;
             if (data) {
                 if (checkArray == true) {
-                    (data || []).forEach(element => {
-                        if (element.status == 'Waiting For Accept' || element.status == 'Waiting For Approval') {
+                    data.forEach(element => {
+                        if (element.status == 'Waiting For Accept') {
                             listSwapAcceptant.push(element);
-                        };
+                        }
                     });
+                    this.numShiftSwapAcceptant = (listSwapAcceptant || []).length;
                 } else {
                     if (data.status == 'Waiting For Accept') {
                         listSwapAcceptant.push(data);
+                        this.numShiftSwapAcceptant = (listSwapAcceptant || []).length;
                     }
                 }
+                this.groupList(listSwapAcceptant || [], 'shiftSwapAcceptant');
+                console.log('list status is Waiting For Accept : ', listSwapAcceptant);
+            } else {
+                this.numShiftSwapAcceptant = (listSwapAcceptant || []).length;
+                this.groupList(listSwapAcceptant || [], 'shiftSwapAcceptant');
+                console.log('list status is Waiting For Accept : ', listSwapAcceptant);
             }
-            this.numShiftSwapAcceptant = (listSwapAcceptant || []).length;
-            this.groupList(listSwapAcceptant || []);
-            console.log('list status is Waiting For Accept : ', listSwapAcceptant);
+
         });
     }
 
@@ -402,7 +316,7 @@ export class ApproveTabPage implements OnInit {
             }
             console.log('data shift approve : ', listShiftApprove);
             this.numShift = (listShiftApprove || []).length;
-            this.groupList(listShiftApprove || []);
+            this.groupList(listShiftApprove || [], 'shift');
         });
     }
 
@@ -412,19 +326,18 @@ export class ApproveTabPage implements OnInit {
             console.log('data shift swap approve : ', shiftSwapApprove);
             let checkArray = shiftSwapApprove instanceof Array;
             if (shiftSwapApprove) {
-                if(checkArray == true) {
+                if (checkArray == true) {
                     listShiftSwapApprove = shiftSwapApprove;
                 } else {
                     listShiftSwapApprove.push(shiftSwapApprove);
-                }                
+                }
             }
             this.numShiftSwap = (listShiftSwapApprove || []).length;
-            this.groupList(listShiftSwapApprove || []);
+            this.groupList(listShiftSwapApprove || [], 'shiftSwap');
         });
     }
 
-    private groupList(_list) {
-        this.isLoading = false;
+    private groupList(_list, _type) {
         var result = [];
         for (let i = 0; i < _list.length; i++) {
             var fromDate = moment(_list[i].requestDate).format('YYYY-MM');
@@ -464,6 +377,19 @@ export class ApproveTabPage implements OnInit {
         this.allList = groupList;
         console.log('groupListShift : ', this.allList);
         this.checkIdList(this.allList);
+        this.selectDataList(this.allList, _type);
+    }
+    private selectDataList(_data, _type) {
+        this.isLoading = false;
+        if (_type == 'leave') {
+            this.dataLeave = _data;
+        } else if (_type == 'shiftSwapAcceptant') {
+            this.dataShiftSwapAcceptant = _data;
+        } else if (_type == 'shiftSwap') {
+            this.dataShiftSwap = _data;
+        } else if (_type == 'shift') {
+            this.dataShift = _data;
+        }
     }
 
     private checkIdList(_dataCheck) {
@@ -477,4 +403,79 @@ export class ApproveTabPage implements OnInit {
         });
         console.log('this.checkID : ', this.checkID);
     }
+
+    //-------------- approve --------------
+    private rejectThisTask(_taskItemDetail: any, _type) {
+        this.appLoadingService.showLoading();
+        if (this.typeSelect == 'shiftSwapAcceptant') {
+            let dataPositionBoxCode: any;
+            this.shiftService.getPositionBoxCode({ EMPLOYEE_CODE: _taskItemDetail.employeeCode }).subscribe(data => {
+                this.appLoadingService.hideLoading();
+                console.log("model position box code :", data);
+                data.forEach(element => {
+                    dataPositionBoxCode = element;
+                });
+                console.log('_taskItemDetail : ', _taskItemDetail);
+                this.modelShiftSwapAcceptant.EMPLOYEE_CODE = _taskItemDetail.employeeCode;
+                this.modelShiftSwapAcceptant.SHIFT_NAME_CODE = _taskItemDetail.shiftNameCode;
+                this.modelShiftSwapAcceptant.SWAP_EMPLOYEE_CODE = _taskItemDetail.swapEmployeeCode;
+                this.modelShiftSwapAcceptant.SWAP_NO = _taskItemDetail.swapNo;
+                this.modelShiftSwapAcceptant.SWAP_TYPE = _taskItemDetail.swapType;
+                this.modelShiftSwapAcceptant.POSITION_BOX_CODE = dataPositionBoxCode.positionBoxCode;
+                console.log('MODEL SHIFT SWAP APPROVE : ', this.modelShiftSwapAcceptant);
+                if (_type == 'approve') {
+                    this.modelShiftSwapAcceptant.STATUS = 'Waiting For Approval';
+                } else if (_type == 'reject') {
+                    this.modelShiftSwapAcceptant.STATUS = 'Rejected';
+                }
+                console.log('DATA APPROVE / REJECT : ', this.modelShiftSwapAcceptant);
+                const modalOpt: ModalOptions = {};
+                modalOpt.cssClass = "reject-modal";
+                modalOpt.enableBackdropDismiss = false;
+                modalOpt.showBackdrop = false;
+                const approveRejectModal = this.modalCtrl.create(ApproveRejectModalPage, {
+                    select: _type,
+                    taskItemDetail: this.modelShiftSwapAcceptant,
+                    rejectType: this.typeSelect,
+
+                }, modalOpt);
+                approveRejectModal.present();
+            });
+        } else if (this.typeSelect == 'shiftSwap' || this.typeSelect == 'shift' || this.typeSelect == 'leave') {
+            this.appLoadingService.hideLoading();
+            let addtionalParam = {
+                approveFlowNo: _taskItemDetail.approveFlowNo,
+                orderNo: _taskItemDetail.orderNo,
+                organizationId: this.appState.businessUser.orgId,
+                userName: this.appState.businessUser.scmUserName
+            };
+            console.log('Data Approve : ', addtionalParam);
+            const modalOpt: ModalOptions = {};
+            modalOpt.cssClass = "reject-modal";
+            modalOpt.enableBackdropDismiss = false;
+            modalOpt.showBackdrop = false;
+            const approveRejectModal = this.modalCtrl.create(ApproveRejectModalPage, {
+                select: _type,
+                taskItemDetail: addtionalParam,
+                rejectType: this.typeSelect,
+
+            }, modalOpt);
+            approveRejectModal.present();
+        } else {
+            this.appLoadingService.hideLoading();
+            console.log('> > > Not Approve < < <');
+        }
+    }
+
+    private modelShiftSwapAcceptant = {
+        EMPLOYEE_CODE: "",
+        ORGANIZE_ID: "",
+        POSITION_BOX_CODE: "",
+        SHIFT_NAME_CODE: "",
+        STATUS: "",
+        SWAP_EMPLOYEE_CODE: "",
+        SWAP_NO: "",
+        SWAP_TYPE: ""
+    };
+
 }

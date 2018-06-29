@@ -366,25 +366,13 @@ export class LeavePage implements OnInit {
 	private gotoCreateLeave() {
 		var leaveType = "";
 		if (this.Sick == 'select') {
-			leaveType = "Sick Leave";
-			this.navCtrl.push(LeaveCreateDetailPage, {
-				data: leaveType,
-			});
+			this.navCtrl.push(LeaveCreateDetailPage);
 		} else if (this.Annual == 'select') {
-			leaveType = "Annual Leave";
-			this.navCtrl.push(LeaveCreateDetailPage, {
-				data: leaveType,
-			});
-		} else if (this.Personal == 'select') {
-			leaveType = "Personal Leave";
-			this.navCtrl.push(LeaveCreateDetailPage, {
-				data: leaveType,
-			});
+            this.navCtrl.push(LeaveCreateDetailPage);
+        } else if (this.Personal == 'select') {
+			this.navCtrl.push(LeaveCreateDetailPage);
 		} else {
-			leaveType = "Other Leave";
-			this.navCtrl.push(LeaveCreateDetailPage, {
-				data: leaveType,
-			});
+			this.navCtrl.push(LeaveCreateDetailPage);
 		}
 	}
 

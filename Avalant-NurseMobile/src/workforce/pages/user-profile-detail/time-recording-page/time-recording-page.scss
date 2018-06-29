@@ -35,7 +35,10 @@ time-recording-page {
         ion-col[col-3] {
             text-align: center;
         }
-        .titel.red {
+        .title.red {
+            font-size: 15px;
+            margin-left: .5em;
+            font-weight: bold;
             color: red;
         }
     }  

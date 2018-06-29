@@ -19,23 +19,32 @@
                         <span class="sa-line sa-right"></span>
                         </span>
                     </div>
+                    <div *ngIf="alertData.status == 'Recover Password' " class="sa-icon sa-recover pulseRecover" style="display: block;">
+                        <span class="sa-r-body pulseRecover"></span>
+                        <span class="sa-r-dot pulseRecover"></span>
+                    </div>
                 </div>
             </ion-col>
         </ion-row>
         <ion-row no-padding>
             <ion-col col-12 text-center no-padding>
-                <h3 style="text-transform:capitalize;">{{alertData?.status}}!</h3>
+                <h3 style="text-transform:capitalize;">{{alertData?.status}}</h3>
             </ion-col>
         </ion-row>
         <ion-row no-padding>
             <ion-col col-12 text-center no-padding>
-                <h5>{{alertData?.description}}</h5>
+                <h5 style="font-size: 1em; color: rgb(90, 90, 90)" >{{alertData?.description}}</h5>
+            </ion-col>
+        </ion-row>
+        <ion-row class="alert-footer recover-btn">
+            <ion-col *ngIf="alertData.status != FLAG_SUCCESS && alertData.status == 'Recover Password'" >
+                <button (click)="cancelClick()" ion-button> {{alertDataLang?.close || 'Close'}} </button>
             </ion-col>
         </ion-row>
         <ion-row class="alert-footer answer-btn">
             <ion-col text-right>
                 <div *ngIf="(alertData.buttons || []).length == 0" style="width: 100%">
-                    <button *ngIf="alertData.status != FLAG_SUCCESS " (click)="cancelClick()" color="danger" ion-button small outline>{{ alertDataLang?.cancel || 'Cancel' }}</button>
+                    <button *ngIf="alertData.status != FLAG_SUCCESS && alertData.status != 'Recover Password'" (click)="cancelClick()" color="danger" ion-button small outline>{{ alertDataLang?.cancel || 'Cancel' }}</button>
                     <button *ngIf="alertData.status == FLAG_SUCCESS " (click)="okClick()" ion-button small outline>{{ alertDataLang?.done || 'Done' }}</button>
                 </div>
                 <div *ngIf="(alertData.buttons || []).length > 0" style="width: 100%">

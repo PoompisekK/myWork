@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController, ModalOptions, NavController, NavParams } from 'ionic-angular';
-import { ViewController } from 'ionic-angular/navigation/view-controller';
 import * as moment from 'moment';
-
 import { AnimateCss } from '../../../../animations/animate-store';
 import { AppConstant } from '../../../../constants/app-constant';
+import { ApproveRejectModalPage } from '../../approve-tabs-page/approve-reject-modal/approve-reject-modal';
 import { AppServices } from '../../../../services/app-services';
 import { CalendarDatePickerService } from '../../../../services/calendar-date-picker-service/calendar-date-picker-service';
+import { Component, OnInit } from '@angular/core';
 import { HCMShiftRestService } from '../../../../services/userprofile/hcm-shift.service';
 import { HCMTranslationService } from '../../../modules/hcm-translation.service';
-import { ApproveRejectModalPage } from '../../approve-tabs-page/approve-reject-modal/approve-reject-modal';
+import {
+    ModalController,
+    ModalOptions,
+    NavController,
+    NavParams
+} from 'ionic-angular';
+import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { HCMUserProfileRestService } from '../../../../services/userprofile/hcm-userprofile.service';
+import { AppState } from '../../../../app/app.state';
 
 @Component({
     selector: 'shift-create-page',
@@ -35,6 +41,8 @@ export class ShiftCreatePage implements OnInit {
         private viewCtrl: ViewController,
         private shiftService: HCMShiftRestService,
         private appService: AppServices,
+        private hcmUserProfileService: HCMUserProfileRestService,
+        private appState: AppState
     ) {
         this.appService.subscribe(AppConstant.EVENTS_SUBSCRIBE.SHIFT_CREATE, () => {
             this.viewCtrl && this.viewCtrl.dismiss();
@@ -43,21 +51,16 @@ export class ShiftCreatePage implements OnInit {
 
     public ngOnInit() {
         this.getMyTeam();
+        this.getPositionId();
         this.isDevice = !this.appServices.isServeChrome();
         this.shiftType = this.navParams.get("shiftType");
         console.log('shift type : ', this.shiftType);
         if (this.shiftType == 'shift') {
-            this.titelHead = this.hcmTranslationService.translate('M_SHIFTCREATE.SHIFT_REQUEST','Shift Request');//'Shift Request';
+            this.titelHead = this.hcmTranslationService.translate('M_SHIFTCREATE.SHIFT_REQUEST', 'Shift Request');//'Shift Request';
         } else {
-            this.titelHead = this.hcmTranslationService.translate('M_SHIFTCREATE.SHIFT_SWAP_REQUEST','Shift Swap Request'); //'Shift Swap Request'
+            this.titelHead = this.hcmTranslationService.translate('M_SHIFTCREATE.SHIFT_SWAP_REQUEST', 'Shift Swap Request'); //'Shift Swap Request'
         }
 
-        this.shiftService.getTeamGroup().subscribe(resp => {
-            this.teamGroupObj = resp;
-            this.teamGroupDesc = this.teamGroupObj && this.teamGroupObj.teamGroupname;
-            console.log("teamGroupObj:", this.teamGroupObj);
-            console.log("teamGroupDesc:", this.teamGroupDesc);
-        });
     }
 
     private dateTimeShift: any;
@@ -73,7 +76,7 @@ export class ShiftCreatePage implements OnInit {
             console.log('Date : ', dateResult.toISOString());
         });
     }
-    private rejectThisTask(_dataCreate: any, _type) {
+    private rejectThisTask(_dataCreate: any, _type, _typeCreate) {
         const modalOpt: ModalOptions = {};
         modalOpt.cssClass = "reject-modal";
         modalOpt.enableBackdropDismiss = false;
@@ -81,7 +84,8 @@ export class ShiftCreatePage implements OnInit {
 
         const approveRejectModal = this.modalCtrl.create(ApproveRejectModalPage, {
             select: _type,
-            dataCreate: _dataCreate
+            dataCreate: _dataCreate,
+            typeCreate: _typeCreate
         }, modalOpt);
         approveRejectModal.present();
     }
@@ -137,30 +141,47 @@ export class ShiftCreatePage implements OnInit {
         note: '',
         dateStartShift: ''
     };
-    private testcreate() {
-        this.createModel.shiftMyWork = this.myTeamGroupObj.teamGroupNo;
-        this.createModel.requestDate = moment(new Date()).format('YYYY-MM-DD');
-        this.createModel.dateStartShift = this.dateTimeShift;
-        console.log('create data : ', this.createModel);
-        this.rejectThisTask(this.createModel, 'create');
-        this.createShift();
+
+    private commitCreateShift() {
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.TEAM_GROUP_NO = this.myTeamGroupObj.teamGroupNo;
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.REQUEST_DATE = moment(new Date()).format('YYYY-MM-DD');
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.REQUEST_SHIFT_DATE = this.dateTimeShift;
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.REASON = this.createModel.note;
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.REQUEST_TEAM_GROUP_NO = this.createModel.requestTowork;
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.REQUEST_SHIFT_NAME_CODE = this.createModel.shiftId;
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.POSITION_BOX_CODE = this.dataPositionBoxCode.positionBoxCode;
+        let shiftRequestType = this.selectTeamGroup.find(data => data.teamGroupNo == this.createModel.requestTowork);
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.SHIFT_REQ_TYPE = shiftRequestType.teamGroupType;
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.EMPLOYEE_CODE = this.appState.businessUser.employeeCode;        
+
+        console.log('DATA CREATE : ', this.modelCreateShift);
+        this.rejectThisTask(this.modelCreateShift, 'create', 'createShift');        
     }
 
-    private testModelCreate = {
-        EMPLOYEE_CODE: "549407",
-        UPDATE_BY: "กาญจนลักษณ์ แถวโสภา",
-        POSITION_BOX_CODE: "PB51-EMP549407",
-        REASON: "test create on bomile",
-        REQUEST_DATE: "2018-06-24",
-        REQUEST_SHIFT_DATE: "2018-06-24",
-        REQUEST_SHIFT_NAME_CODE: "SNC0000000082",
-        REQUEST_TEAM_GROUP_NO: "TGN0000000251",
-        SHIFT_REQ_TYPE: "TGT0000000001",
-        TEAM_GROUP_NO: "TGN0000000228"
+    private modelCreateShift = {
+        EMPLOYEE_SHIFT_REQUEST: {
+            EMPLOYEE_CODE: "",
+            ORGANIZE_ID: "",
+            UPDATE_BY: "",
+            POSITION_BOX_CODE: "",
+            REASON: "",
+            REQUEST_DATE: "",
+            REQUEST_SHIFT_DATE: "",
+            REQUEST_SHIFT_NAME_CODE: "",
+            REQUEST_TEAM_GROUP_NO: "",
+            SHIFT_REQ_TYPE: "",
+            TEAM_GROUP_NO: "",
+            STATUS: "Waiting For Approval"
+        }
     };
-    private createShift() {
-        this.shiftService.saveShift(this.testModelCreate).subscribe(data => {
-            console.log('return from create : ', data);
+    private dataPositionBoxCode: any;
+    private getPositionId() {
+        this.shiftService.getPositionBoxCode().subscribe(data => {
+            console.log("model position box code :", data);
+            data.forEach(element => {
+                this.dataPositionBoxCode = element;
+            });
         });
     }
+
 }

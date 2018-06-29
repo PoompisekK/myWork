@@ -9,6 +9,7 @@ import { LeaveModel } from '../../../model/leave.model';
 import { AppAlertService } from '../../../service/appAlertService';
 import { LeaveService } from '../../../service/leaveService';
 import { ApproveRejectModalPage } from '../../approve-tabs-page/approve-reject-modal/approve-reject-modal';
+import { HCMApprovalRestService } from '../../../../services/userprofile/hcm-approval.service';
 
 @Component({
     selector: 'leave-detail-page',
@@ -39,6 +40,7 @@ export class LeaveDetailPage implements OnInit {
         private appAlertService: AppAlertService,
         private modalCtrl: ModalController,
         private leaveService: LeaveService,
+        private hcmApprovalRestService: HCMApprovalRestService
     ) {
 
     }
@@ -71,6 +73,9 @@ export class LeaveDetailPage implements OnInit {
             this.checkFullDay();
             this.displayDateNTime();
         }
+
+        this.getStepApprove();
+
     }
 
     private displayDateNTime() {
@@ -110,22 +115,22 @@ export class LeaveDetailPage implements OnInit {
         }
     }
     private lowerCaseCompare(str1: string, str2: string, isUsedIndex?: boolean) {
-		str1 = (str1 || '').toLowerCase();
-		str2 = (str2 || '').toLowerCase();
-		return ((isUsedIndex && ((str1 || '').indexOf(str2) > -1)) || str1 === str2);
-	}
+        str1 = (str1 || '').toLowerCase();
+        str2 = (str2 || '').toLowerCase();
+        return ((isUsedIndex && ((str1 || '').indexOf(str2) > -1)) || str1 === str2);
+    }
 
     private getStatus(objItm: any, index: number): boolean {
         // return (status || "").toLowerCase() == (compareWith || "").toLowerCase();
         if (index == 1) {
-			return this.lowerCaseCompare(objItm.status, 'approved');
-		} else if (index == 2) {
-			return this.lowerCaseCompare(objItm.status, 'waiting for approve', true);
-		} else if (index == 3) {
-			return this.lowerCaseCompare(objItm.status, 'rejected');
-		} else {
-			return false;
-		}
+            return this.lowerCaseCompare(objItm.status, 'approved');
+        } else if (index == 2) {
+            return this.lowerCaseCompare(objItm.status, 'waiting for approve', true);
+        } else if (index == 3) {
+            return this.lowerCaseCompare(objItm.status, 'rejected');
+        } else {
+            return false;
+        }
     }
 
     private shiftTimeString: string = "";
@@ -258,7 +263,14 @@ export class LeaveDetailPage implements OnInit {
         if (_statrD == _endD) {
             return moment(_statrD).format('MMM D,YYYY');
         } else {
-            return moment(_statrD).format('MMM D,YYYY')+' - '+moment(_endD).format('MMM D,YYYY');
+            return moment(_statrD).format('MMM D,YYYY') + ' - ' + moment(_endD).format('MMM D,YYYY');
         }
+    }
+    private userApprove: any;
+    private getStepApprove() {
+        this.hcmApprovalRestService.getApproveStep({ DOCUMENT_NO: (this.leave['leaveNo'] || this.dataShift.swapNo || this.dataShift.shiftReqNo) }).subscribe(data => {
+            console.log('Data User Approve : ', data);
+            this.userApprove = data;
+        });
     }
 }

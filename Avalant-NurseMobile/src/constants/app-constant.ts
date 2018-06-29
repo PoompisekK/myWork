@@ -186,6 +186,8 @@ export class AppConstant {
         WARNING: 'warning',
 
         FAIL: 'fail',
+
+        RECOVER: 'Recover Password',
     };
 
     public static readonly FLAG = {

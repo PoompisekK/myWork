@@ -8,12 +8,20 @@ leave-summary-page {
             margin-right: -.5em;
             margin-top: -.8em;
             margin-bottom: -.3em;
-            >ion-col {
+            ion-col[col-8] {
                 >h3 {
                     color: color($colors-theme, "app-theme");
                     text-align: center;
                     font-weight: bold;
                     font-size: 1.3em;
+                }
+            }
+            ion-col[col-2] {                
+                margin-top: .4em;
+                font-size: 26px;
+                >ion-icon{
+                    margin-left: .65em;
+                    margin-right: .65em;
                 }
             }
         }

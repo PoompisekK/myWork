@@ -12,12 +12,18 @@
         <p class="ava-empty-label" translate>M_LEAVEPAGE.NODATA</p>
     </ion-card>
 
-    <ion-grid class="bgYear" *ngIf="!isLoading && ((summaryY) != '')">
+    <ion-grid class="bgYear">
         <ion-row>
-            <ion-col>
+            <ion-col col-2>
+                <ion-icon  name="ios-arrow-back-outline"></ion-icon>
+            </ion-col>
+            <ion-col col-8>
                 <h3>2018</h3>
             </ion-col>
-        </ion-row>
+            <ion-col col-2>
+                <ion-icon  name="ios-arrow-forward-outline"></ion-icon>
+            </ion-col>
+        </ion-row>        
     </ion-grid>
     <ion-grid class="bgform" *ngIf="!isLoading && ((summaryY) != '')">
         <ion-row *ngFor="let item of summaryY">
