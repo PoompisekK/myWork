@@ -34,13 +34,15 @@ export class PatientsQuestionsPage implements OnInit {
         public appState: AppState,
         public http: Http,
     ) {
-
+        
     }
     private isLoading: boolean = true;
+    private selectedBtn: boolean;
     public ngOnInit() {
         this.patientParamsData = this.navParams.data;
         console.log("this.patientParamsData :", this.patientParamsData);
         this.getJSONQuestionService((resp) => {
+            console.log("this.getJSONQuestionService => " , resp);
             this.questions = resp;
             this.isLoading = false;
         });
@@ -70,8 +72,10 @@ export class PatientsQuestionsPage implements OnInit {
 
     private slideStep(stepIndx: number) {
         if (stepIndx == -1) {
+            this.selectedChoice(true);
             this.slides.slidePrev();
         } else if (stepIndx == 1) {
+            this.selectedChoice(false);
             this.slides.slideNext();
         } else if (stepIndx == 0) {
             this.validateSubmitQuestion();
@@ -88,6 +92,14 @@ export class PatientsQuestionsPage implements OnInit {
         console.log("validateSubmitQuestion ");
         this.patientParamsData.inspectQuestion = [];
         this.navCtrl.push(AssessmentSummaryPage, this.patientParamsData, { animate: true, direction: "forward" });
+    }
+
+    private selectedChoice(_n){
+        if(_n == true){
+            this.selectedBtn = _n;
+        }else if(_n == false){
+            this.selectedBtn = false;
+        }
     }
 }
 class ChoiceQuestions {

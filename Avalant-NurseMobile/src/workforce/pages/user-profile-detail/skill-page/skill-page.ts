@@ -18,8 +18,7 @@ import { HCMEAFRestService } from '../../../../services/eaf-rest/hcm-eaf-rest.se
 })
 export class SkillPage {
     private isLoading: boolean = true;
-    private skillLV: any;
-    private skillDec: any;
+    private skillData: any;
 
     constructor(
         private navCtrl: NavController,
@@ -34,12 +33,10 @@ export class SkillPage {
         this.hcmEAFRestService.getModule(EmployeeSkillModel).subscribe((resp) => {
             console.log("EmployeeConditionModel: ", resp);
             if (resp != null) {
-                this.skillDec = resp.skillNoDesc;
-                this.skillLV = resp.skillLevel;
+                this.skillData = resp;
                 this.isLoading = false;
             }else {
-                this.skillDec = "";
-                this.skillLV = "";
+                this.skillData = "";
                 this.isLoading = false;
             }
         });

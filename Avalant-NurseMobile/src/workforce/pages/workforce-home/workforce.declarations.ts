@@ -132,6 +132,9 @@ import { UserProfileDetailPage } from '../user-profile-detail/user-profile-detai
 import { WorkingHoursSummaryPage } from '../user-profile-detail/working-hours-summary-page/working-hours-summary-page';
 import { WorkForceHomePage } from './workforce-home.page';
 import { TeamViewPage } from '../team-view-page/team-view-page';
+import { NonProductivityPage } from '../non-productivity-page/non-productivity-page';
+import { NonCreatePage } from '../non-productivity-page/non-create-pages/non-create-page';
+import { NonDetailPage } from '../non-productivity-page/non-detail-pages/non-detail-page';
 
 /**
  * @author Bundit.Ng
@@ -226,7 +229,9 @@ export const WORKFORCE_PAGES = [
     LeaveSummaryPage,
     timeRecordingPage,
     WorkingHoursSummaryPage,
-    TeamViewPage
+    TeamViewPage,
+    NonProductivityPage,
+    NonCreatePage,
 ];
 
 export const WORKFORCE_PIPES = [

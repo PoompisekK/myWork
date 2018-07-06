@@ -1,5 +1,5 @@
 <ion-header>
-    <app-nav-header [pageName]="'Patients Acuity Evaluation'"></app-nav-header>
+    <app-nav-header [pageName]="'M_HOME.PATIENT_A_E'|hcmtranslate:'M_HOME.PATIENT_A_E'"></app-nav-header>
 </ion-header>
 <ion-content class="meeting-scroll-content">
     <ion-item class="search-input" no-lines style="padding: 0 14px;">
@@ -24,8 +24,9 @@
                 <ion-avatar item-start>
                     <ava-avatar-img [srcPath]="emp.employeeCode | loadImg"></ava-avatar-img>
                 </ion-avatar>
+                <p> #NH{{emp?.employeeCode}} </p>
                 <h2>{{ emp?.name +' '+ emp?.surname}}</h2>
-                <p>{{ emp?.alternateName +' '+ emp?.alternateSurname}}</p>
+                <!-- <p>{{ emp?.alternateName +' '+ emp?.alternateSurname}}</p> -->
                 <div class="emp-select-status">
                     <!-- <div *ngIf="!emp.isCheck" class="checked-emp">
                         <ion-icon name="add" class="add-icon"></ion-icon>

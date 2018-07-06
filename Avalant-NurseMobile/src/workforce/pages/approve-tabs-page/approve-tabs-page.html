@@ -8,7 +8,7 @@
             <ion-row class="imgSelect">
                 <ion-col col-3 no-padding text-center (click)="getSlideTask('leave')">
                     <img class="svg-image-shift" src="./assets/img/leave.png">
-                    <span class="button-label" hcmtranslate>M_APPROVAL.LEAVE</span>
+                    <span class="button-label" hcmtranslate>M_APPROVAL.NON_PRO_TYPE</span>
                 </ion-col>
                 <ion-col col-3 no-padding text-center (click)="getSlideTask('shiftSwapAcceptant')">
                     <img class="svg-image-shift" src="./assets/img/Shift Swap Acceptant.png">
@@ -45,8 +45,8 @@
                     <p text-center>{{ numShift }}</p>
                 </ion-col>
                 <!-- <ion-col no-padding>
-                    <div class="selectShift {{type_Resource}}"></div>
-                    <p text-center>0</p>
+                    <div class="selectShift {{type_resource}}"></div>
+                    <p text-center>{{ numResource }}</p>
                 </ion-col> -->
             </ion-row>
         </ion-grid>
@@ -60,8 +60,7 @@
             <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
         </ion-col>
     </ion-row>
-    <ion-card [@peekAnimation] ava-empty-card style="background: none;" *ngIf="!isLoading && (allList||[]).length == 0" text-center
-        margin-horizontal padding-vertical>
+    <ion-card [@peekAnimation] ava-empty-card style="background: none;" *ngIf="!isLoading && (allList||[]).length == 0" text-center margin-horizontal padding-vertical>
         <img src="./assets/img/svg/emptydata_blue.svg">
         <p class="ava-empty-label" hcmtranslate>M_NODATA.NODATA</p>
     </ion-card>
@@ -91,7 +90,7 @@
                                     <span>{{ listItm?.requestName }}</span>
                                 </ion-col>
                                 <ion-col col-4>
-                                    <p>{{ listItm?.leaveDays | number:0 }}  Days</p>
+                                    <p>{{ listItm?.leaveDays | number:0 }} Days</p>
                                     <div style="float: right" *ngIf='listItm?.shift'>
                                         <div dot class="dot-yellow"></div>
                                         <span class="shift"> {{ listItm?.shift || 'D(15:00 - 23:00)' }}</span>
@@ -102,12 +101,10 @@
                     </ion-row>
                     <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">
                         <ion-col col-6>
-                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')"
-                            >{{'M_BUTTON.REJECT' | hcmtranslate }}</button>
+                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')">{{'M_BUTTON.REJECT' | hcmtranslate }}</button>
                         </ion-col>
                         <ion-col col-6 border-left>
-                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')"
-                                >{{'M_BUTTON.APPROVE' | hcmtranslate}}</button>
+                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')">{{'M_BUTTON.APPROVE' | hcmtranslate}}</button>
                         </ion-col>
                     </ion-row>
                 </ion-card>
@@ -156,12 +153,10 @@
                     </ion-row>
                     <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">
                         <ion-col col-6>
-                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')"
-                            >{{'M_BUTTON.REJECT' | hcmtranslate }}</button>
+                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')">{{'M_BUTTON.REJECT' | hcmtranslate }}</button>
                         </ion-col>
                         <ion-col col-6 border-left>
-                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')"
-                            >{{'M_BUTTON.ACCEPT' | hcmtranslate}}</button>
+                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')">{{'M_BUTTON.ACCEPT' | hcmtranslate}}</button>
                         </ion-col>
                     </ion-row>
                 </ion-card>
@@ -213,14 +208,12 @@
                             </ion-row>
                         </ion-col>
                     </ion-row>
-                    <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">                      
+                    <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">
                         <ion-col col-6>
-                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')"
-                            >{{'M_BUTTON.REJECT' | hcmtranslate}}</button>
+                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')">{{'M_BUTTON.REJECT' | hcmtranslate}}</button>
                         </ion-col>
                         <ion-col col-6 border-left>
-                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')"
-                            >{{'M_BUTTON.APPROVE' | hcmtranslate}}</button>
+                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')">{{'M_BUTTON.APPROVE' | hcmtranslate}}</button>
                         </ion-col>
                     </ion-row>
                 </ion-card>
@@ -228,6 +221,48 @@
         </div>
         <div *ngIf="typeSelect == 'shift' && !isLoading">
             <ion-list class="group-list-shift" *ngFor="let groupItm of (dataShift||[]); let index = index">
+                <p style="margin-left: 1em;">{{ groupItm?.date }}</p>
+                <ion-card padding class="cardItem" *ngFor="let listItm of (groupItm.task||[]); let idx = index">
+                    <ion-row (click)="checkApproval && checkApproval(idx,index,listItm)">
+                        <ion-col col-3>
+                            <ava-avatar-img class="assign-by" [srcPath]="listItm?.approveEmployeeCode | loadImg"></ava-avatar-img>
+                        </ion-col>
+                        <ion-col col-9 no-padding>
+                            <p>{{ listItm?.requestName }}</p>
+                            <ion-row class="statusShift" no-padding>
+                                <ion-col>
+                                    <div dot class="dot-yellow" *ngIf="listItm?.shiftNameName == 'D'"></div>
+                                    <div dot class="dot-green" *ngIf="listItm?.shiftNameName == 'E'"></div>
+                                    <div dot class="dot-blue" *ngIf="listItm?.shiftNameName == 'N'"></div>
+                                    <span style="font-size: 12px;"> {{ listItm?.shiftNameName }}</span>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row class="fromToZone" no-padding>
+                                <ion-col col-4>
+                                    <span>{{ listItm?.fromGroupName }}</span>
+                                </ion-col>
+                                <ion-col col-2>
+                                    <ion-icon name="ios-arrow-round-forward"></ion-icon>
+                                </ion-col>
+                                <ion-col col-4>
+                                    <span>{{ listItm?.toGroupName }}</span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">
+                        <ion-col col-6>
+                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')">{{'M_BUTTON.REJECT' | hcmtranslate}}</button>
+                        </ion-col>
+                        <ion-col col-6 border-left>
+                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')">{{'M_BUTTON.APPROVE' | hcmtranslate}}</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </ion-list>
+        </div>
+        <div *ngIf="typeSelect == 'resource' && !isLoading">
+            <ion-list class="group-list-resource" *ngFor="let groupItm of (dataResource||[]); let index = index">
                 <p style="margin-left: 1em;">{{ groupItm?.date }}</p>
                 <ion-card padding class="cardItem" *ngFor="let listItm of (groupItm.task||[]); let idx = index">
                     <ion-row (click)="checkApproval && checkApproval(idx,index,listItm)">
@@ -255,18 +290,16 @@
                             </ion-row>
                         </ion-col>
                     </ion-row>
-                    <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">                      
+                    <ion-row [@peekAnimation] class="approve-action" *ngIf="checkID[index][idx]">
                         <ion-col col-6>
-                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')"
-                            >{{'M_BUTTON.REJECT' | hcmtranslate}}</button>
+                            <button class="action-btn reject-btn" ion-button small block color="reject-btn" (click)="rejectThisTask && rejectThisTask(listItm,'reject')">{{'M_BUTTON.REJECT' | hcmtranslate}}</button>
                         </ion-col>
                         <ion-col col-6 border-left>
-                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')"
-                            >{{'M_BUTTON.APPROVE' | hcmtranslate}}</button>
+                            <button class="action-btn approve-btn" ion-button small block color="approve-btn" (click)="rejectThisTask && rejectThisTask(listItm,'approve')">{{'M_BUTTON.APPROVE' | hcmtranslate}}</button>
                         </ion-col>
                     </ion-row>
                 </ion-card>
             </ion-list>
-        </div>        
+        </div>
     </div>
 </ion-content>

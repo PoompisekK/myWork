@@ -1,0 +1,319 @@
+<ion-header>
+    <app-nav-header [pageName]="'Non-Productivity Request'"></app-nav-header>
+</ion-header>
+<ion-content class="bg" padding>
+    <ion-scroll scrollY="true">
+        <ion-grid no-padding>
+            <!-- ====================================================================== -->
+            <ion-row no-padding>
+                <ion-col no-padding col-12>
+                    <ion-item no-box no-padding id='leaveType'>
+                        <ion-label floating floated required translate>
+                            <span style="font-size: .9em;"> Non-Productivity Request </span>
+                        </ion-label>
+                        <ion-select #leaveType [disabled]="isViewMode" [(ngModel)]="leaveDataM.leaveTypeCode" interface="popover">
+                            <ion-option *ngFor="let type of leaveSubTypes" [value]="type.leaveTypeCode">{{ type?.leaveTypeName }}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <!-- ====================================================================== -->
+            <ion-row no-padding>
+                <ion-col no-padding col-12>
+                    <ion-item no-box no-padding (click)="addUser && addUser(KEY_ACKNOWLEDGE)" style="height: 5em;">
+                        <ion-label floating floated translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.NOTIFIFY_PERSON </span>
+                        </ion-label>
+                        <ion-icon item-end name="ios-add-outline"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <!-- ============================================================================================================= -->
+
+            <ion-row no-padding [@peekAnimation] >
+                <ion-col no-padding col-12 no-padding>
+                    <ion-item no-box no-padding id="fromDate">
+                        <ion-label floating floated required translate>
+                            <span style="font-size: .9em;"> M_NON_PRO.EFFECTIVE_D </span>
+                        </ion-label>
+                        <ion-input *ngIf="isDevice" (click)="showDateTimePicker && showDateTimePicker('date','fromDate')" disabled [value]="leaveDataM.fromDate | amDateFormat:'MMM D, YYYY'" type="text"></ion-input>
+                        <ion-datetime *ngIf="isDevice == false" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="leaveDataM.fromDate"></ion-datetime>
+                        <ion-icon item-end name="ios-calendar-outline" style="position: absolute; margin-left: 87% !important;"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <!-- Shift with Dropdown -->
+            <ion-row no-padding [@peekAnimation]>
+                <ion-col no-padding col-12 >
+                    <ion-item no-box no-padding id="fromDate">
+                        <ion-label floating floated required translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.SHIFT </span>
+                        </ion-label>
+                        <ion-select #leaveType [disabled]="isViewMode" [(ngModel)]="leaveDataM.leaveTypeCode" interface="popover">
+                            <ion-option>D(07:00 - 15:00)</ion-option>
+                            <ion-option>E(15:00 - 21:00)</ion-option>
+                            <ion-option>N(21:00 - 07:00)</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+
+            <ion-row no-padding [@peekAnimation] >
+                <ion-col no-padding col-6 no-padding>
+                    <ion-item no-box no-padding id="fromTime">
+                        <ion-label floating floated required translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.START_TIME </span>
+                        </ion-label>
+                        <ion-input *ngIf="isDevice" (click)="showDateTimePicker && showDateTimePicker('time','fromTime')" disabled [value]="leaveDataM.fromTime | amDateFormat:'HH:mm'" type="text"></ion-input>
+                        <ion-datetime #fromTime [hourValues]="timeShiftLimit.fromTime.hourValues" *ngIf="isDevice == false" pickerFormat="H:mm a" displayFormat="H:mm a" [(ngModel)]="leaveDataM.fromTime" (ionChange)="validateTimeShift && validateTimeShift('fromTime',leaveDataM.fromTime)"></ion-datetime>
+                        <ion-icon item-end name="ios-time-outline" style="margin-top: .5em; position: absolute; margin-left: 75% !important;"></ion-icon>
+                    </ion-item>
+                </ion-col>
+                <ion-col no-padding col-6 no-padding id="toTime">
+                    <ion-item no-box no-padding>
+                        <ion-label floating floated required translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.END_TIME </span>
+                        </ion-label>
+                        <ion-input *ngIf="isDevice" (click)="showDateTimePicker && showDateTimePicker('time','toTime')" disabled [value]="leaveDataM.toTime | amDateFormat:'HH:mm'" type="text"></ion-input>
+                        <ion-datetime #toTime [hourValues]="timeShiftLimit.toTime.hourValues" *ngIf="isDevice == false" pickerFormat="H:mm a" displayFormat="H:mm a" [(ngModel)]="leaveDataM.toTime" (ionChange)="validateTimeShift && validateTimeShift('toTime',leaveDataM.toTime)"></ion-datetime>
+                        <ion-icon item-end name="ios-time-outline" style="margin-top: .5em; position: absolute; margin-left: 75% !important;"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-8>
+                    <ion-item no-box no-padding>
+                        <ion-label floating floated translate>
+                            <span style="font-size: .9em;"> M_NON_PRO.TOTAL_MIN </span>
+                        </ion-label>
+                        <ion-input type="text" ></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row no-padding>
+                <ion-col no-padding col-12>
+                    <input style="display: none;" type="file" accept="*" capture="camera" id="attachmentsInputId" #attachmentsInputId multiple (change)="getAttachments && getAttachments()">
+                    <ion-item no-box no-padding (click)="attachFile && attachFile()" style="height: 5em;">
+                        <ion-label floating floated translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.ATTACHMENT </span>
+                        </ion-label>
+                        <ion-icon item-end name="ios-add-outline"></ion-icon>
+                    </ion-item>
+                    <ion-row class="attach-file" [@peekAnimation] no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-lines no-box *ngFor="let fileItm of (leaveAttachFile||[]);let idx = index" [@peekAnimation] (click)="showImageView && showImageView(fileItm)">
+                                <ion-label>
+                                    <img *ngIf="isFileType(fileItm, 1)" attach-icon src="./assets/img/svg/doc.svg">
+                                    <img *ngIf="isFileType(fileItm, 2)" attach-icon src="./assets/img/svg/pdf.svg">
+                                    <img *ngIf="isFileType(fileItm, 3)" attach-icon src="./assets/img/svg/pic.svg">
+                                    <img *ngIf="!(isFileType(fileItm, 1)||isFileType(fileItm, 2)||isFileType(fileItm, 3))" attach-icon src="./assets/img/svg/otherfile.svg"> {{ getFileName && getFileName(fileItm) }}
+                                </ion-label>
+                                <ion-icon item-end (click)="removeItem && removeItem(fileItm, idx)" name="ios-close-outline"></ion-icon>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+
+            <ion-row no-padding>
+                <ion-col no-padding col-12>
+                    <ion-item no-padding id="notice">
+                        <ion-label floating floated translate>
+                            <span style="font-size: .9em;" > M_NON_PRO.NOTICE </span>
+                        </ion-label>
+                        <ion-textarea #notice type="text" [(ngModel)]="leaveDataM.reason"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="button-row" *ngIf="!isViewMode">
+                <ion-col no-padding col-12>
+                    <button class="bg-workforce btn-workforce btn-flat" ion-button block full (click)="check && check()" translate>
+                            <span style="font-size: .9em;" > M_SHIFTCREATE.CONFIRM_YOUR_REQUEST </span>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-scroll>
+</ion-content>
+            <!-- ============================================================================================================= -->
+            <!-- <ion-row style="margin-bottom: 1.5em;padding: .5em 1em;" *ngIf="(acknowledgeList||[]).length > 0">
+                <ion-col col-2 style="padding:0" *ngFor="let empCode of ((acknowledgeList||[]).slice(0,5));let idx = index" (click)="addUser && addUser(KEY_ACKNOWLEDGE)">
+                    <div class="employee-list">
+                        <ava-avatar-img class="img-avatar margin-auto wrapper-employee" [srcPath]="empCode | loadImg"></ava-avatar-img>
+                    </div>
+                </ion-col>
+                <ion-col col-2 style="padding:0" *ngIf="(acknowledgeList||[]).length > 4" (click)="addUser && addUser(KEY_ACKNOWLEDGE)">
+                    <div class="img-avatar margin-auto wrapper-employee add-employee-btn">
+                        <ion-icon class="more-five" name="add">{{ (acknowledgeList||[]).length }}</ion-icon>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="radio-shift" no-padding radio-group [(ngModel)]="isSomeShift" (ionChange)="loadShift && loadShift(isSomeShift)">
+                <ion-col col-5 no-padding>
+                    <ion-item no-lines>
+                        <ion-label translate style="margin-bottom: .8em;">
+                            <span style="font-size: .7em; margin-left: .5em;"> M_LEAVEREQUEST.FULL_DAY </span>
+                        </ion-label>
+                        <ion-radio item-left no-margin [value]="'N'"></ion-radio>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-7 no-padding>
+                    <ion-item no-lines>
+                        <ion-label translate style="margin-bottom: .8em;">
+                            <span style="font-size: .7em; margin-left: .5em;"> M_LEAVEREQUEST.SHIFT </span>
+                        </ion-label>
+                        <ion-radio item-left no-margin [value]="'Y'"></ion-radio>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row no-padding [@peekAnimation] *ngIf="isSomeShift != 'Y'">
+                <ion-col no-padding col-6 no-padding>
+                    <ion-item no-box no-padding id="fromDate">
+                        <ion-label floating floated required translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.START_DATE </span>
+                        </ion-label>
+                        <ion-input *ngIf="isDevice" (click)="showDateTimePicker && showDateTimePicker('date','fromDate')" disabled [value]="leaveDataM.fromDate | amDateFormat:'MMM D, YYYY'" type="text"></ion-input>
+                        <ion-datetime *ngIf="isDevice == false" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="leaveDataM.fromDate"></ion-datetime>
+                        <ion-icon item-end name="ios-calendar-outline" style="margin-top: .5em; position: absolute; margin-left: 75% !important;"></ion-icon>
+                    </ion-item>
+                </ion-col>
+                <ion-col no-padding col-6 no-padding>
+                    <ion-item no-box no-padding id="toDate">
+                        <ion-label floating floated required translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.END_DATE </span>
+                        </ion-label>
+                        <ion-input *ngIf="isDevice" (click)="showDateTimePicker && showDateTimePicker('date','toDate')" disabled [value]="leaveDataM.toDate | amDateFormat:'MMM D, YYYY'" type="text"></ion-input>
+                        <ion-datetime *ngIf="isDevice == false" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="leaveDataM.toDate"></ion-datetime>
+                        <ion-icon item-end name="ios-calendar-outline" style="margin-top: .5em; position: absolute; margin-left: 75% !important;"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row no-padding [@peekAnimation] *ngIf="isSomeShift == 'Y'">
+                <ion-col no-padding col-6 no-padding>
+                    <ion-item no-box no-padding id="fromDateY" (click)="showDateTimePicker && showDateTimePicker('date','fromDate')">
+                        <ion-label floating floated required translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.START_DATE </span>
+                        </ion-label>
+                        <ion-input *ngIf="isDevice" disabled [value]="leaveDataM.fromDate | amDateFormat:'MMM D, YYYY'" type="text" (ionChange)="loadShift && loadShift(isSomeShift)"></ion-input>
+                        <ion-datetime *ngIf="isDevice == false" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="leaveDataM.fromDate" (ionChange)="loadShift && loadShift(isSomeShift)"></ion-datetime>
+                        <ion-icon item-end name="ios-calendar-outline" style="margin-top: .5em; position: absolute; margin-left: 75% !important;"></ion-icon>
+                    </ion-item>
+                </ion-col>
+                <ion-col no-padding col-6 no-padding>
+                    <ion-item no-box no-padding id="toDateY" (click)="showDateTimePicker && showDateTimePicker('date','toDate')">
+                        <ion-label floating floated required translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.END_DATE </span>
+                        </ion-label>
+                        <ion-input *ngIf="isDevice" disabled [value]="leaveDataM.toDate | amDateFormat:'MMM D, YYYY'" type="text" (ionChange)="loadShift && loadShift(isSomeShift)"></ion-input>
+                        <ion-datetime *ngIf="isDevice == false" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="leaveDataM.toDate" (ionChange)="loadShift && loadShift(isSomeShift)"></ion-datetime>
+                        <ion-icon item-end name="ios-calendar-outline" style="margin-top: .5em; position: absolute; margin-left: 75% !important;"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row no-padding [@peekAnimation] class="shift-time" *ngIf="isSomeShift == 'Y'">
+                <ion-col col-12 no-padding>
+                    <ion-grid no-padding no-margin radio-group [(ngModel)]="leaveDataM.shiftNameCode" (ionChange)="loadTimeShift && loadTimeShift(leaveDataM.shiftNameCode)">
+                        <ion-row no-padding *ngFor="let shiftItem of (availableShiftList||[]);let shiftIdx = index;">
+                            <ion-col no-padding col-12 no-padding>
+                                <ion-item no-lines>
+                                    <ion-radio #shiftNameCode item-left no-margin [value]="shiftItem?.shiftNameCode"></ion-radio>
+                                    <ion-label>
+                                        <span style="font-size: .9em;">
+                                            {{ shiftItem?.shiftNameName +' ('+ (getTime(shiftItem.workIn) | amDateFormat:'H:mm') +' - '+ (getTime(shiftItem.workOut) | amDateFormat:'H:mm')+') '}}
+                                        </span>
+                                    </ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row *ngIf="genShift">
+                            <ion-col class="red">
+                                <div class="item-inner"></div>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row no-padding [@peekAnimation] *ngIf="leaveDataM.shiftNameCode != null">
+                            <ion-col no-padding col-6 no-padding>
+                                <ion-item no-box no-padding id="fromTime">
+                                    <ion-label floating floated translate>
+                                        <span style="font-size: .9em;"> M_LEAVEREQUEST.START_TIME </span>
+                                    </ion-label>
+                                    <ion-input *ngIf="isDevice" (click)="showDateTimePicker && showDateTimePicker('time','fromTime')" disabled [value]="leaveDataM.fromTime | amDateFormat:'HH:mm'" type="text"></ion-input>
+                                    <ion-datetime #fromTime [hourValues]="timeShiftLimit.fromTime.hourValues" *ngIf="isDevice == false" pickerFormat="H:mm a" displayFormat="H:mm a" [(ngModel)]="leaveDataM.fromTime" (ionChange)="validateTimeShift && validateTimeShift('fromTime',leaveDataM.fromTime)"></ion-datetime>
+                                    <ion-icon item-end name="ios-time-outline" style="margin-top: .5em; position: absolute; margin-left: 75% !important;"></ion-icon>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col no-padding col-6 no-padding id="toTime">
+                                <ion-item no-box no-padding>
+                                    <ion-label floating floated translate>
+                                        <span style="font-size: .9em;"> M_LEAVEREQUEST.END_TIME </span>
+                                    </ion-label>
+                                    <ion-input *ngIf="isDevice" (click)="showDateTimePicker && showDateTimePicker('time','toTime')" disabled [value]="leaveDataM.toTime | amDateFormat:'HH:mm'" type="text"></ion-input>
+                                    <ion-datetime #toTime [hourValues]="timeShiftLimit.toTime.hourValues" *ngIf="isDevice == false" pickerFormat="H:mm a" displayFormat="H:mm a" [(ngModel)]="leaveDataM.toTime" (ionChange)="validateTimeShift && validateTimeShift('toTime',leaveDataM.toTime)"></ion-datetime>
+                                    <ion-icon item-end name="ios-time-outline" style="margin-top: .5em; position: absolute; margin-left: 75% !important;"></ion-icon>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-8>
+                    <ion-item no-box no-padding>
+                        <ion-label floating floated translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.TOTAL_LEAVE </span>
+                        </ion-label>
+                        <ion-input type="text" disabled style="background-color: rgb(185, 185, 185);"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row no-padding>
+                <ion-col no-padding col-12>
+                    <input style="display: none;" type="file" accept="*" capture="camera" id="attachmentsInputId" #attachmentsInputId multiple (change)="getAttachments && getAttachments()">
+                    <ion-item no-box no-padding (click)="attachFile && attachFile()" style="height: 5em;">
+                        <ion-label floating floated translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.ATTACHMENT </span>
+                        </ion-label>
+                        <ion-icon item-end name="ios-add-outline"></ion-icon>
+                    </ion-item>
+                    <ion-row class="attach-file" [@peekAnimation] no-padding>
+                        <ion-col no-padding col-12>
+                            <ion-item no-lines no-box *ngFor="let fileItm of (leaveAttachFile||[]);let idx = index" [@peekAnimation] (click)="showImageView && showImageView(fileItm)">
+                                <ion-label>
+                                    <img *ngIf="isFileType(fileItm, 1)" attach-icon src="./assets/img/svg/doc.svg">
+                                    <img *ngIf="isFileType(fileItm, 2)" attach-icon src="./assets/img/svg/pdf.svg">
+                                    <img *ngIf="isFileType(fileItm, 3)" attach-icon src="./assets/img/svg/pic.svg">
+                                    <img *ngIf="!(isFileType(fileItm, 1)||isFileType(fileItm, 2)||isFileType(fileItm, 3))" attach-icon src="./assets/img/svg/otherfile.svg"> {{ getFileName && getFileName(fileItm) }}
+                                </ion-label>
+                                <ion-icon item-end (click)="removeItem && removeItem(fileItm, idx)" name="ios-close-outline"></ion-icon>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <ion-row no-padding>
+                <ion-col no-padding col-12>
+                    <ion-item no-padding id="notice">
+                        <ion-label floating floated translate>
+                            <span style="font-size: .9em;"> M_LEAVEREQUEST.DETAIL </span>
+                        </ion-label>
+                        <ion-textarea #notice type="text" [(ngModel)]="leaveDataM.reason"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row class="button-row" *ngIf="!isViewMode">
+                <ion-col no-padding col-12>
+                    <button class="bg-workforce btn-workforce btn-flat" ion-button block full (click)="check && check()" translate>
+                            <span style="font-size: .9em;" > M_SHIFTCREATE.CONFIRM_YOUR_REQUEST </span>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-scroll>
+</ion-content> -->

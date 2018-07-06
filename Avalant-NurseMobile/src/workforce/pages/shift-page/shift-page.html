@@ -40,12 +40,12 @@
             <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
         </ion-col>
     </ion-row>
-    <ion-card [@peekAnimation] ava-empty-card style="background: none;" *ngIf="!isLoading && (listShift||[]).length == 0" text-center
-        margin-horizontal padding-vertical>
-        <img src="./assets/img/svg/emptydata_blue.svg">
-        <p class="ava-empty-label" hcmtranslate>M_NODATA.NODATA</p>
-    </ion-card>
+
     <ion-grid no-padding class="listDetail" *ngIf="shiftType == 'shift' && !isLoading">
+        <ion-card [@peekAnimation] ava-empty-card style="background: none;" *ngIf="!isLoading && (dataListShift||[]).length == 0" text-center margin-horizontal padding-vertical>
+            <img src="./assets/img/svg/emptydata_blue.svg">
+            <p class="ava-empty-label" hcmtranslate>M_NODATA.NODATA</p>
+        </ion-card>
         <ion-row no-padding *ngFor="let groupList of (dataListShift || [])">
             <ion-col col-12 no-padding style="margin-top: -2.3em">
                 <ion-row padding class="month">
@@ -62,8 +62,8 @@
                                         <ion-col>
                                             <div style="float: right">
                                                 <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
-                                                    <span style="margin-left: .5em" *ngIf="currLang == 'TH'">{{ taskList?.requestShiftDate | amLocale:'th' | amDateFormat:'ddd D' }}</span>
-                                                    <span style="margin-left: .5em" *ngIf="currLang == 'EN'">{{ taskList?.requestShiftDate | amLocale:'en' | amDateFormat:'ddd. D' }}</span>
+                                                <span style="margin-left: .5em" *ngIf="currLang == 'TH'">{{ taskList?.requestShiftDate | amLocale:'th' | amDateFormat:'ddd D' }}</span>
+                                                <span style="margin-left: .5em" *ngIf="currLang == 'EN'">{{ taskList?.requestShiftDate | amLocale:'en' | amDateFormat:'ddd. D' }}</span>
                                             </div>
                                         </ion-col>
                                     </ion-row>
@@ -82,7 +82,7 @@
                                                 </ion-col>
                                                 <ion-col col-7 class="toZone">
                                                     <p>{{ taskList?.toGroupName }}</p>
-                                                    <p>D(07:00) - (15:00)</p>
+                                                    <p>{{ taskList?.shiftNameName }}</p>
                                                 </ion-col>
                                             </ion-row>
                                         </ion-col>
@@ -97,6 +97,10 @@
     </ion-grid>
 
     <ion-grid no-padding class="listDetail" *ngIf="shiftType == 'shiftSwap' && !isLoading">
+        <ion-card [@peekAnimation] ava-empty-card style="background: none;" *ngIf="!isLoading && (dataListShiftSwap||[]).length == 0" text-center margin-horizontal padding-vertical>
+            <img src="./assets/img/svg/emptydata_blue.svg">
+            <p class="ava-empty-label" hcmtranslate>M_NODATA.NODATA</p>
+        </ion-card>
         <ion-row no-padding *ngFor="let groupList of (dataListShiftSwap || [])">
             <ion-col col-12 no-padding style="margin-top: -2.3em">
                 <ion-row padding class="month">
@@ -118,10 +122,11 @@
                                             <ion-row>
                                                 <ion-col class="formZone">
                                                     <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
-                                                    <span style="margin-left: .5em" >{{ getDisplayDate && getDisplayDate(taskList?.mySchedule) }}</span>
+                                                    <span style="margin-left: .5em">{{ getDisplayDate && getDisplayDate(taskList?.mySchedule) }}</span>
                                                     <!-- <span style="margin-left: .5em" *ngIf="currLang == 'EN'">{{ taskList?.mySchedule | amLocale:'en' | amDateFormat:'ddd D' }}</span> -->
                                                     <!-- <span style="margin-left: .5em" *ngIf="currLang == 'TH'">{{ taskList?.mySchedule | amLocale:'th' | amDateFormat:'ddd D' }}</span> -->
-                                                    <p style="margin-top: .5em">{{ taskList?.myScheduleDate }}</p>
+                                                    <p style="margin-top: .5em" *ngIf="taskList?.swapType == 'S'">{{ '( '+taskList?.myScheduleShiftName+' )' }}</p>
+                                                    <p style="margin-top: .5em" *ngIf="taskList?.swapType == 'D'">( OFF )</p>
                                                     <!-- <p text-right *ngIf="taskList.off" style="margin-top: .5em">{{taskList?.off}}</p> -->
                                                 </ion-col>
                                                 <ion-col col-1 class="iconZone">
@@ -130,11 +135,12 @@
                                                 </ion-col>
                                                 <ion-col class="toZone">
                                                     <img src="./assets/img/assignment_icon/calendarpic.svg" style="height: 1em; width: auto; float: left; margin-top: .2em;">
-                                                    <span style="margin-left: .5em" >{{ getDisplayDate && getDisplayDate(taskList?.swapSchedule) }}</span>
+                                                    <span style="margin-left: .5em">{{ getDisplayDate && getDisplayDate(taskList?.swapSchedule) }}</span>
                                                     <!-- <span style="margin-left: .5em" *ngIf="currLang == 'EN'">{{ taskList?.swapSchedule | amLocale:'en' | amDateFormat:'ddd. D' }}</span> -->
                                                     <!-- <span style="margin-left: .5em" *ngIf="currLang == 'TH'">{{ taskList?.swapSchedule | amLocale:'th' | amDateFormat:'ddd D' }}</span> -->
                                                     <!-- <p text-right *ngIf="taskList.off" style="margin-top: .5em">{{taskList?.off}}</p> -->
-                                                    <p style="margin-top: .5em">{{ taskList?.swapScheduleDate }}</p>
+                                                    <p style="margin-top: .5em" *ngIf="taskList?.swapType == 'S'">{{ '( '+taskList?.swapScheduleShiftName+' )' }}</p>
+                                                    <p style="margin-top: .5em" *ngIf="taskList?.swapType == 'D'">( OFF )</p>
                                                 </ion-col>
                                             </ion-row>
                                         </ion-col>

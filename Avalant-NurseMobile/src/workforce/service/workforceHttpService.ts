@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppConstant } from '../../constants/app-constant';
 import { EAFRestApi } from '../../constants/eaf-rest-api';
-import { isDev } from '../../constants/environment';
+import { isDev, isChromeDev } from '../../constants/environment';
 import { HCMRestApi } from '../../constants/hcm-rest-api';
 import { SCMRestApi } from '../../constants/scm-rest-api';
 import { message } from '../../layout-module/components/form-control-base/validate';
@@ -147,7 +147,8 @@ export class WorkforceHttpService {
     }
 
     public getObserveHCM(hcmUserAuthModel: HCMLoginParamsPOST): Observable<any> {
-        return this.httpService.httpPost<any>(HCMRestApi.URL + "/auth/login",
+        // return this.httpService.httpPost<any>(HCMRestApi.URL + "/auth/login",
+        return this.httpService.httpPost<any>(HCMRestApi.URL + "/auth/loginAD",
             {},
             hcmUserAuthModel)
             .do((resp) => {
@@ -165,7 +166,8 @@ export class WorkforceHttpService {
                     }
                 } else {
                     userModel = Object.assign(new UserModel(), resp.verifyRespData || {});
-                    userModel.userStatus = userModel['user_status'];
+                    userModel.userStatus = resp.authen ? 'A' : 'N';
+                    userModel.orgId = resp.organizationId;
                     this.businessUser = userModel;
                 }
             });

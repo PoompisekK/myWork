@@ -3,23 +3,24 @@
 </ion-header>
 <ion-content class="bg-workforce">
     <!-- Session 1 -->
-    <div padding style="padding-top:1em" class="bg-workforce">
+    <!-- <div padding style="padding-top:1em" class="bg-workforce">
         <ion-row>
             <ion-col class="pt-0">
                 <p no-padding class="no-margin text-white f-1-5">{{currentMonth | amLocal:'en' | amDateFormat:'MMMM'}}</p>
             </ion-col>
         </ion-row>
-        <!-- <ion-searchbar class="better-searchbar better-searchbar-wf" (ionInput)="inputSearch.next($event.target.value)" full placeholder="History Search"></ion-searchbar> -->
-    </div>
+        <ion-searchbar class="better-searchbar better-searchbar-wf" (ionInput)="inputSearch.next($event.target.value)" full placeholder="History Search"></ion-searchbar>
+    </div> -->
     <!-- /.Session 1 -->
 
     <!-- Session 2 -->
-    <div style="margin-top: -1.5em;">
-        <ion-list *ngFor="let history of historys" style="margin-top: 2em;">
+    <div *ngFor="let item of (listDataMonth || [])">
+        <h1 padding style="padding-top: 0; padding-bottom: 0">{{ item.date | amLocal:'en' | amDateFormat:'MMMM' }}</h1>
+        <ion-list *ngFor="let history of item.task" style="margin-top: 1em;">
             <div style="margin-left: .1em;">
                 <p class="pl-16 no-margin date-month">{{history?.recorderDate | amLocal:'en' | amDateFormat:'D MMMM' }}</p>
             </div>
-            <div style="margin-left: .3em; margin-right: .3em; margin-top: 1.5em;">
+            <div style="margin-left: .3em; margin-right: .3em; margin-top: .5em;">
                 <ion-card class="checkin-card">
                     <ion-item no-padding>
                         <ion-row>

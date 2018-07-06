@@ -2,7 +2,10 @@
     <ion-grid class="reject-grid-popup">
         <ion-row no-padding>
             <ion-col col-12 no-padding>
-                <p text-center translate>M_APPROVEREJECTMODAL.REJECT_LEAVE_REQUEST</p>
+                <p *ngIf="this.rejectType == 'leave'" text-center hcmtranslate>M_APPROVEREJECTMODAL.REJECT_LEAVE_REQUEST</p>
+                <p *ngIf="this.rejectType == 'shiftSwap'" text-center>{{ 'M_APPROVEREJECTMODAL.POPUP_SHIFTSWAP_REJECT' | hcmtranslate:'Reject Shift Swap Request.' }}</p>
+                <p *ngIf="this.rejectType == 'shift'" text-center>{{ 'M_APPROVEREJECTMODAL.POPUP_SHIFT_REJECT' | hcmtranslate:'Reject Shift Request.' }}</p>
+                <p *ngIf="this.rejectType == 'shiftSwapAcceptant'" text-center>{{ 'M_APPROVEREJECTMODAL.POPUP_SHIFTSWAP_REJECT' | hcmtranslate:'Reject Shift Swap Request.' }}</p>
                 <ion-item no-padding>
                     <!-- <ion-label floating floated>{{ approveRejectModal?.rejectReason || 'Reject Reason *' }}</ion-label> -->
                     <ion-input class="textarea" placeholder="{{textReject}}" type="text" [(ngModel)]="rejectReason"></ion-input>
@@ -25,7 +28,10 @@
         <ion-row no-padding>
             <ion-col col-12 no-padding>
                 <p text-center class="titel" translate>M_APPROVEREJECTMODAL.CONFIRM_TO_APPROVE</p>
-                <p text-center class="text" translate>M_APPROVEREJECTMODAL.THIS_LEAVE_WILL_BE_APPROVE</p>
+                <p *ngIf="this.rejectType == 'leave'" text-center class="text" hcmtranslate>M_APPROVEREJECTMODAL.THIS_LEAVE_WILL_BE_APPROVE</p>
+                <p *ngIf="this.rejectType == 'shiftSwap'" text-center class="text">{{ 'M_APPROVEREJECTMODAL.POPUP_SHIFTSWAP_APPROVE' | hcmtranslate:'This shift swap will be approve.' }} </p>
+                <p *ngIf="this.rejectType == 'shift'" text-center class="text">{{ 'M_APPROVEREJECTMODAL.POPUP_SHIFT_APPROVE' | hcmtranslate:'This shift will be approve.' }} </p>
+                <p *ngIf="this.rejectType == 'shiftSwapAcceptant'" text-center class="text">{{ 'M_APPROVEREJECTMODAL.POPUP_SHIFTSWAPACCEPT_APPROVE' | hcmtranslate:'This shift swap will be accept.' }} </p>
             </ion-col>
         </ion-row>
     </ion-grid>

@@ -25,6 +25,8 @@ import { MeetingViewEventPage } from '../meeting-page/meeting-event-pages/meetin
 import { SelectOptionsListPopoverPage } from '../../components/select-popover/select-option.popover';
 import { LeaveCreateDetailPage } from '../leave-page/leave-createDetail-pages/leave-createDetail-page';
 import { ShiftCreatePage } from '../shift-page/shift-create-page/shift-create-page';
+import { ShiftSwapCreatePage } from '../shift-page/shift-swap-create-page/shift-swap-create-page';
+import { HCMMicroFlowService } from '../../../services/userprofile/hcm-microflow.service';
 
 @Component({
     selector: 'calendar-page',
@@ -93,62 +95,58 @@ export class CalendarPage {
         private appLoadingService: AppLoadingService,
         private appServices: AppServices,
         private popoverCtrl: PopoverController,
-        private zone: NgZone
+        private zone: NgZone,
+        private hcmMicroFlowService: HCMMicroFlowService
     ) {
         console.log("CalendarPage constructor seqIndx : " + (this.seqIndx++));
     }
 
     public ionViewDidEnter() {
         console.log("CalendarPage ionViewDidEnter seqIndx : " + (this.seqIndx++));
-        this.getEventsMonth();
-
-        setTimeout(() => {
-            this.eventSource = [
-                {
-                    title:"Test 01",
-                    status: "Waiting for Approve",
-                    startTime: new Date(moment('080000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('150000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    color: 'black',
-                },
-                {
-                    title:"Test 02",
-                    status: "Approved",
-                    startTime: new Date(moment('150000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('210000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    color: 'black',
-                },
-                {
-                    title:"Test 03",
-                    status: "Waiting for Approve",
-                    startTime: new Date(moment('080000', "HHmmss").add(1, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('160000', "HHmmss").add(1, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    color: 'black',
-                },
-                {
-                    title:"Test 04",
-                    status: "Waiting for Approve",
-                    startTime: new Date(moment('080000', "HHmmss").add(2, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('160000', "HHmmss").add(2, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    color: 'black',
-                },
-                {
-                    title:"Test 04",
-                    status: "Waiting for Approve",
-                    startTime: new Date(moment('150000', "HHmmss").add(0, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    endTime: new Date(moment('210000', "HHmmss").add(0, 'days').format("YYYY/MM/DD H:mm:ss")),
-                    color: 'black',
-                },
-            ];
-            console.log("eventSource : ", this.eventSource);
-        }, 3000);
+        // this.getEventsMonth();
+        // this.getListDataMonth(moment(new Date()).format('M'), moment(new Date()).format('YYYY'));        
+        // setTimeout(() => {
+        //     this.eventSource = [
+        //         {
+        //             title: "Test 01",
+        //             status: "Waiting for Approve",
+        //             startTime: new Date(moment('080000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
+        //             endTime: new Date(moment('150000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss"))
+        //         },
+        //         {
+        //             title: "Test 02",
+        //             status: "Approved",
+        //             startTime: new Date(moment('150000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss")),
+        //             endTime: new Date(moment('210000', "HHmmss").add(-2, 'days').format("YYYY/MM/DD H:mm:ss"))
+        //         },
+        //         {
+        //             title: "Test 03",
+        //             status: "Waiting for Approve",
+        //             startTime: new Date(moment('080000', "HHmmss").add(1, 'days').format("YYYY/MM/DD H:mm:ss")),
+        //             endTime: new Date(moment('160000', "HHmmss").add(1, 'days').format("YYYY/MM/DD H:mm:ss"))
+        //         },
+        //         {
+        //             title: "Test 04",
+        //             status: "Waiting for Approve",
+        //             startTime: new Date(moment('080000', "HHmmss").add(2, 'days').format("YYYY/MM/DD H:mm:ss")),
+        //             endTime: new Date(moment('160000', "HHmmss").add(2, 'days').format("YYYY/MM/DD H:mm:ss"))
+        //         },
+        //         {
+        //             title: "Test 04",
+        //             status: "Waiting for Approve",
+        //             startTime: new Date(moment('150000', "HHmmss").add(0, 'days').format("YYYY/MM/DD H:mm:ss")),
+        //             endTime: new Date(moment('210000', "HHmmss").add(0, 'days').format("YYYY/MM/DD H:mm:ss"))
+        //         },
+        //     ];
+        //     console.log("eventSource : ", this.eventSource);
+        // }, 3000);        
     }
 
     private doRefresh(refresher) {
         this.appLoadingService.showLoading();
-        this.getEventsMonth(() => {
-            refresher.complete();
-        });
+        // this.getEventsMonth(() => {
+        //     refresher.complete();
+        // });
     }
     private calendarDayAddTask() {
         console.log("CalendarPage calendarDayAddTask seqIndx : " + (this.seqIndx++));
@@ -166,7 +164,7 @@ export class CalendarPage {
             switch (resp) {
                 case '1': this.createShift();
                     break;
-                case '2': this.createLeave();
+                case '2': this.createShiftSwap();
                     break;
                 default:
                     console.warn("no anything to do");
@@ -180,53 +178,59 @@ export class CalendarPage {
 
     private firstLoad = true;
     private initSlideDayView() {
+        this.groupListData(this.viewingMonth);
+        console.log(this.viewingMonth);
         console.log("CalendarPage initSlideDayView seqIndx : " + (this.seqIndx++));
         this.daySlides = [{
             "viewingMonth": moment(this.viewingMonth).add(-1, "days").toDate(),
             "groupCalendarList": [],
         }, {
             "viewingMonth": moment(this.viewingMonth).toDate(),
-            "groupCalendarList": this.groupCalendarList,
+            "groupCalendarList": this.dataShowList,
         }, {
             "viewingMonth": moment(this.viewingMonth).add(1, "days").toDate(),
             "groupCalendarList": [],
         }];
-        this.toGroupDate(moment(this.viewingMonth).add(-1, "days").toDate());
-        this.toGroupDate(moment(this.viewingMonth).add(1, "days").toDate());
-
+        // this.toGroupDate(moment(this.viewingMonth).add(-1, "days").toDate());
+        // this.toGroupDate(moment(this.viewingMonth).add(1, "days").toDate());
         this.firstLoad = true;
     }
     private loadPrev() {
         console.log("CalendarPage loadPrev seqIndx : " + (this.seqIndx++));
         let newIndex = this.slidesDayView.getActiveIndex();
-        let firstDay = this.daySlides && this.daySlides[0].viewingMonth;
-        let prevDate = moment(firstDay).add(-1, "days").toDate();
-        this.daySlides.unshift({
-            "keyDate": moment(prevDate).format("YYYY-MM-DD"),
-            "viewingMonth": prevDate,
-            "groupCalendarList": [],
-        });
-        this.toGroupDate(prevDate, firstDay);
-        this.daySlides.pop();
+        this.viewingMonth = this.daySlides && this.daySlides[0].viewingMonth;
+        this.viewTitle = moment(this.viewingMonth).format('MMMM YYYY');
+        this.initSlideDayView();
+        // let prevDate = moment(firstDay).add(-1, "days").toDate();
+        // this.daySlides.unshift({
+        //     "keyDate": moment(prevDate).format("YYYY-MM-DD"),
+        //     "viewingMonth": prevDate,
+        //     "groupCalendarList": [],
+        // });
+        // this.toGroupDate(prevDate, firstDay);
+        // this.daySlides.pop();
         this.slidesDayView.slideTo(newIndex + 1, 0, false);// Workaround to make it work: breaks the animation
     }
     private loadNext() {
         console.log("CalendarPage loadNext seqIndx : " + (this.seqIndx++));
-        if (this.firstLoad) { // Since the initial slide is 1, prevent the first movement to modify the slides
-            this.firstLoad = false;
-            return;
-        }
+        // if (this.firstLoad) {
+        //     this.firstLoad = false;
+        //     return;
+        // }
         let newIndex = this.slidesDayView.getActiveIndex();
-        let indx = (this.daySlides || []).length > 0 ? (this.daySlides || []).length - 1 : (this.daySlides || []).length;
-        let lastDay = this.daySlides[indx].viewingMonth;
-        let nextDate = moment(lastDay).add(1, "days").toDate();
-        this.daySlides.push({
-            "keyDate": moment(nextDate).format("YYYY-MM-DD"),
-            "viewingMonth": nextDate,
-            "groupCalendarList": [],
-        });
-        this.toGroupDate(nextDate, lastDay);
-        this.daySlides.shift();
+        this.viewingMonth = this.daySlides && this.daySlides[2].viewingMonth;
+        this.viewTitle = moment(this.viewingMonth).format('MMMM YYYY');
+        this.initSlideDayView();
+        // let indx = (this.daySlides || []).length > 0 ? (this.daySlides || []).length - 1 : (this.daySlides || []).length;
+        // let lastDay = this.daySlides[indx].viewingMonth;
+        // let nextDate = moment(lastDay).add(1, "days").toDate();
+        // this.daySlides.push({
+        //     "keyDate": moment(nextDate).format("YYYY-MM-DD"),
+        //     "viewingMonth": nextDate,
+        //     "groupCalendarList": [],
+        // });
+        // this.toGroupDate(nextDate, lastDay);
+        // this.daySlides.shift();
         this.slidesDayView.slideTo(newIndex - 1, 0, false);// Workaround to make it work: breaks the animation
     }
 
@@ -310,8 +314,12 @@ export class CalendarPage {
         this.weekActive = this.KEY_WEEK == this.calendarCfg.mode;
         this.dayActive = this.KEY_DAY == this.calendarCfg.mode;
 
+        if (this.calendarCfg.mode == this.KEY_DAY) {
+            this.viewingMonth = moment(this.viewingMonth).add(-1, "days").toDate();
+            this.initSlideDayView();
+        }
         // this.focusDate = this.calendarCfg.currentDate;		
-        this.loadCalendarView(this.calendarCfg.mode);
+        // this.loadCalendarView(this.calendarCfg.mode);
         // this.dayActive && this.initSlideDayView();		
     }
 
@@ -352,41 +360,43 @@ export class CalendarPage {
     private selectDateTime: Date = null;
 
     private onTimeSelected(ev) {
-        console.log('onTimeSelected : ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-        this.focusDate = ev.selectedTime;
-        if (this.selectDateTime != ev.selectedTime) {
-            this.selectDateTime = ev.selectedTime;
-            this.viewingMonth = this.selectDateTime;
-            if (this.monthActive) {
-                console.log("this.monthActive :", this.monthActive);
-                const selectedDate = moment(ev.selectedTime).format("YYYY-MM-DD");
-                this.calendarService.getCalendarDay(selectedDate).toPromise()
-                    .then((resp) => {
-                        console.log("getCalendarDay :", resp);
-                        const _calendars = this.assignmentService.collapsedToGroup(resp);
-                        this.groupCalendarList = _calendars;
-                        this.isLoading = false;
-                        console.log("groupCalendarList :", this.groupCalendarList);
-                    });
-            } else {
-                console.log("this.weekActive :", !this.monthActive);
-            }
-        }
+        this.groupListData(ev.selectedTime);
+        this.viewingMonth = ev.selectedTime;
+        console.log('viewingMonth : ', this.viewingMonth);
+        // console.log('onTimeSelected : ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+        // this.focusDate = ev.selectedTime;
+        // if (this.selectDateTime != ev.selectedTime) {
+        //     this.selectDateTime = ev.selectedTime;
+        //     this.viewingMonth = this.selectDateTime;
+        //     if (this.monthActive) {
+        //         console.log("this.monthActive :", this.monthActive);
+        //         const selectedDate = moment(ev.selectedTime).format("YYYY-MM-DD");
+        //         this.calendarService.getCalendarDay(selectedDate).toPromise()
+        //             .then((resp) => {
+        //                 console.log("getCalendarDay :", resp);
+        //                 const _calendars = this.assignmentService.collapsedToGroup(resp);
+        //                 this.groupCalendarList = _calendars;
+        //                 this.isLoading = false;
+        //                 console.log("groupCalendarList :", this.groupCalendarList);
+        //             });
+        //     } else {
+        //         console.log("this.weekActive :", !this.monthActive);
+        //     }
+        // }
     }
 
-    private getEventsMonth(cb?: () => void): void {
-        console.log("CalendarPage getEventsMonth seqIndx : " + (this.seqIndx++));
-        this.viewingMonth = this.viewingMonth || new Date();
-        this.getCalendar(this.firstDayMonth(this.viewingMonth)).then((_events) => {
-            console.log("this.getCalendar _events: " , _events);
-            this.eventSource = _events.events;
-            this.groupCalendarList = _events.groupCalendars;
-            this.appLoadingService.hideLoading().then(() => {
-                this.isLoading = false;
-                cb && cb();
-            });
-        });
-    }
+    // private getEventsMonth(cb?: () => void): void {
+    //     console.log("CalendarPage getEventsMonth seqIndx : " + (this.seqIndx++));
+    //     this.viewingMonth = this.viewingMonth || new Date();
+    //     this.getCalendar(this.firstDayMonth(this.viewingMonth)).then((_events) => {
+    //         this.eventSource = _events.events;
+    //         this.groupCalendarList = _events.groupCalendars;
+    //         this.appLoadingService.hideLoading().then(() => {
+    //             this.isLoading = false;
+    //             cb && cb();
+    //         });
+    //     });
+    // }
 
     private firstDayMonth(ev: Date): Date {
         let _ev = new Date(ev);
@@ -406,7 +416,17 @@ export class CalendarPage {
     }
 
     private onViewTitleChanged(title) {
+        this.appLoadingService.showLoading();
         this.viewTitle = title;
+        console.log(this.viewingMonth);
+        if (this.calendarCfg.mode == this.KEY_MONTH) {
+            let date = moment(title || '', ["MMM YYYY", "YYYY/MM/DD"]).format('YYYY-MM-DD');
+            this.getListDataMonth(moment(date || new Date()).format('M'), moment(date || new Date()).format('YYYY'));
+        }
+        if (this.calendarCfg.mode == this.KEY_WEEK) {
+            this.appLoadingService.hideLoading();
+        }
+
     }
 
     private onEventSelected(event) {
@@ -433,8 +453,8 @@ export class CalendarPage {
         this.navCtrl.push(ShiftCreatePage, { shiftType: 'shift' });
     }
 
-    private createLeave() {
-        this.navCtrl.push(LeaveCreateDetailPage);
+    private createShiftSwap() {
+        this.navCtrl.push(ShiftSwapCreatePage, { shiftType: 'shiftSwap' });
     }
 
     private editEvent(event: EventModel) {
@@ -460,4 +480,64 @@ export class CalendarPage {
         }
         return status;
     }
+
+    //----------------- NEW -------------------
+    private dataShowList: any;
+    private dataListMonth = [];
+    private getListDataMonth(_month, _year) {
+        this.eventSource = [];
+        this.hcmMicroFlowService.getCalendar(_month, _year).subscribe((resp) => {
+            this.appLoadingService.hideLoading();
+            this.isLoading = false;
+            if (resp.responseObjectsMap) {
+                (resp.responseObjectsMap.my_calendar_list || []).forEach(element => {
+                    let date = moment(element.as_date || '', ["DD/MM/YYYY", "YYYY/MM/DD"]).format('YYYY-MM-DD');
+                    if (element.day_status == 'D') {
+                        this.eventSource.push({
+                            title: element.day_status,
+                            date: date,
+                            startTime: new Date(moment(date + ' 08:00:00').format("YYYY/MM/DD H:mm:ss")),
+                            endTime: new Date(moment(date + ' 15:00:00').format("YYYY/MM/DD H:mm:ss"))
+                        });
+                    }
+                    if (element.day_status == 'E') {
+                        this.eventSource.push({
+                            title: element.day_status,
+                            date: date,
+                            startTime: new Date(moment(date + ' 15:00:00').format("YYYY/MM/DD H:mm:ss")),
+                            endTime: new Date(moment(date + ' 23:00:00').format("YYYY/MM/DD H:mm:ss"))
+                        });
+                    }
+                    if (element.day_status == 'N') {
+                        this.eventSource.push({
+                            title: element.day_status,
+                            date: date,
+                            startTime: new Date(moment(date + ' 23:00:00').format("YYYY/MM/DD H:mm:ss")),
+                            endTime: new Date(moment(date + ' 08:00:00').add(1, 'day').format("YYYY/MM/DD H:mm:ss"))
+                        });
+                    }
+                    if (element.day_status == 'Day Off') {
+                        this.eventSource.push({
+                            title: element.day_status,
+                            date: date,
+                            startTime: new Date(moment(date + ' 08:00:00').format("YYYY/MM/DD H:mm:ss")),
+                            endTime: new Date(moment(date + ' 17:00:00').format("YYYY/MM/DD H:mm:ss"))
+                        });
+                    }
+                });
+                console.log('data by month : ', this.eventSource);
+            }
+        });
+    }
+
+    private groupListData(_date) {
+        console.log(_date);
+        let dataList = this.eventSource.filter(mItm => moment(mItm.date).format('YYYY-MM-DD') == moment(_date).format('YYYY-MM-DD'));
+        this.dataShowList = {
+            "date": _date,
+            "task": dataList
+        }
+        console.log('dataShowList : ', this.dataShowList);
+    }
+    
 }

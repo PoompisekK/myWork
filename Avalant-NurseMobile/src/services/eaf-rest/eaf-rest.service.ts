@@ -205,7 +205,7 @@ export class EAFRestService {
     return new Observable<T[]>((subscriber) => {
 
       return this.renewSession(() => {
-        let observable: Observable<T[]> = this.httpService.httpGetObservable<T[]>(`${EAFRestApi.URL_ENTITY}/${entityId}/search`, parameters,
+        let observable: Observable<any> = this.httpService.httpGetObservable<T[]>(`${EAFRestApi.URL_ENTITY}/${entityId}/search`, parameters,
           this.makeAuthHeader(this.eafSession))
           .map((response: Response) => {
             // console.debug(`Mapping for "${entityId}"`);
@@ -432,7 +432,7 @@ export class EAFRestService {
       }
       return Observable.create((subscriber: Observer<T[]>) => {
         return this.renewSession(() => {
-          let observable: Observable<T[]> = this.httpService.httpGet(url, options.params, this.makeAuthHeader(this.eafSession))
+          let observable: Observable<any> = this.httpService.httpGet(url, options.params, this.makeAuthHeader(this.eafSession))
             .do((data) => {
               // console.log('HTTP Get :', data)
             })
@@ -454,7 +454,7 @@ export class EAFRestService {
     } else if (method.toLowerCase() === 'post') {
       return Observable.create((subscriber: Observer<T[]>) => {
         return this.renewSession(() => {
-          let observable: Observable<T[]> = this.httpService.httpPost(url, options.params, options.body, RequestContentType.APPLICATION_JSON, this.makeAuthHeader(this.eafSession))
+          let observable: Observable<any> = this.httpService.httpPost(url, options.params, options.body, RequestContentType.APPLICATION_JSON, this.makeAuthHeader(this.eafSession))
             .do((data) => {
               // console.log('HTTP Post :', data)
             }) // eyeball results in the console
@@ -612,7 +612,7 @@ export class EAFRestService {
       });
     } else if (method.toLowerCase() === 'post') {
       return Observable.create((subscriber: Observer<T[]>) => {
-        let observable: Observable<T[]> = this.httpService.httpPost(url, options.params, options.body, RequestContentType.APPLICATION_JSON, this.makeAuthHeader(this.eafSession))
+        let observable: Observable<any> = this.httpService.httpPost(url, options.params, options.body, RequestContentType.APPLICATION_JSON, this.makeAuthHeader(this.eafSession))
           .do((data) => {
             // console.log('HTTP Post :', data)
           }) // eyeball results in the console

@@ -78,21 +78,23 @@ workforce-home {
         }
     }
     ion-grid.CheckInTime {
-        background-color: #273E6A;
+        background-color: white;
+        height: 15%;
         font-family: 'RobotoRegular', 'Prompt';
         >ion-row {
             text-align: center;
+            margin-top: -.4em;
             >ion-col {
-                color: white;
+                color: #273E6A;
                 p {
-                    font-size: 1.2em;
+                    font-size: 1em;
                     margin-bottom: -1em;
                 }
                 .time {
-                    font-size: 4em;
+                    font-size: 2.7em;
                 }
                 .time-am-pm {
-                    padding-left: .25em;
+                    padding-left: .2em;
                     position: absolute;
                     text-transform: uppercase;
                     top: 1em;

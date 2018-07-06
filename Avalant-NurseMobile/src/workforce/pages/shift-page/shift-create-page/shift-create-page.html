@@ -18,17 +18,17 @@
                             <ion-label floating floated required hcmtranslate>M_SHIFTCREATE.SHIFTWORKIN</ion-label>
                             <ion-input disabled style="margin-top: -.5em" type="text" class="textShiftWork" [(ngModel)]="myTeamGroup"></ion-input>
                         </ion-item>
-                        <ion-item no-box no-padding>
+                        <ion-item no-box no-padding id="requestWorkIn">
                             <ion-label floating floated required hcmtranslate>M_SHIFTCREATE.REQUESTTOWORKIN</ion-label>
                             <ion-select [(ngModel)]="createModel.requestTowork" interface="popover">
                                 <ion-option *ngFor="let select of (selectTeamGroup||[])" [value]="select.teamGroupNo">{{ select?.teamGroupName }}</ion-option>
                             </ion-select>
                             <ion-icon item-end name="ios-search-outline" style="margin-top: 1.5em;"></ion-icon>
                         </ion-item>
-                        <ion-item no-box no-padding>
+                        <ion-item no-box no-padding id="effectiveDate">
                             <ion-label floating floated required hcmtranslate>M_SHIFTCREATE.EFFECTIVEDATE</ion-label>
                             <ion-input disabled *ngIf="isDevice" (click)="showDateTimePicker('date')" [value]="dateTimeShift | amDateFormat:'MMM D, YYYY'" type="text"></ion-input>
-                            <ion-datetime *ngIf="isDevice == false" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="dateTimeShift" (ngModelChange)="getWorkShift(dateTimeShift)"></ion-datetime>
+                            <ion-datetime *ngIf="!isDevice" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="dateTimeShift" (ngModelChange)="getWorkShift(dateTimeShift)"></ion-datetime>
                             <ion-icon item-end name="ios-calendar-outline" style="margin-top: 1.5em;"></ion-icon>
                         </ion-item>
                         <ion-item no-box no-padding></ion-item>
@@ -45,9 +45,10 @@
                                     <span> {{shift?.shiftNameName}} </span>
                                 </ion-label>
                                 <ion-radio item-left no-margin [value]="shift?.shiftNameCode"></ion-radio>
-                            </ion-item>
+                            </ion-item>                            
                         </ion-col>
-                    </ion-row>
+                    </ion-row>   
+                    <ion-item no-box no-padding id="shift"><p *ngIf="(listWorkShift || []).length <= 0">No Data</p></ion-item>                 
                 </ion-col>
             </ion-row>
             <ion-row style="margin-top: -.5em;">
@@ -152,6 +153,6 @@
             </ion-row>
         </ion-grid>
         <!-- <button ion-button full class="bg-workforce" *ngIf="!isLoading" (click)="rejectThisTask && rejectThisTask(leaveItm,'create')" hcmtranslate>M_SHIFTCREATE.CONFIRM_YOUR_REQUEST</button> -->
-        <button ion-button full class="bg-workforce" *ngIf="!isLoading" (click)="commitCreateShift && commitCreateShift()">{{'M_SHIFTCREATE.CONFIRM_YOUR_REQUEST' | hcmtranslate}}</button>
+        <button ion-button full class="bg-workforce" *ngIf="!isLoading" (click)="checkCreate && checkCreate()">{{'M_SHIFTCREATE.CONFIRM_YOUR_REQUEST' | hcmtranslate}}</button>
     </ion-scroll>
 </ion-content>

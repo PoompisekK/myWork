@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ModalOptions, NavController, NavParams } from 'ionic-angular';
+import { ModalController, ModalOptions, NavController, NavParams, ViewController } from 'ionic-angular';
 import * as moment from 'moment';
 
 import { AnimateCss } from '../../../../animations/animate-store';
@@ -10,6 +10,11 @@ import { AppAlertService } from '../../../service/appAlertService';
 import { LeaveService } from '../../../service/leaveService';
 import { ApproveRejectModalPage } from '../../approve-tabs-page/approve-reject-modal/approve-reject-modal';
 import { HCMApprovalRestService } from '../../../../services/userprofile/hcm-approval.service';
+import { ApproveTabPage } from '../../approve-tabs-page/approve-tabs-page';
+import { AppState } from '../../../../app/app.state';
+import { HCMShiftRestService } from '../../../../services/userprofile/hcm-shift.service';
+import { AppServices } from '../../../../services/app-services';
+import { AppConstant } from '../../../../constants/app-constant';
 
 @Component({
     selector: 'leave-detail-page',
@@ -24,6 +29,7 @@ export class LeaveDetailPage implements OnInit {
     private LEAVE_TYPE = ContsVariables.leaveConst.leaveType;
     private isOtherLeaveType = false;
     private isApprover: boolean = false;
+    private isNonProduct: boolean = false;
     private fullDayCheck: string = "";
     private fromDate: string = "";
     private toDate: string = "";
@@ -40,9 +46,15 @@ export class LeaveDetailPage implements OnInit {
         private appAlertService: AppAlertService,
         private modalCtrl: ModalController,
         private leaveService: LeaveService,
-        private hcmApprovalRestService: HCMApprovalRestService
+        private hcmApprovalRestService: HCMApprovalRestService,
+        private appState: AppState,
+        private shiftService: HCMShiftRestService,
+        private viewCtrl: ViewController,
+        private appServices: AppServices
     ) {
-
+        this.appServices.subscribe(AppConstant.EVENTS_SUBSCRIBE.REJECT_LEAVE, () => {
+            this.viewCtrl && this.viewCtrl.dismiss();
+        });
     }
     public selectedRecommendOfficerList: any[] = [];
     private selectedAcknowledgeList: any[] = [];
@@ -54,9 +66,11 @@ export class LeaveDetailPage implements OnInit {
             this.dataShift = this.navParams.get("dataShift");
             this.dataApprove = this.navParams.get("dataApprove");
             this.isApprover = this.navParams.get("isApprover");
+            this.isNonProduct = this.navParams.get("isNonProduct");
         } else if (this.select_type == 'leave') {
             this.leave = this.navParams.get("leaveObject");
             this.isApprover = this.navParams.get("isApprover");
+            this.isNonProduct = this.navParams.get("isNonProduct");
             console.log("%cleave :" + JSON.stringify(this.leave, null, 2), "background:#FEFBE6;color:#735C2E");
             this.selectedAcknowledgeList = this.leave.acknowledge;
             let matchIdx1 = this.isMatch(this.leave.leaveTypeNo, this.LEAVE_TYPE.sick);
@@ -91,7 +105,11 @@ export class LeaveDetailPage implements OnInit {
     }
 
     private timeFormat(_tm) {
-        return moment(_tm).format("HH:mm");
+        if(_tm && _tm.length != 0){
+            return moment(_tm).format("HH:mm");
+        }else{
+            return "";
+        }
     }
 
     private getDisplay(_inp: string) {
@@ -122,14 +140,20 @@ export class LeaveDetailPage implements OnInit {
 
     private getStatus(objItm: any, index: number): boolean {
         // return (status || "").toLowerCase() == (compareWith || "").toLowerCase();
-        if (index == 1) {
-            return this.lowerCaseCompare(objItm.status, 'approved');
-        } else if (index == 2) {
-            return this.lowerCaseCompare(objItm.status, 'waiting for approve', true);
-        } else if (index == 3) {
-            return this.lowerCaseCompare(objItm.status, 'rejected');
-        } else {
-            return false;
+        if(objItm){
+            if (index == 1) {
+                return this.lowerCaseCompare(objItm.status, 'approved');
+            } else if (index == 2) {
+                return this.lowerCaseCompare(objItm.status, 'waiting for approve', true);
+            } else if (index == 3) {
+                return this.lowerCaseCompare(objItm.status, 'rejected');
+            } else if (index == 4) {
+                return this.lowerCaseCompare(objItm.status, 'Waiting For Approval');
+            } else if (index == 5) {
+                return this.lowerCaseCompare(objItm.status, 'Waiting For Accept');
+            } else {
+                return false;
+            }
         }
     }
 
@@ -213,17 +237,7 @@ export class LeaveDetailPage implements OnInit {
                     });
                 });
             });
-    }
-
-    private rejectThisTask(_taskItemDetail: any) {
-        const modalOpt: ModalOptions = {};
-        modalOpt.cssClass = "reject-modal";
-        modalOpt.enableBackdropDismiss = false;
-        modalOpt.showBackdrop = false;
-
-        const approveRejectModal = this.modalCtrl.create(ApproveRejectModalPage, { "taskItemDetail": _taskItemDetail }, modalOpt);
-        approveRejectModal.present();
-    }
+    }    
 
     private isFileType(fileItm: any, index: number): boolean {
         let fileIx = (fileItm.name || fileItm.fileName || fileItm.documentName);
@@ -247,7 +261,6 @@ export class LeaveDetailPage implements OnInit {
     }
 
     //-----------Shift--------------
-    private shiftStatus = 'Waiting For Approve';
     private shiftType: string;
     private dataShift: any;
     private checkTypeShift() {
@@ -273,4 +286,88 @@ export class LeaveDetailPage implements OnInit {
             this.userApprove = data;
         });
     }
+
+    public getDisplayDate(_inDateStr: string): string {
+        let dateObj = moment(_inDateStr || '', ["DD/MM/YYYY", "YYYY/MM/DD"]);
+        if (dateObj.isValid()) {
+            return dateObj.format("MMM D,YYYY");
+        } else {
+            null;
+        }
+    }
+
+    //----------------------- approve / reject --------------------------
+    private rejectThisTask(_type) {
+        let _taskItemDetail = this.dataShift;
+        this.appLoadingService.showLoading();
+        if (this.select_type == 'shiftSwapAcceptant') {
+            let dataPositionBoxCode: any;
+            this.shiftService.getPositionBoxCode({ EMPLOYEE_CODE: _taskItemDetail.employeeCode }).subscribe(data => {
+                this.appLoadingService.hideLoading();
+                console.log("model position box code :", data);
+                data.forEach(element => {
+                    dataPositionBoxCode = element;
+                });
+                console.log('_taskItemDetail : ', _taskItemDetail);
+                this.modelShiftSwapAcceptant.EMPLOYEE_CODE = _taskItemDetail.employeeCode;
+                this.modelShiftSwapAcceptant.SHIFT_NAME_CODE = _taskItemDetail.shiftNameCode;
+                this.modelShiftSwapAcceptant.SWAP_EMPLOYEE_CODE = _taskItemDetail.swapEmployeeCode;
+                this.modelShiftSwapAcceptant.SWAP_NO = _taskItemDetail.swapNo;
+                this.modelShiftSwapAcceptant.SWAP_TYPE = _taskItemDetail.swapType;
+                this.modelShiftSwapAcceptant.POSITION_BOX_CODE = dataPositionBoxCode.positionBoxCode;
+                console.log('MODEL SHIFT SWAP APPROVE : ', this.modelShiftSwapAcceptant);
+                if (_type == 'approve') {
+                    this.modelShiftSwapAcceptant.STATUS = 'Waiting For Approval';
+                } else if (_type == 'reject') {
+                    this.modelShiftSwapAcceptant.STATUS = 'Rejected';
+                }
+                console.log('DATA APPROVE / REJECT : ', this.modelShiftSwapAcceptant);
+                const modalOpt: ModalOptions = {};
+                modalOpt.cssClass = "reject-modal";
+                modalOpt.enableBackdropDismiss = false;
+                modalOpt.showBackdrop = false;
+                const approveRejectModal = this.modalCtrl.create(ApproveRejectModalPage, {
+                    select: _type,
+                    taskItemDetail: this.modelShiftSwapAcceptant,
+                    rejectType: this.select_type,
+
+                }, modalOpt);
+                approveRejectModal.present();
+            });
+        } else if (this.select_type == 'shiftSwap' || this.select_type == 'shift' || this.select_type == 'leave') {
+            this.appLoadingService.hideLoading();
+            let addtionalParam = {
+                approveFlowNo: _taskItemDetail.approveFlowNo,
+                orderNo: _taskItemDetail.orderNo,
+                organizationId: this.appState.businessUser.orgId,
+                userName: this.appState.businessUser.scmUserName
+            };
+            console.log('Data Approve : ', addtionalParam);
+            const modalOpt: ModalOptions = {};
+            modalOpt.cssClass = "reject-modal";
+            modalOpt.enableBackdropDismiss = false;
+            modalOpt.showBackdrop = false;
+            const approveRejectModal = this.modalCtrl.create(ApproveRejectModalPage, {
+                select: _type,
+                taskItemDetail: addtionalParam,
+                rejectType: this.select_type,
+
+            }, modalOpt);
+            approveRejectModal.present();
+        } else {
+            this.appLoadingService.hideLoading();
+            console.log('> > > Not Approve < < <');
+        }
+    }
+    private modelShiftSwapAcceptant = {
+        EMPLOYEE_CODE: "",
+        ORGANIZE_ID: "",
+        POSITION_BOX_CODE: "",
+        SHIFT_NAME_CODE: "",
+        STATUS: "",
+        SWAP_EMPLOYEE_CODE: "",
+        SWAP_NO: "",
+        SWAP_TYPE: ""
+    };
+    //-----------------------------------------------------------------
 }

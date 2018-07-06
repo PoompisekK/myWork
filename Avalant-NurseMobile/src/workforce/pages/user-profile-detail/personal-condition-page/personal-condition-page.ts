@@ -19,7 +19,6 @@ export class PersonalConditionPage {
 
     private isLoading: boolean = true;
     private condition: any;
-    private startEndDate: any;
 
     constructor(
         private navCtrl: NavController,
@@ -34,14 +33,10 @@ export class PersonalConditionPage {
         this.hcmEAFRestService.getModule(EmployeeConditionModel).subscribe((resp) => {
         console.log("EmployeeConditionModel: ", resp);
             if (resp != null) {                
-                this.condition = resp.conditionNoDesc;
-                let effDate = moment(resp.effectiveDate).format('DD/MM/YYYY');
-                let endDate = moment(resp.endDate).format('DD/MM/YYYY');
-                this.startEndDate = effDate + " - " + endDate;
+                this.condition = resp;
                 this.isLoading = false;
             } else {
                 this.condition = "";
-                this.startEndDate = "";
                 this.isLoading = false;
             }
 

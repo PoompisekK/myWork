@@ -12,6 +12,7 @@ import { HttpRequestWFService } from '../../workforce/service/httpRequestWFServi
 import { WorkforceHttpService } from '../../workforce/service/workforceHttpService';
 import { URLSearchParams } from '@angular/http';
 import { HCMRestApi } from '../../constants/hcm-rest-api';
+import { EmployeeResourceViewModel } from '../../model/hcm-user/hcm-employeeResourceApprove.model';
 
 @Injectable()
 export class HCMApprovalRestService {
@@ -45,6 +46,10 @@ export class HCMApprovalRestService {
     public getShiftSwapApprove(doRefresh?: boolean): Observable<any> {
         return this.hcmEAFRestService.getModule(EmployeeShiftSwapApproveViewModel);
     }
+
+    public getResource(doRefresh?: boolean): Observable<any> {
+        return this.hcmEAFRestService.getModule(EmployeeResourceViewModel);
+    }   
 
     public getApproveStep(data?: { [key: string]: any }): Observable<any> {
         data = data ? data : {};        
@@ -109,7 +114,7 @@ export class HCMApprovalRestService {
                 // throw new Error(res.message);
                 return res.message || "error";
             } else {
-                return null;
+                return "error";
             }
         }
     }

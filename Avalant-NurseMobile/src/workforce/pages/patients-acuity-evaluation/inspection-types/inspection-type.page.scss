@@ -1,4 +1,69 @@
 inspection-type {
+    ion-grid.e_header {
+        height: 25%;
+        background-color: color($colors-theme, "app-theme");
+        color: white;
+        >ion-row {
+            margin-left: 2em;
+            margin-top: 1.5em;
+            >ion-col {
+                // margin-left: 3em;
+                font-family: 'RobotoRegular', 'Prompt';
+                &.patient-image {
+                    text-align: left;
+                    ava-avatar-img {
+                        img {
+                            height: inherit;
+                            width: inherit;
+                            max-width: 5.5em;
+                            max-height: 5.5em;
+                        }
+                   }
+                }
+                & h2 {
+                    font-size: 1.2em;
+                    margin-top: 0em;
+                    text-transform: capitalize;
+                }
+                & p {
+                    text-align: left;
+                    margin-top: -.2em;
+                    font-size: 1em;
+                    color: rgb(211, 211, 211);
+                }
+            }
+        }
+    }
+    ion-grid.e_content{
+        background-color: rgb(236, 236, 236);
+        height: 65%;
+        ion-row{
+            ion-col{
+                margin-bottom: .1em;
+                button{
+                    p{
+                        margin-top: .5em;
+                        height: 1.5em;
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+    ion-grid.e_footer{
+        height: 10%;
+        ion-row{
+            margin-top: auto;
+            margin-bottom: auto;
+            ion-col{
+                button{
+                    background-color: white;
+                    text-align: center;
+                    width: 100%;
+                }
+            }
+        }
+    }
     div.bg-workforce {
         width: 100%;
         height: 100%;

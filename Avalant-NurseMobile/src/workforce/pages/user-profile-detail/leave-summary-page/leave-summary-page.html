@@ -1,5 +1,5 @@
 <ion-header>
-    <app-nav-header [buttonCfg]="buttonCfg" [pageName]="'M_MYPROFILE.LEAVESUMMARY'|hcmtranslate:'Leave Summary'"></app-nav-header>
+    <app-nav-header [buttonCfg]="buttonCfg" [pageName]="'Non-Productivity Summary'"></app-nav-header>
 </ion-header>
 
 <ion-content no-padding>
@@ -25,35 +25,22 @@
             </ion-col>
         </ion-row>        
     </ion-grid>
-    <ion-grid class="bgform" *ngIf="!isLoading && ((summaryY) != '')">
-        <ion-row *ngFor="let item of summaryY">
-            <button ion-item>    
+    <ion-grid class="bgform" *ngIf="!isLoading" no-padding>
+        <ion-row *ngFor="let item of summaryY" no-padding>
+            <button ion-item no-padding>    
                 <ion-row>
-                    <ion-col col-4 style="width: 100%;margin-bottom: auto;margin-top: auto; margin-left: .5em; display: block; white-space: normal;">
-                        <span> {{item?.description}} </span>
+                    <ion-col col-4 >
+                        <span> {{item?.title}} </span>
                     </ion-col>
-                    <ion-col>
-                        <h3> {{item?.eligible}} </h3>
-                        <h4 > {{'M_LEAVESUM.ELIGIBLE'|hcmtranslate:'Eligible'}} </h4>
+                    <ion-col col-4>
+                        <h3> {{item?.total}} </h3>
+                        <h4 > {{ 'M_NON_PRO.TOTAL_U' | hcmtranslate:'Total Used (Mins.)' }} </h4>
                     </ion-col>
-                    <ion-col col-2>
-                        <h3 style="margin-left: .5em;" > 0.0 </h3>
-                        <h4 > {{'M_LEAVESUM.CARRYFORWARD'|hcmtranslate:'Carry Forward'}} </h4>
-                    </ion-col>
-                    <ion-col  >
-                        <h3> {{item?.used}} </h3>
-                        <h4 > {{'M_LEAVESUM.USED'|hcmtranslate:'Used'}} </h4>
-                    </ion-col>
-                    <ion-col >
-                        <h3> {{item?.balance}} </h3>
-                        <h4 > {{'M_LEAVESUM.BALANCE'|hcmtranslate:'Balance'}} </h4>
-                    </ion-col>
-                    <ion-col >
-                        <h3> {{item?.pending}} </h3>
-                        <h4 > {{'M_LEAVESUM.PENDING'|hcmtranslate:'Pending'}} </h4>
+                    <ion-col col-4>
+                        <h3> {{item?.Pending}}</h3>
+                        <h4>{{ 'M_NON_PRO.PENDING_R' | hcmtranslate:'Pending Request' }}</h4>
                     </ion-col>
                 </ion-row>                 
-                     
             </button>
         </ion-row>
     </ion-grid>

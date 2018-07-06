@@ -30,6 +30,8 @@ import { ShiftPage } from '../shift-page/shift-page';
 import { UserProfileDetailPage } from '../user-profile-detail/user-profile-detail';
 import { isEmptyObject } from '../../../constants/environment';
 import { TeamViewPage } from '../team-view-page/team-view-page';
+import { NonProductivityPage } from '../non-productivity-page/non-productivity-page';
+import { HCMApprovalRestService } from '../../../services/userprofile/hcm-approval.service';
 
 @Component({
     selector: 'workforce-home',
@@ -41,6 +43,7 @@ import { TeamViewPage } from '../team-view-page/team-view-page';
 export class WorkForceHomePage {
 
     private isLoggedIn: boolean = false;
+    private nApprove: boolean;
     private statusCheckInOut: any = [];
     private checkTime: any = [];
     private AmPm: any = [];
@@ -58,6 +61,7 @@ export class WorkForceHomePage {
         private wfHttpService: WorkforceHttpService,
         private sanitizer: DomSanitizer,
         private workforceService: WorkforceService,
+        private hcmApprovalRestService: HCMApprovalRestService,
     ) {
 
     }
@@ -67,6 +71,71 @@ export class WorkForceHomePage {
         this.isLoggedIn && this.wfHttpService.handshakeWithHCM_Auth().subscribe(resp => resp);
         this.appServices.publish(AppConstant.EVENTS_SUBSCRIBE.RELOAD_IMAGE_PROFILE, this.appState.businessUser && this.appState.businessUser.employeeCode);
         this.getLastChecknOutLessCode();
+
+        this.checkEmptyApprove();
+    }
+
+    private checkEmptyApprove() {
+        let leave, swap, shift, shiftSwap: boolean;
+
+        const subscribeKey = "all-event";
+        let count = 0;
+        this.appServices.subscribe(subscribeKey, (resp) => {
+            console.log(subscribeKey, resp);
+            count++;
+            if (count == 4) {
+                if (leave == true || swap == true || shift == true || shiftSwap == true) {
+                    this.nApprove = true;
+                } else { this.nApprove = false; }
+            }
+        });
+
+        this.hcmApprovalRestService.getLeaveApprove().subscribe(resp => {
+            if (resp) {
+                leave = true;
+            } else { leave = false; }
+            this.appServices.publish(subscribeKey, leave);
+        });
+        this.hcmApprovalRestService.getSwapTransactionApprove().subscribe(resp => {
+            let checkLength = resp instanceof Array;
+            if (resp) {
+                if (checkLength == true) {
+                    let data = (resp || []).filter(itm => itm.status.equals('Waiting For Accept'));
+                    console.log("getSwapTransactionApprove => ", data);
+                    if (data.length > 0) {
+                        swap = true;
+                    } else { swap = false; }
+                }else {
+                    if (resp.status == 'Waiting For Accept') {
+                        shiftSwap = true;
+                    } else { shiftSwap = false; }
+                }
+            } else { swap = false; }
+            this.appServices.publish(subscribeKey, swap);
+        });
+        this.hcmApprovalRestService.getShiftApprove().subscribe(resp => {
+            if (resp) {
+                shift = true;
+            } else { shift = false; }
+            this.appServices.publish(subscribeKey, shift);
+        });
+        this.hcmApprovalRestService.getShiftSwapApprove().subscribe(resp => {
+            let checkLength = resp instanceof Array;
+            if (resp) {
+                if (checkLength == true) {
+                    let data = (resp || []).filter(itm => itm.status.equals('Waiting For Approval' || 'Waiting Approve'));
+                    console.log("Data in CheckLength == true => ", data);
+                    if (data.length != 0) {
+                        shiftSwap = true;
+                    } else { shiftSwap = false; }
+                } else {
+                    if (resp.status == 'Waiting Approve') {
+                        shiftSwap = true;
+                    } else { shiftSwap = false; }
+                }
+            } else { shiftSwap = false; }
+            this.appServices.publish(subscribeKey, shiftSwap);
+        });
     }
 
     private checkInTime: any;
@@ -116,6 +185,7 @@ export class WorkForceHomePage {
         "Dashboard": DashboardsPage,
         "Patient Acuity Eevaluation": PatientAcuityEvaluationPage,
         "TeamView": TeamViewPage,
+        "NonProductivity": NonProductivityPage
     };
 
     private goRoot(pageName: any) {

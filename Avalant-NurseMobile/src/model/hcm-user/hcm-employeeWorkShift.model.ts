@@ -8,8 +8,9 @@ import { EAFModuleBase } from '../eaf-rest/eaf-module-base';
 export class EmployeeWorkingShiftViewModel extends EAFModuleBase {
     @Field("TEAM_GROUP_NO") private teamGroupNo: string;
     @Field("EMPLOYEE_CODE") private employeeCode: string;
-    @Field("AS_DATE") private asDate: string;
     @Field("SHIFT_NAME_CODE") private shiftNameCode: string;
     @Field("WORK_LOAD_DATE") private workLoadDate: string;
     @Field("SHIFT_NAME_NAME") private shiftNameName: string;
+    @Field("FULL_NAME") private fullName: string;
+
 }

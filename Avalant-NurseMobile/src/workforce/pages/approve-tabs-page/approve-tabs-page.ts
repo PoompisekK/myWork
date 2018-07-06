@@ -31,11 +31,13 @@ export class ApproveTabPage implements OnInit {
     private type_shiftSwapAcceptant: string = '';
     private type_shiftSwap: string = '';
     private type_shift: string = '';
+    private type_resource: string = '';
 
     private dataLeave: any;
     private dataShiftSwapAcceptant: any;
     private dataShiftSwap: any;
     private dataShift: any;
+    private dataResource: any;
 
     constructor(
         private hcmApprovalRestService: HCMApprovalRestService,
@@ -118,15 +120,32 @@ export class ApproveTabPage implements OnInit {
             let listData = [];
             if (data) {
                 if (checkArray == true) {
-                    this.numShiftSwap = (data || []).length;
+                    listData = data.filter(mItm => mItm.status == 'Waiting Approve');
+                    this.numShiftSwap = (listData || []).length;
                 } else {
-                    listData.push(data);
+                    if(data.status == 'Waiting Approve') {
+                        listData.push(data);
+                    }                    
                     this.numShiftSwap = (listData || []).length;
                 }
             } else {
                 this.numShiftSwap = (listData || []).length;
             }
         });
+        // this.hcmApprovalRestService.getResource().subscribe(data => {
+        //     let checkArray = data instanceof Array;
+        //     let listData = [];
+        //     if (data) {
+        //         if(checkArray == true) {
+        //             this.numResource = (data || []).length;
+        //         } else {
+        //             listData.push(data);
+        //             this.numResource = (listData || []).length;
+        //         }
+        //     } else {
+        //         this.numResource = (listData || []).length;
+        //     }
+        // });
     }
 
     private checkID = [];
@@ -203,6 +222,7 @@ export class ApproveTabPage implements OnInit {
                 this.type_shiftSwapAcceptant = '';
                 this.type_shiftSwap = '';
                 this.type_shift = '';
+                this.type_resource = '';
                 this.checkID = [];
                 this.getApproveLeave();
                 break;
@@ -214,6 +234,7 @@ export class ApproveTabPage implements OnInit {
                 this.type_shiftSwapAcceptant = 'select';
                 this.type_shiftSwap = '';
                 this.type_shift = '';
+                this.type_resource = '';
                 this.checkID = [];
                 this.getShiftSwapAcceptant();
                 break;
@@ -225,6 +246,7 @@ export class ApproveTabPage implements OnInit {
                 this.type_shiftSwapAcceptant = '';
                 this.type_shiftSwap = 'select';
                 this.type_shift = '';
+                this.type_resource = '';
                 this.checkID = [];
                 this.shiftSwapApprove();
                 break;
@@ -236,11 +258,25 @@ export class ApproveTabPage implements OnInit {
                 this.type_shiftSwapAcceptant = '';
                 this.type_shiftSwap = '';
                 this.type_shift = 'select';
+                this.type_resource = '';
                 this.checkID = [];
                 this.getShiftApprove();
                 break;
             }
+            case 'resource': {
+                console.log('resource');
+                this.typeSelect = 'resource';
+                this.type_Leave = '';
+                this.type_shiftSwapAcceptant = '';
+                this.type_shiftSwap = '';
+                this.type_shift = '';
+                this.type_resource = 'select';
+                this.checkID = [];
+                this.getResource();
+                break;
+            }
             default:
+                console.log('No Case');
                 break;
         }
     }
@@ -249,6 +285,24 @@ export class ApproveTabPage implements OnInit {
     private numShiftSwapAcceptant = 0;
     private numShiftSwap = 0;
     private numShift = 0;
+    private numResource = 0;
+
+    private getResource() {
+        let listResource = [];
+        this.hcmApprovalRestService.getResource().subscribe(data => {
+            console.log('Dat Resource : ', data);
+            let checkArray = data instanceof Array;
+            if (data) {
+                if(checkArray == true) {
+                    listResource = data;
+                } else {
+                    listResource.push(data);
+                }
+            }
+            this.numResource = (listResource || []).length;
+            this.groupList(listResource || [], 'resource');
+        });
+    }
 
     private getApproveLeave() {
         let leaveList = [];
@@ -327,7 +381,7 @@ export class ApproveTabPage implements OnInit {
             let checkArray = shiftSwapApprove instanceof Array;
             if (shiftSwapApprove) {
                 if (checkArray == true) {
-                    listShiftSwapApprove = shiftSwapApprove;
+                    listShiftSwapApprove = shiftSwapApprove.filter(mItm => mItm.status == 'Waiting Approve');
                 } else {
                     listShiftSwapApprove.push(shiftSwapApprove);
                 }
@@ -389,6 +443,8 @@ export class ApproveTabPage implements OnInit {
             this.dataShiftSwap = _data;
         } else if (_type == 'shift') {
             this.dataShift = _data;
+        } else if (_type == 'resource') {
+            this.dataResource = _data;
         }
     }
 

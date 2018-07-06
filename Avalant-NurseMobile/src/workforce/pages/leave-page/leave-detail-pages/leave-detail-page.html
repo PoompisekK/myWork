@@ -6,31 +6,40 @@
         <ion-item no-lines no-padding>
             <ion-grid class="bg-workforce headDetail">
                 <ion-row>
-                    <ion-col>
+                    <ion-col col-8 style="display: block; white-space: normal;">
                         <p>{{ leave?.leaveType || leave?.leaveTypeName || shiftType }}</p>
                     </ion-col>
                 </ion-row>
                 <ion-row style="margin-top: -.5em">
                     <ion-col col-6>
-                        <p *ngIf="select_type == 'leave'" translate>{{ leave?.leaveHours }}
-                            <span style="color: white" translate>M_LEAVEDETAIL.HOURS</span>
+                        <p *ngIf="select_type == 'leave' && !isNonProduct">{{ leave?.leaveHours }}
+                            <span style="color: white">{{'M_LEAVEDETAIL.HOURS'|hcmtranslate}}</span>
+                        </p>
+                        <p *ngIf="select_type == 'leave' && isNonProduct">{{ leave?.leaveHours }}
+                            <span style="color: white">Mins.</span>
                         </p>
                         <span></span>
                     </ion-col>
-                    <ion-col col-6 text-right style="display: block;">
+                    <ion-col col-6 text-right style="display: block;" *ngIf="!isApprover">
                         <!-- <div dot [ngClass]="{'dot-red': getStatus(leave.status || leave.leaveStatus,'rejected'),
                             'dot-yellow': getStatus(leave.status || leave.leaveStatus,'waiting for approved'),
                             'dot-green': getStatus(leave.status || leave.leaveStatus,'approved')
                             }">
                         </div> -->
-                        <button ion-button round dot class="dot-red" *ngIf="getStatus(leave, 3) == true">
-                            {{ leave.status || dataShift?.status || shiftStatus }}
+                        <button ion-button round dot class="dot-red" *ngIf="getStatus(leave, 3) == true || getStatus(dataShift, 3) == true">
+                            {{ leave.status || dataShift?.status }}
                         </button>
-                        <button ion-button round dot class="dot-yellow" *ngIf="getStatus(leave, 2) == true">
-                            {{ leave.status || dataShift?.status || shiftStatus }}
+                        <button ion-button round dot class="dot-yellow" *ngIf="getStatus(leave, 2) == true || getStatus(dataShift, 2) == true">
+                            {{ leave.status || dataShift?.status }}
                         </button>
-                        <button ion-button round dot class="dot-green" *ngIf="getStatus(leave, 1) == true">
-                            {{ leave.status || dataShift?.status || shiftStatus }}
+                        <button ion-button round dot class="dot-green" *ngIf="getStatus(leave, 1) == true || getStatus(dataShift, 1) == true">
+                            {{ leave.status || dataShift?.status }}
+                        </button>
+                        <button ion-button round dot class="dot-yellow" *ngIf="getStatus(dataShift, 4) == true">
+                            {{ leave.status || dataShift?.status }}
+                        </button>
+                        <button ion-button round dot class="dot-yellow" *ngIf="getStatus(dataShift, 5) == true">
+                            {{ leave.status || dataShift?.status }}
                         </button>
                         <!-- <div dot class="dot-yellow" *ngIf="!isApprover">
                             <p style="margin-left: .5em; margin-right: .5em;"> {{ leave.status || dataShift?.status || shiftStatus }} </p>
@@ -39,42 +48,53 @@
                 </ion-row>
             </ion-grid>
             <ion-grid no-padding style="margin-top: 1.5em;" *ngIf="select_type == 'leave'">
-                <ion-row no-padding class="leave-center">
+                <ion-row no-padding class="leave-center" *ngIf="!isNonProduct">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.SEDATE </p>
+                        <p hcmtranslate> M_LEAVEDETAIL.SEDATE </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <p *ngIf="!isApprover"> {{ SEdate }} </p>
                         <p *ngIf="isApprover">{{ formatDate && formatDate(leave?.startDate,leave?.endDate) }}</p>
                     </ion-col>
                 </ion-row>
-                <ion-row no-padding class="leave-center" *ngIf="leave?.shiftName != null">
+
+                <ion-row no-padding class="leave-center" *ngIf="isNonProduct">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.SHIFT </p>
+                        <p hcmtranslate> Effective Date </p>
+                    </ion-col>
+                    <ion-col col-6 style="margin-left: -2em;">
+                        <p *ngIf="!isApprover"> {{ SEdate }} </p>
+                        <p *ngIf="isApprover">{{ formatDate && formatDate(leave?.startDate,leave?.endDate) }}</p>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row no-padding class="leave-center" *ngIf="isNonProduct">
+                    <ion-col col-6>
+                        <p hcmtranslate> M_LEAVEDETAIL.SHIFT </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <p> {{ leave?.shiftName }} </p>
                     </ion-col>
                 </ion-row>
-                <ion-row no-padding class="leave-center" *ngIf="leave?.shiftName != null">
+                <ion-row no-padding class="leave-center" *ngIf="isNonProduct">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.SETIME </p>
+                        <p hcmtranslate> M_LEAVEDETAIL.SETIME </p>
                     </ion-col>
-                    <ion-col col-6 style="margin-left: -2em;">
+                    <ion-col col-6 style="margin-left: -2em;" *ngIf="leave?.shiftTimeIn != null">
                         <p> {{ timeFormat(leave?.fromDate+'T'+leave?.shiftTimeIn) }} - {{ timeFormat(leave?.fromDate+'T'+leave?.shiftTimeOut) }} </p>
                     </ion-col>
                 </ion-row>
-                <ion-row no-padding class="leave-center">
+                <ion-row no-padding class="leave-center" *ngIf="!isNonProduct">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.FULLDAY </p>
+                        <p hcmtranslate> M_LEAVEDETAIL.FULLDAY </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <p> {{ fullDayCheck }} </p>
                     </ion-col>
                 </ion-row>
-                <ion-row no-padding class="leave-center" *ngIf="!isApprover">
+                <ion-row no-padding class="leave-center" *ngIf="!isApprover && !isNonProduct">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.SUBMITDT </p>
+                        <p hcmtranslate> M_LEAVEDETAIL.SUBMITDT </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <!-- <p> {{ requestDate }} {{ leave?.requestTime }} </p> -->
@@ -83,16 +103,17 @@
                 </ion-row>
                 <ion-row no-padding class="leave-center" *ngIf="isApprover">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.SUBMITDT </p>
+                        <p hcmtranslate> M_LEAVEDETAIL.SUBMITDT </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <!-- <p> {{ requestDate }} {{ leave?.requestTime }} </p> -->
                         <p>{{ leave?.requestDate | amLocal:'en' | amDateFormat:'D/M/YYYY hh:mm A' }} </p>
                     </ion-col>
                 </ion-row>
+
                 <ion-row no-padding class="leave-center">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.ATTACHMENT </p>
+                        <p hcmtranslate> M_LEAVEDETAIL.ATTACHMENT </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <ion-row *ngFor="let item of (leave.listAttachmentFile||[])">
@@ -100,17 +121,27 @@
                         </ion-row>
                     </ion-col>
                 </ion-row>
-                <ion-row no-padding class="leave-center">
+                <ion-row no-padding class="leave-center" *ngIf="!isNonProduct">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.DETAIL </p>
+                        <p hcmtranslate> M_LEAVEDETAIL.DETAIL </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <p> {{ checkNull(leave?.reason) }} </p>
                     </ion-col>
                 </ion-row>
+
+                <ion-row no-padding class="leave-center" *ngIf="isNonProduct">
+                    <ion-col col-6>
+                        <p hcmtranslate> M_NON_PRO.NOTICE </p>
+                    </ion-col>
+                    <ion-col col-6 style="margin-left: -2em;">
+                        <p> {{ checkNull(leave?.reason) }} </p>
+                    </ion-col>
+                </ion-row>
+
                 <ion-row no-padding class="leave-center" *ngIf="!isApprover">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.APPROVER_1 </p>
+                        <p hcmtranslate> M_LEAVEDETAIL.APPROVER_1 </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <p *ngIf="!isApprover"> {{ checkNull(leave?.waitingApproveName) }} </p>
@@ -118,7 +149,7 @@
                 </ion-row>
                 <ion-row no-padding class="leave-center" *ngIf="!isApprover">
                     <ion-col col-6>
-                        <p translate> M_LEAVEDETAIL.APPROVER_2 </p>
+                        <p hcmtranslate> M_LEAVEDETAIL.APPROVER_2 </p>
                     </ion-col>
                     <ion-col col-6 style="margin-left: -2em;">
                         <p> {{checkNull(leave?.waitingApproveName2)}} </p>
@@ -127,7 +158,7 @@
                 <ion-grid no-padding *ngIf="isApprover">
                     <ion-row no-padding class="leave-center" *ngFor="let user of (userApprove || [])">
                         <ion-col col-6>
-                            <p translate> M_LEAVEDETAIL.APPROVER_1 </p>
+                            <p hcmtranslate> M_LEAVEDETAIL.APPROVER_1 </p>
                         </ion-col>
                         <ion-col col-6 style="margin-left: -2em;">
                             <p> {{ user?.fullName }} </p>
@@ -135,65 +166,56 @@
                     </ion-row>
                 </ion-grid>
 
-                <!-- <ion-row *ngIf="isApprover" class="leave-center">
-                    <ion-col>
-                        <button class="bg-workforce" ion-button block full (click)="rejectThisTask && rejectThisTask(leave)">
-                            <p>Reject</p>
-                        </button>
-                    </ion-col>
-                    <ion-col>
-                        <button class="bg-workforce" ion-button block full (click)="approveThisTask && approveThisTask(leave)">
-                            <p>Approve</p>
-                        </button>
-                    </ion-col>
-                </ion-row> -->
             </ion-grid>
             <ion-grid *ngIf="select_type == 'shift' || select_type == 'shiftSwap' || select_type == 'shiftSwapAcceptant'">
                 <ion-row class="styShift">
                     <ion-col col-12 *ngIf="select_type == 'shiftSwap' || select_type == 'shiftSwapAcceptant'">
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_SHIFTDETAIL.CURRENT_DATE_SHIFT</p>
+                                <p hcmtranslate>M_SHIFTDETAIL.CURRENT_DATE_SHIFT</p>
                             </ion-col>
                             <ion-col col-6>
-                                <p>May 7,2018 - May 9,2018</p>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col col-6>
-                                <p translate>M_SHIFTDETAIL.CURRENT_SCHEDULE</p>
-                            </ion-col>
-                            <ion-col col-6>
-                                <p>{{ dataShift?.myScheduleDate || dataShift?.mySchedule }}</p>
+                                <p *ngIf="select_type == 'shiftSwap'">{{ getDisplayDate(dataShift?.myScheduleDate) }} - {{ getDisplayDate(dataShift?.swapScheduleDate) }}</p>
+                                <p *ngIf="select_type == 'shiftSwapAcceptant'">{{ getDisplayDate(dataShift?.mySchedule) }} - {{ getDisplayDate(dataShift?.swapSchedule) }}</p>
                             </ion-col>
                         </ion-row>
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_SHIFTDETAIL.EOULD_RECEIVE</p>
+                                <p hcmtranslate>M_SHIFTDETAIL.CURRENT_SCHEDULE</p>
                             </ion-col>
                             <ion-col col-6>
-                                <p>{{ dataShift?.swapScheduleDate || dataShift?.swapSchedule }}</p>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col col-6>
-                                <p translate>M_SHIFTDETAIL.SWAP_WITH</p>
-                            </ion-col>
-                            <ion-col col-6>
-                                <p>{{ dataShift?.fullName || dataShift?.swapEmployeeName || dataShift?.swapName }}</p>
+                                <p>{{ dataShift?.mySchedule || dataShift?.myScheduleShiftName }}<span *ngIf="dataShift.swapType == 'D'">(OFF)</span></p>
+                                <!-- shift swap || approve || approve -->
                             </ion-col>
                         </ion-row>
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_SHIFTDETAIL.WORKGROUP</p>
+                                <p hcmtranslate>M_SHIFTDETAIL.EOULD_RECEIVE</p>
                             </ion-col>
                             <ion-col col-6>
-                                <p>{{ dataShift?.jobLeaveName || 'Undefined' }}</p>
+                                <p>{{ dataShift?.swapSchedule ||  dataShift?.swapScheduleShiftName }}<span *ngIf="dataShift.swapType == 'D'">(OFF)</span></p>
+                                <!-- shift swap || approve || approve -->
                             </ion-col>
                         </ion-row>
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_LEAVEDETAIL.SUBMITDT</p>
+                                <p hcmtranslate>M_SHIFTDETAIL.SWAP_WITH</p>
+                            </ion-col>
+                            <ion-col col-6>
+                                <p>{{ dataShift?.fullNameSwap || dataShift?.swapEmployeeName || dataShift?.swapName }}</p>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-6>
+                                <p hcmtranslate>M_SHIFTDETAIL.WORKGROUP</p>
+                            </ion-col>
+                            <ion-col col-6>
+                                <p>{{ dataShift?.teamGroupName || 'Undefined' }}</p>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-6>
+                                <p hcmtranslate>M_LEAVEDETAIL.SUBMITDT</p>
                             </ion-col>
                             <ion-col col-6>
                                 <p>{{ dataShift?.requestDate | amLocal:'en' | amDateFormat:'D/M/YYYY hh:mm A' }}</p>
@@ -201,17 +223,17 @@
                         </ion-row>
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_SHIFTCREATE.NOTE</p>
+                                <p hcmtranslate>M_SHIFTCREATE.NOTE</p>
                             </ion-col>
                             <ion-col col-6>
-                                <p>Undefined</p>
+                                <p>{{ dataShift?.season || 'Undefined' }}</p>
                             </ion-col>
                         </ion-row>
                         <ion-grid style="padding: 0">
                             <ion-row *ngFor="let user of (userApprove || []); let idx = index">
                                 <ion-col col-6>
                                     <p>
-                                        <span translate>M_SHIFTDETAIL.APPROVER</span>
+                                        <span hcmtranslate>M_SHIFTDETAIL.APPROVER</span>
                                         <span>{{ idx+1 }}</span>
                                     </p>
                                 </ion-col>
@@ -224,23 +246,23 @@
                     <ion-col col-12 *ngIf="select_type == 'shift'">
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_SHIFTDETAIL.EFFECTIVE_DATE</p>
+                                <p hcmtranslate>M_SHIFTDETAIL.EFFECTIVE_DATE</p>
                             </ion-col>
                             <ion-col col-6>
-                                <p>{{ dataShift?.requestDate | amLocale:'en' | amDateFormat:'MMM D,YYYY' }}</p>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col col-6>
-                                <p translate>M_LEAVEDETAIL.SHIFT</p>
-                            </ion-col>
-                            <ion-col col-6>
-                                <p>{{ dataShift?.shiftNameName || 'D (07:00 - 15:00) OFF' }}</p>
+                                <p>{{ dataShift?.requestShiftDate | amLocale:'en' | amDateFormat:'MMM D,YYYY' }}</p>
                             </ion-col>
                         </ion-row>
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_SHIFTDETAIL.CURRENTLY_WORK_IN</p>
+                                <p hcmtranslate>M_LEAVEDETAIL.SHIFT</p>
+                            </ion-col>
+                            <ion-col col-6>
+                                <p>{{ dataShift?.shiftNameName || 'Undefined' }}</p>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-6>
+                                <p hcmtranslate>M_SHIFTDETAIL.CURRENTLY_WORK_IN</p>
                             </ion-col>
                             <ion-col col-6>
                                 <p>{{ dataShift?.fromGroupName }}</p>
@@ -248,7 +270,7 @@
                         </ion-row>
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_SHIFTDETAIL.REQUEST_WORK_IN</p>
+                                <p hcmtranslate>M_SHIFTDETAIL.REQUEST_WORK_IN</p>
                             </ion-col>
                             <ion-col col-6>
                                 <p>{{ dataShift?.toGroupName }}</p>
@@ -256,25 +278,25 @@
                         </ion-row>
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_LEAVEDETAIL.SUBMITDT</p>
+                                <p hcmtranslate>M_LEAVEDETAIL.SUBMITDT</p>
                             </ion-col>
                             <ion-col col-6>
-                                <p>{{ dataShift?.requestShiftDate | amLocale:'en' | amDateFormat:'D/M/YYYY' }} 7:30</p>
+                                <p>{{ dataShift?.requestDate | amLocale:'en' | amDateFormat:'D/M/YYYY' }} 7:30</p>
                             </ion-col>
                         </ion-row>
                         <ion-row>
                             <ion-col col-6>
-                                <p translate>M_SHIFTCREATE.NOTE</p>
+                                <p hcmtranslate>M_SHIFTCREATE.NOTE</p>
                             </ion-col>
                             <ion-col col-6>
-                                <p>Undefined</p>
+                                <p>{{ dataShift?.reason || 'Undefined' }}</p>
                             </ion-col>
-                        </ion-row>                        
+                        </ion-row>
                         <ion-grid style="padding: 0">
                             <ion-row *ngFor="let user of (userApprove || []); let idx = index">
                                 <ion-col col-6>
                                     <p>
-                                        <span translate>M_SHIFTDETAIL.APPROVER</span>
+                                        <span hcmtranslate>M_SHIFTDETAIL.APPROVER</span>
                                         <span>{{ idx+1 }}</span>
                                     </p>
                                 </ion-col>
@@ -288,4 +310,23 @@
             </ion-grid>
         </ion-item>
     </div>
+    <ion-grid>
+        <ion-row *ngIf="!isApprover">
+            <ion-col>
+                <button ion-button full color="bg-workforce" style="border-radius: 5px;">{{'M_BUTTON.WITHDRAW' | hcmtranslate:'Withdraw'}}</button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="isApprover">
+            <ion-col>
+                <button ion-button full style="background-color: rgb(255, 68, 68); border-radius: 5px;">
+                    <span style="color: white" (click)="rejectThisTask && rejectThisTask('reject')">{{'M_BUTTON.REJECT' | hcmtranslate}}</span>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button full color="bg-workforce" style="border-radius: 5px;">
+                    <span style="color: white" (click)="rejectThisTask && rejectThisTask('approve')">{{ 'M_BUTTON.APPROVE' | hcmtranslate }}</span>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

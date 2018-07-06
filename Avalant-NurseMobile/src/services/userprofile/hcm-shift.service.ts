@@ -12,6 +12,8 @@ import { HCMEAFRestService } from '../eaf-rest/hcm-eaf-rest.service';
 import { EmployeeProfileModel } from '../../model/hcm-user/hcm-userprofile.model';
 import { EAFContext } from '../../eaf/eaf-context';
 import { EmployeePositionBoxCodeViewModel } from '../../model/hcm-user/hcm-employeePositionBoxCode.model';
+import { EmployeeTargetShiftModel } from '../../model/hcm-user/hcm-employeeTargetShift.model';
+import { EmployeeDayOffModel } from '../../model/hcm-user/hcm-employeeDayOff.model';
 
 @Injectable()
 export class HCMShiftRestService {
@@ -36,7 +38,6 @@ export class HCMShiftRestService {
     }
     public getWorkingShift(data?: { [key: string]: any }): Observable<any> {
         data = data ? data : {};
-        data["EMPLOYEE_CODE"] = this.appState.businessUser.employeeCode;
         data["ORGANIZE_ID"] = this.appState.businessUser.orgId;
         return this.hcmEAFRestService.searchEntity(EmployeeWorkingShiftViewModel, EmployeeWorkingShiftViewModel.ENTITY_ID, data || {}, HCMEAFRestService.cfgSearch);
     }
@@ -69,6 +70,28 @@ export class HCMShiftRestService {
         data = data ? data : {};
         data["ORGANIZE_ID"] = this.appState.businessUser.orgId;
         return this.hcmEAFRestService.searchEntity(EmployeePositionBoxCodeViewModel, EmployeePositionBoxCodeViewModel.ENTITY_ID, data || {}, HCMEAFRestService.cfgSearch);
+    }
+
+    public getTragetShift(data?: { [key: string]: any }): Observable<any> {
+        data = data ? data : {};
+        data["EMPLOYEE_CODE"] = this.appState.businessUser.employeeCode;
+        data["ORGANIZE_ID"] = this.appState.businessUser.orgId;        
+        return this.hcmEAFRestService.searchEntity(EmployeeTargetShiftModel, EmployeeTargetShiftModel.ENTITY_ID, data || {}, HCMEAFRestService.cfgSearch);
+    }
+
+    public saveShiftSwap(params, data?: { [key: string]: any }): Observable<any> {
+        data = data ? data : {};
+        data["ORGANIZE_ID"] = this.appState.businessUser.orgId;
+
+        params.EMPLOYEE_SWAP_TRANSACTION["ORGANIZE_ID"] = this.appState.businessUser.orgId;
+        params.EMPLOYEE_SWAP_TRANSACTION["EMPLOYEE_CODE"] = this.appState.businessUser.employeeCode;
+        return this.hcmEAFRestService.saveEntityShiftSwap('EN_180312180323883_v001', params, data || {}, HCMEAFRestService.cfgSearch);
+    }
+    public getDayOff(data?: { [key: string]: any }): Observable<any> {
+        data = data ? data : {};
+        data["EMPLOYEE_CODE"] = this.appState.businessUser.employeeCode;
+        data["ORGANIZE_ID"] = this.appState.businessUser.orgId;        
+        return this.hcmEAFRestService.searchEntity(EmployeeDayOffModel, EmployeeDayOffModel.ENTITY_ID, data || {}, HCMEAFRestService.cfgSearch);
     }
 
 }

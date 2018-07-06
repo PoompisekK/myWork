@@ -37,7 +37,7 @@ export class ShiftPage implements OnInit {
     private doRefresh(refresher) {
         this.isLoading = true;
         this.appLoadingService.showLoading();
-        this.selectType(this.shiftType,() => {
+        this.selectType(this.shiftType, () => {
             this.appLoadingService.hideLoading().then(() => {
                 refresher.complete();
             });
@@ -52,10 +52,44 @@ export class ShiftPage implements OnInit {
         this.Shift_Swap = 'select';
         this.selectType(this.shiftType);
         this.hcmShiftRestService.getShiftSwap().subscribe(dataShiftSwap => {
-            this.numShiftSwap = dataShiftSwap.length;
+            let numShiftSwapList = [];
+            let checkArray = dataShiftSwap instanceof Array;
+            if (dataShiftSwap) {
+                if (checkArray == true) {
+                    dataShiftSwap.forEach(element => {
+                        if (element.status == 'Waiting For Approval' || element.status == 'Waiting For Accept') {
+                            numShiftSwapList.push(element);
+                        }
+                    });
+                } else {
+                    if (dataShiftSwap.status == 'Waiting For Approval' || dataShiftSwap.status == 'Waiting For Accept') {
+                        numShiftSwapList.push(dataShiftSwap);
+                    }
+                }
+            }
+            this.numShiftSwap = (numShiftSwapList || []).length;
         });
         this.hcmShiftRestService.getShift().subscribe(dataShift => {
-            this.numShift = dataShift.length;
+            let checkArray = dataShift instanceof Array;
+            let numShiftList = [];
+            if (dataShift) {
+                if (checkArray == true) {
+                    dataShift.forEach(element => {
+                        if (element.status == 'Waiting For Approval' || element.status == 'Waiting For Accept') {
+                            if(element.employeeCode == this.appState.businessUser.employeeCode) {
+                                numShiftList.push(element);
+                            }
+                        }
+                    });
+                } else {
+                    if (dataShift.status == 'Waiting For Approval' || dataShift.status == 'Waiting For Accept') {
+                        if(dataShift.employeeCode == this.appState.businessUser.employeeCode) {
+                            numShiftList.push(dataShift);
+                        }
+                    }
+                }
+            }            
+            this.numShift = (numShiftList || []).length;
         });
     }
 
@@ -75,24 +109,20 @@ export class ShiftPage implements OnInit {
             this.navCtrl.push(ShiftCreatePage, { shiftType: this.shiftType });
         }
     }
-    private selectType(_shift,cd?) {
+    private selectType(_shift, cd?) {
         if (_shift != 'shift') {
             this.shiftType = 'shiftSwap';
             this.Shift = '';
             this.Shift_Swap = 'select';
-            this.listShift = [];
-            this.groupListShift = [];
             this.isLoading = true;
             this.getShiftSwap(cd);
         } else {
             this.shiftType = 'shift';
             this.Shift = 'select';
             this.Shift_Swap = '';
-            this.listShift = [];
-            this.groupListShift = [];
             this.isLoading = true;
             this.getShift(cd); //get data              
-        }        
+        }
     }
     private numShift = 0;
     private numShiftSwap = 0;
@@ -100,9 +130,30 @@ export class ShiftPage implements OnInit {
         this.hcmShiftRestService.getShift().subscribe(dataShift => {
             cd && cd();
             this.isLoading = false;
-            this.listShift = dataShift;
-            this.numShift = dataShift.length;
-            this.groupList('shift');
+            let numShiftList = [];
+            let dataListUser: any;
+            let checkArray = dataShift instanceof Array;
+            if (dataShift) {
+                if (checkArray == true) {
+                    dataShift.forEach(element => {
+                        if (element.status == 'Waiting For Approval' || element.status == 'Waiting For Accept') {
+                            if(element.employeeCode == this.appState.businessUser.employeeCode) {
+                                numShiftList.push(element);
+                            }                            
+                        }
+                        dataListUser = dataShift.filter(mItm => mItm.employeeCode == this.appState.businessUser.employeeCode);
+                    });
+                } else {
+                    if (dataShift.status == 'Waiting For Approval' || dataShift.status == 'Waiting For Accept') {
+                        if(dataShift.employeeCode == this.appState.businessUser.employeeCode) {
+                            numShiftList.push(dataShift);
+                            dataListUser = dataShift;
+                        }
+                    }
+                }
+            }            
+            this.numShift = (numShiftList || []).length;
+            this.groupList('shift', this.groupByApproval(dataListUser || []));
         });
     }
 
@@ -110,9 +161,23 @@ export class ShiftPage implements OnInit {
         this.hcmShiftRestService.getShiftSwap().subscribe(dataShiftSwap => {
             cd && cd();
             this.isLoading = false;
-            this.listShift = dataShiftSwap;
-            this.numShiftSwap = dataShiftSwap.length;
-            this.groupList('shiftSwap');
+            let numShiftSwapList = [];
+            let checkArray = dataShiftSwap instanceof Array;
+            if (dataShiftSwap) {
+                if (checkArray == true) {
+                    dataShiftSwap.forEach(element => {
+                        if (element.status == 'Waiting For Approval' || element.status == 'Waiting For Accept') {
+                            numShiftSwapList.push(element);
+                        }
+                    });
+                } else {
+                    if (dataShiftSwap.status == 'Waiting For Approval' || dataShiftSwap.status == 'Waiting For Accept') {
+                        numShiftSwapList.push(dataShiftSwap);
+                    }
+                }
+            }
+            this.numShiftSwap = (numShiftSwapList || []).length;
+            this.groupList('shiftSwap', this.groupByApproval(dataShiftSwap || []));
         });
     }
 
@@ -127,14 +192,38 @@ export class ShiftPage implements OnInit {
         });
     }
 
+    private groupByApproval(_data) {
+        let listApprove = [];
+        let checkArray = _data instanceof Array;
+        if(checkArray == true) {
+            _data.forEach(element => {
+                if (moment(element.requestDate).format('YYYY-MM') == moment(new Date()).format('YYYY-MM')) {
+                    listApprove.push(element);
+                } else {
+                    if (element.status == 'Waiting For Accept' || element.status == 'Waiting For Approval') {
+                        listApprove.push(element);
+                    }
+                }
+            });
+        } else {
+            if(moment(_data.requestDate).format('YYYY-MM') == moment(new Date()).format('YYYY-MM')) {
+                listApprove.push(_data);
+            } else {
+                if (_data.status == 'Waiting For Accept' || _data.status == 'Waiting For Approval') {
+                    listApprove.push(_data);
+                }
+            }
+        }
+       
+        return listApprove;
+    }
+
     private dataListShift = [];
     private dataListShiftSwap = [];
 
-    private listShift: any; // data start
-    private groupListShift = []; // data end
-    private groupList(_selectType) {
+    private groupList(_selectType, _data) {
         var result = [];
-        this.listShift.forEach(element => {
+        _data.forEach(element => {
             result.push(moment(element.requestDate).format('YYYY-MM'));
         });
         var uniqueArray = result.filter(function (elem, pos) {
@@ -153,7 +242,7 @@ export class ShiftPage implements OnInit {
                 "dateId": moment(data + '-01').format('YYYYMM'),
                 "task": []
             };
-            groupMonth.task = this.listShift.filter(mItm => moment(mItm.requestDate).format('MMMM YYYY') == moment(data + '-01').format('MMMM YYYY'));
+            groupMonth.task = _data.filter(mItm => moment(mItm.requestDate).format('MMMM YYYY') == moment(data + '-01').format('MMMM YYYY'));
             groupMonth.task.sort((a, b) => {
                 const aData = moment(a.requestDate).format('YYYYMMDD');
                 const bData = moment(b.requestDate).format('YYYYMMDD');
@@ -183,9 +272,8 @@ export class ShiftPage implements OnInit {
                 }
             }
         });
-        this.groupListShift = groupList;
-        console.log('groupListShift : ', this.groupListShift);
-        this.selectDataList(this.groupListShift, _selectType);
+        console.log('groupListShift : ', groupList);
+        this.selectDataList(groupList, _selectType);
     }
 
     private selectDataList(_data, _selectType) {

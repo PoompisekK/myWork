@@ -27,12 +27,17 @@ export class LeaveSummaryPage {
     }
 
     public ionViewDidEnter() {
-        this.hcmEafRestService.getModule(EmployeeLeaveSummaryModel).subscribe(resp => {
-            console.log("EmployeeLeaveSummaryModel:", resp);
-            this.summaryY = (resp || []).filter(itm => '2018'.equals(itm.businessYear));
-            console.log("Year List: " , this.summaryY);
-            this.isLoading = false;
-        });
+        this.summaryY = [{
+            title: 'Internal Training',
+            total: '50',
+            Pending: '5'
+        },
+        {
+            title: 'Meeting',
+            total: '256',
+            Pending: '8'
+        }];
+        this.isLoading = false;
     }
 
 

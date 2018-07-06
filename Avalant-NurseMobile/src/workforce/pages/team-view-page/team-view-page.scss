@@ -28,8 +28,8 @@ team-view-page {
             }
         }
     }
+    
     ion-row.team-calendar{
-        // margin-left: -.5em;
         background-color: white;
         ion-col[col-5] {
             margin-left: -.5em;
@@ -40,7 +40,6 @@ team-view-page {
                 // margin-left: .5em;
                 tr.team-calendar-head{
                     height: 3em;
-                    width: 4em;
                     background-color: color($colors-theme, "app-theme");
                     td{
                         h3{
@@ -53,11 +52,11 @@ team-view-page {
                 }
                 tr.team-calendar-inner{
                     // background-color: white;
-                    height: 7em;
+                    height: 8em;
                     td{
                         border-style: solid;
                         border-color: rgb(230, 230, 230);
-                        width: 3em;
+                        width: 2.5em;
                         p{
                             // color: white;
                             font-size: .7em;
@@ -69,17 +68,17 @@ team-view-page {
             }
         }
         ion-col[col-7]{
-            // margin-left: -.7em;
-            width: 10em;
+            margin-left: -.7em;
+            margin-top: 0em;
             ion-slides{
+                width: 16em;
                 ion-slide{
                     table{
                         width: 100%;
                         tr.day-slide-head{
                             background-color: color($colors-theme, "app-theme");
                             td{
-                                // width: 3em;
-                                height: 2.3em;
+                                height: 2.35em;
                                 p{
                                     color: white;
                                     font-size: .6em;
@@ -89,25 +88,63 @@ team-view-page {
                             }
                         }
                         tr.day-slide-content{
+                            height: 6.2em;
                             td{
-                                height: 16em;
-                                // width: 3em;
+                                width: 3em;
                                 border-style: solid;
                                 border-color: rgb(230, 230, 230);
-                            }
-                        }
-                    }
-                    
-                    ion-row{
-                        margin-left: -.3em;
-                        ion-col{
-                            // background-color: color($colors-theme, "app-theme");     
-                            height: 1.8em;                         
-                            p{
-                                color: white;
-                                font-size: .6em;
-                                margin-top: auto;
-                                margin-bottom: auto;
+                                div.dot-green{
+                                    padding: 0em;
+                                    height: 2.06em;
+                                    font-size: .85em;
+                                    background-color: rgb(19, 172, 57);
+                                    p{
+                                        height: 2em;
+                                        width: 2.2em;
+                                        margin-top: .35em;
+                                        position: absolute;
+                                        color: rgb(255, 255, 255);
+                                    }
+                                }
+                                div.dot-yellow{
+                                    padding: 0em;
+                                    height: 2.06em;
+                                    font-size: .85em;
+                                    background-color: rgb(255, 147, 7);
+                                    p{
+                                        height: 2em;
+                                        width: 2.2em;
+                                        margin-top: .35em;
+                                        position: absolute;
+                                        color: rgb(255, 255, 255);
+                                    }
+                                }
+                                div.dot-blue{
+                                    padding: 0em;
+                                    height: 2.06em;
+                                    font-size: .85em;
+                                    background-color: color($colors-theme, "app-theme");
+                                    p{
+                                        height: 2em;
+                                        width: 2.2em;
+                                        margin-top: .35em;
+                                        position: absolute;
+                                        color: rgb(255, 255, 255);
+                                    }
+                                }
+                                div.dot-red{
+                                    padding: 0em;
+                                    height: 2.06em;
+                                    font-size: .85em;
+                                    background-color: rgb(221, 53, 53);
+                                    p{
+                                        height: 2em;
+                                        width: 2.2em;
+                                        margin-top: .35em;
+                                        position: absolute;
+                                        color: rgb(255, 255, 255);
+                                    }
+                                }
                             }
                         }
                     }
@@ -116,12 +153,13 @@ team-view-page {
         }
     }
     ion-grid.header-content{
-        background-color: color($colors-theme, "app-theme");
+        background-color: white;
         ion-row{
+            background-color: color($colors-theme, "app-theme");
             ion-col{
-                height: 15%;
                 h3{
                     margin-left: 1em;
+                    height:1.5em;
                     font-size: 1em;
                     color: white;
                 }
@@ -129,8 +167,6 @@ team-view-page {
         }
         ion-row.table-content{
                 background-color: white;
-                margin-left: -.7em;
-                margin-right: -0.8em;
             ion-col[col-12]{
                 table{
                     background-color: white;
@@ -158,5 +194,4 @@ team-view-page {
             }
         }
     }
-    
 }

@@ -35,7 +35,7 @@
                             <!-- <img src="../assets/img/user.png"> -->
                             <p style="margin-left: 2em; font-size: 18px;" translate>{{p?.title}}</p>
                         </span>
-                        <!-- <span *ngIf="p.title == null" style="font-size: 0.85em;" >{{p?.messages}}</span>   -->
+                    <span *ngIf="p.title == null" style="font-size: 0.85em;" >{{p?.messages}}</span>  
                     <ion-icon *ngIf="p.title == 'COMMON.MENU.MY_REWARD' " [name]="activeSubMenu ? 'arrow-dropup' : 'arrow-dropdown'" class="icon-arrow-property"></ion-icon>
                     </button>
                     <button class="btn-property btn-color-sub sub-menu" color="light" ion-button full (click)="openPage(p,'sub',$event);$event.stopPropagation();" *ngIf="p.title == 'COMMON.MENU.MY_REWARD' &&activeSubMenu==true" translate>COMMON.MY_REWARD.YBAT</button>

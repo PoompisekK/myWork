@@ -5,7 +5,7 @@
     <ion-row class="calendar-header" no-padding>
         <ion-col col-8 no-padding>
             <!-- <span class="month-title">{{ viewTitle }}</span> -->
-            <button ion-button icon-only transparent block no-border no-box no-margin item-left item-start (click)="getEventsMonth()">
+            <button ion-button icon-only transparent block no-border no-box no-margin item-left item-start (click)="getEventsMonth && getEventsMonth()">
                 <span class="month-title">{{ viewTitle }}</span>
             </button>
         </ion-col>
@@ -61,30 +61,30 @@
     [timeInterval]="30">
     </calendar>
 
-    <div [@peekAnimation] class="month-mode-dv" *ngIf="calendarCfg.mode == KEY_MONTH ">
+    <div [@peekAnimation] class="month-mode-dv" *ngIf="calendarCfg.mode == KEY_MONTH">
         <div class="calendar-task-list">
-            <ion-list class="calendar-task-list" *ngFor="let groupList of (groupCalendarList||[])" ava-lines no-padding>
-                <ion-row class="events-title">
+            <ion-list class="calendar-task-list" ava-lines no-padding>
+                <ion-row class="events-title" *ngIf="(dataShowList?.task||[]).length > 0">
                     <ion-col col-12>
-                        <span>{{ groupList?.date }}</span>
+                        <span>{{ dataShowList?.date | amLocale:'en' | amDateFormat:'DD MMMM YYYY'}}</span>
                     </ion-col>
                 </ion-row>
-                <ion-item ava-lines *ngFor="let list of (groupList.task||[])" style="padding-top: .5em" (click)="showTaskDetail(event)">
+                <ion-item ava-lines style="padding-top: .5em" (click)="showTaskDetail(event)" *ngFor="let groupList of (dataShowList?.task||[])">
                     <ion-grid no-padding>
                         <ion-row no-padding>
                             <ion-col no-padding col-2 text-center>
-                                <div dot class="{{setStatus && setStatus(list.assignStatus)}}"></div>
+                                <div dot class="dotgreen"></div>
                             </ion-col>
                             <ion-col no-padding col-10>
                                 <ion-grid all-no-padding>
                                     <ion-row>
                                         <ion-col col-12 class="calendar-topic-desc">
-                                            <p ellipsis>{{ list?.topicDesc }} {{ '('+list?.startTime+' - '+list?.targetTime+')' }}</p>
+                                            <p ellipsis>{{ groupList?.title }}</p>
                                         </ion-col>
                                     </ion-row>
                                     <ion-row>
                                         <ion-col col-12 class="calendar-assign-desc">
-                                            <p mutil-lines lines-3>{{ list?.assignDesc }}</p>
+                                            <p mutil-lines lines-3>Work Plan : {{ groupList?.assignDesc || ' - ' }}</p>
                                         </ion-col>
                                     </ion-row>
                                 </ion-grid>
@@ -99,7 +99,7 @@
                 <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
             </ion-col>
         </ion-row>
-        <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (groupCalendarList||[]).length == 0" text-center margin-horizontal padding-vertical style="margin: 0; height: auto; border-top: 1px solid #dedede; padding-top: 3em;">
+        <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (dataShowList?.task||[]).length == 0" text-center margin-horizontal padding-vertical style="margin: 0; height: auto; border-top: 1px solid #dedede; padding-top: 3em;">
             <img src="./assets/img/svg/emptydata.svg">
             <p class="ava-empty-label" translate>M_NODATA.NODATA</p>
         </ion-card>
@@ -111,12 +111,12 @@
         <div class="calendar-event-inner">{{displayEvent.event.title}}</div>
     </ng-template>
 
+    <!-- [startHour]="0" [endHour]="24" -->
     <calendar class="calendar-comp" *ngIf="calendarCfg.mode == KEY_WEEK" 
         [autoSelect]="false" 
         [dateFormatter]="calendarCfg.dateFormatter" 
         [showEventDetail]="false" 
         [weekviewAllDayEventTemplate]="weekviewAllDayEventTemplate"
-        [startHour]="6" [endHour]="24"
         [eventSource]="eventSource" 
         [calendarMode]="calendarCfg.mode" 
         [currentDate]="calendarCfg.currentDate" 
@@ -132,7 +132,7 @@
 
     <div [@peekAnimation] class="day-mode-dv" *ngIf="calendarCfg.mode == KEY_DAY ">
         <!-- <ion-slides #slidesDayView pager no-padding (ionSlideDidChange)="daySlidesChanged && daySlidesChanged()"> -->
-        <ion-slides #slidesDayView no-padding (ionSlideNextEnd)="loadNext()" (ionSlidePrevEnd)="loadPrev()" [initialSlide]="1">
+        <ion-slides #slidesDayView no-padding (ionSlideNextEnd)="loadNext()" (ionSlidePrevEnd)="loadPrev()" [initialSlide]="2">
             <ion-slide no-padding *ngFor="let daySldItm of (daySlides||[]);let sldIdx = index;">
                 <div class="day-date" no-padding>
                     <ion-grid no-padding no-margin>
@@ -153,37 +153,20 @@
                             </ion-col>
                         </ion-row>
                     </ion-grid>
-                </div>
-                <!-- <div class="calendar-blue-bar">
-                    <ion-grid no-padding no-margin>
-                        <ion-row no-padding>
-                            <ion-col no-padding text-center col-6 class="bg-col isTabActive">
-                                <button ion-button icon-only full no-lines transparent class="active">
-                                    <ion-icon name="ios-sunny-outline"></ion-icon>
-                                    Today
-                                </button>
-                            </ion-col>
-                            <ion-col no-padding text-center col-6 class="bg-col isTabActive">
-                                <button ion-button icon-only full no-lines transparent>
-                                    <ion-icon name="md-funnel"></ion-icon>
-                                    Time Slot
-                                </button>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </div> -->
+                </div>              
                 <div class="calendar-task-list">
                     <ion-row [@peekAnimation] *ngIf="isLoading">
                         <ion-col text-center>
                             <ion-spinner style="width: 3.5em;height: 3.5em;margin:0.2em"></ion-spinner>
                         </ion-col>
                     </ion-row>
-                    <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (daySldItm.groupCalendarList||[]).length == 0" text-center margin-horizontal padding-vertical>
+                    <ion-card [@peekAnimation] ava-empty-card *ngIf="!isLoading && (daySldItm.groupCalendarList?.task||[]).length == 0" text-center margin-horizontal padding-vertical>
                         <img src="./assets/img/svg/emptydata.svg">
                         <p class="ava-empty-label" translate>M_NODATA.NODATA</p>
                     </ion-card>
-                    <ion-list ava-lines no-padding *ngFor="let calendartaskItm of (daySldItm.groupCalendarList||[])">
-                        <ion-item ava-lines *ngFor="let calendarItm of (calendartaskItm.task||[])" style="padding-top: .5em" (click)="showTaskDetail(calendarItm)">
+                    <ion-list ava-lines no-padding *ngFor="let calendartaskItm of (daySldItm.groupCalendarList?.task||[])">
+                        <!-- <ion-item ava-lines *ngFor="let calendarItm of (calendartaskItm.task||[])" style="padding-top: .5em" (click)="showTaskDetail(calendarItm)"> -->
+                        <ion-item ava-lines (click)="showTaskDetail && showTaskDetail(calendarItm)">
                             <ion-grid no-padding>
                                 <ion-row no-padding>
                                     <ion-col no-padding col-2 text-center>
@@ -193,15 +176,15 @@
                                         <ion-grid all-no-padding>
                                             <ion-row>
                                                 <ion-col col-12 class="meeting-topic-desc">
-                                                    <p ellipsis>{{ calendarItm?.topicDesc }} {{ '('+calendarItm?.startTime+' - '+calendarItm?.targetTime+')' }}</p>
+                                                    <p ellipsis>{{ calendartaskItm?.title }}</p>
                                                 </ion-col>
                                             </ion-row>
                                             <ion-row>
                                                 <ion-col col-12 class="meeting-assign-desc">
-                                                    <p mutil-lines lines-3>{{ calendarItm?.assignDesc }}</p>
+                                                    <p mutil-lines lines-3>Work Plan : </p>
                                                 </ion-col>
                                             </ion-row>
-                                            <ion-row *ngIf="calendarItm.placeDesc">
+                                            <!-- <ion-row *ngIf="calendarItm.placeDesc">
                                                 <ion-col col-12 class="meeting-place-desc">
                                                     <ion-icon name="ios-pin-outline"></ion-icon>
                                                     <span ellipsis>{{ calendarItm?.placeDesc }}</span>
@@ -212,11 +195,11 @@
                                                     <div *ngFor="let attendeesPerson of calendarItm.listAssignResponsible;let idx = index" class="div-col-attendees">
                                                         <img *ngIf="idx < 4" class="attendees-avatar {{ attendeesPerson.responsibleStatus }} img-avatar margin-auto wrapper-employee" [src]="attendeesPerson?.employeeCode | loadImg " />
                                                         <div *ngIf="idx == 4" class="attendees-avatar more">
-                                                            <!-- <span class="more-amt">{{ '+'+(calendarItm?.listAssignResponsible||[]).length }}</span> -->
+                                                            <span class="more-amt">{{ '+'+(calendarItm?.listAssignResponsible||[]).length }}</span>
                                                         </div>
                                                     </div>
                                                 </ion-col>
-                                            </ion-row>
+                                            </ion-row> -->
                                         </ion-grid>
                                     </ion-col>
                                 </ion-row>
@@ -233,11 +216,11 @@
             <ion-icon name="ios-add"></ion-icon>
         </button>
         <ion-fab-list side="top">
-            <button ion-fab (click)="createLeave && createLeave()" class="bg-workforce">
-                <img src="./assets/img/leave.png" style="height: 2.5em; width: auto;">
+            <button ion-fab (click)="createShift && createShift()" class="bg-workforce">
+                <img src="./assets/img/leave.png" style="height: 2.2em; width: auto;">
             </button>
-            <button ion-fab class="bg-workforce" (click)="createShift && createShift()">
-                <ion-icon style="font-size: 2.5em" name="ios-shuffle-outline"></ion-icon>
+            <button ion-fab class="bg-workforce" (click)="createShiftSwap && createShiftSwap()">
+                <img src="./assets/img/svg/shift/shift_swap.png" style="height: 2.2em; width: auto;">
             </button>
         </ion-fab-list>
     </ion-fab>

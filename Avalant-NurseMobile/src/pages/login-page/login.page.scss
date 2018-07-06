@@ -62,7 +62,7 @@ login-page {
         width: 100%;
         height: 3em;
         display: inline-flex;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
         ion-icon {
             font-size: 2.5em;
             width: 1em;
@@ -76,7 +76,7 @@ login-page {
     }
     ion-col.avaLogo {
         // background-image: url('../assets/img/login/applogo.svg');
-        background-image: url('../assets/img/login/bdms-logo.png');
+        background-image: url('../assets/img/login/BDMS_Logo-01.svg');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: 60%;

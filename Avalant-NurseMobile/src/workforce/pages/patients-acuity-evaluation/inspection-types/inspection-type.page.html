@@ -1,8 +1,37 @@
 <ion-header>
-    <app-nav-header [pageName]="'Inspection Type'"></app-nav-header>
+    <app-nav-header [pageName]="'Select Inspection Type'"></app-nav-header>
 </ion-header>
-<ion-content>
-    <div class="bg-workforce">
+<ion-content no-padding>
+    <ion-grid class="e_header">
+        <ion-row>
+            <!-- <ion-avatar item-start>
+                <ava-avatar-img [srcPath]="patientUserData?.employeeCode | loadImg"></ava-avatar-img>
+            </ion-avatar> -->
+            <ion-col no-padding class="patient-image">
+                <ava-avatar-img [srcPath]="(patientUserData?.employeeCode) | loadImg"></ava-avatar-img>
+            </ion-col>
+            <ion-col col-8>
+                <h2>{{ patientUserData?.name +' '+ patientUserData?.surname}}</h2>
+                <p> #NH{{patientUserData?.employeeCode}} </p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="e_content" no-padding>
+        <ion-row no-padding>
+            <ion-col *ngFor="let menuItem of menuList;let menuIdx = index;" (click)="goRoot(menuItem)" col-12>
+                <button ion-item> <p>{{ menuItem.name }}</p></button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="e_footer" no-padding>
+        <ion-row>
+            <ion-col col-12 (click)="goBack()">
+                <button ion-item>{{'M_BUTTON.BACK'|hcmtranslate:'Back'}} </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- <div class="bg-workforce">
         <ion-grid text-center style="height:100%;justify-content: center;">
             <ion-row>
                 <ion-col *ngFor="let menuItem of menuList;let menuIdx = index;" (click)="goRoot(menuItem)" col-4>
@@ -11,5 +40,5 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-    </div>
+    </div> -->
 </ion-content>

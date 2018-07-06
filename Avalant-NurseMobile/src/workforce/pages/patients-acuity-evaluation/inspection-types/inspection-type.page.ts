@@ -16,9 +16,13 @@ import { PatientsQuestionsPage } from '../patients-questions/patients-questions.
 })
 export class InspectionTypesPage implements OnInit {
     private patientParamsData: PatientParamsData;
+    private patientUserData: any;
+
     public ngOnInit(): void {
         this.patientParamsData = this.navParams.data;
         console.log("this.patientParamsData :", this.patientParamsData);
+
+        this.patientUserData = this.patientParamsData.patientUserData[0];
     }
     constructor(
         public navCtrl: NavController,
@@ -37,6 +41,10 @@ export class InspectionTypesPage implements OnInit {
             this.patientParamsData.inspectType = pageDataM.data;
             this.navCtrl.push(pageDataM.page, this.patientParamsData, { animate: true, animation: "", direction: "forward" });
         }
+    }
+
+    private goBack(){
+        this.navCtrl.pop();
     }
 }
 class MenuPage {

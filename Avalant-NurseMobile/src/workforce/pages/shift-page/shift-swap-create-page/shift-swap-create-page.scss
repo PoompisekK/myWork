@@ -43,5 +43,17 @@ shift-swap-create-page {
                 }
             }
         }
+        .red_col{
+            ion-col {
+                border-bottom: 2px solid red;
+            }            
+        }   
+        .addDate {
+            ion-input {
+                .text-input {
+                    margin: 0;
+                }
+            }
+        }
     }
 }

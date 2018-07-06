@@ -58,13 +58,14 @@
                             <div class="divInput">
                                 <!-- <img class="inputIcon" src="./assets/img/login/password_icon.svg" /> -->
                                 <ion-icon name="ios-lock-outline"></ion-icon>
-                                <ion-item no-lines>
+                                <ion-item >
                                     <ion-input type="password" name="password" [(ngModel)]="loginModel.password" placeholder="{{ 'M_SIGNIN.PASSWORD' | translate }}"></ion-input>
                                 </ion-item>
                             </div>
                         </ion-col>
                     </ion-row>
-                    <button ion-button tappable (click)="login()" class="loginBtn" round>Login</button>
+                    <button ion-button disabled tappable (click)="login()" class="loginBtn" round *ngIf="loginModel.scmUserName == null || loginModel.scmUserName == '' || loginModel.password == null || loginModel.password == ''">Login</button>
+                    <button ion-button tappable (click)="login()" class="loginBtn" round *ngIf="loginModel.scmUserName != null && loginModel.scmUserName != '' && loginModel.password != null && loginModel.password != ''" >Login</button>
                 </form>
             </ion-col>
             <ion-col col-1></ion-col>

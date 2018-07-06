@@ -22,7 +22,13 @@ time-recording-page {
     ion-grid.bgfrom {
         margin-top: .5em;
         background-color: white;
-        height: 80%;           
+        height: 80%;   
+        p.textDate {
+            margin-top: 1em;
+            font-size: 15px;
+            margin-left: 2em;
+            font-weight: bold;
+        }        
         span.titel {
             font-size: 15px;
             margin-left: .5em;
@@ -35,10 +41,7 @@ time-recording-page {
         ion-col[col-3] {
             text-align: center;
         }
-        .title.red {
-            font-size: 15px;
-            margin-left: .5em;
-            font-weight: bold;
+        .red {
             color: red;
         }
     }  

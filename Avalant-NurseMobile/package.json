@@ -2,7 +2,7 @@
   "name": "nurse-mobile",
   "author": "Ava Solution Work",
   "version": "0.0.1",
-  "description": "Nurse Mobile : An Ionic project",
+  "description": "MyDuty for Nurse : An Ionic project",
   "homepage": "http://avalant.co.th/",
   "private": true,
   "scripts": {
@@ -57,7 +57,8 @@
     "ibuild-dev": "npm run ionic:build:mobile && npm run ios:build",
     "ibuild-mobile": "npm run ibuild-dev && npm run ios:build",
     "ibuild-prod": "npm run ionic:build:mobile:prod && npm run ios:build:prod",
-    "ibuild-prod-q": "npm run ionic-app-scripts build -w ./config/webpack.prod-mobile.js && npm run ios:build:prod",
+    "ibuild-prod-q": "npm run ionic:build:mobile:prod && npm run ios:build:prod",
+    "ibuild-prod-u": "npm run ionic:build:mobile:prod:uglifyjs && npm run ios:build:prod",
     "version": "node ./config/version-generator"
   },
   "dependencies": {
@@ -105,9 +106,7 @@
     "@ionic-native/transfer": "3.14.0",
     "@ionic/app-scripts": "1.3.0",
     "@ionic/storage": "2.0.1",
-    "@reactivex/rxjs": "^5.5.3",
     "@types/cordova": "0.0.34",
-    "@types/date-fns": "^2.6.0",
     "@types/googlemaps": "3.26.17",
     "add": "2.0.6",
     "angular-l10n": "3.5.0",
@@ -118,14 +117,14 @@
     "chart.js": "2.7.2",
     "cordova": "7.0.1",
     "cordova-android": "6.2.3",
-    "cordova-ios": "4.5.1",
+    "cordova-ios": "^4.5.4",
     "cordova-open-native-settings": "1.4.1",
     "cordova-plugin-android-permissions": "1.0.0",
-    "cordova-plugin-app-launcher": "git+https://github.com/nchutchind/cordova-plugin-app-launcher.git",
+    "cordova-plugin-app-launcher": "git+https://github.com/bunditng/cordova-plugin-app-launcher.git",
     "cordova-plugin-app-version": "0.1.9",
     "cordova-plugin-camera": "2.4.1",
     "cordova-plugin-compat": "1.1.0",
-    "cordova-plugin-crop": "git+https://github.com/icharge/cordova-plugin-crop.git",
+    "cordova-plugin-crop": "git+https://github.com/bunditng/cordova-plugin-crop.git",
     "cordova-plugin-datepicker": "0.9.3",
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-file": "4.0.0",
@@ -140,12 +139,11 @@
     "cordova-plugin-market": "1.2.0",
     "cordova-plugin-nativestorage": "2.2.2",
     "cordova-plugin-network-information": "1.3.3",
-    "cordova-plugin-request-location-accuracy": "git+https://github.com/dpa99c/cordova-plugin-request-location-accuracy.git",
+    "cordova-plugin-request-location-accuracy": "git+https://github.com/bunditng/cordova-plugin-request-location-accuracy.git",
     "cordova-plugin-splashscreen": "4.0.3",
     "cordova-plugin-statusbar": "2.2.3",
     "cordova-plugin-whitelist": "1.3.2",
     "cordova.plugins.diagnostic": "3.7.2",
-    "date-fns": "^1.29.0",
     "dir-compare": "1.4.0",
     "dotenv": "4.0.0",
     "fullcalendar": "3.8.2",
@@ -173,7 +171,8 @@
     "plugin": "0.3.3",
     "primeng": "5.2.0",
     "recursive-copy": "2.0.8",
-    "rxjs": "^5.5.11",
+    "rxjs": "6.2.1",
+    "rxjs-compat": "6.2.1",
     "socket.io-client": "2.0.3",
     "strip-ansi": "4.0.0",
     "superagent": "3.8.1",
@@ -262,7 +261,9 @@
       "cordova-plugin-datepicker": {},
       "cordova-plugin-request-location-accuracy": {}
     },
-    "platforms": []
+    "platforms": [
+      "ios"
+    ]
   },
   "platforms": [
     "android",

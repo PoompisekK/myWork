@@ -210,7 +210,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
 
         this.alertCtrl.create({
             title: this.translation.translate('M_SIGNIN.FAILED'), //'Login fail',
-            message: `${error.msg}`,
+            message: `Invalid Username or Password, Please try again.`,
             buttons: dialogBtn
         }).present();
     }
@@ -221,7 +221,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
         });
         loading.present();
         this.hcmAuthenticationService.getHCMLoginToDMP(this.loginModel).subscribe((respData) => {
-            console.info("getHCMLoginToDMP :", respData);
+            console.info("getHCMLoginToDMP :", JSON.stringify(respData, null, 2));
             if (!ObjectsUtil.isEmptyObject(respData)) {
                 if (AppConstant.FLAG.ACTIVE.equals(respData.userStatus)) {
                     this.afterLoginSuccess(respData);
@@ -392,9 +392,9 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
         this.navCtrl.push('RegisterPage');
     }
 
-    public forgotPassword(): void {        
+    public forgotPassword(): void {
         this.appAlertService.forgotAlertPopup({ description: "Please Contact Your IT Admin" }).subscribe(() => {
-            this.navCtrl.pop();
+            // this.navCtrl.pop();
         });
     }
     /* public forgotPassword(): void {

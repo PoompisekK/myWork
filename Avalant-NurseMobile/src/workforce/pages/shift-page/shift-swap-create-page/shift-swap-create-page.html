@@ -6,32 +6,32 @@
     <ion-scroll scrollY="true">
         <!-- Session 2 -->
         <ion-grid class="typeShiftSwap">
-            <ion-row>
+            <ion-row id="currentDate">
                 <ion-col no-padding>
                     <ion-item no-lines no-padding class="addDate">
-                        <ion-label floating floated required translate>M_SHIFTCREATE.MY_CURRENT_DARE</ion-label>
-                        <ion-input *ngIf="isDevice" (click)="showDateTimePicker && showDateTimePicker('date')" disabled [value]="dateShiftSwap | amDateFormat:'MMM D, YYYY'" type="text" (change)="loadingWorkingShift && loadingWorkingShift()"></ion-input>
+                        <ion-label floating floated required hcmtranslate>M_SHIFTCREATE.MY_CURRENT_DARE</ion-label>
+                        <ion-input *ngIf="isDevice == true" (click)="showDateTimePicker && showDateTimePicker('date')" disabled [value]="dateShiftSwap | amDateFormat:'MMM D, YYYY'" type="text"></ion-input>
                         <ion-datetime *ngIf="isDevice == false" pickerFormat="D MMMM YYYY" displayFormat="MMM D, YYYY" [(ngModel)]="dateShiftSwap" (ngModelChange)="loadingWorkingShift && loadingWorkingShift()"></ion-datetime>
                         <ion-icon item-end name="ios-calendar-outline"></ion-icon>
                     </ion-item>
                 </ion-col>
             </ion-row>
-            <ion-row>
+            <ion-row *ngIf="swapDayType == 'S'" id="currentShift">
                 <ion-col no-padding>
                     <ion-item no-lines no-padding>
-                        <ion-label floating floated required translate>M_SHIFTCREATE.MY_CURRENT_SHIFT</ion-label>
-                        <ion-select [(ngModel)]="myCurrentShift" interface="popover">
+                        <ion-label floating floated required hcmtranslate>M_SHIFTCREATE.MY_CURRENT_SHIFT</ion-label>
+                        <ion-select [(ngModel)]="myCurrentShift" interface="popover" (ngModelChange)="loadSwapWith && loadSwapWith()">
                             <ion-option [disabled]="shift?.shiftNameCode == ''" [value]="shift?.shiftNameCode" *ngFor="let shift of (workingShift||[{shiftNameCode:'',shiftNameName:'No Data'}])">{{ shift?.shiftNameName }}</ion-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
             </ion-row>
-            <ion-row>
+            <ion-row id="swapWith">
                 <ion-col no-padding>
                     <ion-item no-lines no-padding>
-                        <ion-label floating floated required translate>M_SHIFTCREATE.SWAP_WITH</ion-label>
+                        <ion-label floating floated required hcmtranslate>M_SHIFTCREATE.SWAP_WITH</ion-label>
                         <ion-select [(ngModel)]="swapWithShift" interface="popover">
-                            <ion-option [disabled]="swapEmp?.employee_code == ''" [value]="swapEmp?.employee_code" *ngFor="let swapEmp of (vSwapWithList||[{employee_code:'',full_name:'No Data'}])">{{ swapEmp?.full_name }}</ion-option>
+                            <ion-option [disabled]="swapEmp?.employeeCode == ''" [value]="swapEmp?.employeeCode" *ngFor="let swapEmp of (vSwapWithList||[{employeeCode:'',fullName:'No Data'}])">{{ swapEmp?.fullName }}</ion-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
@@ -39,40 +39,56 @@
             <ion-row>
                 <ion-col no-padding radio-group [(ngModel)]="swapDayType">
                     <ion-item no-lines no-padding>
-                        <ion-label required translate> M_SHIFTCREATE.I_WANT_TO_SWAP_MY_SHIFT </ion-label>
-                        <ion-radio item-left value="daySame"></ion-radio>
+                        <ion-label required hcmtranslate>M_SHIFTCREATE.I_WANT_TO_SWAP_MY_SHIFT</ion-label>
+                        <ion-radio item-left value="S"></ion-radio>
                     </ion-item>
+                    <ion-row *ngIf="swapDayType == 'S'" id="swapShift">
+                        <ion-col no-padding>
+                            <ion-item no-lines no-padding>
+                                <ion-label floating floated required hcmtranslate>M_SHIFTCREATE.SWAP_SHIFT</ion-label>
+                                <ion-select [(ngModel)]="swapShift" interface="popover">
+                                    <ion-option [disabled]="swapShif?.shiftNameCode == ''" [value]="swapShif?.shiftNameCode" *ngFor="let swapShif of (swapShiftEmp||[{shiftNameCode:'',shiftNameName:'No Data'}])">{{ swapShif?.shiftNameName }}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
                     <ion-item no-lines no-padding>
-                        <ion-label required translate>M_SHIFTCREATE.I_WANT_TO_WORK_ON_DAY</ion-label>
-                        <ion-radio item-left value="dayOff"></ion-radio>
+                        <ion-label required hcmtranslate>M_SHIFTCREATE.I_WANT_TO_WORK_ON_DAY</ion-label>
+                        <ion-radio item-left value="D"></ion-radio>
                     </ion-item>
+                    <ion-row *ngIf="swapDayType == 'D'">
+                        <ion-col style="border-bottom: none; padding: 0; color: #999; font-size: 1em">
+                            <p required hcmtranslate>M_SHIFTCREATE.MY_DAY_OFF</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="swapDayType == 'D'" style="margin-top: -1em">
+                        <ion-col col-6 no-padding>
+                            <ion-item no-lines no-padding>
+                                <ion-label floating floated hcmtranslate>M_SHIFTCREATE.DATE</ion-label>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col col-6 no-padding>
+                            <ion-item no-lines no-padding>
+                                <ion-label floating floated hcmtranslate>M_SHIFTCREATE.DATE_TYPE</ion-label>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
                 </ion-col>
             </ion-row>
-            <ion-row>
-                <ion-col col-6 no-padding>
-                    <ion-item no-lines no-padding>
-                        <ion-label floating floated translate>M_SHIFTCREATE.DATE</ion-label>
-                    </ion-item>
-                </ion-col>
-                <ion-col col-6 no-padding>
-                    <ion-item no-lines no-padding>
-                        <ion-label floating floated translate>M_SHIFTCREATE.DATE_TYPE</ion-label>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row class="class-data" style="margin-top: -1em;">
+            <ion-row class="class-data" style="margin-top: -1em;" *ngIf="swapDayType == 'D'" id="dateType">
                 <ion-col no-padding style="border: none">
                     <ion-grid no-padding>
                         <ion-row no-padding>
-                            <ion-col col-6 no-padding>
-                                <ion-item no-lines no-padding>
-                                    <ion-label translate>2018/05/22</ion-label>
-                                    <ion-radio item-left value="2"></ion-radio>
+                            <ion-col col-6 no-padding radio-group [(ngModel)]="selectDayOff">
+                                <ion-item no-lines no-padding *ngFor="let day of (dayOff || [{workLoadDate:'No Data'}])">
+                                    <ion-label>{{ day?.workLoadDate }}</ion-label>
+                                    <ion-radio [disabled]="day?.workLoadDate == 'No Data'" item-left [value]="day?.workLoadDate"></ion-radio>
                                 </ion-item>
                             </ion-col>
                             <ion-col col-6 no-padding>
-                                <ion-item no-lines no-padding>
-                                    <ion-input type="text" disabled="true" value="Day off"></ion-input>
+                                <ion-item no-lines no-padding *ngFor="let day of (dayOff || [{workLoadDate:'No Data'}])">
+                                    <ion-label>Day Off</ion-label>
+                                    <ion-radio style="visibility: hidden;"></ion-radio>
                                 </ion-item>
                             </ion-col>
                         </ion-row>
@@ -82,12 +98,12 @@
             <ion-row class="textNote">
                 <ion-col no-padding>
                     <ion-item no-box no-lines no-padding>
-                        <ion-label floating floated translate>M_SHIFTCREATE.NOTE</ion-label>
-                        <ion-textarea type="text"></ion-textarea>
+                        <ion-label floating floated hcmtranslate>M_SHIFTCREATE.NOTE</ion-label>
+                        <ion-textarea type="text" [(ngModel)]="noteCreate"></ion-textarea>
                     </ion-item>
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <button ion-button full class="bg-workforce" (click)="submitCreateSwapShift && submitCreateSwapShift()" translate>M_SHIFTCREATE.CONFIRM_YOUR_REQUEST</button>
+        <button ion-button full class="bg-workforce" (click)="checkCreate && checkCreate()"> {{ 'M_SHIFTCREATE.CONFIRM_YOUR_REQUEST' | hcmtranslate }}</button>
     </ion-scroll>
 </ion-content>

@@ -26,51 +26,15 @@
             <ion-col>
                 <h2>{{appState?.businessUser?.custFname}} {{appState?.businessUser?.custLname}}</h2>
                 <p> {{ appState?.businessUser?.memberEmail }} </p>
-            </ion-col>
+            </ion-col> 
         </ion-row>
     </ion-grid>
-    <ion-grid class="textMenu">
-        <ion-row>
-            <ion-col col-6 text-center (click)="goRoot('CheckInOut')">
-                <img src="./assets/img/home_icon/clock.svg" />
-                <p class="no-margin" hcmtranslate>M_HOME.CLOCK:Clock</p>
-            </ion-col>
-            <ion-col col-6 text-center (click)="goRoot('CalendarPage')">
-                <img src="./assets/img/home_icon/calendar.svg" />
-                <p class="no-margin" hcmtranslate>M_HOME.MYSCHEDULE:My Schedule</p>
-            </ion-col>
-            <ion-col col-6 text-center (click)="goRoot('LeavePage')">
-                <img src="./assets/img/home_icon/Leave Request.svg" />
-                <p class="no-margin" hcmtranslate>M_HOME.LEAVEREQUEST:Leave Request</p>
-            </ion-col>
-            <ion-col col-6 text-center (click)="goRoot('Shift')">
-                <img src="./assets/img/home_icon/shift.svg" />
-                <p class="no-margin" hcmtranslate>M_HOME.SHIFTREQUEST:Shift</p>
-            </ion-col>
-            <ion-col col-6 text-center (click)="goRoot('ApprovePage')">
-                <div class="box red"></div>
-                <img src="./assets/img/home_icon/approval.svg" />
-                <p class="no-margin" hcmtranslate>M_HOME.APPROVAL:Approval</p>
-            </ion-col>
-            <ion-col col-6 text-center (click)="goRoot('Patient Acuity Eevaluation')">
-                <img src="./assets/img/home_icon/Patient Acuity.svg" />
-                <p class="no-margin" hcmtranslate>M_HOME.PATIENT_A_E:Patient Acuity Evaluate</p>
-            </ion-col>
-            <ion-col col-6 text-center (click)="goRoot('Dashboard')">
-                <img src="./assets/img/home_icon/chart.svg" />
-                <p class="no-margin" hcmtranslate> M_HOME.DASHBOARD:Dashboard</p>
-            </ion-col>
-            <ion-col col-6 text-center (click)="goRoot('TeamView')">
-                <img src="./assets/img/home_icon/chart.svg" />
-                <p class="no-margin">{{ 'M_HOME.TEAMVIEW' | hcmtranslate:'Team View' }}</p>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+
     <div *ngIf="isDateLoading" [@peekAnimation] style="width: 100%; height: 15%; padding: 1em 0;">
         <ion-spinner style=" width: 100%; height: 100%;"> </ion-spinner>
     </div>
     <ion-grid *ngIf="!isDateLoading && checkInTime != null" [@peekAnimation] class="CheckInTime">
-        <ion-row>
+        <ion-row >
             <ion-col>
                 <p translate> {{ (checkOutTime && checkInTime ? 'M_HOME.CHECK_OUT_TIME' : 'M_HOME.CHECK_IN_TIME') }} </p>
             </ion-col>
@@ -83,9 +47,45 @@
         </ion-row>
     </ion-grid>
 
-
-    <!-- <ion-fab center bottom *ngIf="isLoggedIn == true">
-        <button class="btn-wk" (click)="goRoot('MenuPage')" ion-fab><b></b></button>
-    </ion-fab> -->
-
+    <ion-grid class="textMenu">
+        <ion-row>
+            <ion-col col-6 text-center (click)="goRoot('CheckInOut')">
+                <img src="./assets/img/home_icon/clock.svg" />
+                <p class="no-margin" hcmtranslate>M_HOME.CLOCK:Clock</p>
+            </ion-col>
+            <ion-col col-6 text-center (click)="goRoot('CalendarPage')">
+                <img src="./assets/img/home_icon/calendar.svg" />
+                <p class="no-margin" hcmtranslate>M_HOME.MYSCHEDULE:My Schedule</p>
+            </ion-col>
+            <!-- <ion-col col-6 text-center (click)="goRoot('LeavePage')">
+                <img src="./assets/img/home_icon/Leave Request.svg" />
+                <p class="no-margin" hcmtranslate>M_HOME.LEAVEREQUEST:Leave Request</p>
+            </ion-col> -->
+            <ion-col col-6 text-center (click)="goRoot('NonProductivity')">
+                <img src="./assets/img/home_icon/Leave Request.svg" />
+                <p class="no-margin" hcmtranslate>M_HOME.NONPRODUCT:Non-Productivity Request</p>
+            </ion-col>
+            <ion-col col-6 text-center (click)="goRoot('Shift')">
+                <img src="./assets/img/home_icon/shift.svg" />
+                <p class="no-margin" hcmtranslate>M_HOME.SHIFTREQUEST:Shift</p>
+            </ion-col>
+            <ion-col col-6 text-center (click)="goRoot('ApprovePage')">
+                <div class="box red" *ngIf="nApprove == true" ></div>
+                <img src="./assets/img/home_icon/approval.svg" />
+                <p class="no-margin" hcmtranslate>M_HOME.APPROVAL:Approval</p>
+            </ion-col>
+            <ion-col col-6 text-center (click)="goRoot('Patient Acuity Eevaluation')">
+                <img src="./assets/img/home_icon/Patient Acuity.svg" />
+                <p class="no-margin" hcmtranslate>M_HOME.PATIENT_A_E:Patient Acuity Evaluate</p>
+            </ion-col>
+            <ion-col col-6 text-center (click)="goRoot('Dashboard')">
+                <img src="./assets/img/home_icon/chart.svg" />
+                <p class="no-margin" > {{ 'M_HOME.DASHBOARD' | hcmtranslate:'Dashboard' }} </p>
+            </ion-col>
+            <ion-col col-6 text-center (click)="goRoot('TeamView')">
+                <img src="./assets/img/home_icon/chart.svg" />
+                <p class="no-margin">{{ 'M_HOME.TEAMVIEW' | hcmtranslate:'Team View' }}</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

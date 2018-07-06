@@ -82,9 +82,9 @@ export class timeRecordingPage {
         const time = moment(date + 'T' + _time).format('hmm');
         console.log('Time : ', parseInt(time));
         if (parseInt(time) > 800) {
-            return this.hcmTranslationService.translate('M_TIMERECORDING.LATE', 'Late');
+            return false;
         } else {
-            return this.hcmTranslationService.translate('M_TIMERECORDING.NORMAL_WORKING_DAY', 'Normal Working Day');
+            return true;
         }
     }
     private checkStyeLate(_time) {
@@ -133,7 +133,7 @@ export class timeRecordingPage {
     private ckeckListMonth(_month) {
         let listByMonth = [];
         this.dataTimeRec.forEach(element => {
-            if (moment(element.date).format('MM') == moment(_month).format('MM')) {
+            if (moment(element.date).format('MM YYYY') == moment(_month).format('MM YYYY')) {
                 listByMonth.push(element);
             }
         });

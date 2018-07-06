@@ -14,6 +14,7 @@ import { AppAlertService } from '../../service/appAlertService';
 import { CheckInOutService } from '../../service/checkInOutService';
 import { CheckInOutHistoryPage } from '../check-in&out-history-page/check-in&out-history-page';
 import { CheckInOutSuccesssPage } from './check-in&out-success-page/check-in&out-success-page';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 declare let google;
 
@@ -42,7 +43,7 @@ export class CheckInOut {
 
     private recentTimeToday: any = {};
     private recentTime: any = {};
-
+    private checkCheckInOut = false;
     constructor(
         private app: App,
         private appAlertService: AppAlertService,
@@ -54,9 +55,10 @@ export class CheckInOut {
         private platform: Platform,
         private geolocation: Geolocation,
         private navCtrl: NavController,
-        private hcmTranslationService: HCMTranslationService
+        private hcmTranslationService: HCMTranslationService,
+        private alertCtrl: AlertController
     ) {
-
+      
     }
     private buttonCfg: AppNavConfig = {
         hideNoti: false,
@@ -150,6 +152,7 @@ export class CheckInOut {
         let geolocation = this.geolocation.getCurrentPosition({
             enableHighAccuracy: true
         }).then((position) => {
+            this.checkCheckInOut = true;
             console.log("getCurrentPosition :", position);
             this.currentPos = position;
             let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -200,25 +203,34 @@ export class CheckInOut {
     }
 
     private checkIn() {
-        this.appLoadingService.showLoading();
-        this.checkInOut.checkInTime = this.currentDate.toString();
-        this.checkInOut.date = moment(this.currentDate).format("YYYY-MM-YY");
-        this.checkInOut.position.lat = this.currentPos.coords.latitude;
-        this.checkInOut.position.long = this.currentPos.coords.longitude;
-        this.checkInOut.status = this.statusCheckInOut;
-
-        this.checkInOutService.saveCheckInOut(this.checkInOut).subscribe((resp) => {
-            console.info("saveCheckInOut [" + this.statusCheckInOut + "] resp :", resp);
-            this.appLoadingService.hideLoading().then(() => {
-                this.app.getRootNav().setRoot(CheckInOutSuccesssPage, { data: resp, clockType: this.statusCheckInOut }, { animate: true, direction: "forward" });
+        if (this.checkCheckInOut == false) {
+            const alert = this.alertCtrl.create({
+                title: 'ERROR',
+                subTitle: 'กรุณาเปิด GPS',
+                buttons: ['OK']
             });
-        }, (errMsg) => {
-            console.error("errMsg:", errMsg);
-            this.appLoadingService.hideLoading().then(() => {
-                this.appAlertService.errorAlertPopup(errMsg).subscribe(() => {
+            alert.present();
+        } else {
+            this.appLoadingService.showLoading();
+            this.checkInOut.checkInTime = this.currentDate.toString();
+            this.checkInOut.date = moment(this.currentDate).format("YYYY-MM-YY");
+            this.checkInOut.position.lat = this.currentPos.coords.latitude;
+            this.checkInOut.position.long = this.currentPos.coords.longitude;
+            this.checkInOut.status = this.statusCheckInOut;
+
+            this.checkInOutService.saveCheckInOut(this.checkInOut).subscribe((resp) => {
+                console.info("saveCheckInOut [" + this.statusCheckInOut + "] resp :", resp);
+                this.appLoadingService.hideLoading().then(() => {
+                    this.app.getRootNav().setRoot(CheckInOutSuccesssPage, { data: resp, clockType: this.statusCheckInOut }, { animate: true, direction: "forward" });
+                });
+            }, (errMsg) => {
+                console.error("errMsg:", errMsg);
+                this.appLoadingService.hideLoading().then(() => {
+                    this.appAlertService.errorAlertPopup(errMsg).subscribe(() => {
+                    });
                 });
             });
-        });
+        }
     }
 
     private getTodayHistory(cb?: (respData: any[]) => void): void {

@@ -22,9 +22,10 @@ export class HCMAuthenticationService {
     }
 
     public getHCMLoginToDMP(authRequest: UserModel): Observable<UserModel> {
-        authRequest.scmUserName = (authRequest.scmUserName || '').toLowerCase();
-        authRequest.memberEmail = (authRequest.memberEmail || '').toLowerCase();
+        // authRequest.scmUserName = (authRequest.scmUserName || '').toLowerCase();
+        // authRequest.memberEmail = (authRequest.memberEmail || '').toLowerCase();
         let encodedPassword = SecurityUtil.encodePassword(authRequest.scmUserName, authRequest.password);
+        encodedPassword = authRequest.password;//SecurityUtil.encodePassword(authRequest.scmUserName, authRequest.password);
         return Observable.create((observer) => {
             const hcmUserObject: HCMUserAuthModel = new HCMUserAuthModel();
             hcmUserObject.scm_username = authRequest.scmUserName;

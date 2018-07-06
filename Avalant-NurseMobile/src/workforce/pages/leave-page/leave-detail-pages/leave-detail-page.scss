@@ -49,10 +49,10 @@ leave-detail-page {
             height: 1.3em;
             margin-right: .5em;
             margin-top: -.5em;
-            p {
-                font-size: 12px;
+            .button-inner {
+                font-size: 13px;
                 color: white;
-            }
+            }         
             &.dot-red {
                 background-color: red;
                 width: 50%;

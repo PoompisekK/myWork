@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
+import * as moment from 'moment';
 
 import { AnimateCss } from '../../../../animations/animate-store';
 import { AppState } from '../../../../app/app.state';
-import { PatientParamsData } from '../patients-acuity-evaluation.page';
 import { WorkForceHomePage } from '../../workforce-home/workforce-home.page';
+import { PatientParamsData } from '../patients-acuity-evaluation.page';
 
 @Component({
     selector: 'assessment-summary',
@@ -24,11 +25,14 @@ export class AssessmentSummaryPage implements OnInit {
         public appState: AppState,
     ) { }
 
+    private dateTime = moment(new Date()).format("YYYY-MM-DD");
     public ngOnInit(): void {
         this.patientParamsData = this.navParams.data;
         console.log("this.patientParamsData :", this.patientParamsData);
         this.patientUserData = this.patientParamsData.patientUserData && this.patientParamsData.patientUserData.length > 0 && this.patientParamsData.patientUserData[0];
         console.log("this.patientUserData :", this.patientUserData);
+
+        console.log("Date & Time => " , this.dateTime);
     }
 
     private completeAcuity() {

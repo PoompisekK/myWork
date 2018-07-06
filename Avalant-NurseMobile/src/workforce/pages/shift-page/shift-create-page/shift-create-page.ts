@@ -16,6 +16,7 @@ import {
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { HCMUserProfileRestService } from '../../../../services/userprofile/hcm-userprofile.service';
 import { AppState } from '../../../../app/app.state';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 @Component({
     selector: 'shift-create-page',
@@ -42,7 +43,8 @@ export class ShiftCreatePage implements OnInit {
         private shiftService: HCMShiftRestService,
         private appService: AppServices,
         private hcmUserProfileService: HCMUserProfileRestService,
-        private appState: AppState
+        private appState: AppState,
+        private alertCtrl: AlertController
     ) {
         this.appService.subscribe(AppConstant.EVENTS_SUBSCRIBE.SHIFT_CREATE, () => {
             this.viewCtrl && this.viewCtrl.dismiss();
@@ -70,8 +72,10 @@ export class ShiftCreatePage implements OnInit {
         this.calendarDatePickerService.getDisplayDateTimePicker(currSelected, _displayType).subscribe((dateResult) => {
             if (this.shiftType == 'shift') {
                 this.dateTimeShift = dateResult.toISOString();
+                this.getWorkShift(this.dateTimeShift);
             } else if (this.shiftType == 'shiftSwap') {
                 this.dateShiftSwap = dateResult.toISOString();
+                this.getWorkShift(this.dateTimeShift);
             }
             console.log('Date : ', dateResult.toISOString());
         });
@@ -152,10 +156,10 @@ export class ShiftCreatePage implements OnInit {
         this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.POSITION_BOX_CODE = this.dataPositionBoxCode.positionBoxCode;
         let shiftRequestType = this.selectTeamGroup.find(data => data.teamGroupNo == this.createModel.requestTowork);
         this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.SHIFT_REQ_TYPE = shiftRequestType.teamGroupType;
-        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.EMPLOYEE_CODE = this.appState.businessUser.employeeCode;        
+        this.modelCreateShift.EMPLOYEE_SHIFT_REQUEST.EMPLOYEE_CODE = this.appState.businessUser.employeeCode;
 
         console.log('DATA CREATE : ', this.modelCreateShift);
-        this.rejectThisTask(this.modelCreateShift, 'create', 'createShift');        
+        this.rejectThisTask(this.modelCreateShift, 'create', 'createShift');
     }
 
     private modelCreateShift = {
@@ -182,6 +186,37 @@ export class ShiftCreatePage implements OnInit {
                 this.dataPositionBoxCode = element;
             });
         });
+    }
+
+    private checkCreate() {
+        let isError = false;
+        document.getElementById("requestWorkIn").classList.remove('red');
+        document.getElementById("effectiveDate").classList.remove('red');
+        document.getElementById("shift").classList.remove('red');
+        if (!this.createModel.requestTowork) {
+            document.getElementById("requestWorkIn").classList.add('red');
+            isError = true;
+        }
+        if (!this.dateTimeShift) {
+            document.getElementById("effectiveDate").classList.add('red');
+            isError = true;
+        }
+        if (!this.createModel.shiftId) {
+            document.getElementById("shift").classList.add('red');
+            isError = true;
+        }
+
+        if (isError == false) {
+            this.commitCreateShift();
+        } else {
+            const alert = this.alertCtrl.create({
+                title: 'ERROR',
+                subTitle: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                buttons: ['OK']
+              });
+              alert.present();
+        }
+
     }
 
 }

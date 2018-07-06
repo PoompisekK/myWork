@@ -3,119 +3,72 @@
 </ion-header>
 
 <ion-content no-padding class="bg">
-    <!-- <h3 text-center> {{viewTitle}} </h3> -->
-    <!-- <ng-template #monthviewDisplayEventTemplate let-view="view" let-row="row" let-col="col" red>
-        
-    </ng-template> -->
     <ion-grid class="monthTitle">
         <ion-row>
-            <ion-col col-2>
+            <ion-col col-2 (click)="prevMonth && prevMonth()">
                 <ion-icon name="ios-arrow-back-outline"></ion-icon>
             </ion-col>
             <ion-col col-8>
-                <h3>June 2018</h3>
+                <h3>{{ getMonth | amLocale:'en' | amDateFormat:'MMMM YYYY' }}</h3>
             </ion-col>
-            <ion-col col-2>
+            <ion-col col-2 (click)="nextMonth && nextMonth()">
                 <ion-icon name="ios-arrow-forward-outline"></ion-icon>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-row class="team-calendar">
+
+    <ion-row class="team-calendar" no-padding >
         <ion-col col-5>
             <table>
                 <tr class="team-calendar-head">
                     <td><h3> Name </h3></td>
-                    <td><h3> Work Hour </h3></td>
-                    <td><h3> OT </h3></td>
-                    <td><h3> RLV ADM </h3></td>
+                    <td style="background-color: rgb(56, 56, 56)"><h3> Work Hour </h3></td>
+                    <td style="background-color: rgb(56, 56, 56)"><h3> OT </h3></td>
+                    <td style="background-color: rgb(56, 56, 56)"><h3> RLV ADM </h3></td>
                 </tr>
-                <tr class="team-calendar-inner">
-                    <td><p> Michael </p><p>N1234</p></td>
-                    <td><p> 160 </p></td>
-                    <td><p> 0 </p></td>
-                    <td><p> 12 </p></td>
-                </tr>
-                <tr class="team-calendar-inner">
-                    <td><p> Gloria </p><p>N1234</p></td>
-                    <td><p> 176 </p></td>
-                    <td><p> 8 </p></td>
-                    <td><p> 22 </p></td>
-                </tr >
-                <tr class="team-calendar-inner">
-                    <td><p> Jenette </p><p>N1234</p></td>
-                    <td><p> 176 </p></td>
-                    <td><p> 8 </p></td>
-                    <td><p> 20 </p></td>
+                <tr class="team-calendar-inner" *ngFor="let data of (empData||[])" >
+                    <td><p> {{data.name}} </p><p>N{{data.emp_id}}</p></td>
+                    <td><p> {{data.workHr}} </p></td>
+                    <td><p> {{data.ot}} </p></td>
+                    <td><p> {{data.rlv}} </p></td>
                 </tr>
             </table>
         </ion-col>
         <ion-col col-7>
-            <ion-slides  (ionSlideDidChange)="slideChanged()">
-                <ion-slide text-center>
+            <ion-slides  (ionSlideDidChange)="slideChanged()" no-padding>
+                <ion-slide  text-center *ngFor="let week of (allWeek||[]);let weekIndx = index;">
                     <table>
                         <tr class="day-slide-head">
-                            <td *ngFor="let d of (weekDatePrev||[])"> 
-                                <p> {{d.date}} </p> 
-                                <p> {{d.dateNum}} </p>
+                            <td  *ngFor="let day of [1,2,3,4,5,6];let dayIndx = index;" > 
+                                <p> {{ getDayHeader && getDayHeader(weekIndx,dayIndx) | amDateFormat:'ddd' }} </p> 
+                                <p> {{ getDayHeader && getDayHeader(weekIndx,dayIndx) | amDateFormat:'D' }} </p> 
                             </td>
                         </tr>
-                        <tr class="day-slide-content">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        
-                    </table>
-                </ion-slide>
-                <ion-slide text-center>
-                    <table>
-                        <tr class="day-slide-head">
-                            <td *ngFor="let d of (weekDate||[])"> 
-                                <p> {{d.date}} </p> 
-                                <p> {{d.dateNum}} </p>
+                        <tr class="day-slide-content" *ngFor="let data of (empData||[]);let dataIdx = index" >
+                            <td *ngFor="let day of [1,2,3,4,5,6];let dayIndx = index;"  [innerHtml]="getWorkPositionHtml && getWorkPositionHtml(weekIndx, dayIndx, data)">
+                                <!-- <div class="dot-yellow" *ngIf="getWorkPosition(weekIndx, dayIndx, data) != '' && getWorkPosition(weekIndx, dayIndx, data) == 'D'"> 
+                                    <p> {{ getWorkPosition && getWorkPosition(weekIndx, dayIndx, data) }}</p> 
+                                </div>
+                                <div class="dot-green" *ngIf="getWorkPosition(weekIndx, dayIndx, data) != '' && getWorkPosition(weekIndx, dayIndx, data) == 'E'"> 
+                                    <p> {{ getWorkPosition && getWorkPosition(weekIndx, dayIndx, data) }}</p> 
+                                </div>
+                                <div class="dot-blue" *ngIf="getWorkPosition(weekIndx, dayIndx, data) != '' && getWorkPosition(weekIndx, dayIndx, data) == 'N'"> 
+                                    <p> {{ getWorkPosition && getWorkPosition(weekIndx, dayIndx, data) }}</p> 
+                                </div>
+                                <div class="dot-red" *ngIf="getWorkPosition(weekIndx, dayIndx, data) != '' && getWorkPosition(weekIndx, dayIndx, data) == 'X'"> 
+                                    <p> {{ getWorkPosition && getWorkPosition(weekIndx, dayIndx, data) }}</p> 
+                                </div> -->
                             </td>
-                        </tr>
-                        <tr class="day-slide-content">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </ion-slide>
-                <ion-slide text-center>
-                    <table>
-                        <tr class="day-slide-head">
-                            <td *ngFor="let d of (weekDateNext||[])"> 
-                                <p> {{d.date}} </p> 
-                                <p> {{d.dateNum}} </p>
-                            </td>
-                        </tr>
-                        <tr class="day-slide-content">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
                         </tr>
                     </table>
                 </ion-slide>
             </ion-slides>
         </ion-col>
     </ion-row>
-    <ion-grid class="header-content">
-        <ion-row>
+    <ion-grid class="header-content" no-padding>
+        <ion-row no-padding>
             <ion-col col-12>
-                <h3>Shift Summary</h3>
+                <h3 >{{'M_TEAMVIEW.SHIFT_SUMM' | hcmtranslate:'Shift Summary'}}</h3>
             </ion-col>
         </ion-row>
         <ion-row class="table-content">
@@ -161,10 +114,10 @@
             </ion-col>
         </ion-row>  
     </ion-grid>
-    <ion-grid class="header-content">
-        <ion-row>
+    <ion-grid class="header-content" no-padding>
+        <ion-row no-padding>
             <ion-col col-12>
-                <h3>No. of Holidays</h3>
+                <h3 >{{'M_TEAMVIEW.HOLIDAY' | hcmtranslate:'No. of Holidays'}}</h3>
             </ion-col>
         </ion-row>
         <ion-row class="table-content">
@@ -201,16 +154,4 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-
-
 </ion-content>
-<!-- <ion-col >
-                        <calendar [eventSource]="eventSource"
-                        [calendarMode]="calendar.mode"
-                        [currentDate]="calendar.currentDate"
-                        (onEventSelected)="onEventSelected($event)"
-                        (onTimeSelected)="onTimeSelected($event)" 
-                        (onTitleChanged)="onViewTitleChanged($event)" 
-                        [step]="1">
-                        </calendar>
-                    </ion-col> -->

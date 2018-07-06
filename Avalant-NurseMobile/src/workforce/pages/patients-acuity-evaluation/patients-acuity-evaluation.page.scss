@@ -33,14 +33,15 @@ patients-acuity-evaluation {
         }
         ion-label {
             * {
-                font-size: .8em;
+                font-size: .7em;
             }
             h2 {
-                // font-size: .9em;
+                font-size: .9em;
                 font-weight: bold;
             }
             p {
-                font-weight: 100;
+                // font-weight: 100;
+                color: grey;
             }
         }
         div.emp-select-status {

@@ -29,6 +29,7 @@ import { AppServices } from '../../services/app-services';
 import { ObjectsUtil } from '../../utilities/objects.util';
 import { AnimateCss } from '../../animations/animate-store';
 import { SelectOptionsListPopoverPage } from '../../layout-module/components/select-popover/select-option.popover';
+import { locale } from 'moment';
 /**
  * Generated class for the SettingPage page.
  *
@@ -103,7 +104,8 @@ export class SettingsPage implements OnInit {
       }
     });
   }
-  private currLang: string = this.appState.language;
+  
+  private currLang: string = locale(this.appState.language);
   private changeLanguage(language: string): void {
     this.currLang = language;
     this.localizationService.setLanguageSync(language);

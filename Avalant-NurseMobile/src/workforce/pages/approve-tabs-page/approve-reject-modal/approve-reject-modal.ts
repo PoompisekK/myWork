@@ -13,6 +13,7 @@ import { LeaveService } from '../../../service/leaveService';
 import { HCMShiftRestService } from '../../../../services/userprofile/hcm-shift.service';
 import { HCMApprovalRestService } from '../../../../services/userprofile/hcm-approval.service';
 import { HCMEAFRestService } from '../../../../services/eaf-rest/hcm-eaf-rest.service';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 @Component({
     selector: 'approve-reject-modal',
@@ -39,7 +40,8 @@ export class ApproveRejectModalPage implements OnInit {
         private appService: AppServices,
         private shiftService: HCMShiftRestService,
         private hcmApprovalRestService: HCMApprovalRestService,
-        private hcmEAFRestService: HCMEAFRestService
+        private hcmEAFRestService: HCMEAFRestService,
+        private alertCtrl: AlertController
     ) {
 
     }
@@ -111,14 +113,24 @@ export class ApproveRejectModalPage implements OnInit {
             if (this.rejectType == 'shiftSwapAcceptant') {
                 this.hcmApprovalRestService.updateApproveShiftSwapAcceptant(this.taskItemDetail).subscribe(data => {
                     console.log('return from create : ', data);
-                    this.viewCtrl && this.viewCtrl.dismiss();
-                    this.appServices.publish(AppConstant.EVENTS_SUBSCRIBE.REJECT_LEAVE);
+                    if (data.status == 'Success.') {
+                        this.viewCtrl && this.viewCtrl.dismiss();
+                        this.popupSuccsec();
+                    } else {
+                        this.viewCtrl && this.viewCtrl.dismiss();
+                        this.popupError();
+                    }
                 });
             } else if (this.rejectType == 'shiftSwap' || this.rejectType == 'shift' || this.rejectType == 'leave') {
                 this.hcmApprovalRestService.saveApproveShiftSwap('/approve/approve-step', this.taskItemDetail).subscribe(data => {
                     console.log('Data Approve Shift Swap : ', data);
-                    this.viewCtrl && this.viewCtrl.dismiss();
-                    this.appServices.publish(AppConstant.EVENTS_SUBSCRIBE.REJECT_LEAVE);
+                    if ('success'.equals(data)) {
+                        this.viewCtrl && this.viewCtrl.dismiss();
+                        this.popupSuccsec();
+                    } else {
+                        this.viewCtrl && this.viewCtrl.dismiss();
+                        this.popupError();
+                    }
                 });
             } else {
                 console.log('> > > No Service < < <');
@@ -129,17 +141,27 @@ export class ApproveRejectModalPage implements OnInit {
             if (this.rejectType == 'shiftSwapAcceptant') {
                 this.hcmApprovalRestService.updateApproveShiftSwapAcceptant(this.taskItemDetail).subscribe(data => {
                     console.log('return from create : ', data);
-                    this.viewCtrl && this.viewCtrl.dismiss();
-                    this.appServices.publish(AppConstant.EVENTS_SUBSCRIBE.REJECT_LEAVE);
+                    if (data.status == 'Success.') {
+                        this.viewCtrl && this.viewCtrl.dismiss();
+                        this.popupSuccsec();
+                    } else {
+                        this.viewCtrl && this.viewCtrl.dismiss();
+                        this.popupError();
+                    }
                 });
-            } else if(this.rejectType == 'shiftSwap' || this.rejectType == 'shift' || this.rejectType == 'leave') {
+            } else if (this.rejectType == 'shiftSwap' || this.rejectType == 'shift' || this.rejectType == 'leave') {
                 this.taskItemDetail['reason'] = this.rejectReason;
                 this.hcmApprovalRestService.saveRejectShift('/approve/reject-step', this.taskItemDetail).subscribe(data => {
                     console.log('Data Reject Shift : ', data);
-                    this.viewCtrl && this.viewCtrl.dismiss();
-                    this.appServices.publish(AppConstant.EVENTS_SUBSCRIBE.REJECT_LEAVE);
+                    if ('success'.equals(data)) {
+                        this.viewCtrl && this.viewCtrl.dismiss();
+                        this.popupSuccsec();
+                    } else {
+                        this.viewCtrl && this.viewCtrl.dismiss();
+                        this.popupError();
+                    }
                 });
-            }else {
+            } else {
                 console.log('> > > No Service < < <');
                 this.viewCtrl && this.viewCtrl.dismiss();
                 this.appServices.publish(AppConstant.EVENTS_SUBSCRIBE.REJECT_LEAVE);
@@ -195,14 +217,57 @@ export class ApproveRejectModalPage implements OnInit {
             console.log('dataCreate : ', this.dataCreate);
             this.shiftService.saveShift(this.dataCreate).subscribe(data => {
                 console.log('return from create : ', data);
+                if (data.status == 'Failed.') {
+                    this.popupError();
+                } else {
+                    this.popupSuccsec();
+                }
             });
             // create ได้แล้วแต่ยัง fix อยู่
             // สร้าง service this.hcmEAFRestService.saveEntityModel ขึ้นมาใหม่ copy จาก this.hcmEAFRestService.saveEntity
         } else if (this.typeCreate == 'createShiftSwap') {
-            console.log('CREATE SHIFT SWAP');
+            console.log('dataCreate : ', this.dataCreate);
+            this.shiftService.saveShiftSwap(this.dataCreate).subscribe(data => {
+                console.log('return from create : ', data);
+                if (data.status == 'Failed.') {
+                    this.popupError();
+                } else {
+                    this.popupSuccsec();
+                }
+            });
         }
         this.viewCtrl && this.viewCtrl.dismiss().then(() => {
             this.appService.publish(AppConstant.EVENTS_SUBSCRIBE.SHIFT_CREATE);
         });
+    }
+
+    private popupSuccsec() {
+        let alert = this.alertCtrl.create({
+            title: this.hcmTranslationService.translate('M_APPROVEREJECTMODAL.SUCCESS', 'Success'),
+            buttons: [
+                {
+                    text: 'OK',
+                    handler: () => {
+                        console.log('OK success ');
+                        this.appServices.publish(AppConstant.EVENTS_SUBSCRIBE.REJECT_LEAVE);
+                    }
+                }
+            ]
+        });
+        alert.present();
+    }
+    private popupError() {
+        let alert = this.alertCtrl.create({
+            title: 'ERROR',
+            buttons: [
+                {
+                    text: 'OK',
+                    handler: () => {
+                        console.log('NO SUCCSEC');
+                    }
+                }
+            ]
+        });
+        alert.present();
     }
 }
